@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kinley Tenzin · Ph.D. Researcher · Biology · Kansas State University</title>
+<meta name="description" content="Kinley Tenzin: microbial comparative and population genomics, bacterial phylogenomics, plasmids and antimicrobial resistance, food-safety genomics. Ph.D. Researcher, Biology, Kansas State University." />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-600.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-700.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.19/latin-500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.19/latin-700.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/latin-400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/latin-600.css" />
+
+<style>
+:root{
+  --bg:#f5f2eb;
+  --panel:rgba(255,255,255,.72);
+  --panel-2:#fff;
+  --line:rgba(38,60,51,.18);
+  --line-soft:rgba(38,60,51,.1);
+  --ink:#263c33;
+  --ink-2:#506158;
+  --ink-3:#627168;
+  --teal:#246354;
+  --cyan:#315f77;
+  --amber:#976323;
+  --violet:#6d587d;
+  --rose:#984858;
+  --grad:linear-gradient(100deg,#246354,#315f77);
+  --r-lg:22px; --r-md:14px; --r-sm:9px;
+  --maxw:1180px;
+  --shadow:0 16px 40px -28px rgba(38,60,51,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(900px 620px at 12% -6%, rgba(67,224,200,.13), transparent 62%),
+    radial-gradient(780px 560px at 92% 4%, rgba(92,201,255,.11), transparent 60%),
+    radial-gradient(900px 700px at 60% 108%, rgba(169,139,255,.09), transparent 62%),
+    var(--bg);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:
+    linear-gradient(rgba(140,190,210,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(140,190,210,.045) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:radial-gradient(circle at 50% 24%,#000 0%,transparent 72%);
+  -webkit-mask-image:radial-gradient(circle at 50% 24%,#000 0%,transparent 72%);
+}
+::selection{background:rgba(67,224,200,.3);color:#fff}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-.02em}
+.mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+i.sp{font-style:italic}
+
+/* ---------- progress + nav ---------- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--grad);z-index:200;box-shadow:0 0 14px rgba(67,224,200,.7);transition:width .12s linear}
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:150;
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+  background:rgba(5,8,13,.72);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;
+}
+header.nav.stuck{border-bottom-color:var(--line-soft);background:rgba(5,8,13,.9)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.brand-mark{
+  width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;
+  background:linear-gradient(145deg,rgba(67,224,200,.22),rgba(169,139,255,.18));
+  border:1px solid rgba(67,224,200,.4);
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#c9fff4;letter-spacing:.04em;
+}
+.brand-txt{display:flex;flex-direction:column;line-height:1.15}
+.brand-txt b{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700}
+.brand-txt span{font-size:10.5px;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase}
+.nav-links{display:flex;gap:2px;margin-left:auto;align-items:center}
+.nav-links a{
+  font-size:12.4px;font-weight:500;color:var(--ink-3);padding:8px 10px;border-radius:9px;
+  transition:color .2s,background .2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--ink);background:var(--panel)}
+.nav-links a.active{color:var(--teal);background:rgba(67,224,200,.1)}
+.nav-actions{display:flex;gap:9px;align-items:center;flex:0 0 auto;margin-left:auto}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:12.8px;font-weight:600;
+  padding:9px 15px;border-radius:10px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);transition:.22s;white-space:nowrap;
+}
+.btn:hover{background:var(--panel-2);border-color:rgba(67,224,200,.45);transform:translateY(-1px)}
+.btn.primary{background:var(--grad);color:#04121a;border-color:transparent;box-shadow:0 8px 26px -12px rgba(67,224,200,.85)}
+.btn.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+#burger{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--panel);align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+#burger span{display:block;width:16px;height:1.6px;background:var(--ink);position:relative}
+#burger span::before,#burger span::after{content:"";position:absolute;left:0;width:16px;height:1.6px;background:var(--ink)}
+#burger span::before{top:-5px}#burger span::after{top:5px}
+
+/* ---------- layout ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:88px 0 12px;position:relative}
+.sec-head{display:flex;align-items:flex-end;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.sec-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);display:flex;align-items:center;gap:9px;margin-bottom:10px;
+}
+.sec-kicker::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--teal),transparent)}
+.sec-title{font-size:clamp(26px,3.4vw,36px);font-weight:700}
+.sec-note{margin-left:auto;max-width:340px;font-size:13.4px;color:var(--ink-2);line-height:1.6}
+
+.card{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r-lg);
+  padding:24px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,background .3s;
+}
+.card:hover{border-color:rgba(67,224,200,.32);background:var(--panel-2)}
+.card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .35s;
+  background:radial-gradient(420px 180px at var(--mx,50%) var(--my,0%),rgba(67,224,200,.11),transparent 70%);
+}
+.card:hover::after{opacity:1}
+
+/* ---------- hero ---------- */
+#home{padding-top:146px;padding-bottom:32px}
+.hero-wrap{position:relative}
+.hero{position:relative;z-index:1;display:block;max-width:880px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11.2px;
+  letter-spacing:.13em;text-transform:uppercase;color:#bff6ea;
+  background:rgba(67,224,200,.09);border:1px solid rgba(67,224,200,.28);
+  padding:6px 13px;border-radius:99px;margin-bottom:20px;
+}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,8vw,94px);font-weight:400;letter-spacing:-.045em;line-height:1.08}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-role{margin-top:16px;font-size:clamp(14.5px,1.7vw,17.5px);color:var(--ink-2);font-weight:500;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.hero-role i{width:4px;height:4px;border-radius:50%;background:var(--teal);display:inline-block;opacity:.8}
+.hero-lead{margin-top:22px;max-width:46ch;font-size:17px;color:var(--ink-2);line-height:1.75}
+.hero-lead b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.hero-contact{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.chip-link{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.6px;font-family:'JetBrains Mono',monospace;
+  color:var(--ink-2);background:rgba(255,255,255,.03);border:1px solid var(--line-soft);
+  padding:7px 12px;border-radius:9px;transition:.2s;cursor:pointer;
+}
+.chip-link:hover{color:var(--teal);border-color:rgba(67,224,200,.4);background:rgba(67,224,200,.07)}
+.chip-link svg{width:13px;height:13px;flex:0 0 auto}
+
+.hp-foot{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10.4px;letter-spacing:.06em;color:#9fdfe9;background:rgba(92,201,255,.09);border:1px solid rgba(92,201,255,.2);padding:4px 9px;border-radius:7px}
+
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px}
+.stat{
+  border:1px solid var(--line-soft);border-radius:var(--r-md);padding:16px;background:rgba(255,255,255,.025);
+  position:relative;overflow:hidden;transition:.28s;
+}
+.stat:hover{transform:translateY(-3px);border-color:rgba(67,224,200,.36);background:rgba(67,224,200,.05)}
+.stat .n{font-family:'Space Grotesk',sans-serif;font-size:clamp(23px,2.6vw,29px);font-weight:700;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.stat .l{font-size:11.4px;color:var(--ink-3);margin-top:5px;line-height:1.45}
+
+/* ---------- timeline ---------- */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,rgba(67,224,200,.55),rgba(92,201,255,.28),transparent)}
+.tl-item{position:relative;padding:0 0 26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:-30px;top:7px;width:15px;height:15px;border-radius:50%;
+  background:#08121a;border:2px solid rgba(67,224,200,.65);box-shadow:0 0 0 4px rgba(67,224,200,.08);
+}
+.tl-item.dim::before{border-color:rgba(140,190,210,.35);box-shadow:0 0 0 4px rgba(140,190,210,.06)}
+.tl-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.tl-role{font-family:'Space Grotesk',sans-serif;font-size:16.2px;font-weight:700;letter-spacing:-.01em}
+.tl-org{font-size:13.2px;color:var(--cyan);margin-top:2px;font-weight:500}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:11.4px;color:var(--ink-3);letter-spacing:.04em;white-space:nowrap;
+  border:1px solid var(--line-soft);padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.025);text-align:right}
+.tl-date em{font-style:normal;color:var(--teal)}
+.tl-body{margin-top:12px;display:flex;flex-direction:column;gap:9px}
+.tl-body li{list-style:none;display:block;position:relative;padding-left:25px;font-size:13.6px;color:var(--ink-2);line-height:1.68}
+.tl-body li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--teal);opacity:.75}
+.tl-body li b{color:var(--ink);font-weight:600}
+.tl-plain{font-size:13.6px;color:var(--ink-2);line-height:1.68;margin-top:11px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ---------- publications ---------- */
+.pub{padding:24px}
+.pub-head{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:13px}
+.pub-idx{
+  font-family:'JetBrains Mono',monospace;font-size:11.4px;color:#04121a;background:var(--grad);
+  padding:3px 9px;border-radius:7px;font-weight:600;letter-spacing:.05em;flex:0 0 auto;
+}
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin-left:auto}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10.2px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;border:1px solid}
+.b-first{color:#ffd79a;background:rgba(255,196,107,.12);border-color:rgba(255,196,107,.34)}
+.b-journal{color:#bfe9ff;background:rgba(92,201,255,.1);border-color:rgba(92,201,255,.26)}
+.b-award{color:#d9c9ff;background:rgba(169,139,255,.12);border-color:rgba(169,139,255,.32)}
+.b-lead{color:#bff6ea;background:rgba(67,224,200,.11);border-color:rgba(67,224,200,.3)}
+.b-rose{color:#ffc6d7;background:rgba(255,143,177,.11);border-color:rgba(255,143,177,.3)}
+.pub-title{font-family:'Space Grotesk',sans-serif;font-size:16.6px;font-weight:700;line-height:1.42;letter-spacing:-.01em}
+.pub-authors{font-size:13.1px;color:var(--ink-3);margin-top:9px;line-height:1.62}
+.pub-authors b{color:var(--teal);font-weight:600}
+.pub-meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12.1px;color:var(--ink-2)}
+.pub-meta span{color:var(--cyan)}
+.doi{display:inline-flex;align-items:center;gap:7px;margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--teal);border-bottom:1px solid rgba(67,224,200,.32);padding-bottom:2px;transition:.2s}
+.doi:hover{color:#a9fff0;border-bottom-color:#a9fff0}
+.doi svg{width:12px;height:12px}
+.pub-stack{display:flex;flex-direction:column;gap:14px}
+
+/* ---------- first publication: statistical evidence ---------- */
+.pub-evidence{margin-top:24px;padding:24px 0 0;border-top:1px solid var(--line)}
+.pub-evidence-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.pub-evidence h4{font-size:15px;font-weight:600;line-height:1.4}
+.pub-evidence-null{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--teal);padding:6px 10px;background:#edf1e9;border:1px solid var(--line-soft);border-radius:7px}
+.pub-evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pub-evidence-card{min-width:0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.pub-evidence-card h5{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--ink)}
+.pub-evidence-or{display:flex;align-items:baseline;gap:9px;margin:12px 0}
+.pub-evidence-or dt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3)}
+.pub-evidence-or dd{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;color:var(--teal);line-height:1.2;letter-spacing:-.02em}
+.pub-evidence-p{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-2)}
+.pub-evidence-p dd{font-family:'JetBrains Mono',monospace;color:var(--ink);font-size:11.5px}
+.pub-evidence-interpretation{margin-top:16px;max-width:92ch;font-size:12.8px;line-height:1.75;color:var(--ink-2)}
+@media(max-width:600px){.pub-evidence-grid{grid-template-columns:1fr}.pub-evidence-card{padding:18px}}
+
+/* ---------- projects ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{
+  display:flex;align-items:center;gap:9px;cursor:pointer;text-align:left;
+  font-family:'Inter',sans-serif;font-size:12.8px;font-weight:600;color:var(--ink-3);
+  padding:11px 15px;border-radius:12px;border:1px solid var(--line-soft);background:rgba(255,255,255,.025);
+  transition:.24s;
+}
+.tab small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;opacity:.75;font-weight:400}
+.tab:hover{color:var(--ink);border-color:var(--line);transform:translateY(-2px)}
+.tab.on{color:#04121a;background:var(--grad);border-color:transparent;box-shadow:0 10px 30px -16px rgba(67,224,200,.9)}
+.tab.on small{opacity:.8}
+.tab .num{font-family:'JetBrains Mono',monospace;font-size:10.5px;opacity:.7}
+
+.proj{display:block;border:1px solid var(--line);border-radius:24px;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.02));padding:28px;overflow:hidden;position:relative}
+.projects-ready .proj:not(.on){display:none}
+.proj.on{display:block;animation:fadeUp .5s cubic-bezier(.22,1,.36,1) both}
+.proj::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);opacity:.75;
+}
+.proj-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px}
+.proj-kind{font-family:'JetBrains Mono',monospace;font-size:10.6px;letter-spacing:.13em;text-transform:uppercase;color:var(--teal)}
+.proj h3{font-size:clamp(18px,2.4vw,23px);font-weight:700;line-height:1.34;margin:7px 0 10px;letter-spacing:-.02em}
+.proj-sub{font-size:13.2px;color:var(--cyan);font-family:'JetBrains Mono',monospace;letter-spacing:.02em}
+.proj-lead{margin-top:15px;font-size:14.4px;color:var(--ink-2);line-height:1.8;max-width:82ch}
+.proj-lead b{color:var(--ink);font-weight:600}
+
+.pgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin-top:26px}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
+
+.panel-box{border:1px solid var(--line-soft);border-radius:var(--r-md);background:rgba(5,10,15,.42);padding:18px}
+.panel-box h5{font-family:'JetBrains Mono',monospace;font-size:10.6px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.panel-box h5::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+
+.bars{display:flex;flex-direction:column;gap:11px}
+.bar-row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:12.2px}
+.bar-row .bl{color:var(--ink-2)}
+.bar-row .bv{font-family:'JetBrains Mono',monospace;font-size:11.6px;color:var(--teal)}
+.bar{grid-column:1/-1;height:7px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.bar-row:nth-child(4n+2) .bar i{background:linear-gradient(90deg,#5cc9ff,#a98bff)}
+.bar-row:nth-child(4n+3) .bar i{background:linear-gradient(90deg,#ffc46b,#ff8fb1)}
+.bar-row:nth-child(4n+4) .bar i{background:linear-gradient(90deg,#43e0c8,#5cc9ff)}
+
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin-top:26px}
+.kcell{border:1px solid var(--line-soft);border-radius:12px;padding:13px 14px;background:rgba(255,255,255,.022);transition:.24s}
+.kcell:hover{border-color:rgba(67,224,200,.34);background:rgba(67,224,200,.05)}
+.kcell .kv{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.kcell .kv em{font-style:normal;color:var(--teal)}
+.kcell .kl{font-size:11.2px;color:var(--ink-3);line-height:1.45;margin-top:3px}
+
+.plists{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+@media(max-width:760px){.plists{grid-template-columns:1fr}}
+.plist h5{font-family:'JetBrains Mono',monospace;font-size:10.6px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:11px}
+.plist ul{display:flex;flex-direction:column;gap:9px}
+.plist li{list-style:none;display:block;position:relative;padding-left:24px;font-size:13.2px;color:var(--ink-2);line-height:1.65}
+.plist li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--cyan);opacity:.8}
+.plist li b{color:var(--ink);font-weight:600}
+.plist.note li::before{background:var(--amber)}
+.plist.deny li::before{background:var(--rose);border-radius:1px;transform:rotate(45deg);width:6px;height:6px;top:7px}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:11.2px;color:var(--ink-2);
+  background:rgba(255,255,255,.04);border:1px solid var(--line-soft);padding:5px 10px;border-radius:8px;transition:.2s;
+}
+.chip:hover{color:#04121a;background:var(--teal);border-color:transparent;transform:translateY(-2px)}
+
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:6px}
+.verdict{border:1px solid var(--line-soft);border-radius:11px;padding:11px 12px;background:rgba(255,255,255,.02)}
+.verdict b{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px}
+.verdict p{font-size:11.6px;color:var(--ink-3);line-height:1.5}
+.v-ok b{color:var(--teal)} .v-mid b{color:var(--cyan)} .v-no b{color:var(--ink-3)} .v-rev b{color:var(--amber)}
+
+/* ---------- talks ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.fbtn{
+  font-family:'JetBrains Mono',monospace;font-size:11.4px;letter-spacing:.06em;text-transform:uppercase;
+  padding:7px 13px;border-radius:99px;border:1px solid var(--line-soft);background:rgba(255,255,255,.025);
+  color:var(--ink-3);cursor:pointer;transition:.2s;
+}
+.fbtn:hover{color:var(--ink);border-color:var(--line)}
+.fbtn.on{color:#04121a;background:var(--grad);border-color:transparent;font-weight:600}
+.talk{
+  display:grid;grid-template-columns:82px 1fr auto;gap:16px;align-items:center;
+  padding:17px 20px;border:1px solid var(--line-soft);border-radius:var(--r-md);background:rgba(255,255,255,.022);
+  transition:.26s;margin-bottom:10px;
+}
+.talk:hover{border-color:rgba(67,224,200,.34);background:rgba(67,224,200,.045);transform:translateX(3px)}
+.talk.hidden{display:none}
+.talk-year{font-family:'JetBrains Mono',monospace;font-size:12.4px;color:var(--ink-3);text-align:center;line-height:1.35}
+.talk-year b{display:block;font-size:17px;color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:700}
+.talk h4{font-size:14.2px;font-weight:600;line-height:1.5}
+.talk p{font-size:12.4px;color:var(--ink-3);margin-top:4px}
+
+/* ---------- awards ---------- */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.award{padding:20px;display:flex;gap:14px;align-items:flex-start}
+.award .ic{width:34px;height:34px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;background:rgba(255,196,107,.1);border:1px solid rgba(255,196,107,.26);color:var(--amber)}
+.award .ic svg{width:17px;height:17px}
+.award h4{font-size:14px;font-weight:600;line-height:1.45}
+.award p{font-size:12.5px;color:var(--ink-3);margin-top:5px;line-height:1.6}
+.award .yr{font-family:'JetBrains Mono',monospace;font-size:10.6px;color:var(--amber);letter-spacing:.09em;margin-bottom:4px;display:block}
+
+.teach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(285px,100%),1fr));gap:16px}
+.skill-cat{padding:22px}
+.skill-cat h4{font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;margin-bottom:15px}
+.skill-cat h4 i{width:8px;height:8px;border-radius:2px;background:var(--teal);display:inline-block;transform:rotate(45deg)}
+.skill-cat:nth-child(2) h4 i{background:var(--cyan)}
+.skill-cat:nth-child(3) h4 i{background:var(--violet)}
+.skill-cat:nth-child(4) h4 i{background:var(--amber)}
+
+/* ---------- contact ---------- */
+#contact{padding-bottom:40px}
+.contact-card{
+  border:1px solid var(--line);border-radius:26px;padding:38px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,rgba(67,224,200,.09),rgba(92,201,255,.05) 45%,rgba(169,139,255,.08));
+}
+.contact-card::before{
+  content:"";position:absolute;inset:0;opacity:.32;pointer-events:none;
+  background-image:radial-gradient(rgba(67,224,200,.5) 1px,transparent 1px);background-size:22px 22px;
+  mask-image:radial-gradient(circle at 88% 12%,#000,transparent 62%);
+  -webkit-mask-image:radial-gradient(circle at 88% 12%,#000,transparent 62%);
+}
+.contact-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.contact-inner h3{font-size:clamp(23px,3.2vw,31px);font-weight:700;letter-spacing:-.025em}
+.contact-inner p{margin-top:12px;font-size:14.2px;color:var(--ink-2);max-width:48ch;line-height:1.7}
+.contact-list{display:flex;flex-direction:column;gap:10px}
+.citem{
+  display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:13px;
+  background:rgba(5,10,15,.5);border:1px solid var(--line-soft);transition:.24s;cursor:pointer;backdrop-filter:blur(6px);
+}
+.citem:hover{border-color:rgba(67,224,200,.45);transform:translateX(4px);background:rgba(5,10,15,.7)}
+.citem .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(67,224,200,.12);border:1px solid rgba(67,224,200,.26);color:var(--teal);flex:0 0 auto}
+.citem .ic svg{width:15px;height:15px}
+.citem span{font-size:10.8px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;display:block}
+.citem b{font-size:13.6px;font-weight:600;font-family:'JetBrains Mono',monospace}
+
+footer{border-top:1px solid var(--line-soft);margin-top:60px;padding:26px 24px 40px;position:relative;z-index:1}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
+  font-size:12px;color:var(--ink-3);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+#toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,26px);z-index:300;
+  background:rgba(8,16,22,.95);border:1px solid rgba(67,224,200,.45);color:#d6fff5;
+  padding:11px 19px;border-radius:12px;font-size:13px;font-family:'JetBrains Mono',monospace;
+  box-shadow:0 18px 44px -20px rgba(0,0,0,.9);opacity:0;pointer-events:none;transition:.3s cubic-bezier(.22,1,.36,1);
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#top-btn{
+  position:fixed;right:22px;bottom:26px;z-index:140;width:42px;height:42px;border-radius:12px;
+  display:grid;place-items:center;cursor:pointer;border:1px solid var(--line);background:rgba(8,14,20,.86);
+  color:var(--teal);opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px);
+}
+#top-btn.show{opacity:1;pointer-events:auto}
+#top-btn:hover{transform:translateY(-3px);border-color:rgba(67,224,200,.5)}
+#top-btn svg{width:16px;height:16px}
+
+.reveal{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal-ready .reveal:not(.in){opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- concise overviews + expandable research detail ---------- */
+.project-overview{font-size:15px;color:var(--ink-2);line-height:1.75;max-width:68ch;margin-top:18px}
+.project-overview b{color:var(--ink);font-weight:600}
+.project-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.project-highlights .kcell{padding:18px}
+.project-highlights .kv{font-size:25px;color:var(--teal)}
+.project-highlights .kl{font-size:12px;color:var(--ink-2)}
+.read-more{border-top:1px solid var(--line);margin-top:20px}
+.read-more>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;padding:17px 0;color:var(--teal);font-size:12.8px;font-weight:600;cursor:pointer}
+.read-more>summary::-webkit-details-marker{display:none}
+.read-more>summary::after{content:'+';font-size:21px;font-weight:400;line-height:1}
+.read-more[open]>summary::after{content:'−'}
+.read-more[open]>summary{margin-bottom:6px}
+.study-title{font-size:16px;line-height:1.5;color:var(--ink);max-width:75ch;margin:8px 0 14px}
+.read-more>summary:hover{color:var(--ink)}
+.read-more:focus-within{border-color:var(--teal)}
+:is(a,button,summary):focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:6px}
+.tl-summary{font-size:13.6px;color:var(--ink-2);line-height:1.7;margin-top:12px}
+.tl-item .read-more{margin-top:12px;border-top-color:var(--line-soft)}
+.tl-item .read-more>summary{padding:10px 0;font-size:12px}
+.card,.proj,.panel-box{min-width:0}
+.chip,.doi,.citem b{overflow-wrap:anywhere}
+.citem>div:last-child{min-width:0}
+.bar-row{grid-template-columns:minmax(0,1fr) auto}
+
+/* ---------- warm paper theme + editorial front page ---------- */
+body::before,body::after{display:none}
+::selection{background:rgba(36,99,84,.2);color:var(--ink)}
+header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color:var(--line-soft)}
+.brand-mark{background:#e8eee7;border-color:var(--line);color:var(--teal)}
+.hero-badge{padding:0;border:0;background:none;border-radius:0;color:var(--teal);font-size:11px;letter-spacing:.16em;margin-bottom:24px}
+.hero-role{margin-top:24px;font-size:15px;line-height:1.7}
+.hero-lead{max-width:54ch;font-size:19px;line-height:1.8;margin-top:24px}
+.hero-cta{margin-top:30px}
+.hero-contact{margin-top:24px}
+.hero-contact .chip-link{background:none;border-color:var(--line);font-size:11.8px}
+.btn{border-color:var(--line);border-radius:8px;padding:11px 18px}
+.btn.primary{background:var(--teal);color:#fff;box-shadow:none}
+.btn:hover,.chip-link:hover{border-color:var(--teal);background:#e9eee7}
+.btn.primary:hover{background:var(--teal);color:#fff}
+.stats{gap:0;margin-top:52px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{border:0;border-radius:0;background:none;padding:0 24px;overflow:visible}
+.stat:first-child{padding-left:0}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat:hover{transform:none;background:none}
+.stat .n{font-size:30px;line-height:1.2}
+.stat .l{font-size:12px;margin-top:7px}
+.sec-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(28px,3.4vw,38px);font-weight:400;letter-spacing:-.025em}
+.card{border-radius:14px;box-shadow:var(--shadow)}
+.card:hover{border-color:var(--line)}
+.card::after{display:none}
+.award .ic{background:#edf0e7;border-color:var(--line)}
+.tl-item::before{background:var(--bg);border-color:var(--teal);box-shadow:0 0 0 4px rgba(36,99,84,.06)}
+.tl-item.dim::before{border-color:var(--ink-3);box-shadow:none}
+.tag{color:var(--teal);background:#edf1e9;border-color:var(--line)}
+.badge{border-color:var(--line)}
+.b-first{color:var(--amber);background:#f5ecdc}
+.b-journal{color:var(--cyan);background:#e9eff2}
+.b-award{color:var(--violet);background:#efeaf2}
+.b-lead{color:var(--teal);background:#e9f0e9}
+.b-rose{color:var(--rose);background:#f5e9ec}
+.pub-idx,.tab.on,.fbtn.on{color:#fff;box-shadow:none}
+.doi{border-bottom-color:var(--line)}
+.doi:hover{color:var(--ink);border-bottom-color:var(--teal)}
+.proj{background:var(--panel);border-color:var(--line);border-radius:16px}
+.proj::before{height:1px}
+.panel-box{background:#f4f3ed;border-color:var(--line)}
+.bar{background:#e3e7de}
+.bar-row:nth-child(4n+2) .bar i{background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.bar-row:nth-child(4n+3) .bar i{background:linear-gradient(90deg,var(--amber),var(--rose))}
+.bar-row:nth-child(4n+4) .bar i{background:linear-gradient(90deg,var(--teal),var(--cyan))}
+.chip{background:#eeefe8}
+.chip:hover{color:#fff}
+.contact-card{background:#eaf0e8;border-radius:16px}
+.contact-card::before{display:none}
+.contact-inner h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:36px}
+.citem{background:rgba(255,255,255,.6);text-align:left}
+.citem:hover{background:#fff;border-color:var(--teal)}
+.citem .ic{background:#eaf0e8;border-color:var(--line)}
+#progress{box-shadow:none}
+#top-btn{background:var(--bg);border-color:var(--line)}
+#top-btn:hover{border-color:var(--teal)}
+#toast{background:var(--ink);color:#fff;border-color:var(--line);box-shadow:var(--shadow)}
+@media(max-width:1020px){
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:24px}
+  .stat{padding:0 18px}
+  .stat:nth-child(3n+1){padding-left:0;border-left:0}
+}
+@media(max-width:780px){
+  .hero-lead{font-size:17px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 0;margin-top:36px}
+  .stat{padding:0 18px!important;border-left:0!important}
+  .stat:nth-child(odd){padding-left:0!important}
+  .stat:nth-child(even){border-left:1px solid var(--line)!important}
+  .stat .n{font-size:27px}
+}
+@media(max-width:420px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .hero h1{font-size:clamp(43px,13vw,54px)}
+  .hero-badge{font-size:9.5px;letter-spacing:.1em}
+}
+
+@media(max-width:1180px){
+  .nav-links a{font-size:11.6px;padding:7px 8px}
+  .brand-txt span{display:none}
+}
+@media(max-width:1040px){
+  .nav-links{
+    position:fixed;top:62px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:12px 18px 18px;
+    transition:transform .34s cubic-bezier(.22,1,.36,1);backdrop-filter:blur(18px);max-height:calc(100dvh - 62px);overflow-y:auto;
+  }
+  .navigation-ready .nav-links:not(.open){visibility:hidden;transform:translateY(-140%)}
+  .nav-links.open{transform:none;visibility:visible}
+  html:not(.navigation-ready) .nav-links{position:static;flex-direction:row;flex-wrap:wrap;background:none;padding:0;border:0}
+  html:not(.navigation-ready) .nav-inner{flex-wrap:wrap}
+  html:not(.navigation-ready) header.nav{position:relative}
+  html:not(.navigation-ready) #burger{display:none}
+  .nav-links a{padding:12px 14px;font-size:14px}
+  #burger{display:flex}
+  .brand-txt span{display:block}
+}
+@media(max-width:1020px){
+  .hero{grid-template-columns:1fr;gap:34px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .contact-inner{grid-template-columns:1fr;gap:24px}
+  .sec-note{margin-left:0}
+}
+@media(max-width:780px){
+  .two-col,.edu-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .talk{grid-template-columns:1fr;gap:9px}
+  .talk-year{text-align:left;display:flex;gap:8px;align-items:baseline}
+  .talk-year b{display:inline;font-size:14px}
+  .badges{margin-left:0}
+  section{padding-top:56px}
+  #home{padding-top:110px}
+  .contact-card{padding:26px 22px}
+  .proj{padding:22px 18px}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px;scrollbar-width:thin}
+  .tab{flex:0 0 auto}
+  .project-highlights{gap:8px}
+  .project-highlights .kcell{padding:12px 9px}
+  .project-highlights .kv{font-size:21px}
+  .project-highlights .kl{font-size:10.8px}
+  .hero-badge{font-size:9.5px;letter-spacing:.06em}
+}
+@media(max-width:420px){
+  .stats{grid-template-columns:1fr}
+  .project-highlights{grid-template-columns:1fr}
+  .project-highlights .kcell{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px}
+  .project-highlights .kl{max-width:155px;text-align:right;font-size:12px;margin-top:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal,.reveal-ready .reveal:not(.in){opacity:1;transform:none}
+  .bar i{width:var(--w,0)!important}
+}
+
+@media print{
+  body{background:#fff;color:#111}
+  body::before,body::after,#progress,header.nav,#top-btn,#toast,.hero-cta,.filters,.tabs,.btn{display:none!important}
+  main{padding:0 14px;max-width:100%}
+  section{padding:16px 0;page-break-inside:avoid}
+  .card,.contact-card,.talk,.stat,.award,.skill-cat,.proj,.panel-box,.kcell,.verdict{
+    background:#fff!important;border-color:#ddd!important;color:#111!important;box-shadow:none!important;
+  }
+  .proj{display:block!important;page-break-inside:avoid;margin-bottom:16px}
+  h1,h2,h3,h4,h5,.pub-title,.tl-role,.stat .n,.kcell .kv,.verdict b{color:#0b1220!important;-webkit-text-fill-color:#0b1220!important;background:none!important}
+  p,li,.tl-body li,.pub-authors,.talk h4,.proj-lead{color:#22303a!important}
+  .sec-kicker,.tl-org,.chip,.tag,.mono,.tl-date,.pub-meta,.proj-kind,.proj-sub,.bar-row .bv,.plist h5{color:#0a6b62!important}
+  .bar{background:#eee!important}
+  .bar i{background:#0a6b62!important;width:var(--w,0)!important}
+  a{color:#0a6b62!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .read-more>summary{display:none}
+  .read-more::details-content{display:block!important;content-visibility:visible!important}
+}
+
+/* ---------- published study explorer ---------- */
+.pub-study-trigger{font:inherit;line-height:inherit;color:inherit;text-align:left;border:0;padding:0;background:none;cursor:pointer}
+.pub-study-trigger:hover{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.study-dashboard{margin-top:22px;border:1px solid var(--line);border-radius:14px;background:#f4f3ed;overflow:hidden}
+.study-dashboard>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;list-style:none;cursor:pointer;color:var(--teal);font-size:13px;font-weight:600}
+.study-dashboard>summary::-webkit-details-marker{display:none}.study-dashboard>summary::after{content:'+';font-size:20px;font-weight:400}.study-dashboard[open]>summary::after{content:'−'}.study-dashboard[open]>summary{border-bottom:1px solid var(--line-soft)}
+.dashboard-content{padding:24px}.dashboard-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}.dashboard-header h4{font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:400;margin-bottom:8px}.dashboard-intro{font-size:13px;color:var(--ink-2);line-height:1.7;max-width:68ch}
+.dashboard-close{font:500 11px 'Inter',sans-serif;background:none;color:var(--teal);border:1px solid var(--line);border-radius:7px;padding:8px 11px;cursor:pointer;white-space:nowrap}
+.dashboard-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.dashboard-tabs button,.dashboard-choice{font:500 12px 'Inter',sans-serif;color:var(--ink-2);background:#fff9;border:1px solid var(--line);border-radius:8px;padding:10px 13px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.dashboard-tabs button[aria-selected="true"]{color:#fff;background:var(--teal);border-color:var(--teal)}.dashboard-choice[aria-pressed="true"]{color:var(--teal);border-color:var(--teal);background:#e8eee6}
+.dashboard-panel+.dashboard-panel{margin-top:28px}.dashboard-ready .dashboard-panel{margin-top:0}.dashboard-panel:not([hidden]){animation:studyReveal .28s ease both}.dashboard-panel h4{font-size:17px;line-height:1.4;margin-bottom:12px}.dashboard-panel h5{font:600 13px 'Inter',sans-serif;line-height:1.5;margin-bottom:12px}
+.dashboard-select{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0}.dashboard-select label{font-size:12px;color:var(--ink-2)}.dashboard-select select{font:500 13px 'Inter',sans-serif;color:var(--ink);border:1px solid var(--line);border-radius:7px;background:#fff;padding:10px 32px 10px 12px;max-width:100%}
+.study-dashboard select:focus-visible,.study-dashboard [data-chart-key]:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.dashboard-comparison{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start}.dashboard-box{padding:20px;background:rgba(255,255,255,.7);border:1px solid var(--line-soft);border-radius:12px;min-width:0}
+.dashboard-note{font-size:12.5px;line-height:1.75;color:var(--ink-2);margin-top:12px;max-width:85ch}.dashboard-caption{font-size:11px;color:var(--ink-3);line-height:1.7;margin-top:10px}
+.dashboard-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--ink-2);margin-bottom:10px}.dashboard-legend span{display:inline-flex;align-items:center;gap:7px}.dashboard-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--teal)}.dashboard-legend .non-lmf i{background:var(--cyan)}
+.dashboard-chart{width:100%;min-width:0}.dashboard-chart svg{display:block;width:100%;height:auto;overflow:visible;animation:studyReveal .25s ease both}.dashboard-chart [data-chart-key]{cursor:pointer;outline:none}.dashboard-chart rect{transition:opacity .2s,fill .2s}.dashboard-chart [data-chart-key]:hover rect{opacity:1}.dashboard-chart svg text{font-family:'Inter',sans-serif}
+.dashboard-metrics{display:flex;gap:24px;flex-wrap:wrap;padding:16px 0;margin:12px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}.dashboard-metrics dt{font-size:11px;color:var(--ink-3)}.dashboard-metrics dd{font:600 28px 'Space Grotesk',sans-serif;color:var(--teal);margin-top:3px}
+.dashboard-table-wrap{overflow-x:auto;margin-top:20px}.dashboard-table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}.dashboard-table caption{text-align:left;color:var(--ink-3);font-size:11px;margin-bottom:8px}.dashboard-table th,.dashboard-table td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}.dashboard-table th{font-weight:600;color:var(--ink)}.dashboard-table tr.is-selected{background:#e8eee6}
+.dashboard-stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.dashboard-stage{text-align:left;padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff9;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,transform .2s;min-width:0}.dashboard-stage:hover{transform:translateY(-2px);border-color:var(--teal)}.dashboard-stage[aria-pressed="true"]{background:#e7eee5;border-color:var(--teal)}.dashboard-stage small{display:block;font:10px 'JetBrains Mono',monospace;color:var(--ink-3);margin-bottom:7px;letter-spacing:.08em}.dashboard-stage b{display:block;font:600 28px 'Space Grotesk',sans-serif;color:var(--teal)}.dashboard-stage span{font-size:11px;line-height:1.5;display:block;color:var(--ink-2);margin-top:6px}
+.dashboard-flow-detail{border-left:3px solid var(--teal)}.dashboard-choices{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.dashboard-selected-value{font:600 32px 'Space Grotesk',sans-serif;color:var(--teal);margin:12px 0}
+.dashboard-source{font-size:11px;line-height:1.75;color:var(--ink-3);padding-top:18px;margin-top:24px;border-top:1px solid var(--line-soft)}.dashboard-source a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}.dashboard-controls{display:none}.dashboard-ready .dashboard-controls{display:flex}
+@keyframes studyReveal{from{opacity:.45;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:760px){.dashboard-comparison{grid-template-columns:1fr}.dashboard-content{padding:20px 15px}.dashboard-box{padding:16px}.dashboard-header{flex-wrap:wrap}.dashboard-tabs{gap:6px}.dashboard-tabs button{padding:9px 10px}.study-dashboard>summary{padding:16px}.dashboard-table th,.dashboard-table td{padding:8px 6px}}
+@media(max-width:480px){.dashboard-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-stage{padding:12px}.dashboard-stage b{font-size:24px}.dashboard-header h4{font-size:23px}.dashboard-metrics dd{font-size:25px}}
+@media print{.pub-study-trigger{pointer-events:none}.study-dashboard>summary,.dashboard-controls{display:none!important}.study-dashboard::details-content{display:block!important;content-visibility:visible!important}.dashboard-panel[hidden]{display:block!important}.dashboard-content{padding:12px}.dashboard-box,.dashboard-stage{break-inside:avoid}.dashboard-panel{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home" aria-label="Kinley Tenzin, home">
+      <span class="brand-mark">KT</span>
+      <span class="brand-txt"><b>Kinley Tenzin</b><span>Ph.D. · Biology · K-State</span></span>
+    </a>
+    <nav class="nav-links" id="navlinks" aria-label="Main navigation">
+      <a href="#publications">Published Research</a>
+      <a href="#projects">Ongoing Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="home">
+    <div class="hero-wrap">
+      <div class="hero">
+        <div class="reveal">
+          <span class="hero-badge">Microbial genomics &amp; food safety</span>
+          <h1>Kinley Tenzin</h1>
+          <div class="hero-role">
+            <span>Ph.D. Researcher</span><i></i>
+            <span>Biology</span><i></i>
+            <span>Kansas State University</span><i></i>
+            <span>Manhattan, Kansas</span>
+          </div>
+          <p class="hero-lead">
+            I study how microbial genomes vary and what that means for <b>food safety</b>.
+            My work connects <b>population genomics</b>, bacterial evolution, and reproducible scientific computing.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#projects">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ongoing Research
+            </a>
+            <a class="btn" href="#publications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Publications
+            </a>
+            <a class="btn" href="#contact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Contact
+            </a>
+          </div>
+          <div class="hero-contact">
+            <span class="chip-link" data-copy="tenzin12@ksu.edu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+              tenzin12@ksu.edu
+            </span>
+<span class="chip-link" data-copy="ORCID 0009-0009-2417-6880">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg>
+              ORCID 0009-0009-2417-6880
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stats">
+        <div class="stat reveal"><div class="n" data-count="2">2</div><div class="l">Peer-reviewed publications</div></div>
+        <div class="stat reveal"><div class="n" data-count="4">4</div><div class="l">Ongoing research projects</div></div>
+        <div class="stat reveal"><div class="n" data-count="4">4</div><div class="l">Presentations in 2026</div></div>
+        <div class="stat reveal"><div class="n">2023</div><div class="l">Doctoral studies began</div></div>
+        <div class="stat reveal"><div class="n">HPC</div><div class="l">Reproducible scientific computing</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">01 / Peer-reviewed publications</div>
+        <h2 class="sec-title">Published research</h2>
+      </div>
+      <p class="sec-note">Two peer-reviewed articles in <i>Food Research International</i> (2026).</p>
+    </div>
+
+    <div class="pub-stack">
+      <article class="card pub reveal">
+        <div class="pub-head">
+          <span class="pub-idx">01</span>
+          <div class="badges">
+            <span class="badge b-first">Co-first author</span>
+            <span class="badge b-journal">Food Res. Int.</span>
+          </div>
+        </div>
+        <h3 class="pub-title"><button type="button" class="pub-study-trigger" id="salmonella-study-trigger" aria-controls="salmonella-dashboard-content" aria-expanded="false">Lineage-aware comparative genomics shows no consistent reservoir-specific plasmidome in low-moisture food-associated <i>Salmonella</i> Enteritidis</button></h3>
+        <p class="pub-authors"><b>Tenzin, K.</b>, Balyatanda, S. B., Doddabematti Prakash, S., Siliveru, K., &amp; Platt, T. G. (2026).</p>
+        <p class="pub-meta"><span>Food Research International</span>, 242, 120003 · 2,824 records screened · 51 SNP clusters · 10 mixed-reservoir clusters · 64 genomes analysed</p>
+        <a class="doi" href="https://doi.org/10.1016/j.foodres.2026.120003" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          doi.org/10.1016/j.foodres.2026.120003
+        </a>
+        <section class="pub-evidence" aria-labelledby="salmonella-evidence-title">
+          <div class="pub-evidence-head">
+            <h4 id="salmonella-evidence-title">Statistical Evidence</h4>
+            <p class="pub-evidence-null">H<sub>0</sub>: OR<sub>MH</sub> = 1</p>
+          </div>
+          <div class="pub-evidence-grid">
+            <div class="pub-evidence-card">
+              <h5>IncFIB(S)</h5>
+              <dl>
+                <div class="pub-evidence-or"><dt>OR</dt><dd>0.93</dd></div>
+                <div class="pub-evidence-p"><dt>FDR-adjusted <i>p</i></dt><dd>0.948</dd></div>
+              </dl>
+            </div>
+            <div class="pub-evidence-card">
+              <h5>IncFII(S)</h5>
+              <dl>
+                <div class="pub-evidence-or"><dt>OR</dt><dd>1.59</dd></div>
+                <div class="pub-evidence-p"><dt>FDR-adjusted <i>p</i></dt><dd>0.797</dd></div>
+              </dl>
+            </div>
+            <div class="pub-evidence-card">
+              <h5>IncX1</h5>
+              <dl>
+                <div class="pub-evidence-or"><dt>OR</dt><dd>0.64</dd></div>
+                <div class="pub-evidence-p"><dt>FDR-adjusted <i>p</i></dt><dd>0.797</dd></div>
+              </dl>
+            </div>
+          </div>
+          <p class="pub-evidence-interpretation">No replicon family showed statistically significant reservoir-associated enrichment after lineage stratification and FDR correction. Nonsignificance does not establish the absence of an effect.</p>
+        </section>
+
+        <details class="study-dashboard" id="salmonella-dashboard">
+          <summary>Explore this study <span class="mono" style="font-size:10px;font-weight:400">Published research</span></summary>
+          <div class="dashboard-content" id="salmonella-dashboard-content">
+            <div class="dashboard-header"><div><h4>A lineage-aware view of the plasmidome</h4><p class="dashboard-intro">Explore published aggregate results for <i>Salmonella</i> Enteritidis from low-moisture food (LMF) and non-LMF sources. Controls change the view of reported results; they do not run new statistical tests or filter individual genomes.</p></div><button type="button" class="dashboard-close dashboard-controls" id="study-close">Close Study</button></div>
+            <div class="dashboard-tabs dashboard-controls" role="tablist" aria-label="Published study views">
+              <button type="button" id="study-tab-overview" role="tab" aria-controls="study-overview" aria-selected="true" tabindex="0" data-study-view="overview">Overview</button>
+              <button type="button" id="study-tab-replicons" role="tab" aria-controls="study-replicons" aria-selected="false" tabindex="-1" data-study-view="replicons">Replicons</button>
+              <button type="button" id="study-tab-mobility" role="tab" aria-controls="study-mobility" aria-selected="false" tabindex="-1" data-study-view="mobility">Mobility</button>
+              <button type="button" id="study-tab-pangenome" role="tab" aria-controls="study-pangenome" aria-selected="false" tabindex="-1" data-study-view="pangenome">Pangenome</button>
+              <button type="button" id="study-tab-interpretation" role="tab" aria-controls="study-interpretation" aria-selected="false" tabindex="-1" data-study-view="interpretation">Interpretation</button>
+            </div>
+            <div class="dashboard-panel" id="study-overview" role="tabpanel" aria-labelledby="study-tab-overview" tabindex="0">
+              <h4>From curated records to comparative genomes</h4><p class="dashboard-note">Select a stage to see why it matters. Grouping records into lineages, selecting assemblies, and applying QC are distinct steps.</p>
+              <div class="dashboard-stages" aria-label="Study stages">
+                <button type="button" class="dashboard-stage" data-stage="records" aria-pressed="true"><small>01 / Curation</small><b>2,824</b><span>Non-clinical records</span></button>
+                <button type="button" class="dashboard-stage" data-stage="clusters" aria-pressed="false"><small>02 / Grouping</small><b>51</b><span>SNP clusters</span></button>
+                <button type="button" class="dashboard-stage" data-stage="mixed" aria-pressed="false"><small>03 / Comparison</small><b>10</b><span>Mixed-reservoir clusters</span></button>
+                <button type="button" class="dashboard-stage" data-stage="sampling" aria-pressed="false"><small>04 / Selection</small><b>65</b><span>Assemblies selected before QC</span></button>
+                <button type="button" class="dashboard-stage" data-stage="qc" aria-pressed="false"><small>05 / Quality control</small><b>64</b><span>Final genomes: 24 LMF / 40 non-LMF</span></button>
+                <button type="button" class="dashboard-stage" data-stage="plasmids" aria-pressed="false"><small>06 / Reconstruction</small><b>88</b><span>Plasmids across 63 genomes</span></button>
+              </div>
+              <div class="dashboard-box dashboard-flow-detail" aria-live="polite" aria-atomic="true"><h5 id="stage-title">Curated metadata, not a sequencing experiment</h5><p class="dashboard-note" id="stage-detail">The study curated 2,824 public non-clinical records: 45 LMF and 2,779 non-LMF. This is the metadata pool; not every record entered assembly-level analyses, and these genomes were not newly sequenced for this study.</p><p class="dashboard-caption" id="stage-source">Section 3.1, p. 5</p></div>
+              <div class="dashboard-table-wrap"><table class="dashboard-table"><caption>Distinct metadata and assembly stages · Sections 2.2 and 3.1–3.2</caption><thead><tr><th scope="col">Stage</th><th scope="col">LMF</th><th scope="col">Non-LMF</th><th scope="col">Total</th></tr></thead><tbody><tr><th scope="row">Curated records</th><td>45</td><td>2,779</td><td>2,824</td></tr><tr><th scope="row">Records in mixed clusters</th><td>24</td><td>319</td><td>343</td></tr><tr><th scope="row">Selected before QC</th><td>24</td><td>41</td><td>65</td></tr><tr><th scope="row">Final assembly set</th><td>24</td><td>40</td><td>64</td></tr></tbody></table></div>
+            </div>
+            <div class="dashboard-panel" id="study-replicons" role="tabpanel" aria-labelledby="study-tab-replicons" tabindex="0">
+              <h4>Replicon prevalence within the final genome set</h4>
+              <div class="dashboard-select dashboard-controls"><label for="study-replicon">Inspect a replicon</label><select id="study-replicon"><option value="fib">IncFIB(S)</option><option value="fii">IncFII(S)</option><option value="x1">IncX1</option></select></div>
+              <div class="dashboard-comparison"><div class="dashboard-box"><h5>Genomes carrying each replicon</h5><div class="dashboard-legend"><span><i></i>LMF · n = 24</span><span class="non-lmf"><i></i>Non-LMF · n = 40</span></div><div class="dashboard-chart" id="replicon-chart"><p class="dashboard-caption">Counts for all families are listed in the table below.</p></div><p class="dashboard-caption">Select a chart group or use the dropdown. Bar lengths show descriptive prevalence, not adjusted effect estimates.</p></div>
+              <div class="dashboard-box" aria-live="polite" aria-atomic="true"><h5 id="replicon-name">IncFIB(S)</h5><p class="dashboard-note" id="replicon-frequency">LMF: 22 / 24 (91.7%) · Non-LMF: 36 / 40 (90.0%).</p><dl class="dashboard-metrics"><div><dt>Reported CMH odds ratio</dt><dd id="replicon-or">0.93</dd></div><div><dt>Reported FDR-adjusted p</dt><dd id="replicon-p">0.948</dd></div></dl><p class="dashboard-note" id="replicon-meaning">No statistically significant reservoir association after the reported FDR correction. Nonsignificance does not prove absence of an effect.</p><p class="dashboard-caption">CMH estimates account for SNP-cluster membership. They are taken from the paper, not recalculated from the pooled bars. OR = 1 is the reference for no association. Confidence intervals are not plotted.</p></div></div>
+              <div class="dashboard-table-wrap"><table class="dashboard-table"><caption>Section 3.3, pp. 5–6 · Fig. 4 · FDR threshold: 0.05</caption><thead><tr><th scope="col">Family</th><th scope="col">LMF</th><th scope="col">Non-LMF</th><th scope="col">CMH OR</th><th scope="col">FDR p</th></tr></thead><tbody><tr data-replicon-row="fib"><th scope="row">IncFIB(S)</th><td>22 / 24</td><td>36 / 40</td><td>0.93</td><td>0.948</td></tr><tr data-replicon-row="fii"><th scope="row">IncFII(S)</th><td>22 / 24</td><td>35 / 40</td><td>1.59</td><td>0.797</td></tr><tr data-replicon-row="x1"><th scope="row">IncX1</th><td>4 / 24</td><td>10 / 40</td><td>0.64</td><td>0.797</td></tr></tbody></table></div>
+            </div>
+            <div class="dashboard-panel" id="study-mobility" role="tabpanel" aria-labelledby="study-tab-mobility" tabindex="0">
+              <h4>Genome-level predicted plasmid mobility</h4><p class="dashboard-note">Each bar represents genomes carrying <b>at least one</b> reconstructed plasmid in that predicted class. A genome may contribute to more than one class.</p>
+              <div class="dashboard-select dashboard-controls"><label for="study-mobility-class">Inspect a mobility class</label><select id="study-mobility-class"><option value="conjugative">Conjugative</option><option value="mobilizable">Mobilizable</option><option value="nonmobilizable">Non-mobilizable</option></select></div>
+              <div class="dashboard-comparison"><div class="dashboard-box"><h5>Genomes with at least one plasmid in each class</h5><div class="dashboard-legend"><span><i></i>LMF · n = 24</span><span class="non-lmf"><i></i>Non-LMF · n = 40</span></div><div class="dashboard-chart" id="mobility-chart"><p class="dashboard-caption">Counts for all classes are listed in the table below.</p></div><p class="dashboard-caption">The classes overlap; percentages are not parts of a single whole.</p></div><div class="dashboard-box" aria-live="polite" aria-atomic="true"><h5 id="mobility-name">Conjugative</h5><p class="dashboard-selected-value" id="mobility-percents">16.7% / 35.0%</p><p class="dashboard-note" id="mobility-frequency">LMF: 4 / 24 · Non-LMF: 14 / 40.</p><p class="dashboard-note" id="mobility-meaning">Predicted conjugative potential is based on MOB-suite typing. It is not an experimental measurement of transfer.</p><p class="dashboard-caption">The genome with no reconstructed plasmid remains in the denominators. Differences between these bars alone do not establish reservoir association.</p></div></div>
+              <div class="dashboard-table-wrap"><table class="dashboard-table"><caption>Section 3.4, pp. 6–7 · Fig. 5B</caption><thead><tr><th scope="col">Class</th><th scope="col">LMF</th><th scope="col">Non-LMF</th></tr></thead><tbody><tr data-mobility-row="conjugative"><th scope="row">Conjugative</th><td>4 / 24</td><td>14 / 40</td></tr><tr data-mobility-row="mobilizable"><th scope="row">Mobilizable</th><td>4 / 24</td><td>6 / 40</td></tr><tr data-mobility-row="nonmobilizable"><th scope="row">Non-mobilizable</th><td>23 / 24</td><td>33 / 40</td></tr></tbody></table></div>
+            </div>
+            <div class="dashboard-panel" id="study-pangenome" role="tabpanel" aria-labelledby="study-tab-pangenome" tabindex="0">
+              <h4>Gene-cluster composition</h4><p class="dashboard-note">Explore frequency classes in the full pangenome, then switch to reservoir sharing among the accessory clusters.</p>
+              <div class="dashboard-choices dashboard-controls" aria-label="Gene-cluster dataset"><button type="button" class="dashboard-choice" data-gene-set="catalog" aria-pressed="true">Full pangenome · 4,899</button><button type="button" class="dashboard-choice" data-gene-set="accessory" aria-pressed="false">Accessory clusters · 873</button></div>
+              <div class="dashboard-box"><h5 id="pangenome-chart-heading">Full pangenome · 4,899 gene clusters</h5><div class="dashboard-chart" id="pangenome-chart"><p class="dashboard-caption">Both compositions are listed in the tables below.</p></div><div class="dashboard-choices dashboard-controls" id="gene-category-controls" aria-label="Select a gene-cluster category"></div><div aria-live="polite" aria-atomic="true"><h5 id="gene-category-name">Core</h5><p class="dashboard-selected-value" id="gene-category-count">4,026 / 4,899 · 82.2%</p><p class="dashboard-note" id="gene-category-detail">Present in at least 99% of the analysed genomes, using the paper's frequency definition.</p></div></div>
+              <p class="dashboard-note">LMF-only and non-LMF-only describe occurrence in this sampled dataset. Exclusive occurrence does not establish statistically significant reservoir association. No accessory gene cluster showed significant LMF-associated enrichment after the reported FDR correction.</p>
+              <div class="dashboard-table-wrap"><table class="dashboard-table"><caption>Full pangenome · Section 3.6, p. 9 · Fig. 7</caption><thead><tr><th scope="col">Category</th><th scope="col">Gene clusters</th><th scope="col">Genome-frequency definition</th></tr></thead><tbody><tr><th scope="row">Core</th><td>4,026</td><td>≥99%</td></tr><tr><th scope="row">Soft core</th><td>167</td><td>95% to &lt;99%</td></tr><tr><th scope="row">Shell</th><td>297</td><td>15% to &lt;95%</td></tr><tr><th scope="row">Cloud</th><td>409</td><td>&lt;15%</td></tr></tbody></table></div>
+              <div class="dashboard-table-wrap"><table class="dashboard-table"><caption>Accessory occurrence · Section 3.6, pp. 9–10</caption><thead><tr><th scope="col">Occurrence in this dataset</th><th scope="col">Accessory clusters</th></tr></thead><tbody><tr><th scope="row">Shared between reservoirs</th><td>707</td></tr><tr><th scope="row">LMF-only</th><td>55</td></tr><tr><th scope="row">Non-LMF-only</th><td>111</td></tr></tbody></table></div>
+            </div>
+            <div class="dashboard-panel" id="study-interpretation" role="tabpanel" aria-labelledby="study-tab-interpretation" tabindex="0">
+              <h4>What the evidence supports</h4><p class="dashboard-note">Population structure matters: replicon and plasmid profiles were largely lineage-associated. No tested replicon family or accessory gene cluster showed statistically significant LMF-associated enrichment after the reported FDR correction. Select a point to explore its meaning.</p>
+              <div class="dashboard-choices dashboard-controls" aria-label="Scientific interpretation"><button type="button" class="dashboard-choice" data-meaning="lineage" aria-pressed="true">Population structure</button><button type="button" class="dashboard-choice" data-meaning="association" aria-pressed="false">Association tests</button><button type="button" class="dashboard-choice" data-meaning="uncertainty" aria-pressed="false">Nonsignificance</button><button type="button" class="dashboard-choice" data-meaning="occurrence" aria-pressed="false">Exclusive occurrence</button><button type="button" class="dashboard-choice" data-meaning="design" aria-pressed="false">Observational design</button></div>
+              <div class="dashboard-box dashboard-flow-detail" aria-live="polite" aria-atomic="true"><h5 id="meaning-title">Compare within genetic backgrounds</h5><p class="dashboard-note" id="meaning-detail">Shared ancestry can confound pooled reservoir comparisons. The study restricted comparisons to mixed SNP clusters and used lineage-stratified association tests; plasmid variation was largely associated with lineage.</p><p class="dashboard-caption" id="meaning-source">Sections 2.4 and 4.1–4.2</p></div>
+              <p class="dashboard-note">Failure to detect a significant association does not prove that an effect is absent. These are observational genomic comparisons, not experimental demonstrations of adaptation.</p>
+            </div>
+            <p class="dashboard-source">This explorer summarizes published aggregate findings from Tenzin et al., <i>Food Research International</i> 242 (2026), 120003. Sources: Sections 2.2, 2.4, 3.1–3.4, 3.6 and 4.1–4.3; Figs. 1–5 and 7. Displayed percentages are calculated from the reported counts. <a href="https://doi.org/10.1016/j.foodres.2026.120003" target="_blank" rel="noopener">DOI: 10.1016/j.foodres.2026.120003</a>.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="card pub reveal">
+        <div class="pub-head">
+          <span class="pub-idx">02</span>
+          <div class="badges">
+            <span class="badge b-lead">Co-author</span>
+            <span class="badge b-journal">Food Res. Int.</span>
+          </div>
+        </div>
+        <h3 class="pub-title">Benchmarking a 16S rRNA sequencing protocol for microbiome analysis in low-moisture grain environments</h3>
+        <p class="pub-authors">Doddabematti Prakash, S., Balyatanda, S. B., Sytsma, J., <b>Tenzin, K.</b>, &amp; Siliveru, K. (2026).</p>
+        <p class="pub-meta"><span>Food Research International</span>, 241, 119710 · 32 pipeline–database combinations compared</p>
+        <a class="doi" href="https://doi.org/10.1016/j.foodres.2026.119710" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          doi.org/10.1016/j.foodres.2026.119710
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">02 / Ongoing work</div>
+        <h2 class="sec-title">Ongoing research</h2>
+      </div>
+      <p class="sec-note">Two manuscripts in preparation and two developing projects, spanning microbial evolution, genome resources, and scientific computing.</p>
+    </div>
+
+    <div class="tabs reveal" id="projTabs" role="tablist" aria-label="Research projects">
+      <button class="tab on" id="tab-p1" data-p="p1" role="tab" aria-controls="p1" aria-selected="true" tabindex="0"><span class="num">A</span><span><small>Manuscript · lead</small>Agrobacterium</span></button>
+      <button class="tab" id="tab-p2" data-p="p2" role="tab" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="num">B</span><span><small>Manuscript · first author</small>Volvox</span></button>
+      <button class="tab" id="tab-p3" data-p="p3" role="tab" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="num">C</span><span><small>Project · ongoing</small>Vibrio</span></button>
+      <button class="tab" id="tab-p4" data-p="p4" role="tab" aria-controls="p4" aria-selected="false" tabindex="-1"><span class="num">D</span><span><small>Project · developing</small>AI auditing</span></button>
+    </div>
+
+    <article class="proj on" id="p1" role="tabpanel" aria-labelledby="tab-p1" tabindex="0">
+      <div class="proj-top">
+        <span class="proj-kind">Manuscript in preparation · Lead analyst</span>
+        <div class="badges"><span class="badge b-lead">Population genomics</span><span class="badge b-journal">Plant-associated</span></div>
+      </div>
+      <h3><i>Agrobacterium</i> on wild sunflowers</h3>
+      <p class="proj-sub">Kansas State University · Platt Lab</p>
+      <p class="project-overview">How do closely related bacterial groups vary within the same plant habitat? I am investigating <b>genomic diversity and evolutionary relationships</b> in wild sunflower-associated <i>Agrobacterium</i>.</p>
+      <div class="project-highlights">
+        <div class="kcell"><div class="kv">DNA</div><div class="kl">Genome comparisons</div></div>
+        <div class="kcell"><div class="kv">Trees</div><div class="kl">Evolutionary relationships</div></div>
+        <div class="kcell"><div class="kv">Genes</div><div class="kl">Gene-content variation</div></div>
+      </div>
+      <details class="read-more" open>
+        <summary>View approach</summary>
+        <p class="proj-lead">The work combines genome quality assessment, comparative genomics, and phylogenetic analysis to examine relationships among plant-associated bacteria. Understanding this variation can inform broader questions about microbial diversity in shared habitats. The manuscript is in preparation.</p>
+      </details>
+    </article>
+
+    <article class="proj" id="p2" role="tabpanel" aria-labelledby="tab-p2" tabindex="0">
+      <div class="proj-top">
+        <span class="proj-kind">Manuscript in preparation · First author</span>
+        <div class="badges"><span class="badge b-first">Annotation integration</span><span class="badge b-journal">Genome resources</span></div>
+      </div>
+      <h3>Integrating <i>Volvox</i> genome annotations</h3>
+      <p class="proj-sub">Kansas State University · Olson Lab</p>
+      <p class="project-overview">How can successive genome releases be compared without mistaking annotation differences for biological change? I am developing approaches to <b>integrate <i>Volvox carteri</i> gene annotations</b> and evaluate their consistency.</p>
+      <div class="project-highlights">
+        <div class="kcell"><div class="kv">Merge</div><div class="kl">Compare annotations</div></div>
+        <div class="kcell"><div class="kv">Map</div><div class="kl">Evaluate genomic context</div></div>
+        <div class="kcell"><div class="kv">Check</div><div class="kl">Assess supporting evidence</div></div>
+      </div>
+      <details class="read-more" open>
+        <summary>View approach</summary>
+        <p class="proj-lead">The approach brings together sequence comparisons, annotation reconciliation, and genomic-context analysis, with conserved-gene and RNA-seq evidence used to assess candidate gene models. The goal is to support more reliable comparative research in a model of multicellularity. A first-author manuscript is in preparation.</p>
+      </details>
+    </article>
+
+    <article class="proj" id="p3" role="tabpanel" aria-labelledby="tab-p3" tabindex="0">
+      <div class="proj-top">
+        <span class="proj-kind">Active research project · External validation</span>
+        <div class="badges"><span class="badge b-rose">Pathogen genomics</span><span class="badge b-journal">Food safety</span></div>
+      </div>
+      <h3>Evaluating <i>Vibrio</i> markers in seafood</h3>
+      <p class="proj-sub">Comparative genomics · <i>Vibrio vulnificus</i></p>
+      <p class="project-overview">Do published clinical-associated markers remain informative when evaluated against seafood isolates? I am investigating their <b>transferability across sampling contexts</b>, with food-safety surveillance as the motivation.</p>
+      <div class="project-highlights">
+        <div class="kcell"><div class="kv">Genes</div><div class="kl">Published marker evaluation</div></div>
+        <div class="kcell"><div class="kv">Trees</div><div class="kl">Phylogeny-aware comparisons</div></div>
+        <div class="kcell"><div class="kv">Food</div><div class="kl">Seafood surveillance relevance</div></div>
+      </div>
+      <details class="read-more" open>
+        <summary>View approach</summary>
+        <p class="proj-lead">The project uses curated public genome metadata, genome quality assessment, and phylogeny-aware comparisons to evaluate published marker candidates in a different sampling context. The aim is to assess the evidence needed before applying such markers to food-safety surveillance. Evaluation is ongoing.</p>
+      </details>
+    </article>
+
+    <article class="proj" id="p4" role="tabpanel" aria-labelledby="tab-p4" tabindex="0">
+      <div class="proj-top">
+        <span class="proj-kind">Developing research project</span>
+        <div class="badges"><span class="badge b-award">AI agents</span><span class="badge b-lead">Reproducible computing</span></div>
+      </div>
+      <h3>AI auditing for genomic conclusions</h3>
+      <p class="proj-sub">Comparative bacterial genomics · Scientific validity</p>
+      <p class="project-overview">Can AI agents help researchers assess whether a genomic conclusion is supported by its evidence? I am developing an approach to <b>evaluate evidence-based scientific auditing</b> in comparative bacterial genomics.</p>
+      <div class="project-highlights">
+        <div class="kcell"><div class="kv">AI</div><div class="kl">Agent evaluation</div></div>
+        <div class="kcell"><div class="kv">Tests</div><div class="kl">Robustness assessment</div></div>
+        <div class="kcell"><div class="kv">Trace</div><div class="kl">Reproducible evidence records</div></div>
+      </div>
+      <details class="read-more" open>
+        <summary>View approach</summary>
+        <p class="proj-lead">The project explores agent evaluation alongside reproducible genomic analyses and evidence tracking. Its motivation is to understand when computational assistance can improve scientific review and when conclusions require human judgment. The evaluation approach is under development.</p>
+      </details>
+    </article>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">03 / Research experience</div>
+        <h2 class="sec-title">Experience</h2>
+      </div>
+      <p class="sec-note">Academic research and biopharmaceutical experience.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card reveal">
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-top">
+              <div><div class="tl-role">Graduate Researcher</div><div class="tl-org">Kansas State University · Platt Lab</div></div>
+              <div class="tl-date">Jun 2025 – <em>present</em></div>
+            </div>
+            <p class="tl-summary">Pathogen and plant-associated population genomics, 16S benchmarking, and reproducible HPC workflows.</p>
+            <details class="read-more" open>
+              <summary>Read contributions</summary>
+            <ul class="tl-body">
+              <li><b>Lineage-aware pathogen genomics.</b> Co-led a study of <i>Salmonella</i> Enteritidis from low-moisture foods, integrating NCBI Pathogen Detection metadata, SNP-cluster stratification, plasmid and antimicrobial resistance analyses, and pangenomics. The analysis found no consistent reservoir-specific plasmidome after accounting for lineage; published as co-first author in <i>Food Research International</i> (2026).</li>
+              <li><b>Methodological benchmarking.</b> Contributed to conceptualization, methodology, visualization, and manuscript review and editing for a benchmark of 32 bioinformatics pipeline–database combinations for 16S rRNA microbiome analysis of low-moisture grain environments, in collaboration with K-State’s Department of Grain and Food Science.</li>
+              <li><b>Independent project leadership.</b> Leading comparative population-genomics research on plant-associated <i>Agrobacterium</i>, examining genomic diversity and evolutionary relationships.</li>
+              <li><b>Reproducible genomics.</b> Developed repeatable workflows for genome quality control, species identification, and metadata harmonization using Slurm and Apptainer, with provenance records.</li>
+            </ul>
+            </details>
+          </div>
+
+          <div class="tl-item dim">
+            <div class="tl-top">
+              <div><div class="tl-role">Graduate Researcher</div><div class="tl-org">Kansas State University · Olson Lab</div></div>
+              <div class="tl-date">Aug 2023 – Jun 2025</div>
+            </div>
+            <p class="tl-summary">Genome-version integration and evolutionary transcriptomics in volvocine algae.</p>
+            <details class="read-more" open>
+              <summary>Read contributions</summary>
+            <ul class="tl-body">
+              <li><b>Genome-version integration.</b> Developed approaches for integrating <i>Volvox carteri</i> genome annotations using sequence comparisons and annotation metadata; a first-author manuscript is in preparation.</li>
+              <li><b>Evolutionary transcriptomics.</b> Analyzed <i>Pandorina</i> differential expression and co-expression patterns, and comparative <i>Gonium</i>/<i>Pandorina</i> developmental data using clustering and multidimensional scaling.</li>
+            </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="tl">
+          <div class="tl-item dim">
+            <div class="tl-top">
+              <div><div class="tl-role">Research Staff · GeoVista &amp; DiNonA</div><div class="tl-org">Kumho HT, Seoul</div></div>
+              <div class="tl-date">Jan 2021 – Jul 2023</div>
+            </div>
+            <p class="tl-summary">Biopharmaceutical research, regulatory documentation, and Korean–English partner support.</p>
+            <details class="read-more" open>
+              <summary>Read contributions</summary>
+            <ul class="tl-body">
+              <li><b>DiNonA · Research and Development.</b> Managed investigational product documentation and analysis for antibody development programs. Translated Korean–English investigational new drug (IND) application materials, chemistry, manufacturing and controls (CMC) documentation, and standard operating procedures (SOPs).</li>
+              <li><b>GeoVista · Consultancy.</b> Evaluated preclinical models and analyzed therapeutic research data; supported partner negotiations as a Korean–English interpreter and translator. Supported business development and communication with international partners.</li>
+            </ul>
+            </details>
+          </div>
+        </div>
+        <div class="hp-foot" style="margin-top:6px;padding-top:16px">
+          <span class="tag">CRISPR/Cas9</span><span class="tag">ENCAPSULINS</span><span class="tag">PROTEIN PURIFICATION</span><span class="tag">REGULATORY / CMC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">04 / Education</div>
+        <h2 class="sec-title">Education</h2>
+      </div>
+      <p class="sec-note">Biology training in Kansas and Seoul.</p>
+    </div>
+
+    <div class="edu-grid">
+      <div class="card reveal">
+        <div class="tl-top">
+          <div>
+            <div class="tl-role">Ph.D. in Biology</div>
+            <div class="tl-org">Kansas State University</div>
+          </div>
+          <div class="tl-date">Aug 2023 – <em>May 2028</em><br><span style="letter-spacing:0">expected</span></div>
+        </div>
+        <p class="tl-plain">Manhattan, Kansas · Platt Lab. Lineage-aware pathogen genomics, food-safety surveillance, plant-associated population genomics, and independent project leadership across four active studies.</p>
+        <div class="hp-foot" style="margin-top:16px;padding-top:14px">
+          <span class="tag">PLATT LAB</span><span class="tag">2 MANUSCRIPTS IN PREP</span><span class="tag">INSTRUCTOR OF RECORD</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="tl-top">
+          <div>
+            <div class="tl-role">B.Sc. in Life Science</div>
+            <div class="tl-org">University of Seoul</div>
+          </div>
+          <div class="tl-date">Feb 2016 – Feb 2020</div>
+        </div>
+        <p class="tl-plain">Seoul, South Korea · Funded by the Korean Government Scholarship for Undergraduate Studies, awarded annually to a single student from Bhutan, covering five years of full support. Recipient of the Korean Language Excellence Grant.</p>
+        <div class="hp-foot" style="margin-top:16px;padding-top:14px">
+          <span class="tag">KOREAN GOV'T SCHOLARSHIP</span><span class="tag">LANGUAGE EXCELLENCE GRANT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="talks">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">05 / Presentations</div>
+        <h2 class="sec-title">Presentations</h2>
+      </div>
+      <p class="sec-note">Four presentations in 2026.</p>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="fbtn on" data-f="all">All · 4</button>
+      <button class="fbtn" data-f="oral">Oral</button>
+      <button class="fbtn" data-f="flash">Flash talk</button>
+      <button class="fbtn" data-f="poster">Poster</button>
+    </div>
+
+    <div id="talkList">
+      <div class="talk reveal" data-type="poster">
+        <div class="talk-year"><b>2026</b>July</div>
+        <div>
+          <h4>Accessory gene content differences in low-moisture food-associated <i class="sp">Salmonella</i> Enteritidis: a Pathogen Detection, SNP cluster-stratified pangenome analysis</h4>
+          <p>International Association for Food Protection (IAFP) Annual Meeting · New Orleans, LA</p>
+        </div>
+        <span class="badge b-journal">Poster</span>
+      </div>
+
+      <div class="talk reveal" data-type="flash">
+        <div class="talk-year"><b>2026</b>5th Annual</div>
+        <div>
+          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
+          <p>KU Center for Genomics Research Symposium</p>
+        </div>
+        <span class="badge b-lead">Flash talk</span>
+      </div>
+
+      <div class="talk reveal" data-type="oral">
+        <div class="talk-year"><b>2026</b>March</div>
+        <div>
+          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
+          <p>51st Annual Biology Graduate Student Research Forum · K-State</p>
+        </div>
+        <span class="badge b-award">Oral</span>
+      </div>
+
+      <div class="talk reveal" data-type="oral">
+        <div class="talk-year"><b>2026</b>Forum</div>
+        <div>
+          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
+          <p>K-State Graduate Research, Arts, and Discovery Forum</p>
+        </div>
+        <span class="badge b-award">Oral</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">06 / Honors</div>
+        <h2 class="sec-title">Awards &amp; fellowships</h2>
+      </div>
+      <p class="sec-note">Research recognition, fellowships, and scholarships.</p>
+    </div>
+
+    <div class="awards">
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div>
+        <div><span class="yr">2026</span><h4>Dr. Robert J. Robel Award</h4><p>Kansas State University: departmental recognition of graduate research excellence.</p></div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div><span class="yr">2026</span><h4>IAFP Student AI Benchmark Competition · Finalist</h4><p>Team-based prediction of <i class="sp">Listeria</i> in soil, International Association for Food Protection.</p></div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div><span class="yr">2026 – 2027</span><h4>International Student Scholarship</h4><p>K-State Alumni Association.</p></div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div><span class="yr">2026 – 2027</span><h4>Risk Management Fellow</h4><p>Kansas State University.</p></div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+        <div><span class="yr">Ongoing</span><h4>Research travel &amp; training awards</h4><p>K-State Graduate Student Council, College of Arts and Sciences, and Biology Graduate Student Association.</p></div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div><span class="yr">2016 – 2020</span><h4>Korean Government Scholarship for Undergraduate Studies</h4><p>Supported undergraduate studies at the University of Seoul; also received the Korean Language Excellence Grant.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">07 / Teaching &amp; leadership</div>
+        <h2 class="sec-title">Teaching &amp; service</h2>
+      </div>
+      <p class="sec-note">Teaching, mentorship, and scientific service.</p>
+    </div>
+
+    <div class="teach-grid">
+      <div class="card reveal">
+        <div class="badges" style="margin:0 0 12px"><span class="badge b-first">Instructor of Record</span></div>
+        <h4 style="font-size:15.6px">BIOL 632 · Ecological Analysis Laboratory</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7">Spring 2026. Taught experimental design, R-based data analysis, scientific writing, peer review, and conference-style oral presentations.</p>
+      </div>
+      <div class="card reveal">
+        <div class="badges" style="margin:0 0 12px"><span class="badge b-journal">Graduate TA</span></div>
+        <h4 style="font-size:15.6px">BIOL 201 &amp; BIOL 198</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7">2023 – 2025. Led organismal biology laboratories and supported introductory genetics instruction.</p>
+      </div>
+      <div class="card reveal">
+        <div class="badges" style="margin:0 0 12px"><span class="badge b-lead">Community</span></div>
+        <h4 style="font-size:15.6px">Service &amp; leadership roles</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7">Vice President, Biology Graduate Student Association (2026 – 2027) · Vice President, International Coordinating Council (2024 – 2025).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-kicker">08 / Methods</div>
+        <h2 class="sec-title">Methods &amp; tools</h2>
+      </div>
+      <p class="sec-note">Selected tools across genomics, statistics, and HPC.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="card skill-cat reveal">
+        <h4><i></i>Comparative genomics</h4>
+        <div class="chips">
+          <span class="chip">NCBI Pathogen Detection</span><span class="chip">Panaroo</span><span class="chip">PPanGGOLiN</span>
+          <span class="chip">IQ-TREE</span><span class="chip">Gubbins</span><span class="chip">Kraken2</span>
+          <span class="chip">FastANI</span><span class="chip">skani</span><span class="chip">Bakta</span><span class="chip">Prokka</span>
+          <span class="chip">PlasmidFinder</span><span class="chip">MOB-suite</span><span class="chip">AMRFinderPlus</span>
+          <span class="chip">MetaCHIP2</span><span class="chip">DIAMOND / COG20</span>
+        </div>
+      </div>
+      <div class="card skill-cat reveal">
+        <h4><i></i>Assembly &amp; quality control</h4>
+        <div class="chips">
+          <span class="chip">SPAdes</span><span class="chip">Flye</span><span class="chip">Medaka</span>
+          <span class="chip">Unicycler</span><span class="chip">QUAST</span><span class="chip">BUSCO</span>
+          <span class="chip">CheckM2</span><span class="chip">BBDuk</span><span class="chip">FastQC / MultiQC</span>
+          <span class="chip">CD-HIT</span><span class="chip">Short-read</span><span class="chip">Long-read</span>
+          <span class="chip">Hybrid assembly</span>
+        </div>
+      </div>
+      <div class="card skill-cat reveal">
+        <h4><i></i>Reproducible computation &amp; statistics</h4>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">R</span><span class="chip">Bash</span><span class="chip">Git</span>
+          <span class="chip">Docker</span><span class="chip">Apptainer</span><span class="chip">Snakemake</span>
+          <span class="chip">Slurm / HPC</span><span class="chip">vegan (PERMANOVA / PCoA)</span><span class="chip">Stratified inference</span>
+          <span class="chip">Clustering &amp; MDS</span><span class="chip">Metadata curation</span><span class="chip">Provenance tracking</span>
+        </div>
+      </div>
+      <div class="card skill-cat reveal">
+        <h4><i></i>Annotation integration, wet-lab &amp; regulatory</h4>
+        <div class="chips">
+          <span class="chip">BioMart / Phytozome</span><span class="chip">gffutils</span><span class="chip">NetworkX</span>
+          <span class="chip">Biopython</span><span class="chip">nf-core/rnaseq</span><span class="chip">STAR</span>
+          <span class="chip">CRISPR/Cas9 KO</span><span class="chip">Molecular cloning</span><span class="chip">Immunoblotting</span>
+          <span class="chip">Ultracentrifugation</span><span class="chip">Size-exclusion chromatography</span>
+          <span class="chip">IND / CMC / SOP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card reveal">
+      <div class="contact-inner">
+        <div>
+          <div class="sec-kicker" style="margin-bottom:12px">09 / Contact</div>
+          <h3>Let’s connect.</h3>
+          <p>Interested in microbial genomics, food safety, or reproducible workflows? I welcome research collaborations. Based at Kansas State University in Manhattan, Kansas.</p>
+</div>
+        <div class="contact-list">
+          <div class="citem" data-copy="tenzin12@ksu.edu">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+            <div><span>Email · click to copy</span><b>tenzin12@ksu.edu</b></div>
+          </div>
+<div class="citem" data-copy="ORCID 0009-0009-2417-6880">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg></div>
+            <div><span>ORCID</span><b>0009-0009-2417-6880</b></div>
+          </div>
+          <div class="citem" data-copy="Manhattan, Kansas · Kansas State University · Platt Lab">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><span>Location</span><b>Manhattan, Kansas</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <span>© 2026 Kinley Tenzin · Curriculum Vitae</span>
+    <span>Kansas State University · Dept. of Biology · Platt Lab</span>
+    <span>tenzin12@ksu.edu</span>
+  </div>
+</footer>
+
+<button id="top-btn" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<div id="toast">Copied to clipboard</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- scroll progress + sticky nav + back to top ---------- */
+  var prog = document.getElementById('progress');
+  var nav = document.getElementById('nav');
+  var topBtn = document.getElementById('top-btn');
+  var ticking = false;
+
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    nav.classList.toggle('stuck', h.scrollTop > 12);
+    topBtn.classList.toggle('show', h.scrollTop > 620);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(onScroll); }
+  }, {passive:true});
+  onScroll();
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
+
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navlinks');
+  function setMenu(open){
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  }
+  burger.addEventListener('click', function(){ setMenu(!links.classList.contains('open')); });
+  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && links.classList.contains('open')){ setMenu(false); burger.focus(); }
+  });
+  document.documentElement.classList.add('navigation-ready');
+
+  /* Keep detailed content open without JavaScript; initialize the concise view here. */
+  document.querySelectorAll('.read-more').forEach(function(detail){ detail.open = false; });
+
+  /* ---------- reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var idx = Array.prototype.indexOf.call(en.target.parentNode.children, en.target);
+          en.target.style.transitionDelay = Math.min(idx,5) * 55 + 'ms';
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+  document.documentElement.classList.add('reveal-ready');
+
+  /* ---------- animated counters ---------- */
+  function fmt(v, dec){
+    if(dec > 0) return v.toFixed(dec);
+    return Math.round(v).toLocaleString('en-US');
+  }
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = pre + fmt(target, dec) + suf; return; }
+    var t0 = null, dur = 1500;
+    function step(ts){
+      if(t0 === null) t0 = ts;
+      var k = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = pre + fmt(target * eased, dec) + suf;
+      if(k < 1) window.requestAnimationFrame(step);
+      else el.textContent = pre + fmt(target, dec) + suf;
+    }
+    window.requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('.stat .n[data-count]');
+  if('IntersectionObserver' in window){
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ animateCount(en.target); io2.unobserve(en.target); }
+      });
+    }, {threshold:0.45});
+    counters.forEach(function(el){ io2.observe(el); });
+  } else { counters.forEach(animateCount); }
+
+  /* ---------- project tabs ---------- */
+  var tabs = document.querySelectorAll('#projTabs .tab');
+  var panels = document.querySelectorAll('.proj');
+  function fillBars(panel){
+    panel.querySelectorAll('.bar i').forEach(function(b){
+      var v = b.getAttribute('data-fill');
+      b.style.setProperty('--w', v + '%');
+      if(reduce){ b.style.width = v + '%'; return; }
+      b.style.width = '0%';
+      window.requestAnimationFrame(function(){
+        window.requestAnimationFrame(function(){ b.style.width = v + '%'; });
+      });
+    });
+  }
+  function showPanel(id){
+    panels.forEach(function(p){ p.classList.toggle('on', p.id === id); });
+    tabs.forEach(function(t){
+      var selected = t.getAttribute('data-p') === id;
+      t.classList.toggle('on', selected);
+      t.setAttribute('aria-selected', String(selected));
+      t.setAttribute('tabindex', selected ? '0' : '-1');
+    });
+    var active = document.getElementById(id);
+    if(active) fillBars(active);
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ showPanel(t.getAttribute('data-p')); });
+  });
+  /* keyboard support */
+  document.getElementById('projTabs').addEventListener('keydown', function(e){
+    var arr = Array.prototype.slice.call(tabs);
+    var cur = arr.indexOf(document.activeElement);
+    if(cur < 0) return;
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); var nx = (cur + 1) % arr.length; arr[nx].focus(); showPanel(arr[nx].getAttribute('data-p')); }
+    if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); var pv = (cur - 1 + arr.length) % arr.length; arr[pv].focus(); showPanel(arr[pv].getAttribute('data-p')); }
+  });
+  document.documentElement.classList.add('projects-ready');
+  document.querySelectorAll('.proj .read-more').forEach(function(detail){
+    detail.addEventListener('toggle', function(){ if(detail.open) fillBars(detail.closest('.proj')); });
+  });
+  if('IntersectionObserver' in window){
+    var io3 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ fillBars(document.querySelector('.proj.on')); io3.disconnect(); } });
+    }, {threshold:0.15});
+    io3.observe(document.getElementById('projects'));
+  } else { fillBars(document.querySelector('.proj.on')); }
+
+  /* ---------- talk filters ---------- */
+  var fbtns = document.querySelectorAll('.fbtn');
+  var talks = document.querySelectorAll('#talkList .talk');
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      fbtns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var f = b.getAttribute('data-f');
+      talks.forEach(function(t){
+        var show = (f === 'all') || (t.getAttribute('data-type') === f);
+        t.classList.toggle('hidden', !show);
+        if(show && !reduce){
+          t.style.animation = 'none'; void t.offsetWidth;
+          t.style.animation = 'fadeUp .45s cubic-bezier(.22,1,.36,1) both';
+        }
+      });
+    });
+  });
+
+  /* ---------- copy to clipboard + toast ---------- */
+  var toast = document.getElementById('toast'), toastTimer = null;
+  function showToast(msg){
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1900);
+  }
+  function fallbackCopy(txt){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); showToast('Copied: ' + txt); } catch(err){ showToast(txt); }
+    document.body.removeChild(ta);
+  }
+  function copyText(txt){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ showToast('Copied: ' + txt); }).catch(function(){ fallbackCopy(txt); });
+    } else { fallbackCopy(txt); }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(el){
+    el.addEventListener('click', function(){ copyText(el.getAttribute('data-copy')); });
+  });
+
+  /* ---------- scrollspy ---------- */
+  var navMap = {};
+  links.querySelectorAll('a').forEach(function(a){ navMap[a.getAttribute('href').slice(1)] = a; });
+  function setActive(id){
+    Object.keys(navMap).forEach(function(k){ navMap[k].classList.remove('active'); });
+    if(navMap[id]) navMap[id].classList.add('active');
+  }
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      var best = null;
+      entries.forEach(function(en){
+        if(en.isIntersecting && (!best || en.intersectionRatio > best.intersectionRatio)) best = en;
+      });
+      if(best) setActive(best.target.id);
+    }, {rootMargin:'-45% 0px -48% 0px', threshold:[0,0.2,0.6,1]});
+    document.querySelectorAll('main section[id]').forEach(function(s){ spy.observe(s); });
+  }
+
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var explorer=document.getElementById('salmonella-dashboard'),trigger=document.getElementById('salmonella-study-trigger');
+  if(!explorer||!trigger||explorer.dataset.initialized==='true') return;
+  explorer.dataset.initialized='true';
+  var replicons=[{key:'fib',name:'IncFIB(S)',lmf:22,control:36,or:0.93,p:0.948},{key:'fii',name:'IncFII(S)',lmf:22,control:35,or:1.59,p:0.797},{key:'x1',name:'IncX1',lmf:4,control:10,or:0.64,p:0.797}];
+  var mobility=[{key:'conjugative',name:'Conjugative',lmf:4,control:14},{key:'mobilizable',name:'Mobilizable',lmf:4,control:6},{key:'nonmobilizable',name:'Non-mobilizable',lmf:23,control:33}];
+  var geneSets={catalog:{name:'Full pangenome',total:4899,items:[{key:'core',name:'Core',n:4026,color:'#246354',detail:'Present in at least 99% of the analysed genomes, using the paper\'s frequency definition.'},{key:'soft',name:'Soft core',n:167,color:'#315f77',detail:'Present in 95% to less than 99% of analysed genomes.'},{key:'shell',name:'Shell',n:297,color:'#976323',detail:'Present in 15% to less than 95% of analysed genomes.'},{key:'cloud',name:'Cloud',n:409,color:'#6d587d',detail:'Present in fewer than 15% of analysed genomes.'}]},accessory:{name:'Accessory clusters',total:873,items:[{key:'shared',name:'Shared between reservoirs',n:707,color:'#246354',detail:'Observed in both reservoirs in this dataset. These counts describe occurrence, not a new association test.'},{key:'lmf_only',name:'LMF-only in this dataset',n:55,color:'#976323',detail:'Observed only in sampled LMF genomes. Exclusive occurrence does not establish significant LMF association.'},{key:'control_only',name:'Non-LMF-only in this dataset',n:111,color:'#315f77',detail:'Observed only in sampled non-LMF genomes. Exclusive occurrence does not establish significant reservoir association.'}]}};
+  var stages={records:{title:'Curated metadata, not a sequencing experiment',detail:'The study curated 2,824 public non-clinical records: 45 LMF and 2,779 non-LMF. This is the metadata pool; not every record entered assembly-level analyses, and these genomes were not newly sequenced for this study.',source:'Section 3.1, p. 5'},clusters:{title:'Group the records by genetic background',detail:'The 51 SNP clusters comprised 30 non-LMF-only clusters, 11 LMF-only clusters and 10 mixed-reservoir clusters. Cluster membership was used as a proxy for lineage.',source:'Sections 2.1 and 3.1; Fig. 2C'},mixed:{title:'Restrict comparisons to shared lineages',detail:'The 10 mixed clusters contained 343 metadata records: 24 LMF and 319 non-LMF. Restricting reservoir comparisons to these lineages reduces confounding by population structure.',source:'Section 3.1, p. 5'},sampling:{title:'Select assemblies before applying QC',detail:'The paper describes within-cluster subsampling of overrepresented non-LMF genomes, alongside assembly availability. This produced 65 selected assemblies: 24 LMF and 41 non-LMF. Sampling is distinct from quality filtering.',source:'Section 2.2, p. 4; Fig. 1'},qc:{title:'One QC exclusion gives the final analysis set',detail:'One assembly failed the paper\'s completeness criterion and was excluded. The final dataset contains 64 genomes: 24 LMF and 40 non-LMF. No new sequencing or live filtering is performed here.',source:'Section 3.2, p. 5; Fig. 3'},plasmids:{title:'Reconstruct plasmids from draft assemblies',detail:'MOB-suite reconstructed 88 plasmids across 63 genomes. One genome yielded no reconstructed plasmid; it remains in the 64-genome count and mobility denominators. Reconstruction is computational and does not prove complete physical plasmid topology.',source:'Sections 2.5 and 3.4, pp. 4 and 6–7'}};
+  var meanings={lineage:{title:'Compare within genetic backgrounds',detail:'Shared ancestry can confound pooled reservoir comparisons. The study restricted comparisons to mixed SNP clusters and used lineage-stratified association tests; plasmid variation was largely associated with lineage.',source:'Sections 2.4 and 4.1–4.2'},association:{title:'Use the reported corrected tests',detail:'No tested replicon family or accessory gene cluster showed statistically significant LMF-associated enrichment after the reported FDR correction. Bar-chart frequencies are descriptive and are not the CMH odds ratios.',source:'Sections 3.3 and 3.6; significance threshold 0.05'},uncertainty:{title:'No detected association is not proof of no effect',detail:'Nonsignificance may reflect limited information or power. The paper notes that invariant strata do not contribute to CMH estimates. The results do not prove every possible reservoir effect is absent.',source:'Sections 2.4 and 4.2'},occurrence:{title:'Occurrence and enrichment are different questions',detail:'A gene cluster found only in one sampled reservoir can be rare or lineage-associated. LMF-only and non-LMF-only labels describe this dataset, not ecological specificity or statistically significant enrichment.',source:'Section 3.6, pp. 9–10'},design:{title:'Observational comparisons, not adaptation experiments',detail:'These are comparative analyses of public genomes with curated reservoir metadata. They do not demonstrate experimental adaptation, causality, or measured plasmid transfer. Sampling and draft-assembly limitations still matter.',source:'Sections 2.1–2.2 and 4.1–4.3'}};
+  var activeView='overview',repliconKey='fib',mobilityKey='conjugative',geneSet='catalog',geneKey='core';
+  function text(id,value){document.getElementById(id).textContent=value;}
+  function esc(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function percent(n,total){return (n/total*100).toFixed(1);}
+  function find(items,key){return items.filter(function(item){return item.key===key;})[0];}
+  function syncOpen(){trigger.setAttribute('aria-expanded',String(explorer.open));if(explorer.open) renderActive();}
+  trigger.addEventListener('click',function(){explorer.open=!explorer.open;syncOpen();});
+  explorer.addEventListener('toggle',syncOpen);
+  document.getElementById('study-close').addEventListener('click',function(){explorer.open=false;syncOpen();trigger.focus({preventScroll:true});});
+  var tabs=Array.prototype.slice.call(explorer.querySelectorAll('[data-study-view]'));
+  function showView(name){activeView=name;explorer.querySelectorAll('.dashboard-panel').forEach(function(panel){panel.hidden=panel.id!=='study-'+name;});tabs.forEach(function(tab){var on=tab.dataset.studyView===name;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;});renderActive();}
+  tabs.forEach(function(tab){tab.addEventListener('click',function(){showView(tab.dataset.studyView);});});
+  explorer.querySelector('.dashboard-tabs').addEventListener('keydown',function(event){var i=tabs.indexOf(document.activeElement),next=i;if(i<0)return;if(event.key==='ArrowRight'||event.key==='ArrowDown')next=(i+1)%tabs.length;else if(event.key==='ArrowLeft'||event.key==='ArrowUp')next=(i-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();tabs[next].focus();showView(tabs[next].dataset.studyView);});
+  function widthOf(chart){return Math.max(140,Math.round(chart.getBoundingClientRect().width||620));}
+  function groupedChart(id,items,selected){
+    var chart=document.getElementById(id),w=widthOf(chart),plot=w-110,row=94,top=32,h=top+row*items.length+28;
+    var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+w+' '+h+'" role="group" aria-label="Published genome prevalences. Green is LMF, blue is non-LMF. Select a category for details.">';
+    (plot<100?[100]:[0,50,100]).forEach(function(t){var x=5+plot*t/100;svg+='<line x1="'+x+'" x2="'+x+'" y1="24" y2="'+(h-25)+'" stroke="#dbe0d6" stroke-dasharray="3 4"/><text x="'+x+'" y="14" font-size="10" fill="#627168" text-anchor="'+(t===0?'start':t===100?'end':'middle')+'">'+t+'%</text>';});
+    items.forEach(function(item,i){var y=top+i*row,on=item.key===selected;
+      svg+='<g data-chart-key="'+item.key+'" tabindex="0" role="button" aria-pressed="'+on+'" aria-label="'+esc(item.name)+': LMF '+item.lmf+' of 24, non-LMF '+item.control+' of 40. Select for details."><title>'+esc(item.name)+'</title><text x="5" y="'+(y+9)+'" font-size="12" font-weight="'+(on?'700':'500')+'" fill="#263c33">'+esc(item.name)+(on?' ✓':'')+'</text>';
+      [['lmf',24,'#246354'],['control',40,'#315f77']].forEach(function(cohort,j){var cy=y+22+j*22,len=plot*item[cohort[0]]/cohort[1];svg+='<rect x="5" y="'+cy+'" width="'+plot+'" height="13" rx="3" fill="#e9ede5"/><rect data-value-bar="'+item.key+'-'+cohort[0]+'" x="5" y="'+cy+'" width="'+len+'" height="13" rx="3" fill="'+cohort[2]+'" opacity="'+(on?'1':'.55')+'"/><text x="'+(w-2)+'" y="'+(cy+11)+'" text-anchor="end" font-size="10" fill="#263c33">'+item[cohort[0]]+'/'+cohort[1]+' · '+percent(item[cohort[0]],cohort[1])+'%</text>';});
+      svg+='</g>';
+    });svg+='</svg>';chart.innerHTML=svg;chart.dataset.width=String(w);
+  }
+  function highlight(attribute,key){explorer.querySelectorAll('['+attribute+']').forEach(function(el){el.classList.toggle('is-selected',el.getAttribute(attribute)===key);});}
+  function updateReplicon(key){if(key)repliconKey=key;var item=find(replicons,repliconKey);document.getElementById('study-replicon').value=repliconKey;text('replicon-name',item.name);text('replicon-frequency','LMF: '+item.lmf+' / 24 ('+percent(item.lmf,24)+'%) · Non-LMF: '+item.control+' / 40 ('+percent(item.control,40)+'%).');text('replicon-or',item.or.toFixed(2));text('replicon-p',item.p.toFixed(3));text('replicon-meaning','For '+item.name+', the reported FDR-adjusted p-value ('+item.p.toFixed(3)+') did not meet the 0.05 threshold. No statistically significant reservoir association was detected; this does not prove the absence of an effect.');highlight('data-replicon-row',repliconKey);groupedChart('replicon-chart',replicons,repliconKey);}
+  function updateMobility(key){if(key)mobilityKey=key;var item=find(mobility,mobilityKey);document.getElementById('study-mobility-class').value=mobilityKey;text('mobility-name',item.name);text('mobility-percents',percent(item.lmf,24)+'% / '+percent(item.control,40)+'%');text('mobility-frequency','LMF: '+item.lmf+' / 24 · Non-LMF: '+item.control+' / 40. Each count is genomes with at least one plasmid in this predicted class.');text('mobility-meaning',item.name+' is a predicted MOB-suite mobility class, not an experimental transfer measurement. The same genome can appear in other mobility classes.');highlight('data-mobility-row',mobilityKey);groupedChart('mobility-chart',mobility,mobilityKey);}
+  function updateGene(key){if(key)geneKey=key;var set=geneSets[geneSet],item=find(set.items,geneKey);var focusedKey=document.activeElement&&document.activeElement.dataset.geneKey;text('gene-category-name',item.name);text('gene-category-count',item.n.toLocaleString('en-US')+' / '+set.total.toLocaleString('en-US')+' · '+percent(item.n,set.total)+'%');text('gene-category-detail',item.detail);text('pangenome-chart-heading',set.name+' · '+set.total.toLocaleString('en-US')+' gene clusters');
+    var controls=document.getElementById('gene-category-controls');controls.innerHTML=set.items.map(function(x){return '<button type="button" class="dashboard-choice" style="border-left:4px solid '+x.color+'" data-gene-key="'+x.key+'" aria-pressed="'+(x.key===geneKey)+'">'+esc(x.name)+'</button>';}).join('');
+    var chart=document.getElementById('pangenome-chart'),w=widthOf(chart),plot=w-8,x=4,svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+w+' 86" role="group" aria-label="'+set.total+' published gene clusters. Select a segment for details."><text x="4" y="16" font-size="11" fill="#627168">Composition · total '+set.total.toLocaleString('en-US')+'</text>';
+    set.items.forEach(function(g){var len=plot*g.n/set.total,on=g.key===geneKey;svg+='<g data-chart-key="'+g.key+'" tabindex="0" role="button" aria-pressed="'+on+'" aria-label="'+esc(g.name)+': '+g.n+' of '+set.total+', '+percent(g.n,set.total)+' percent. Select for details."><title>'+esc(g.name)+': '+g.n+' ('+percent(g.n,set.total)+'%)</title><rect data-gene-segment="'+g.key+'" x="'+x+'" y="30" width="'+len+'" height="32" fill="'+g.color+'" opacity="'+(on?'1':'.6')+'" stroke="#f4f3ed" stroke-width="2"/></g>';x+=len;});
+    svg+='<text x="4" y="80" font-size="10" fill="#627168">Select a category below</text></svg>';chart.innerHTML=svg;chart.dataset.width=String(w);if(focusedKey){var next=controls.querySelector('[data-gene-key="'+focusedKey+'"]');if(next)next.focus();}
+  }
+  function setGenes(name){geneSet=name;geneKey=geneSets[name].items[0].key;explorer.querySelectorAll('[data-gene-set]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.geneSet===name));});updateGene();}
+  function selectStage(key){var item=stages[key];text('stage-title',item.title);text('stage-detail',item.detail);text('stage-source',item.source);explorer.querySelectorAll('[data-stage]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.stage===key));});}
+  function selectMeaning(key){var item=meanings[key];text('meaning-title',item.title);text('meaning-detail',item.detail);text('meaning-source',item.source);explorer.querySelectorAll('[data-meaning]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.meaning===key));});}
+  function renderActive(){if(activeView==='replicons')updateReplicon();else if(activeView==='mobility')updateMobility();else if(activeView==='pangenome')updateGene();}
+  document.getElementById('study-replicon').addEventListener('change',function(){updateReplicon(this.value);});
+  document.getElementById('study-mobility-class').addEventListener('change',function(){updateMobility(this.value);});
+  explorer.addEventListener('click',function(event){var button=event.target.closest('[data-stage],[data-meaning],[data-gene-set],[data-gene-key],[data-chart-key]');if(!button)return;var key=button.dataset.chartKey;if(button.dataset.stage)selectStage(button.dataset.stage);else if(button.dataset.meaning)selectMeaning(button.dataset.meaning);else if(button.dataset.geneSet)setGenes(button.dataset.geneSet);else if(button.dataset.geneKey)updateGene(button.dataset.geneKey);else if(key){var chart=button.closest('.dashboard-chart');if(chart.id==='replicon-chart')updateReplicon(key);else if(chart.id==='mobility-chart')updateMobility(key);else updateGene(key);}});
+  explorer.addEventListener('keydown',function(event){var button=event.target.closest('[data-chart-key]');if(!button)return;if(event.key==='Enter'||event.key===' '){event.preventDefault();var chartId=button.closest('.dashboard-chart').id,key=button.dataset.chartKey;button.dispatchEvent(new MouseEvent('click',{bubbles:true}));var updated=explorer.querySelector('#'+chartId+' [data-chart-key="'+key+'"]');if(updated)updated.focus();}});
+  var resizePending=false;
+  function refreshSize(){if(resizePending)return;resizePending=true;window.requestAnimationFrame(function(){resizePending=false;var id=activeView==='replicons'?'replicon-chart':activeView==='mobility'?'mobility-chart':activeView==='pangenome'?'pangenome-chart':null;if(id&&explorer.open){var chart=document.getElementById(id);if(chart.dataset.width!==String(widthOf(chart)))renderActive();}});}
+  window.addEventListener('resize',refreshSize,{passive:true});
+  if('ResizeObserver' in window){var observer=new ResizeObserver(refreshSize);explorer.querySelectorAll('.dashboard-chart').forEach(function(chart){observer.observe(chart);});}
+  explorer.classList.add('dashboard-ready');showView('overview');selectStage('records');selectMeaning('lineage');syncOpen();
+})();
+</script>
+
+</body>
+</html>
