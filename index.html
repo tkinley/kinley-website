@@ -606,6 +606,10 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 @media(max-width:760px){.dashboard-comparison{grid-template-columns:1fr}.dashboard-content{padding:20px 15px}.dashboard-box{padding:16px}.dashboard-header{flex-wrap:wrap}.dashboard-tabs{gap:6px}.dashboard-tabs button{padding:9px 10px}.study-dashboard>summary{padding:16px}.dashboard-table th,.dashboard-table td{padding:8px 6px}}
 @media(max-width:480px){.dashboard-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-stage{padding:12px}.dashboard-stage b{font-size:24px}.dashboard-header h4{font-size:23px}.dashboard-metrics dd{font-size:25px}}
 @media print{.pub-study-trigger{pointer-events:none}.study-dashboard>summary,.dashboard-controls{display:none!important}.study-dashboard::details-content{display:block!important;content-visibility:visible!important}.dashboard-panel[hidden]{display:block!important}.dashboard-content{padding:12px}.dashboard-box,.dashboard-stage{break-inside:avoid}.dashboard-panel{animation:none!important}}
+/* ---------- profile image ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 220px;max-width:none;gap:40px;align-items:start}
+.hero-profile{grid-column:2;grid-row:1;display:block;width:220px;height:220px;object-fit:contain;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow)}
+@media(max-width:1020px){.hero{grid-template-columns:1fr;gap:24px}.hero-profile{grid-column:1;grid-row:1;width:160px;height:160px}}
 </style>
 </head>
 <body>
@@ -635,6 +639,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
   <section id="home">
     <div class="hero-wrap">
       <div class="hero">
+        <img class="hero-profile" src="images/profile.jpg" alt="Three seated figures beneath an overhead light" width="800" height="800" decoding="async" />
         <div class="reveal">
           <span class="hero-badge">Microbial genomics &amp; food safety</span>
           <h1>Kinley Tenzin</h1>
