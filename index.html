@@ -159,7 +159,7 @@ section{padding:88px 0 12px;position:relative}
 .hp-foot{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);display:flex;gap:7px;flex-wrap:wrap}
 .tag{font-family:'JetBrains Mono',monospace;font-size:10.4px;letter-spacing:.06em;color:#9fdfe9;background:rgba(92,201,255,.09);border:1px solid rgba(92,201,255,.2);padding:4px 9px;border-radius:7px}
 
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:44px}
 .stat{
   border:1px solid var(--line-soft);border-radius:var(--r-md);padding:16px;background:rgba(255,255,255,.025);
   position:relative;overflow:hidden;transition:.28s;
@@ -482,7 +482,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 #top-btn:hover{border-color:var(--teal)}
 #toast{background:var(--ink);color:#fff;border-color:var(--line);box-shadow:var(--shadow)}
 @media(max-width:1020px){
-  .stats{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:24px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}
   .stat{padding:0 18px}
   .stat:nth-child(3n+1){padding-left:0;border-left:0}
 }
@@ -522,13 +522,13 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 }
 @media(max-width:1020px){
   .hero{grid-template-columns:1fr;gap:34px}
-  .stats{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact-inner{grid-template-columns:1fr;gap:24px}
   .sec-note{margin-left:0}
 }
 @media(max-width:780px){
   .two-col,.edu-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .talk{grid-template-columns:1fr;gap:9px}
   .talk-year{text-align:left;display:flex;gap:8px;align-items:baseline}
   .talk-year b{display:inline;font-size:14px}
@@ -546,7 +546,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
   .hero-badge{font-size:9.5px;letter-spacing:.06em}
 }
 @media(max-width:420px){
-  .stats{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .project-highlights{grid-template-columns:1fr}
   .project-highlights .kcell{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px}
   .project-highlights .kl{max-width:155px;text-align:right;font-size:12px;margin-top:0}
@@ -666,6 +666,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               Contact
             </a>
+            <!-- TODO: Add a phone-free PDF at cv/Kinley_Tenzin_CV.pdf, then add a CV (PDF) button here with target="_blank" and rel="noopener". -->
           </div>
           <div class="hero-contact">
             <span class="chip-link" data-copy="tenzin12@ksu.edu">
@@ -676,6 +677,11 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg>
               ORCID 0009-0009-2417-6880
             </span>
+            <a class="chip-link" href="https://github.com/tkinley" target="_blank" rel="noopener">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+              GitHub
+            </a>
+            <!-- TODO: Add the Google Scholar profile URL and a Google Scholar chip-link here. -->
           </div>
         </div>
 
@@ -684,9 +690,6 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
       <div class="stats">
         <div class="stat reveal"><div class="n" data-count="2">2</div><div class="l">Peer-reviewed publications</div></div>
         <div class="stat reveal"><div class="n" data-count="4">4</div><div class="l">Ongoing research projects</div></div>
-        <div class="stat reveal"><div class="n" data-count="4">4</div><div class="l">Presentations in 2026</div></div>
-        <div class="stat reveal"><div class="n">2023</div><div class="l">Doctoral studies began</div></div>
-        <div class="stat reveal"><div class="n">HPC</div><div class="l">Reproducible scientific computing</div></div>
       </div>
     </div>
   </section>
@@ -973,13 +976,36 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
               <summary>Read contributions</summary>
             <ul class="tl-body">
               <li><b>DiNonA · Research and Development.</b> Managed investigational product documentation and analysis for antibody development programs. Translated Korean–English investigational new drug (IND) application materials, chemistry, manufacturing and controls (CMC) documentation, and standard operating procedures (SOPs).</li>
-              <li><b>GeoVista · Consultancy.</b> Evaluated preclinical models and analyzed therapeutic research data; supported partner negotiations as a Korean–English interpreter and translator. Supported business development and communication with international partners.</li>
+              <li><b>GeoVista · Consultancy.</b> Evaluated preclinical models and analyzed therapeutic research data; supported partner negotiations as a Korean–English interpreter and translator. Supported business development and communication with international partners. Presented preclinical study plans and results to international CRO partners.</li>
             </ul>
             </details>
           </div>
         </div>
         <div class="hp-foot" style="margin-top:6px;padding-top:16px">
-          <span class="tag">CRISPR/Cas9</span><span class="tag">ENCAPSULINS</span><span class="tag">PROTEIN PURIFICATION</span><span class="tag">REGULATORY / CMC</span>
+          <span class="tag">Regulatory / CMC</span><span class="tag">IND / SOP</span><span class="tag">Korean-English translation</span>
+        </div>
+        <div class="tl-summary"><h3 class="tl-role">Earlier research training</h3></div>
+        <div class="tl">
+          <div class="tl-item dim">
+            <div class="tl-top">
+              <div><div class="tl-role">Project Intern</div><div class="tl-org">Korea University College of Medicine, Seoul</div></div>
+              <div class="tl-date">Aug – Dec 2020</div>
+            </div>
+            <p class="tl-plain">Generated GBA1 knockout cell lines with CRISPR/Cas9 and expressed wild-type and mutant GBA1 for Gaucher disease research; assessed expression by immunoblotting.</p>
+            <div class="hp-foot">
+              <span class="tag">CRISPR/Cas9</span><span class="tag">Immunoblotting</span><span class="tag">Cell culture</span>
+            </div>
+          </div>
+          <div class="tl-item dim">
+            <div class="tl-top">
+              <div><div class="tl-role">U-WURF Research Fellow</div><div class="tl-org">Ulsan National Institute of Science and Technology (UNIST), Ulsan</div></div>
+              <!-- TODO: Add the exact UNIST fellowship dates. -->
+            </div>
+            <p class="tl-plain">Cloned SpyTag/SpyCatcher constructs to load cargo into encapsulin nanocages; purified encapsulins by sucrose-gradient ultracentrifugation and size-exclusion chromatography.</p>
+            <div class="hp-foot">
+              <span class="tag">Encapsulins</span><span class="tag">Protein purification</span><span class="tag">Molecular cloning</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1003,7 +1029,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
           </div>
           <div class="tl-date">Aug 2023 – <em>May 2028</em><br><span style="letter-spacing:0">expected</span></div>
         </div>
-        <p class="tl-plain">Manhattan, Kansas · Platt Lab. Lineage-aware pathogen genomics, food-safety surveillance, plant-associated population genomics, and independent project leadership across four active studies.</p>
+        <p class="tl-plain">Manhattan, Kansas · Platt Lab. Lineage-aware pathogen genomics, food-safety surveillance, and plant-associated population genomics; two manuscripts in preparation and two developing projects.</p>
         <div class="hp-foot" style="margin-top:16px;padding-top:14px">
           <span class="tag">PLATT LAB</span><span class="tag">2 MANUSCRIPTS IN PREP</span><span class="tag">INSTRUCTOR OF RECORD</span>
         </div>
@@ -1016,7 +1042,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
           </div>
           <div class="tl-date">Feb 2016 – Feb 2020</div>
         </div>
-        <p class="tl-plain">Seoul, South Korea · Funded by the Korean Government Scholarship for Undergraduate Studies, awarded annually to a single student from Bhutan, covering five years of full support. Recipient of the Korean Language Excellence Grant.</p>
+        <p class="tl-plain">Seoul, South Korea · Completed through Korean-medium instruction. Funded by the Korean Government Scholarship for Undergraduate Studies, awarded annually to a single student from Bhutan, covering five years of full support. Recipient of the Korean Language Excellence Grant.</p>
         <div class="hp-foot" style="margin-top:16px;padding-top:14px">
           <span class="tag">KOREAN GOV'T SCHOLARSHIP</span><span class="tag">LANGUAGE EXCELLENCE GRANT</span>
         </div>
@@ -1033,48 +1059,25 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
       <p class="sec-note">Four presentations in 2026.</p>
     </div>
 
-    <div class="filters reveal" id="filters">
-      <button class="fbtn on" data-f="all">All · 4</button>
-      <button class="fbtn" data-f="oral">Oral</button>
-      <button class="fbtn" data-f="flash">Flash talk</button>
-      <button class="fbtn" data-f="poster">Poster</button>
-    </div>
-
     <div id="talkList">
-      <div class="talk reveal" data-type="poster">
+      <div class="talk reveal">
         <div class="talk-year"><b>2026</b>July</div>
         <div>
-          <h4>Accessory gene content differences in low-moisture food-associated <i class="sp">Salmonella</i> Enteritidis: a Pathogen Detection, SNP cluster-stratified pangenome analysis</h4>
-          <p>International Association for Food Protection (IAFP) Annual Meeting · New Orleans, LA</p>
+          <h4>Accessory gene content differences in low-moisture food-associated <em>Salmonella</em> Enteritidis: a Pathogen Detection, SNP cluster-stratified pangenome analysis</h4>
+          <p>Poster · International Association for Food Protection (IAFP) Annual Meeting, New Orleans, LA · July 2026</p>
         </div>
         <span class="badge b-journal">Poster</span>
       </div>
 
-      <div class="talk reveal" data-type="flash">
-        <div class="talk-year"><b>2026</b>5th Annual</div>
+      <div class="talk reveal">
+        <div class="talk-year"><b>2026</b>March–May</div>
         <div>
-          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
-          <p>KU Center for Genomics Research Symposium</p>
+          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <em>Salmonella</em> Enteritidis from low-moisture foods</h4>
+          <p>Flash talk · 5th Annual KU Center for Genomics Research Symposium, Lawrence, KS · May 2026</p>
+          <p>Oral · K-State Graduate Research, Arts, and Discovery Forum, Manhattan, KS · April 2026</p>
+          <p>Oral · 51st Annual Biology Graduate Student Research Forum, K-State, Manhattan, KS · March 2026</p>
         </div>
-        <span class="badge b-lead">Flash talk</span>
-      </div>
-
-      <div class="talk reveal" data-type="oral">
-        <div class="talk-year"><b>2026</b>March</div>
-        <div>
-          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
-          <p>51st Annual Biology Graduate Student Research Forum · K-State</p>
-        </div>
-        <span class="badge b-award">Oral</span>
-      </div>
-
-      <div class="talk reveal" data-type="oral">
-        <div class="talk-year"><b>2026</b>Forum</div>
-        <div>
-          <h4>Lineage stability overrides reservoir adaptation in the plasmidome of <i class="sp">Salmonella</i> Enteritidis from low-moisture foods</h4>
-          <p>K-State Graduate Research, Arts, and Discovery Forum</p>
-        </div>
-        <span class="badge b-award">Oral</span>
+        <span class="badge b-lead">Flash talk / Oral</span>
       </div>
     </div>
   </section>
@@ -1091,7 +1094,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
     <div class="awards">
       <div class="card award reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div>
-        <div><span class="yr">2026</span><h4>Dr. Robert J. Robel Award</h4><p>Kansas State University: departmental recognition of graduate research excellence.</p></div>
+        <div><span class="yr">2026</span><h4>Robert J. Robel Graduate Student Award in Wildlife Biology and Ecology</h4><p>Division of Biology, Kansas State University. Recognizes research contributions in wildlife biology and ecology.</p></div>
       </div>
       <div class="card award reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
@@ -1119,7 +1122,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
   <section id="teaching">
     <div class="sec-head reveal">
       <div>
-        <div class="sec-kicker">07 / Teaching &amp; leadership</div>
+        <div class="sec-kicker">07 / Teaching &amp; service</div>
         <h2 class="sec-title">Teaching &amp; service</h2>
       </div>
       <p class="sec-note">Teaching, mentorship, and scientific service.</p>
@@ -1137,9 +1140,23 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
         <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7">2023 – 2025. Led organismal biology laboratories and supported introductory genetics instruction.</p>
       </div>
       <div class="card reveal">
+        <div class="badges" style="margin:0 0 12px"><span class="badge b-lead">Service</span></div>
+        <h4 style="font-size:15.6px">Scientific community</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><b>Nextflow Ambassador</b> · 2026 – present.</p>
+        <!-- TODO: Add one concrete Nextflow Ambassador activity, such as a workshop, talk, or help session. -->
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><a href="student-benefits.html"><b>Notes for Fellow Students</b></a> · Created and maintain a public guide to research computing, funding, and K-State resources for graduate students.</p>
+      </div>
+      <div class="card reveal">
+        <div class="badges" style="margin:0 0 12px"><span class="badge b-lead">Leadership</span></div>
+        <h4 style="font-size:15.6px">Student leadership</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><b>Vice President, Biology Graduate Student Association</b> · 2026 – 2027. Help organize graduate orientation, peer support, and student events.</p>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><b>Vice President, International Coordinating Council</b> · 2024 – 2025. Launched the council's first podcast, addressing questions international students hesitate to ask publicly; organized a talent show (200+ attendees) and sporting events (100+ participants).</p>
+      </div>
+      <div class="card reveal">
         <div class="badges" style="margin:0 0 12px"><span class="badge b-lead">Community</span></div>
-        <h4 style="font-size:15.6px">Service &amp; leadership roles</h4>
-        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7">Vice President, Biology Graduate Student Association (2026 – 2027) · Vice President, International Coordinating Council (2024 – 2025).</p>
+        <h4 style="font-size:15.6px">Earlier service</h4>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><b>Founding President, Bhutanese Association in South Korea.</b> Founded the association, built its website, raised funds, and organized community events.</p>
+        <p style="font-size:13.2px;color:var(--ink-3);margin-top:8px;line-height:1.7"><b>Board Member, International Student Association, University of Seoul.</b></p>
       </div>
     </div>
   </section>
@@ -1150,7 +1167,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
         <div class="sec-kicker">08 / Methods</div>
         <h2 class="sec-title">Methods &amp; tools</h2>
       </div>
-      <p class="sec-note">Selected tools across genomics, statistics, and HPC.</p>
+      <p class="sec-note">Selected tools across genomics, statistics, and HPC, plus languages.</p>
     </div>
 
     <div class="skills-grid">
@@ -1178,7 +1195,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
         <h4><i></i>Reproducible computation &amp; statistics</h4>
         <div class="chips">
           <span class="chip">Python</span><span class="chip">R</span><span class="chip">Bash</span><span class="chip">Git</span>
-          <span class="chip">Docker</span><span class="chip">Apptainer</span><span class="chip">Snakemake</span>
+          <span class="chip">Docker</span><span class="chip">Apptainer</span><span class="chip">Nextflow</span><span class="chip">nf-core</span><span class="chip">Snakemake</span>
           <span class="chip">Slurm / HPC</span><span class="chip">vegan (PERMANOVA / PCoA)</span><span class="chip">Stratified inference</span>
           <span class="chip">Clustering &amp; MDS</span><span class="chip">Metadata curation</span><span class="chip">Provenance tracking</span>
         </div>
@@ -1191,6 +1208,13 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
           <span class="chip">CRISPR/Cas9 KO</span><span class="chip">Molecular cloning</span><span class="chip">Immunoblotting</span>
           <span class="chip">Ultracentrifugation</span><span class="chip">Size-exclusion chromatography</span>
           <span class="chip">IND / CMC / SOP</span>
+        </div>
+      </div>
+      <div class="card skill-cat reveal">
+        <h4><i></i>Languages</h4>
+        <div class="chips">
+          <span class="chip">Dzongkha (native)</span><span class="chip">Sharshopa (native)</span><span class="chip">English</span>
+          <span class="chip">Korean (TOPIK 5)</span><span class="chip">Nepali</span><span class="chip">Hindi</span>
         </div>
       </div>
     </div>
@@ -1213,6 +1237,12 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg></div>
             <div><span>ORCID</span><b>0009-0009-2417-6880</b></div>
           </div>
+          <a class="citem" href="https://github.com/tkinley" target="_blank" rel="noopener">
+            <div class="ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></div>
+            <div><span>GitHub</span><b>tkinley</b></div>
+          </a>
+          <!-- TODO: Add the Google Scholar profile URL and a Google Scholar citem here. -->
+          <!-- TODO: Add a phone-free PDF at cv/Kinley_Tenzin_CV.pdf, then add a CV (PDF) citem here. -->
           <div class="citem" data-copy="Manhattan, Kansas · Kansas State University · Platt Lab">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div><span>Location</span><b>Manhattan, Kansas</b></div>
@@ -1375,25 +1405,6 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
     }, {threshold:0.15});
     io3.observe(document.getElementById('projects'));
   } else { fillBars(document.querySelector('.proj.on')); }
-
-  /* ---------- talk filters ---------- */
-  var fbtns = document.querySelectorAll('.fbtn');
-  var talks = document.querySelectorAll('#talkList .talk');
-  fbtns.forEach(function(b){
-    b.addEventListener('click', function(){
-      fbtns.forEach(function(x){ x.classList.remove('on'); });
-      b.classList.add('on');
-      var f = b.getAttribute('data-f');
-      talks.forEach(function(t){
-        var show = (f === 'all') || (t.getAttribute('data-type') === f);
-        t.classList.toggle('hidden', !show);
-        if(show && !reduce){
-          t.style.animation = 'none'; void t.offsetWidth;
-          t.style.animation = 'fadeUp .45s cubic-bezier(.22,1,.36,1) both';
-        }
-      });
-    });
-  });
 
   /* ---------- copy to clipboard + toast ---------- */
   var toast = document.getElementById('toast'), toastTimer = null;
