@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notes for fellow students · Kinley Tenzin</title>
+<meta name="description" content="Notes for fellow students: less obvious free and discounted tools, research resources, and K-State services." />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-600.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-700.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.19/latin-500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.19/latin-700.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/latin-400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/latin-600.css" />
+<style>
+:root{--bg:#f5f2eb;--panel:rgba(255,255,255,.72);--panel-2:#fff;--line:rgba(38,60,51,.18);--line-soft:rgba(38,60,51,.1);--ink:#263c33;--ink-2:#506158;--ink-3:#627168;--teal:#246354;--cyan:#315f77;--amber:#976323;--violet:#6d587d;--rose:#984858;--grad:linear-gradient(100deg,#246354,#315f77);--r-lg:22px;--r-md:14px;--maxw:1080px;--shadow:0 16px 40px -28px rgba(38,60,51,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 620px at 12% -6%, rgba(67,224,200,.13), transparent 62%),radial-gradient(780px 560px at 92% 4%, rgba(92,201,255,.11), transparent 60%),radial-gradient(900px 700px at 60% 108%, rgba(169,139,255,.09), transparent 62%),var(--bg)}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-.02em}
+header.nav{position:fixed;top:0;left:0;right:0;z-index:150;backdrop-filter:blur(16px) saturate(150%);background:rgba(5,8,13,.72);border-bottom:1px solid var(--line-soft)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(67,224,200,.22),rgba(169,139,255,.18));border:1px solid rgba(67,224,200,.4);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#c9fff4}
+.brand-txt{display:flex;flex-direction:column;line-height:1.15}
+.brand-txt b{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;color:#fff}
+.brand-txt span{font-size:10.5px;color:#9fb3a8;letter-spacing:.14em;text-transform:uppercase}
+.nav-links{display:flex;gap:2px;margin-left:auto;align-items:center}
+.nav-links a{font-size:12.4px;font-weight:500;color:#9fb3a8;padding:8px 10px;border-radius:9px;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-links a.active{color:#7df0d8;background:rgba(67,224,200,.12)}
+main{max-width:var(--maxw);margin:0 auto;padding:128px 24px 80px}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+h1{font-size:clamp(32px,5vw,50px);margin-bottom:12px}
+.lede{font-size:17px;color:var(--ink-2);max-width:760px;margin-bottom:10px}
+.meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-3);margin-bottom:20px}
+.controls{position:sticky;top:62px;z-index:50;background:rgba(245,242,235,.92);backdrop-filter:blur(10px);padding:14px 0 12px;border-bottom:1px solid var(--line-soft);margin-bottom:20px}
+.searchrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1;min-width:220px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px;color:var(--ink)}
+.search:focus{outline:2px solid rgba(67,224,200,.5);border-color:var(--teal)}
+.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.btn:hover{background:var(--panel-2)}
+.btn.primary{background:var(--grad);color:#04121a;border-color:transparent}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{cursor:pointer;border:1px solid var(--line);background:var(--panel);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-3);margin:14px 0 4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.nav-links{display:none}main{padding-top:110px}.controls{top:58px}}
+.card{background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:18px 20px;position:relative}
+.card:hover{border-color:rgba(67,224,200,.32);background:var(--panel-2)}
+.card h3{font-size:18px;margin:8px 0 6px}
+.card p{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);margin-right:6px;color:var(--ink-2)}
+.tag.free{color:var(--teal);border-color:rgba(36,99,84,.35);background:rgba(67,224,200,.08)}
+.tag.trial{color:var(--rose);border-color:rgba(152,72,88,.3);background:rgba(255,120,140,.08)}
+.tag.kstate{color:var(--cyan);border-color:rgba(49,95,119,.3);background:rgba(92,201,255,.1)}
+.tag.deadline{color:var(--amber);border-color:rgba(151,99,35,.35);background:rgba(255,196,0,.1)}
+.details{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--ink-2)}
+.details.open{display:block}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mini{font-size:13px;font-weight:600;padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+.mini.primary{background:var(--grad);color:#04121a;border-color:transparent}
+.note{background:var(--panel-2);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:16px 18px;margin:18px 0;font-size:14px;color:var(--ink-2)}
+.note b{color:var(--teal)}
+.skip{margin-top:36px}
+.skip h2{font-size:24px;margin-bottom:10px}
+.skip ul{margin-left:20px;color:var(--ink-2);font-size:14.5px}
+.skip li{margin-bottom:6px}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line-soft);font-size:13.5px;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="index.html"><span class="brand-mark">KT</span><span class="brand-txt"><b>Kinley Tenzin</b><span>Ph.D. &middot; Biology &middot; K-State</span></span></a>
+<nav class="nav-links"><a href="index.html#publications">Published Research</a><a href="index.html#projects">Ongoing Research</a><a href="index.html#experience">Experience</a><a href="index.html">Home</a><a class="active" href="student-benefits.html">Student Notes</a></nav>
+</div></header>
+<main>
+<p class="kicker">Student notes</p>
+<h1>Notes for fellow students</h1>
+<p class="lede">I kept losing track of this stuff, so I put it in one place. No obvious stuff. Only the less obvious, K-State specific, time sensitive, or easy to miss ones.</p>
+<p class="meta">Last updated: Oct 15, 2026 &middot; Feel free to share &middot; Send corrections if something expired.</p>
+<div class="note"><b>Quick rules:</b> Check the official page before adding a card. Most free trials auto-renew. Set a reminder on the day you claim anything. Not affiliated, not sponsored. Use @k-state.edu, not @ksu.edu, when a K-State service asks for your email.</div>
+
+<div class="controls">
+<div class="searchrow">
+<input id="q" class="search" type="search" placeholder="Search: e.g. HPC, Figma, travel, food..." aria-label="Search notes" />
+<button class="btn" id="topBtn" type="button">Top 10 only</button>
+<button class="btn" id="expandBtn" type="button">Expand all</button>
+<button class="btn" id="collapseBtn" type="button">Collapse all</button>
+</div>
+<div class="chips" id="chips">
+<button class="chip active" data-f="all" type="button">All</button>
+<button class="chip" data-f="kstate" type="button">K-State</button>
+<button class="chip" data-f="deadline" type="button">Deadlines</button>
+<button class="chip" data-f="ai" type="button">AI</button>
+<button class="chip" data-f="research" type="button">Research</button>
+<button class="chip" data-f="money" type="button">Money / Food</button>
+<button class="chip" data-f="learn" type="button">Learning</button>
+<button class="chip" data-f="fun" type="button">Fun</button>
+</div>
+</div>
+<p class="count" id="count"></p>
+<div class="grid" id="grid">
+
+<article class="card" data-cat="kstate research" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Libraries + Interlibrary Loan</h3><p>Never pay for a paper first. Check the library, then ILL.</p><div class="details"><p>Set Scholar to K-State, install LibKey Nomad. Most ILL articles arrive as PDFs, often within a day.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://lib.k-state.edu/services-support/interlibrary-loan/">Open</a></div></article>
+
+<article class="card" data-cat="kstate" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Microsoft 365</h3><p>Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.</p><div class="details"><p>Webmail &rarr; App Launcher &rarr; Install Microsoft 365 apps &rarr; Organizational account.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/news/it/articles/2025/01/microsoft-365-free-for-students-faculty-and-staff.html">Open</a></div></article>
+
+<article class="card" data-cat="ai deadline" data-top="1"><span class="tag trial">Free 12 mo</span><span class="tag deadline">Deadline Dec 31</span><h3>Google AI Pro</h3><p>Gemini + Deep Research. Then $19.99/mo unless you cancel.</p><div class="details"><p>SheerID + payment method. Use a personal Google account. Storage amount is disputed (2 TB vs 5 TB), check Google's page.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://one.google.com/ai-student">Open</a></div></article>
+
+<article class="card" data-cat="ai deadline" data-top="1"><span class="tag trial">Free 4 mo</span><span class="tag deadline">Deadline Oct 31</span><h3>ChatGPT Plus</h3><p>4 free months, then $20/mo unless you cancel.</p><div class="details"><p>Confirm terms on OpenAI's own student page before entering payment details. Secondary sources only.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://chatgpt.com/students/2026">Open</a></div></article>
+
+<article class="card" data-cat="ai" data-top="1"><span class="tag trial">Free 1 yr</span><h3>ElevenReader</h3><p>Premium text to audio for PDFs and papers.</p><div class="details"><p>Gated by institution allowlist. K-State membership unconfirmed. If rejected, use request-access form. Auto-renews.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://elevenreader.io/students">Open</a></div></article>
+
+<article class="card" data-cat="research" data-top="1"><span class="tag free">Free</span><h3>GitHub Student Pack</h3><p>Dev tools, cloud credits, domains, learning resources.</p><div class="details"><p>Verify with school email. Activate time-limited offers only when ready to use them.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://education.github.com/pack">Open</a></div></article>
+
+<article class="card" data-cat="research" data-top="1"><span class="tag free">Free</span><h3>JetBrains</h3><p>All IDEs free, renew yearly. PyCharm Pro + DataGrip.</p><div class="details"><p>Great for Python and SQL in bioinformatics. Apply with school email.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.jetbrains.com/community/education/#students">Open</a></div></article>
+
+<article class="card" data-cat="kstate research" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Beocat HPC</h3><p>K-State HPC with Slurm, OpenOnDemand, Galaxy.</p><div class="details"><p>Free for eligible researchers. Annual renewal. Ends when you leave K-State.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/beocat/">Open</a></div></article>
+
+<article class="card" data-cat="kstate money" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Cats' Cupboard</h3><p>Free food + hygiene pantry. No income check.</p><div class="details"><p>1+ credit hour. Register each semester with eID, Wildcat ID, and @k-state.edu email.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/cats-cupboard/">Open</a></div></article>
+
+<article class="card" data-cat="research" data-top="1"><span class="tag free">Free credit</span><h3>Azure for Students</h3><p>$100 credit for 12 months. No card. Renewable.</p><div class="details"><p>Unused credit does not roll over. Plus always-free services.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://azure.microsoft.com/free/students">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>DOE JGI User Program</h3><p>Free sequencing by competitive proposal.</p><div class="details"><p>Must fit DOE mission (energy / environment). Data is made public. Check proposal calls.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://jgi.doe.gov/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>KBase</h3><p>Genome annotation, MAGs, metabolic modeling.</p><div class="details"><p>DOE platform. Reproducible Narratives, no HPC needed.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.kbase.us/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>BV-BRC</h3><p>Bacterial / viral comparative genomics.</p><div class="details"><p>RAST annotation, phylogeny, AMR. Jobs run on BV-BRC compute.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.bv-brc.org/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>CyVerse</h3><p>NSF data store, apps, VMs for life science.</p><div class="details"><p>Free account. Request Discovery Environment + Data Store at signup.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://cyverse.org/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>Galaxy public servers</h3><p>No-code reproducible genomics.</p><div class="details"><p>QC, mapping, assembly, QIIME. Public queues and quotas apply.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://usegalaxy.org/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>JGI IMG/M</h3><p>Compare public microbial genomes / metagenomes.</p><div class="details"><p>Upload your genomes for annotation. Data becomes public at publication.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://img.jgi.doe.gov/">Open</a></div></article>
+
+<article class="card" data-cat="research money deadline"><span class="tag deadline">Deadline Oct 19</span><h3>NSF GRFP</h3><p>$37k/yr + $16k/yr for 3 years. 1st / 2nd year only.</p><div class="details"><p>US citizen / national / permanent resident. Life Sciences deadline reported Oct 19, 2026.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.nsfgrfp.org/">Open</a></div></article>
+
+<article class="card" data-cat="research money deadline"><span class="tag deadline">Deadline Nov 4</span><h3>DOE SCGSR</h3><p>3 to 12 months thesis research at a DOE lab.</p><div class="details"><p>Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://science.osti.gov/wdts/scgsr">Open</a></div></article>
+
+<article class="card" data-cat="research money"><span class="tag free">Free to apply</span><h3>NIH F31</h3><p>Up to 5 years for PhD dissertation stage.</p><div class="details"><p>Stipend figures conflict across sources. Check current NIH notice for your institute. 3 cycles per year.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://grants.nih.gov/grants/guide/pa-files/PA-23-272.html">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>ResearchRabbit</h3><p>Citation-network discovery from seed papers.</p><div class="details"><p>Free full features. Great for finding related work you missed.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.researchrabbit.ai/">Open</a></div></article>
+
+<article class="card" data-cat="ai research"><span class="tag free">Free tier</span><h3>Consensus</h3><p>Quick evidence synthesis.</p><div class="details"><p>Free tier for searches. Reported student discount on Pro.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://consensus.app/">Open</a></div></article>
+
+<article class="card" data-cat="ai"><span class="tag free">Free tier</span><h3>Groq + OpenRouter free</h3><p>Fast inference, free models. Quotas change often.</p><div class="details"><p>OpenRouter free: 50 req/day baseline. Do not paste unpublished work without checking data-use terms.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://openrouter.ai/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>BioRender Basic + open libraries</h3><p>Figures, but Basic has no publication rights.</p><div class="details"><p>Use Servier, Bioicons, NIAID, Reactome for publishable figures. Check each icon licence.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.biorender.com/">Open</a></div></article>
+
+<article class="card" data-cat="kstate"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Career Center + Career Closet</h3><p>Advising, fairs, Handshake, interview clothes.</p><div class="details"><p>Free for students. Check Handshake for jobs and internships.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/careercenter/">Open</a></div></article>
+
+<article class="card" data-cat="kstate"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Powercat Financial</h3><p>Free peer financial counselling.</p><div class="details"><p>Budgeting, loan repayment, credit. Confidential.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/powercatfinancial">Open</a></div></article>
+
+<article class="card" data-cat="kstate"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>CAPS</h3><p>Free therapy for students.</p><div class="details"><p>Funded in part by student fees. Confirm session limits and waitlist.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/counseling">Open</a></div></article>
+
+<article class="card" data-cat="kstate money"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>GSC travel funding</h3><p>Conference travel grants.</p><div class="details"><p>Reported up to $750 domestic / $1,000 international. Apply at least 21 days before event.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/grad/financial-support/travel-grants/">Open</a></div></article>
+
+<article class="card" data-cat="money"><span class="tag trial">Free 1 yr</span><h3>YNAB College</h3><p>1 full year free. Non-renewable.</p><div class="details"><p>Claim on web, not App Store. After year, $109/yr.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.ynab.com/college">Open</a></div></article>
+
+<article class="card" data-cat="money"><span class="tag free">Free</span><h3>IRS Free File + VITA</h3><p>Free federal filing and volunteer tax prep.</p><div class="details"><p>Free File: AGI up to $89k for guided software. VITA Manhattan 2026 schedule unconfirmed.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.irs.gov/filing/free-file-do-your-federal-taxes-for-free">Open</a></div></article>
+
+<article class="card" data-cat="money"><span class="tag free">Free</span><h3>Flint Hills Breadbasket</h3><p>Community food pantry in Manhattan.</p><div class="details"><p>Verify current hours and eligibility before going.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.flinthillsbreadbasket.org/">Open</a></div></article>
+
+<article class="card" data-cat="learn"><span class="tag free">Free</span><h3>Coursera audit + aid</h3><p>Audit free. Aid can unlock certificate.</p><div class="details"><p>Aid review can take around two weeks. Apply after enrolling in audit track.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.coursera.org/">Open</a></div></article>
+
+<article class="card" data-cat="learn"><span class="tag free">Free</span><h3>Carpentries + EMBL-EBI</h3><p>Free workshops and bioinformatics modules.</p><div class="details"><p>Software / Data / HPC Carpentry lessons free online. EMBL-EBI Train Online self-paced.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://carpentries.org/">Open</a></div></article>
+
+<article class="card" data-cat="fun"><span class="tag trial">Bundle</span><h3>Spotify + Hulu</h3><p>Pick one bundle, not all three.</p><div class="details"><p>$5.99 to $6.99/mo reported. SheerID, re-verify yearly. Do not pay for Hulu separately if you take this.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.spotify.com/us/student/">Open</a></div></article>
+
+<article class="card" data-cat="fun"><span class="tag trial">Bundle</span><h3>Apple Music + TV+</h3><p>$5.99/mo, TV+ included.</p><div class="details"><p>Up to 48 months total. UNiDAYS / SheerID verification.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.apple.com/apple-music/student/">Open</a></div></article>
+
+<article class="card" data-cat="fun"><span class="tag trial">Free 6 mo</span><h3>Prime for Young Adults</h3><p>6 mo free, then $7.49/mo.</p><div class="details"><p>Includes Prime Video, Music, Reading, photo storage, Grubhub+ on eligible orders. Auto-renews.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.amazon.com/prime/student">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>AWS Student Rewards</h3><p>Skill Builder Premium 12 mo + badge rewards.</p><div class="details"><p>Credits and $100 cert voucher are badge-gated, not instant. Educate itself is training-only.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://aws.amazon.com/">Open</a></div></article>
+
+<article class="card" data-cat="research"><span class="tag free">Free</span><h3>Figma + Miro + Notion</h3><p>Education plans for figures and notes.</p><div class="details"><p>Figma 1 yr, Miro 2 yr, Notion Plus for 1-member workspace. Re-verify yearly.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.figma.com/education/">Open</a></div></article>
+
+</div>
+
+<section class="skip">
+<h2>Skip these</h2>
+<ul>
+<li>Cursor free student Pro: expired June 2026.</li>
+<li>Perplexity free Pro: ended. Now $10/mo Education Pro.</li>
+<li>Todoist student discount: does not exist.</li>
+<li>Canva for Education: K-12 only for college students.</li>
+<li>Claude student codes: no such code exists.</li>
+<li>Grammarly Pro free with .edu: false.</li>
+<li>Adobe free for students: false. Discounted only, and at K-State free Adobe is faculty / staff only.</li>
+<li>Cerebras permanent free tier: gone. Card-gated trial only.</li>
+<li>Tabnine free tier: gone in 2026.</li>
+</ul>
+</section>
+
+<footer>
+<p><b>Corrections welcome.</b> If something is wrong or expired, I would rather fix it than leave it up. Last updated Oct 15, 2026.</p>
+<p><a href="index.html">Back to home</a></p>
+</footer>
+</main>
+<script>
+const q=document.getElementById('q'), chips=document.getElementById('chips'), grid=document.getElementById('grid'), count=document.getElementById('count'), topBtn=document.getElementById('topBtn');
+let filter='all', topOnly=false, query='';
+function apply(){
+  const cards=[...grid.querySelectorAll('.card')];
+  let shown=0;
+  cards.forEach(c=>{
+    const cats=c.dataset.cat||'';
+    const okF = filter==='all' || cats.includes(filter);
+    const okT = !topOnly || c.dataset.top==='1';
+    const okQ = !query || c.textContent.toLowerCase().includes(query);
+    const show = okF && okT && okQ;
+    c.style.display = show ? '' : 'none';
+    if(show) shown++;
+  });
+  count.textContent = 'Showing ' + shown + ' of ' + cards.length + ' notes';
+}
+chips.addEventListener('click', e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  chips.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); filter=b.dataset.f; apply();
+});
+q.addEventListener('input', ()=>{ query=q.value.trim().toLowerCase(); apply(); });
+topBtn.addEventListener('click', ()=>{
+  topOnly=!topOnly;
+  topBtn.textContent = topOnly ? 'Show all' : 'Top 10 only';
+  topBtn.style.background = topOnly ? '#263c33' : '';
+  topBtn.style.color = topOnly ? '#fff' : '';
+  apply();
+});
+document.getElementById('expandBtn').addEventListener('click', ()=>{
+  grid.querySelectorAll('.details').forEach(d=>d.classList.add('open'));
+  grid.querySelectorAll('[data-toggle]').forEach(b=>b.textContent='Hide');
+});
+document.getElementById('collapseBtn').addEventListener('click', ()=>{
+  grid.querySelectorAll('.details').forEach(d=>d.classList.remove('open'));
+  grid.querySelectorAll('[data-toggle]').forEach(b=>b.textContent='Details');
+});
+grid.addEventListener('click', e=>{
+  const b=e.target.closest('[data-toggle]'); if(!b) return;
+  const d=b.closest('.card').querySelector('.details');
+  const open=d.classList.toggle('open');
+  b.textContent = open ? 'Hide' : 'Details';
+});
+apply();
+</script>
+</body>
+</html>
