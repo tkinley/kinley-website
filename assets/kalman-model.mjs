@@ -46,3 +46,15 @@ export function simulateSignal(count = 96, seed = 1606) {
   const filtered = filterObservations(samples.map((sample) => sample.observation));
   return samples.map((sample, index) => ({ ...sample, ...filtered[index] }));
 }
+
+// Root-mean-square distance between two equal-length series.
+export function rmse(a, b) {
+  return Math.sqrt(a.reduce((total, value, i) => total + (value - b[i]) ** 2, 0) / a.length);
+}
+
+// Re-run the filter on the same observations with a different assumed
+// measurement variance R. The truth and the observations stay fixed.
+export function refilter(samples, measurementVariance) {
+  const filtered = filterObservations(samples.map((sample) => sample.observation), { measurementVariance });
+  return samples.map((sample, index) => ({ ...sample, ...filtered[index] }));
+}

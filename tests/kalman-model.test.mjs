@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filterObservations, simulateSignal } from '../assets/kalman-model.mjs';
+import { filterObservations, simulateSignal, refilter, rmse, MEASUREMENT_VARIANCE } from '../assets/kalman-model.mjs';
 
 test('prediction and correction match a hand-calculated scalar example', () => {
   const result = filterObservations([2, 3], {
@@ -42,4 +42,21 @@ test('the displayed simulation has finite uncertainty and less estimation error 
   }
   // This checks this fixed example, not a guarantee for every realization.
   assert.ok(filteredError < rawError);
+});
+
+test('assumed measurement noise trades responsiveness for smoothness', () => {
+  const samples = simulateSignal();
+  const jumpy = refilter(samples, MEASUREMENT_VARIANCE / 50);
+  const sluggish = refilter(samples, MEASUREMENT_VARIANCE * 50);
+  const obs = samples.map((s) => s.observation);
+  // Trusting the data hugs the observations; trusting the model hugs its own past.
+  assert.ok(rmse(jumpy.map((s) => s.estimate), obs) < rmse(sluggish.map((s) => s.estimate), obs));
+  assert.ok(jumpy.at(-1).gain > sluggish.at(-1).gain);
+  // The same observations are reused.
+  assert.deepEqual(jumpy.map((s) => s.observation), obs);
+});
+
+test('refilter at the true R reproduces the displayed estimates', () => {
+  const samples = simulateSignal();
+  assert.deepEqual(refilter(samples, MEASUREMENT_VARIANCE), samples);
 });
