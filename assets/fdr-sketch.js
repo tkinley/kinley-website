@@ -1,4 +1,4 @@
-import { analyze, DEFAULT_SEED, ALPHA, Q } from './fdr-model.mjs';
+import { analyze, DEFAULT_SEED, Q } from './fdr-model.mjs?v=4';
 
 const root = document.getElementById('fdr-sketch');
 if (root) initFdr(root);
@@ -277,11 +277,13 @@ function initFdr(root) {
   applyMotion();
   if (!motion.matches && 'IntersectionObserver' in window) {
     root.classList.add('is-armed');
+    // Same rule as Fig. 1: start when half the plot is visible; faint preview until then.
     new IntersectionObserver((entries) => {
-      inView = entries[0].isIntersecting;
+      const entry = entries[0];
+      inView = entry.isIntersecting;
       cancel();
-      if (inView && !started && !motion.matches) start(); else loop();
-    }, { threshold: 0.35 }).observe(root);
+      if (inView && entry.intersectionRatio >= 0.45 && !started && !motion.matches) start(); else loop();
+    }, { threshold: [0, 0.5] }).observe($('[data-f-plot]'));
   } else if (!motion.matches) {
     start();
   }
