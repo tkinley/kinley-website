@@ -1,4 +1,4 @@
-import { simulateSignal, refilter, rmse, MEASUREMENT_VARIANCE } from './kalman-model.mjs';
+import { simulateSignal, refilter, rmse, MEASUREMENT_VARIANCE } from './kalman-model.mjs?v=4';
 
 const root = document.getElementById('kalman-sketch');
 if (root) initKalman(root);
@@ -242,11 +242,14 @@ function initKalman(root) {
   describeKnob();
   if (!motion.matches && 'IntersectionObserver' in window) {
     root.classList.add('is-armed');
+    // Start once half of the plot itself is on screen. Until then the finished
+    // chart shows as a faint preview, never an empty frame.
     new IntersectionObserver((entries) => {
-      inView = entries[0].isIntersecting;
+      const entry = entries[0];
+      inView = entry.isIntersecting;
       cancel();
-      if (inView && !started && !motion.matches) start(); else schedule();
-    }, { threshold: 0.35 }).observe(root);
+      if (inView && entry.intersectionRatio >= 0.45 && !started && !motion.matches) start(); else schedule();
+    }, { threshold: [0, 0.5] }).observe(plot);
   } else if (!motion.matches) {
     start();
   }

@@ -40,7 +40,7 @@ button.citem{width:100%;font:inherit}
 .key-missed{width:9px;height:9px;border-radius:50%;border:1.6px solid var(--teal)}
 .sketch-caption{margin-top:auto;padding-top:12px;font-size:11px;line-height:1.65;color:var(--ink-3)}
 .sketch-caption a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}
-.is-armed .sketch-plot [data-armed]{opacity:0}
+.is-armed .sketch-plot [data-armed]{opacity:.18}
 
 /* ---------- Fig. 1, Kalman filter ---------- */
 .sketch-hud{display:flex;gap:4px 18px;flex-wrap:wrap;margin-top:12px;font:500 11px/1.5 'JetBrains Mono',ui-monospace,monospace;color:var(--ink-3)}
