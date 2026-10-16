@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kinley Tenzin · Ph.D. Student · Biology · Kansas State University</title>
-<meta name="description" content="Kinley Tenzin: microbial comparative and population genomics, bacterial phylogenomics, plasmids and antimicrobial resistance, food-safety genomics. Ph.D. Student, Biology, Kansas State University." />
+<meta name="description" content="I'm Kinley Tenzin, a Biology Ph.D. student at Kansas State University. Interested in mobile genetic elements, bacterial genomes, statistics, and Counter-Strike 1.6." />
+<link rel="stylesheet" href="assets/kalman-sketch.css" />
+<script type="module" src="assets/kalman-sketch.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-400.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-500.css" />
@@ -431,6 +433,9 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 .hero-badge{padding:0;border:0;background:none;border-radius:0;color:var(--teal);font-size:11px;letter-spacing:.16em;margin-bottom:24px}
 .hero-role{margin-top:24px;font-size:15px;line-height:1.7}
 .hero-lead{max-width:54ch;font-size:19px;line-height:1.8;margin-top:24px}
+.hero-statistics{max-width:62ch;font-size:16px;line-height:1.8;color:var(--ink-2);margin-top:20px}
+.hero-personal{max-width:64ch;font-size:13px;line-height:1.8;color:var(--ink-2);margin-top:22px}
+.hero-role i::after{content:'·';position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .hero-cta{margin-top:30px}
 .hero-contact{margin-top:24px}
 .hero-contact .chip-link{background:none;border-color:var(--line);font-size:11.8px}
@@ -614,6 +619,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
 <div id="progress"></div>
 
 <header class="nav" id="nav">
@@ -635,13 +641,13 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
   <section id="home">
     <div class="hero-wrap">
       <div class="hero">
         <img class="hero-profile" src="images/profile.jpg" alt="Three seated figures beneath an overhead light" width="800" height="800" decoding="async" />
         <div class="reveal">
-          <span class="hero-badge">Microbial genomics &amp; food safety</span>
+          <span class="hero-badge">Bacterial genomes &amp; other rabbit holes</span>
           <h1>Kinley Tenzin</h1>
           <div class="hero-role">
             <span>Ph.D. Student</span><i></i>
@@ -650,9 +656,43 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
             <span>Manhattan, Kansas</span>
           </div>
           <p class="hero-lead">
-            I study how microbial genomes vary and what that means for <b>food safety</b>.
-            My work connects <b>population genomics</b>, bacterial evolution, and reproducible scientific computing.
+            I'm interested in the combinatorics of mobile genetic elements, how they move, mix, and reshape bacterial genomes. I'm still figuring out how to study all of this properly. Fortunately, I have Tom Platt helping me along the way.
           </p>
+          <p class="hero-statistics">My consulting days left me obsessed with finding signal in noise. These days, I mostly nerd out over false discovery rates (FDR) and how easily p-values can fool us.</p>
+
+          <figure class="signal-sketch" id="kalman-sketch" aria-labelledby="signal-title">
+            <figcaption class="signal-heading">
+              <span id="signal-title">A little signal in the noise</span>
+              <div class="signal-controls">
+                <button type="button" class="signal-control" data-signal-toggle hidden>Pause</button>
+                <button type="button" class="signal-control" data-signal-replay hidden>
+                  <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a5.3 5.3 0 1 1-.2 5M3 1.8V5h3.2"/></svg>
+                  Replay
+                </button>
+              </div>
+            </figcaption>
+            <ul class="signal-legend" aria-label="Plot legend">
+              <li><span class="signal-observation-key" aria-hidden="true"></span>Noisy observations</li>
+              <li><span class="signal-estimate-key" aria-hidden="true"></span>Kalman estimate</li>
+            </ul>
+            <svg class="signal-plot" viewBox="0 0 640 170" role="img" aria-labelledby="signal-chart-title signal-chart-description">
+              <title id="signal-chart-title">Kalman filtering of a simulated signal</title>
+              <desc id="signal-chart-description">Noisy observations are shown as brown dots. A solid forest-green line estimates a slowly wandering signal using only observations received so far. The horizontal axis is time; values are in arbitrary units. These are simulated data, not research results.</desc>
+              <g class="signal-grid" aria-hidden="true"><path d="M32 24H624M32 70H624M32 116H624"/></g>
+              <g data-signal-observations aria-hidden="true"></g>
+              <path class="signal-estimate" data-signal-estimate fill="none" aria-hidden="true" />
+              <g class="signal-axis" aria-hidden="true"><text x="32" y="155">time</text><path d="M70 151H108m-4-3 4 3-4 3"/><text x="624" y="155" text-anchor="end">arbitrary units</text></g>
+            </svg>
+            <p class="signal-caption">Simulated data · One measurement at a time, a little less guesswork.</p>
+            <p class="signal-status" data-signal-status role="status"></p>
+            <noscript><p class="signal-caption">Enable JavaScript to see the Kalman filter sketch.</p></noscript>
+          </figure>
+
+          <details class="fdr-note">
+            <summary>Not every significant p-value deserves to be believed.</summary>
+            <p>When testing many hypotheses, some small p-values occur by chance. False discovery rate methods help control the expected proportion of false discoveries among rejected hypotheses, under appropriate assumptions.</p>
+          </details>
+          <p class="hero-personal">Outside of research, I still play Counter-Strike 1.6. Usually 2–4 hours a day. Yes, 1.6.</p>
           <div class="hero-cta">
             <a class="btn primary" href="#projects">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -669,14 +709,14 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
             <!-- TODO: Add a phone-free PDF at cv/Kinley_Tenzin_CV.pdf, then add a CV (PDF) button here with target="_blank" and rel="noopener". -->
           </div>
           <div class="hero-contact">
-            <span class="chip-link" data-copy="tenzin12@ksu.edu">
+            <a class="chip-link" href="mailto:tenzin12@ksu.edu">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
               tenzin12@ksu.edu
-            </span>
-<span class="chip-link" data-copy="ORCID 0009-0009-2417-6880">
+            </a>
+            <a class="chip-link" href="https://orcid.org/0009-0009-2417-6880" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg>
               ORCID 0009-0009-2417-6880
-            </span>
+            </a>
             <a class="chip-link" href="https://github.com/tkinley" target="_blank" rel="noopener">
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
               GitHub
@@ -1222,24 +1262,24 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
           <p>Interested in microbial genomics, food safety, or reproducible workflows? I welcome research collaborations. Based at Kansas State University in Manhattan, Kansas.</p>
 </div>
         <div class="contact-list">
-          <div class="citem" data-copy="tenzin12@ksu.edu">
+          <a class="citem" href="mailto:tenzin12@ksu.edu">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
-            <div><span>Email · click to copy</span><b>tenzin12@ksu.edu</b></div>
-          </div>
-<div class="citem" data-copy="ORCID 0009-0009-2417-6880">
+            <div><span>Email</span><b>tenzin12@ksu.edu</b></div>
+          </a>
+          <a class="citem" href="https://orcid.org/0009-0009-2417-6880" target="_blank" rel="noopener">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M12 8h2.5a2.5 2.5 0 0 1 0 5H12"/></svg></div>
             <div><span>ORCID</span><b>0009-0009-2417-6880</b></div>
-          </div>
+          </a>
           <a class="citem" href="https://github.com/tkinley" target="_blank" rel="noopener">
             <div class="ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></div>
             <div><span>GitHub</span><b>tkinley</b></div>
           </a>
           <!-- TODO: Add the Google Scholar profile URL and a Google Scholar citem here. -->
           <!-- TODO: Add a phone-free PDF at cv/Kinley_Tenzin_CV.pdf, then add a CV (PDF) citem here. -->
-          <div class="citem" data-copy="Manhattan, Kansas · Kansas State University · Platt Lab">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><span>Location</span><b>Manhattan, Kansas</b></div>
-          </div>
+          <button type="button" class="citem" data-copy="Manhattan, Kansas · Kansas State University · Platt Lab" aria-label="Copy location: Manhattan, Kansas, Kansas State University, Platt Lab">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="citem-text"><span>Location</span><b>Manhattan, Kansas</b></span>
+          </button>
         </div>
       </div>
     </div>
@@ -1257,7 +1297,7 @@ header.nav,header.nav.stuck{background:rgba(245,242,235,.94);border-bottom-color
 <button id="top-btn" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
-<div id="toast">Copied to clipboard</div>
+<div id="toast" role="status">Copied to clipboard</div>
 
 <script>
 (function(){
