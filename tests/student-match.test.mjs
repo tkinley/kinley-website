@@ -90,3 +90,12 @@ test('CV suggestions use an allowlist and never return raw identifiers, status, 
   assert.equal(suggestProfile('PhD candidate, mentoring an undergraduate student.').academic_level,'');
   assert.deepEqual(suggestProfile('<img src=x onerror=alert(1)>'),{academic_level:'',field:'',skills:'',interests:[]});
 });
+test('quick topic filtering uses the interest tag, without requiring or guessing profile answers',()=> {
+  const all=opportunities.map(o=>evaluateOpportunity(o,{},'2026-10-18'));
+  const food=selectResults(all,{interest:'Food'});
+  assert.deepEqual(food.map(r=>r.opportunity.title).sort(),["Cats' Cupboard",'Flint Hills Breadbasket'].sort());
+  assert.ok(food.every(r=>r.status==='verify'));
+  assert.equal(selectResults(all,{interest:'Food',category:'ai-software'}).length,0);
+  assert.equal(selectResults(all,{interest:'Food',query:'cupboard'}).length,1);
+  assert.equal(selectResults(all,{interest:''}).length,108);
+});

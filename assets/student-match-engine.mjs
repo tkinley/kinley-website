@@ -61,9 +61,10 @@ export function evaluateOpportunity(opportunity, suppliedProfile, today = new Da
     relevance: score >= 8 ? 'Strong relevance' : score > 0 ? 'Some relevance' : 'Explore',
     recommended: !expired && status !== 'ineligible' && score > 0 };
 }
-export function selectResults(evaluated, { category = 'all', query = '', scope = 'all', sort = 'relevance', eligibility = 'all' } = {}) {
+export function selectResults(evaluated, { category = 'all', query = '', scope = 'all', sort = 'relevance', eligibility = 'all', interest = '' } = {}) {
   const q = query.toLowerCase().trim();
   const list = evaluated.filter(r => (category === 'all' || r.opportunity.categories.includes(category)) &&
+    (!interest || r.opportunity.tags.includes(interest)) &&
     (scope !== 'recommended' || r.recommended) && (eligibility === 'all' || r.status === eligibility) &&
     (!q || [r.opportunity.title, r.opportunity.description, r.opportunity.notes, ...r.opportunity.tags].join(' ').toLowerCase().includes(q)));
   const priority = { likely: 0, verify: 1, ineligible: 2 };

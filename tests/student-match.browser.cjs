@@ -30,9 +30,31 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     await page.goto(`${origin}/student-match.html`);
     await page.waitForSelector('.resource-card');
     assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
-    assert.equal(await page.locator('#verify-count').innerText(),'108');
+    assert.equal(await page.locator('#verify-count').textContent(),'108');
     await page.screenshot({path:path.join(out,'matcher-desktop.png')});
     pass('initial directory: 108 resources, unknown eligibility preserved, no login');
+    assert.equal(await page.locator('#personalize').evaluate(e=>e.open),false);
+    assert.equal(await page.locator('#hero-title').innerText(),'What are you\nlooking for?');
+    await page.locator('.quick-choice[data-interest="Food"]').click();
+    assert.equal(await page.locator('.resource-card').count(),2);
+    assert.match(await page.locator('#results-title').innerText(),/Free food/);
+    assert.ok((await page.locator('.resource-card h3').allInnerTexts()).includes("Cats' Cupboard"));
+    await page.locator('#clear-topic').click();
+    assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
+    for(const interest of ['Scholarships','Free Software','Research','Travel']) {
+      await page.locator(`button[data-interest="${interest}"]`).first().click();
+      assert.ok(await page.locator('.resource-card').count());
+      assert.equal(await page.locator('#clear-topic').isVisible(),true);
+    }
+    await page.locator('#explore-deadlines').click();
+    assert.equal(await page.locator('#sort-order').inputValue(),'deadline');
+    assert.match(await page.locator('#result-count').innerText(),/No verified upcoming deadlines/);
+    await page.locator('#explore-all').click();
+    assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
+    await page.locator('#open-profile').click();
+    assert.equal(await page.locator('#personalize').evaluate(e=>e.open),true);
+    assert.equal(await page.locator('#open-profile').getAttribute('aria-expanded'),'true');
+    pass('topic-first choices filter accurately; deadline unknowns stay explicit; profile is optional and expandable');
 
     const profiles=[
       ['Undergraduate','domestic',['Food','Scholarships']],
@@ -156,10 +178,14 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     await page.setViewportSize({width:1440,height:1000});await page.reload();await page.waitForSelector('.resource-card');
     await page.keyboard.press('Tab'); assert.equal(await page.locator('.skip-link').evaluate(e=>e===document.activeElement),true);
     await page.keyboard.press('Enter');
+    await page.locator('#open-profile').click();
     await page.locator('#browse-files').focus();
     const chooser=page.waitForEvent('filechooser'); await page.keyboard.press('Enter'); const dialog=await chooser; await dialog.setFiles([]);
     await page.locator('#interests input').first().focus(); await page.keyboard.press('Space'); assert.equal(await page.locator('#interests input').first().isChecked(),true);
     pass('keyboard skip link, file chooser, and interest checkboxes');
+    const expandedAudit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
+    assert.deepEqual(expandedAudit.violations.map(v=>v.id),[]);
+    pass('expanded profile and upload controls have no automated WCAG A/AA violations');
 
     // A failed data request leaves a readable fallback and the directory link.
     const fallback=await context.newPage();await fallback.route('**/data/student-opportunities.json',r=>r.abort());await fallback.goto(`${origin}/student-match.html`);await fallback.locator('#data-error').waitFor({state:'visible'});
@@ -195,6 +221,19 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     await local.locator('#local-preview-help').waitFor({state:'visible'});
     assert.equal(await local.locator('#browse-files').isDisabled(),true);
     await local.close();pass('direct-file opening provides HTTP preview instructions and a directory fallback');
+    const navigation=await context.newPage();
+    for(const width of [1440,375]) {
+      await navigation.setViewportSize({width,height:900});
+      await navigation.goto(`${origin}/index.html`);
+      assert.equal(await navigation.locator('h1').innerText(),'Kinley Tenzin');
+      if(width===375) await navigation.locator('#burger').click();
+      assert.equal(await navigation.locator('#navlinks a[href="student-benefits.html"]').count(),0);
+      await navigation.locator('#navlinks a[href="student-match.html"]').click();
+      assert.equal(await navigation.locator('#hero-title').innerText(),'What are you\nlooking for?');
+    }
+    await navigation.goto(`${origin}/funding.html`);
+    assert.equal(await navigation.locator('nav a[href="student-match.html"]').innerText(),'Student Opportunities');
+    await navigation.close();pass('desktop/mobile homepage menu and funding navigation open Student Opportunities directly');
     fs.writeFileSync(path.join(out,'student-match-report.json'),JSON.stringify({browser:browser.version(),passed:results,requests:requests.length,externalRequests:requests.filter(r=>!r.url.startsWith(origin+'/')).length},null,2));
     console.log(`Completed ${results.length} browser check groups.`);
   } finally { if(browser) await browser.close(); server.kill(); }

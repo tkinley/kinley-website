@@ -92,3 +92,9 @@ Reports/screenshots are generated into ignored `test-results/`. Live offer avail
 ## GitHub Pages deployment
 
 The matcher is deployed alongside the existing website by pushing to the existing `main` branch. Before deployment, the matcher was applied to the latest upstream revision, preserving Funding Notes, the homepage, both statistics sketches, and visitor analytics. The two newer Google AI Pro/ChatGPT Plus source notes were retained in the JSON migration without inventing verification dates. All 24 tests in the combined upstream-and-matcher checkout passed.
+
+## Student Opportunities navigation and simpler start
+
+Student Opportunities is its own top-level navigation tab on the academic homepage, Funding Notes, and the original resource library. It opens `student-match.html` directly. The Student Notes navigation label has been removed; the old directory URL, cards, links, and visitor counters are retained as a resource library. The academic homepage remains in place.
+
+The matcher now starts with “What are you looking for?” and direct choices for Free food, Scholarships, Free software, and Match to me. Topic choices filter by exact resource interest tags, and can be cleared independently of other filters. Research, travel, and deadline browsing are also available. CV upload and the questionnaire are inside an optional expandable profile section. Deadline browsing explicitly explains when no verified upcoming dates exist. Matching and document privacy rules are unchanged. Updated checks passed: 25 unit tests across the combined repository and 24 browser check groups, including the new choices, expandable profile, and desktop/mobile navigation.

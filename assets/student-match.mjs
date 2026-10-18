@@ -1,4 +1,4 @@
-import { INTERESTS, STATUS_LABELS, CATEGORY_LABELS, normalizeProfile, evaluateOpportunity, selectResults } from './student-match-engine.mjs';
+import { INTERESTS, STATUS_LABELS, CATEGORY_LABELS, normalizeProfile, evaluateOpportunity, selectResults } from './student-match-engine.mjs?v=2';
 
 const $ = id => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -8,7 +8,8 @@ const make = (tag, className, text) => {
   return node;
 };
 let opportunities = [], profile = normalizeProfile(), evaluated = [], visibleLimit = 24;
-let filters = { category: 'all', query: '', scope: 'all', sort: 'relevance', eligibility: 'all' };
+let filters = { category: 'all', query: '', scope: 'all', sort: 'relevance', eligibility: 'all', interest: '' };
+const TOPIC_TITLES = { Food: 'Free food resources', Scholarships: 'Scholarships & funding', 'Free Software': 'Software & student tools', Research: 'Research opportunities', Travel: 'Travel grants & resources' };
 let parsingWorker = null, parseTimer = null, documentGeneration = 0, suggestions = null;
 const derivedFields = new Map();
 const profileFields = { academic_level: 'academic-level', field: 'major', skills: 'skills', student_status: 'student-status', enrolled: 'enrolled' };
@@ -136,7 +137,8 @@ for (const eventName of ['input','change']) $('profile-form').addEventListener(e
   $('profile-feedback').textContent = 'Profile changed. Choose “Find my opportunities” to update your results.';
 });
 function evaluateAndRender() {
-  evaluated = opportunities.map(o=>evaluateOpportunity(o, profile));
+  const activeProfile = filters.interest ? { ...profile, interests: [...profile.interests, filters.interest] } : profile;
+  evaluated = opportunities.map(o=>evaluateOpportunity(o, activeProfile));
   for (const key of ['likely','verify','ineligible']) $(`${key}-count`).textContent = evaluated.filter(r=>r.status===key).length;
   renderResults();
 }
@@ -146,27 +148,64 @@ function setScope(scope) {
   $('view-all').setAttribute('aria-pressed', String(scope==='all'));
 }
 function resetFilters() {
-  filters = { category:'all', query:'', scope:'all', sort:'relevance', eligibility:'all' };
+  filters = { category:'all', query:'', scope:'all', sort:'relevance', eligibility:'all', interest:'' };
   $('resource-search').value = ''; $('sort-order').value = 'relevance'; $('eligibility-filter').value = 'all';
   for (const b of $('category-filters').querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.category==='all'));
   setScope('all'); visibleLimit = 24;
 }
+function updateTopicUI() {
+  for (const button of document.querySelectorAll('button[data-interest]')) button.setAttribute('aria-pressed', String(button.dataset.interest===filters.interest));
+  $('clear-topic').hidden = !filters.interest;
+  $('clear-topic').textContent = filters.interest ? `${filters.interest==='Food'?'Free food':filters.interest} ×` : '';
+  $('clear-topic').setAttribute('aria-label', `Clear ${filters.interest || 'topic'} filter`);
+}
+for (const button of document.querySelectorAll('button[data-interest]')) button.addEventListener('click',()=> {
+  resetFilters(); filters.interest = button.dataset.interest;
+  $('results-title').textContent = TOPIC_TITLES[filters.interest] || 'Student opportunities';
+  $('results-description').textContent = 'Resources for your selected topic. Check access and current terms with the provider.';
+  evaluateAndRender(); goToResults();
+});
+function exploreEverything() {
+  resetFilters(); $('results-title').textContent='Student opportunities';
+  $('results-description').textContent='Browse every resource, including entries that need verification.';
+  evaluateAndRender(); goToResults();
+}
+$('explore-all').addEventListener('click', exploreEverything);
+$('explore-deadlines').addEventListener('click',()=> {
+  resetFilters(); filters.sort='deadline'; $('sort-order').value='deadline';
+  $('results-title').textContent='Find by deadline';
+  $('results-description').textContent='Only confirmed upcoming dates can be sorted by deadline. Reported dates stay unverified.';
+  evaluateAndRender(); goToResults();
+});
+$('clear-topic').addEventListener('click',()=> {
+  filters.interest=''; visibleLimit=24; $('results-title').textContent='Student opportunities';
+  $('results-description').textContent='Topic filter cleared. Search or explore every resource.';
+  evaluateAndRender(); $('resource-search').focus();
+});
+$('open-profile').addEventListener('click',()=> {
+  $('personalize').open=true;
+  $('personalize').querySelector('summary').focus();
+  $('personalize').scrollIntoView({block:'start'});
+});
+$('personalize').addEventListener('toggle',()=> $('open-profile').setAttribute('aria-expanded',String($('personalize').open)));
 function goToResults() { $('results-title').focus(); $('results-title').scrollIntoView({ block:'start' }); }
 $('profile-form').addEventListener('submit', event=> {
   event.preventDefault(); profile = readProfile(); resetFilters();
   const hasSignals = profile.interests.length || profile.field || profile.skills || profile.academic_level || profile.enrolled==='yes';
   const hasRecommendations = hasSignals && opportunities.some(o=>evaluateOpportunity(o,profile).recommended);
+  $('results-title').textContent='Your opportunity matches';
   setScope(hasRecommendations ? 'recommended' : 'all');
   $('results-description').textContent = hasRecommendations ? 'Ranked by your supplied profile. Review eligibility separately before applying.' : 'No specific relevance matches yet. Explore the full directory, or add interests to personalize it. Missing answers remain unknown.';
   $('profile-feedback').textContent = 'Results updated from the answers shown above. Your profile is only in this tab.';
   evaluateAndRender(); goToResults();
 });
-$('browse-all').addEventListener('click', ()=> { profile = readProfile(); resetFilters(); evaluateAndRender(); goToResults(); });
+$('browse-all').addEventListener('click', ()=> { profile = readProfile(); exploreEverything(); });
 $('reset-all').addEventListener('click', ()=> {
   clearDocument(false); $('profile-form').reset(); derivedFields.clear(); profile = normalizeProfile(); resetFilters();
   documentStatus('Your document stays on this device. It is never uploaded.');
   $('profile-feedback').textContent = 'Everything has been reset. No document or profile is retained by the matcher.';
-  $('results-description').textContent = 'Browse the directory now, or add a profile to personalize the order.';
+  $('results-title').textContent='Student opportunities';
+  $('results-description').textContent = 'Choose a topic above, search, or browse everything below.';
   evaluateAndRender(); $('profile-title').focus();
 });
 function card(result) {
@@ -197,6 +236,7 @@ function card(result) {
   return article;
 }
 function renderResults() {
+  updateTopicUI();
   const list = selectResults(evaluated, filters);
   const shown = list.slice(0, visibleLimit);
   const fragment = document.createDocumentFragment(); shown.forEach(r=>fragment.append(card(r))); $('resource-grid').replaceChildren(fragment);
@@ -216,13 +256,14 @@ $('resource-search').addEventListener('input',()=>{ filters.query=$('resource-se
 $('sort-order').addEventListener('change',()=>{ filters.sort=$('sort-order').value; visibleLimit=24; renderResults(); });
 $('eligibility-filter').addEventListener('change',()=>{ filters.eligibility=$('eligibility-filter').value; visibleLimit=24; renderResults(); });
 for (const scope of ['all','recommended']) $(`view-${scope}`).addEventListener('click',()=>{ setScope(scope); visibleLimit=24; renderResults(); });
-$('clear-filters').addEventListener('click',()=>{ resetFilters(); renderResults(); $('resource-search').focus(); });
+$('clear-filters').addEventListener('click',()=>{ resetFilters(); $('results-title').textContent='Student opportunities'; evaluateAndRender(); $('resource-search').focus(); });
 $('show-more').addEventListener('click',()=>{ const previous=visibleLimit; visibleLimit+=24; renderResults(); const next=$('resource-grid').children[previous]?.querySelector('summary'); next?.focus(); });
 window.addEventListener('pagehide',()=>{ stopWorker(); suggestions=null; profile=normalizeProfile(); derivedFields.clear(); });
 // A restored back-forward-cache page must not restore a previous private profile.
 window.addEventListener('pageshow',event=>{ if(event.persisted) $('reset-all').click(); });
 async function loadData() {
   $('match-button').disabled = true;
+  for (const button of document.querySelectorAll('[data-interest], #explore-deadlines, #explore-all')) button.disabled=true;
   try {
     const response = await fetch(new URL('../data/student-opportunities.json', import.meta.url), { cache:'no-store', credentials:'omit' });
     if (!response.ok) throw new Error('data');
@@ -233,8 +274,11 @@ async function loadData() {
     evaluateAndRender();
   } catch {
     $('result-count').textContent='The local directory could not be loaded.';
-    $('data-error').textContent=window.location.protocol==='file:' ? 'Open this page through a local HTTP server or GitHub Pages. From this folder, run: node scripts/serve-student-match.mjs. You can also use the original resource directory linked above.' : 'The resource list could not be loaded. Reload this page, or use the original resource directory linked above. Your document and profile have not been uploaded.';
+    $('data-error').textContent=window.location.protocol==='file:' ? 'Open this page through a local HTTP server or GitHub Pages. From this folder, run: node scripts/serve-student-match.mjs. You can also use the original resource directory linked below.' : 'The resource list could not be loaded. Reload this page, or use the original resource directory linked below. Your document and profile have not been uploaded.';
     $('data-error').hidden=false;
-  } finally { $('match-button').disabled = opportunities.length===0; }
+  } finally {
+    $('match-button').disabled = opportunities.length===0;
+    for (const button of document.querySelectorAll('[data-interest], #explore-deadlines, #explore-all')) button.disabled=opportunities.length===0;
+  }
 }
 loadData();
