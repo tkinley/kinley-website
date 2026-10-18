@@ -1,0 +1,5285 @@
+{
+  "schema_version": 1,
+  "source": "student-benefits.html",
+  "verification_note": "Migrated directory text, not an independently verified catalogue. Null means unknown. Original price, quota, and award claims are unverified. Never roll recurring deadlines into a new cycle.",
+  "opportunities": [
+    {
+      "id": "microsoft-365",
+      "title": "Microsoft 365",
+      "description": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/news/it/articles/2025/01/microsoft-365-free-for-students-faculty-and-staff.html",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "enrolled",
+            "operator": "equals",
+            "value": "yes",
+            "label": "Current K-State enrollment",
+            "source_text": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled."
+          }
+        ],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Free Software"
+      ],
+      "notes": "Webmail → App Launcher → Install Microsoft 365 apps → Organizational account.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 1,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "google-ai-pro",
+      "title": "Google AI Pro",
+      "description": "Gemini + Deep Research. Then $19.99/mo unless you cancel.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free 12 mo · Deadline Dec 31",
+      "official_url": "https://one.google.com/ai-student",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Deadline Dec 31"
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "SheerID + payment method. Use a personal Google account. Storage: Google's current Google One plans page lists AI Pro at 5 TB. Confirm the student tier matches at checkout, since the student redemption page requires sign-in.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 2,
+        "categories": [
+          "ai",
+          "deadline"
+        ],
+        "labels": [
+          "Free 12 mo",
+          "Deadline Dec 31"
+        ]
+      }
+    },
+    {
+      "id": "chatgpt-plus",
+      "title": "ChatGPT Plus",
+      "description": "4 free months, then $20/mo unless you cancel.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free 4 mo · Deadline Oct 31",
+      "official_url": "https://chatgpt.com/students/2026",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Deadline Oct 31"
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Verified on OpenAI's own help page. Full-time or part-time at eligible US degree-granting institutions, SheerID verification, payment method required. Claim by Oct 31, 2026. Cancelling forfeits remaining free months. Store-billed subscriptions not supported.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 3,
+        "categories": [
+          "ai",
+          "deadline"
+        ],
+        "labels": [
+          "Free 4 mo",
+          "Deadline Oct 31"
+        ]
+      }
+    },
+    {
+      "id": "elevenreader",
+      "title": "ElevenReader",
+      "description": "Premium text to audio for PDFs and papers.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free 1 yr",
+      "official_url": "https://elevenreader.io/students",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Gated by institution allowlist. K-State membership unconfirmed. If rejected, use request-access form. Auto-renews.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 4,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free 1 yr"
+        ]
+      }
+    },
+    {
+      "id": "github-student-pack",
+      "title": "GitHub Student Pack",
+      "description": "Dev tools, cloud credits, domains, learning resources.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://education.github.com/pack",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Verify with school email. Activate time-limited offers only when ready to use them.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 5,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "jetbrains",
+      "title": "JetBrains",
+      "description": "All IDEs free, renew yearly. PyCharm Pro + DataGrip.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.jetbrains.com/community/education/#students",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Great for Python and SQL in bioinformatics. Apply with school email.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 6,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "beocat-hpc",
+      "title": "Beocat HPC",
+      "description": "K-State HPC with Slurm, OpenOnDemand, Galaxy.",
+      "category": "research",
+      "categories": [
+        "research",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/beocat/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Eligible researcher affiliation and annual account renewal",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research"
+      ],
+      "notes": "Free for eligible researchers. Annual renewal. Ends when you leave K-State.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 7,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "cats-cupboard",
+      "title": "Cats' Cupboard",
+      "description": "Free food + hygiene pantry. No income check.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits",
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/cats-cupboard/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "enrolled",
+            "operator": "equals",
+            "value": "yes",
+            "label": "Current K-State enrollment",
+            "source_text": "1+ credit hour. Register each semester with eID, Wildcat ID, and @k-state.edu email."
+          }
+        ],
+        "unknown": [
+          "At least one credit hour and semester registration on the official site",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Food"
+      ],
+      "notes": "1+ credit hour. Register each semester with eID, Wildcat ID, and @k-state.edu email.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 8,
+        "categories": [
+          "kstate",
+          "money"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "azure-for-students",
+      "title": "Azure for Students",
+      "description": "$100 credit for 12 months. No card. Renewable.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free credit",
+      "official_url": "https://azure.microsoft.com/free/students",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Unused credit does not roll over. Plus always-free services.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 9,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free credit"
+        ]
+      }
+    },
+    {
+      "id": "doe-jgi-user-program",
+      "title": "DOE JGI User Program",
+      "description": "Free sequencing by competitive proposal.",
+      "category": "research",
+      "categories": [
+        "research"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://jgi.doe.gov/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Must fit DOE mission (energy / environment). Data is made public. Check proposal calls.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 10,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "kbase",
+      "title": "KBase",
+      "description": "Genome annotation, MAGs, metabolic modeling.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.kbase.us/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "DOE platform. Reproducible Narratives, no HPC needed.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 11,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "bv-brc",
+      "title": "BV-BRC",
+      "description": "Bacterial / viral comparative genomics.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.bv-brc.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "RAST annotation, phylogeny, AMR. Jobs run on BV-BRC compute.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 12,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "cyverse",
+      "title": "CyVerse",
+      "description": "NSF data store, apps, VMs for life science.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://cyverse.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Free account. Request Discovery Environment + Data Store at signup.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 13,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "galaxy-public-servers",
+      "title": "Galaxy public servers",
+      "description": "No-code reproducible genomics.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://usegalaxy.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "QC, mapping, assembly, QIIME. Public queues and quotas apply.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 14,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "jgi-img-m",
+      "title": "JGI IMG/M",
+      "description": "Compare public microbial genomes / metagenomes.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://img.jgi.doe.gov/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Upload your genomes for annotation. Data becomes public at publication.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 15,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "nsf-grfp",
+      "title": "NSF GRFP",
+      "description": "$37k/yr + $16k/yr for 3 years. 1st / 2nd year only.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Deadline Oct 19",
+      "official_url": "https://www.nsfgrfp.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "US citizenship, nationality, or permanent residency (student status alone does not establish this)",
+          "First/second-year and current discipline-specific application rules",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": "2026-10-19",
+        "source_text": "Deadline Oct 19 · US citizen / national / permanent resident. Life Sciences deadline reported Oct 19, 2026."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Financial Support",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "US citizen / national / permanent resident. Life Sciences deadline reported Oct 19, 2026.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": "2026-10-19"
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 16,
+        "categories": [
+          "research",
+          "money",
+          "deadline"
+        ],
+        "labels": [
+          "Deadline Oct 19"
+        ]
+      }
+    },
+    {
+      "id": "doe-scgsr",
+      "title": "DOE SCGSR",
+      "description": "3 to 12 months thesis research at a DOE lab.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Deadline Nov 4",
+      "official_url": "https://science.osti.gov/wdts/scgsr",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "PhD"
+            ],
+            "label": "Academic stage described in the directory",
+            "source_text": "DOE SCGSR — 3 to 12 months thesis research at a DOE lab. Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET."
+          }
+        ],
+        "unknown": [
+          "PhD candidacy and a DOE laboratory collaborator",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Deadline Nov 4 · Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 17,
+        "categories": [
+          "research",
+          "money",
+          "deadline"
+        ],
+        "labels": [
+          "Deadline Nov 4"
+        ]
+      }
+    },
+    {
+      "id": "nih-f31",
+      "title": "NIH F31",
+      "description": "Up to 5 years for PhD dissertation stage.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply",
+      "official_url": "https://grants.nih.gov/grants/guide/pa-files/PA-23-272.html",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "PhD"
+            ],
+            "label": "Academic stage described in the directory",
+            "source_text": "NIH F31 — Up to 5 years for PhD dissertation stage. Stipend figures conflict across sources. Check current NIH notice for your institute. 3 cycles per year."
+          }
+        ],
+        "unknown": [
+          "Dissertation stage and current NIH institute/notice requirements",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Stipend figures conflict across sources. Check current NIH notice for your institute. 3 cycles per year."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Financial Support"
+      ],
+      "notes": "Stipend figures conflict across sources. Check current NIH notice for your institute. 3 cycles per year.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 18,
+        "categories": [
+          "research",
+          "money"
+        ],
+        "labels": [
+          "Free to apply"
+        ]
+      }
+    },
+    {
+      "id": "researchrabbit",
+      "title": "ResearchRabbit",
+      "description": "Citation-network discovery from seed papers.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.researchrabbit.ai/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Free full features. Great for finding related work you missed.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 19,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "consensus",
+      "title": "Consensus",
+      "description": "Quick evidence synthesis.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free tier",
+      "official_url": "https://consensus.app/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Free tier for searches. Reported student discount on Pro.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 20,
+        "categories": [
+          "ai",
+          "research"
+        ],
+        "labels": [
+          "Free tier"
+        ]
+      }
+    },
+    {
+      "id": "groq-openrouter-free",
+      "title": "Groq + OpenRouter free",
+      "description": "Fast inference, free models. Quotas change often.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free tier",
+      "official_url": "https://openrouter.ai/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "OpenRouter free: 50 req/day baseline. Do not paste unpublished work without checking data-use terms.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 21,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free tier"
+        ]
+      }
+    },
+    {
+      "id": "biorender-basic-open-libraries",
+      "title": "BioRender Basic + open libraries",
+      "description": "Figures, but Basic has no publication rights.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.biorender.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Use Servier, Bioicons, NIAID, Reactome for publishable figures. Check each icon licence.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 22,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "career-center-career-closet",
+      "title": "Career Center + Career Closet",
+      "description": "Advising, fairs, Handshake, interview clothes.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/careercenter/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Career"
+      ],
+      "notes": "Free for students. Check Handshake for jobs and internships.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 23,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "powercat-financial",
+      "title": "Powercat Financial",
+      "description": "Free peer financial counselling.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/powercatfinancial",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Budgeting, loan repayment, credit. Confidential.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 24,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "caps",
+      "title": "CAPS",
+      "description": "Free therapy for students.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/counseling",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Health"
+      ],
+      "notes": "Funded in part by student fees. Confirm session limits and waitlist.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 25,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "gsc-travel-funding",
+      "title": "GSC travel funding",
+      "description": "Conference travel grants.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "travel",
+        "campus-benefits",
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/grad/financial-support/travel-grants/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Graduate enrollment, event eligibility, award limits, and advance application timing",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Reported up to $750 domestic / $1,000 international. Apply at least 21 days before event.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 26,
+        "categories": [
+          "kstate",
+          "money"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "ynab-college",
+      "title": "YNAB College",
+      "description": "1 full year free. Non-renewable.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software",
+        "financial-support"
+      ],
+      "benefit_type": "Free 1 yr",
+      "official_url": "https://www.ynab.com/college",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Free Software"
+      ],
+      "notes": "Claim on web, not App Store. After year, $109/yr.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 27,
+        "categories": [
+          "money"
+        ],
+        "labels": [
+          "Free 1 yr"
+        ]
+      }
+    },
+    {
+      "id": "irs-free-file-vita",
+      "title": "IRS Free File + VITA",
+      "description": "Free federal filing and volunteer tax prep.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.irs.gov/filing/free-file-do-your-federal-taxes-for-free",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support"
+      ],
+      "notes": "Free File: AGI up to $89k for guided software. VITA Manhattan 2026 schedule unconfirmed.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 28,
+        "categories": [
+          "money"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "flint-hills-breadbasket",
+      "title": "Flint Hills Breadbasket",
+      "description": "Community food pantry in Manhattan.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.flinthillsbreadbasket.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Food"
+      ],
+      "notes": "Verify current hours and eligibility before going.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 29,
+        "categories": [
+          "money"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "coursera-audit-aid",
+      "title": "Coursera audit + aid",
+      "description": "Audit free. Aid can unlock certificate.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.coursera.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning"
+      ],
+      "notes": "Aid review can take around two weeks. Apply after enrolling in audit track.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 30,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "carpentries-embl-ebi",
+      "title": "Carpentries + EMBL-EBI",
+      "description": "Free workshops and bioinformatics modules.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://carpentries.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Software / Data / HPC Carpentry lessons free online. EMBL-EBI Train Online self-paced.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 31,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "spotify-hulu",
+      "title": "Spotify + Hulu",
+      "description": "Pick one bundle, not all three.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Bundle",
+      "official_url": "https://www.spotify.com/us/student/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "$5.99 to $6.99/mo reported. SheerID, re-verify yearly. Do not pay for Hulu separately if you take this.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 32,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Bundle"
+        ]
+      }
+    },
+    {
+      "id": "apple-music-tv",
+      "title": "Apple Music + TV+",
+      "description": "$5.99/mo, TV+ included.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Bundle",
+      "official_url": "https://www.apple.com/apple-music/student/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Up to 48 months total. UNiDAYS / SheerID verification.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 33,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Bundle"
+        ]
+      }
+    },
+    {
+      "id": "prime-for-young-adults",
+      "title": "Prime for Young Adults",
+      "description": "6 mo free, then $7.49/mo.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free 6 mo",
+      "official_url": "https://www.amazon.com/prime/student",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Includes Prime Video, Music, Reading, photo storage, Grubhub+ on eligible orders. Auto-renews.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 34,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Free 6 mo"
+        ]
+      }
+    },
+    {
+      "id": "aws-student-rewards",
+      "title": "AWS Student Rewards",
+      "description": "Skill Builder Premium 12 mo + badge rewards.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://aws.amazon.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "Learning",
+        "Career"
+      ],
+      "notes": "Credits and $100 cert voucher are badge-gated, not instant. Educate itself is training-only.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 35,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "figma-miro-notion",
+      "title": "Figma + Miro + Notion",
+      "description": "Education plans for figures and notes.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.figma.com/education/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Figma 1 yr, Miro 2 yr, Notion Plus for 1-member workspace. Re-verify yearly.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 36,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "matlab-arcgis-qualtrics",
+      "title": "MATLAB, ArcGIS & Qualtrics",
+      "description": "Campus-wide site licences through K-State IT.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/its/software/software-licenses/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Sign in with your @k-state.edu portal credentials. Qualtrics is at kstate.qualtrics.com; MATLAB includes all major toolboxes.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 37,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "student-legal-services",
+      "title": "Student Legal Services",
+      "description": "Free attorney consults for leases, landlords, and tickets.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits",
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/legalservices/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Campus privilege fee and service-specific access requirements",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support"
+      ],
+      "notes": "Have them review Manhattan apartment leases before you sign. Also offers free notary services for students paying the campus privilege fee.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 38,
+        "categories": [
+          "kstate",
+          "money"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "ata-bus-transit",
+      "title": "aTa Bus Transit",
+      "description": "Free fixed-route bus rides across Manhattan and campus.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits",
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.flinthillsatabus.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support"
+      ],
+      "notes": "Just swipe or show your Wildcat ID when boarding fixed routes and K-State Park & Ride shuttles.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 39,
+        "categories": [
+          "kstate",
+          "money"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "sunderland-innovation-lab",
+      "title": "Sunderland Innovation Lab",
+      "description": "Equipment loans, VR, 3D printing, and media booths in Hale.",
+      "category": "research",
+      "categories": [
+        "research",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://lib.k-state.edu/spaces-computing/innovation-lab/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research"
+      ],
+      "notes": "First floor of Hale Library. Free access to specialized hardware; you only pay minimal material costs for 3D prints or large-format jobs.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 40,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "writing-center-grad-consults",
+      "title": "Writing Center (Grad Consults)",
+      "description": "Feedback on manuscripts, fellowship essays, and chapters.",
+      "category": "research",
+      "categories": [
+        "research",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/english/writing-center/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Learning"
+      ],
+      "notes": "Up to two 50-minute sessions per week in ECS 122D or online. Request a graduate consultant for thesis or grant drafts.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 41,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "nsf-access-supercomputing",
+      "title": "NSF ACCESS Supercomputing",
+      "description": "National HPC + GPU allocations when local queues fill up.",
+      "category": "research",
+      "categories": [
+        "research"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://allocations.access-ci.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Explore allocations take minimal paperwork and give access to Anvil, Bridges-2, and Jetstream2 cloud VMs.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 42,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "alphafold-server-colabfold",
+      "title": "AlphaFold Server & ColabFold",
+      "description": "Structure prediction for proteins, DNA, RNA, and ligands.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://alphafoldserver.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "AlphaFold 3 web server gives free daily jobs for non-commercial work. Use ColabFold for custom MSAs or batch scripting.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 43,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "benchling-for-academics",
+      "title": "Benchling for Academics",
+      "description": "Cloud plasmid maps, primer design, and sequence alignments.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.benchling.com/academic",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Sign up with your .edu email for the free academic tier. Much cleaner than juggling expired SnapGene trials.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 44,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "kaggle-notebooks",
+      "title": "Kaggle Notebooks",
+      "description": "30 hrs/week of free GPU (T4x2 or P100) with no card required.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.kaggle.com/code",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "AI Tools",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "More predictable than basic Google Colab disconnects. Includes persistent dataset storage and background batch execution.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 45,
+        "categories": [
+          "research",
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "weights-biases-academic",
+      "title": "Weights & Biases Academic",
+      "description": "Free experiment tracking and hyperparameter sweeps for ML.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://wandb.ai/site/research",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "AI Tools",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Apply with your university email to unlock unlimited private projects and team collaboration for research labs.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 46,
+        "categories": [
+          "research",
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "tailscale-termius-pro",
+      "title": "Tailscale + Termius Pro",
+      "description": "Pain-free SSH and SFTP across lab machines and HPC.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://tailscale.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Tailscale free personal tier connects up to 100 devices without port forwarding. Get Termius Pro free via the GitHub Student Pack for synced SSH keys.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 47,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "notebooklm-semantic-scholar",
+      "title": "NotebookLM + Semantic Scholar",
+      "description": "Hallucination-resistant literature synthesis and paper feeds.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://notebooklm.google.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "NotebookLM answers strictly from PDFs you upload (up to 50 sources per notebook). Pair with Semantic Scholar AI research feeds.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 48,
+        "categories": [
+          "research",
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "zotero-linked-onedrive-storage",
+      "title": "Zotero + Linked OneDrive Storage",
+      "description": "Bypass Zotero's 300 MB cloud PDF cap for free.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.zotero.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Sync metadata via Zotero for free, and use ZotMoov or Attanger to store the actual PDFs inside your K-State OneDrive folder.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 49,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "sigma-xi-giar",
+      "title": "Sigma Xi GIAR",
+      "description": "Up to $1,000–$5,000 for research supplies or travel.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Mar 15 / Oct 1",
+      "official_url": "https://www.sigmaxi.org/programs/grants-in-aid-of-research",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Current grant cycle, research purpose, and membership-dependent funding caps",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Mar 15 / Oct 1 · No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 50,
+        "categories": [
+          "research",
+          "money",
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Mar 15 / Oct 1"
+        ]
+      }
+    },
+    {
+      "id": "usda-nifa-afri-predoctoral",
+      "title": "USDA NIFA AFRI Predoctoral",
+      "description": "Up to $180k total for ag, food, and microbial genomics PhDs.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply",
+      "official_url": "https://www.nifa.usda.gov/grants/programs/agriculture-food-research-initiative-afri/afri-education-workforce-development",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "PhD"
+            ],
+            "label": "Academic stage described in the directory",
+            "source_text": "USDA NIFA AFRI Predoctoral — Up to $180k total for ag, food, and microbial genomics PhDs. Covers stipend, tuition, and research allowance for up to 3 years. Requires PhD candidacy and US citizenship or permanent residency."
+          }
+        ],
+        "unknown": [
+          "PhD candidacy and US citizenship or permanent residency (not inferred from student status)",
+          "Current agricultural research scope",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Financial Support",
+        "biology",
+        "bioinformatics",
+        "agriculture"
+      ],
+      "notes": "Covers stipend, tuition, and research allowance for up to 3 years. Requires PhD candidacy and US citizenship or permanent residency.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 51,
+        "categories": [
+          "research",
+          "money"
+        ],
+        "labels": [
+          "Free to apply"
+        ]
+      }
+    },
+    {
+      "id": "manhattan-public-library-kanopy",
+      "title": "Manhattan Public Library + Kanopy",
+      "description": "Free indie/Criterion streaming, Libby audiobooks, and tools.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://mhklibrary.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning"
+      ],
+      "notes": "Any Manhattan resident or K-State student can get a card at 629 Poyntz Ave. Unlocks Kanopy streaming and the Library of Things.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 52,
+        "categories": [
+          "fun",
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "free-on-campus-printing",
+      "title": "Free on-campus printing",
+      "description": "$10 fall/spring, $5 summer. Balances do not carry forward.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://blogs.k-state.edu/it-news/2023/10/02/free-on-campus-printing-2/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "At Hale, Sunderland Media Center, Union, Justin, Cardwell, Weigel. Re-confirm current semester on K-State IT printing page.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 53,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "it-equipment-checkout",
+      "title": "IT equipment checkout",
+      "description": "Laptops, cameras, lighting, AV, green screen.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://blogs.k-state.edu/it-news/2026/02/04/free-it-equipment-checkout-for-students-faculty-and-staff-5/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Career"
+      ],
+      "notes": "Reserve at 785-532-4918 or itcheckout@k-state.edu. Pickup Hale Room 235. Bring eID, WID, K-State ID.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 54,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "read-write",
+      "title": "Read&Write",
+      "description": "Text to speech, translation, vocab, scan to PDF.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/accesscenter/students/accommodations/audio_book.html",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Free Software",
+        "Learning"
+      ],
+      "notes": "Free for all K-Staters with eID. No disability documentation required per Access Center page.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 55,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "hale-hub-monitor-stations",
+      "title": "Hale Hub Monitor Stations",
+      "description": "Dual monitor stations for laptop users in Hale.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://blogs.k-state.edu/it-news/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning"
+      ],
+      "notes": "24 on 2nd floor, 6 on 3rd, 6 on 4th. USB-C hub + charging. Useful for long writing sessions.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 56,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "upc-free-films-events",
+      "title": "UPC free films / events",
+      "description": "Weekend films free with K-State ID.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.kstateupc.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "UPC runs 100+ events per year plus game checkout. 2026 film schedule unverified, check UPC calendar before going.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 57,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "k-state-emergency-aid",
+      "title": "K-State Emergency Aid",
+      "description": "Help for unexpected temporary financial obstacles.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/sfa/aid/emergency-aid/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Via Student Financial Assistance. Amount, cap, and timeline not confirmed. Ask SFA, do not assume a figure.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 58,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "ksu-foundation-emergency-funds",
+      "title": "KSU Foundation emergency funds",
+      "description": "Emergency funds for car, medical, or exhausted aid.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://ksufoundation.org/give-to-emergency-funds/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Amount and application route not confirmed. Ask SFA or Foundation. Do not quote a figure.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 59,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "k-state-open-access-routes",
+      "title": "K-State Open Access routes",
+      "description": "KOAPF is closed. Use OA agreements, K-REx, New Prairie Press.",
+      "category": "research",
+      "categories": [
+        "research",
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://lib.k-state.edu/services-support/scholarly-communication/open-access/publishing-fund/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research"
+      ],
+      "notes": "KOAPF permanently closed spring 2025. Ask ope@k-state.edu which publishers and APCs are covered.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 60,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "center-for-child-development",
+      "title": "Center for Child Development",
+      "description": "Subsidized full-day care, if you are a parent.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Not specified in source",
+      "official_url": "https://catalog.k-state.edu/content.php?catoid=20&navoid=2267",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Parent/caregiver eligibility, child age, subsidy criteria, fees, and space",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Infants 6 weeks to 12 years. Mon-Fri 7am-5:30pm. Most families get at least one subsidy. Fees unverified.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 61,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State"
+        ]
+      }
+    },
+    {
+      "id": "non-traditional-veteran-services",
+      "title": "Non-Traditional & Veteran Services",
+      "description": "Referrals for 25+, married, parents, veterans, returning students.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://catalog.k-state.edu/content.php?catoid=60&navoid=12149",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Career"
+      ],
+      "notes": "Referrals for admission, scholarships, childcare, housing, tutoring, health insurance. Referral service, not cash aid.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 62,
+        "categories": [
+          "kstate"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "bei-resources",
+      "title": "BEI Resources",
+      "description": "Free reagents for microbiology. Pay shipping only.",
+      "category": "research",
+      "categories": [
+        "research"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.niaid.nih.gov/research/bei-resources-repository",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "NIAID repository. Registration + MTA required. Research quantities only. Some items need permits.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 63,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "fems-research-training-grants",
+      "title": "FEMS Research & Training Grants",
+      "description": "Up to 5,000 euros for a 1-3 month visit.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Jan 1 / Jul 1",
+      "official_url": "https://fems-microbiology.org/about_fems/network-and-activities/grants/fems-research-grants/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "PhD student OR recent degree, FEMS membership, and host country requirements",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Jan 1 / Jul 1"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "PhD student or degree less than 5 years + FEMS Member Society member. European host in a country other than residence.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 64,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Jan 1 / Jul 1"
+        ]
+      }
+    },
+    {
+      "id": "fems-meeting-attendance-grants",
+      "title": "FEMS Meeting Attendance Grants",
+      "description": "Up to 750 euros. Presenting author only.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Mar 1 / Sep 1",
+      "official_url": "https://fems-microbiology.org/fems-work/grants/fems-meeting-grants/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Presenting-author status, career stage, membership, and qualifying meeting",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Mar 1 / Sep 1"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Early career + FEMS Member Society member. FEMS sponsored meetings excluded, apply to the meeting organizer instead.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 65,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Mar 1 / Sep 1"
+        ]
+      }
+    },
+    {
+      "id": "fems-micro-attendance-grant",
+      "title": "FEMS MICRO Attendance Grant",
+      "description": "Registration waiver for FEMS MICRO Ljubljana 2027.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Live: Sep 2 - Dec 15",
+      "official_url": "https://fems-microbiology.org/about_fems/network-and-activities/grants/fems-congress-attendance-grant/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Early career, first-author/presenter status, and current call",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": "2026-12-15",
+        "source_text": "Live: Sep 2 - Dec 15 · Early career, first author + presenter. Abstract + grant submissions Sep 2 to Dec 15, 2026, 11:59pm CET. Do not register until grant notification."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Early career, first author + presenter. Abstract + grant submissions Sep 2 to Dec 15, 2026, 11:59pm CET. Do not register until grant notification.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": "2026-12-15"
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 66,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Live: Sep 2 - Dec 15"
+        ]
+      }
+    },
+    {
+      "id": "fems-industry-placement-grants",
+      "title": "FEMS Industry Placement Grants",
+      "description": "Up to 3 month industry placement. Amount unverified.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Feb 1 / Aug 1",
+      "official_url": "https://fems-microbiology.org/wp-content/uploads/2026/01/FEMS-Grants-Regulations-2026.pdf",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Feb 1 / Aug 1 · Deadlines conflict across sources: regulations show Feb 1 / Aug 1, older summaries show Jan 1 / Jul 1. Use current regulations PDF. Do not quote 5,000 euros, that is the other FEMS grant."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Deadlines conflict across sources: regulations show Feb 1 / Aug 1, older summaries show Jan 1 / Jul 1. Use current regulations PDF. Do not quote 5,000 euros, that is the other FEMS grant.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 67,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Feb 1 / Aug 1"
+        ]
+      }
+    },
+    {
+      "id": "fems-asm-makela-cassell-award",
+      "title": "FEMS-ASM Makela-Cassell Award",
+      "description": "Up to 4,000 euros + free registration for ASM Microbe.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · See ASM page",
+      "official_url": "https://asm.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "FEMS Full Member Society membership and current award cycle",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "See ASM page"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "For 1 FEMS Full Member Society member to attend ASM Microbe in even years. Limited for US students unless they hold FEMS membership.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 68,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "See ASM page"
+        ]
+      }
+    },
+    {
+      "id": "msa-graduate-student-awards",
+      "title": "MSA Graduate Student Awards",
+      "description": "$500 to $10,000. Climate Change award is $10,000.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Feb 1",
+      "official_url": "https://msafungi.org/graduate-student-awards/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "Master's",
+              "PhD"
+            ],
+            "label": "Academic stage described in the directory",
+            "source_text": "MSA Graduate Student Awards — $500 to $10,000. Climate Change award is $10,000. Feb 1 deadline, 2026 cycle passed. Diary for Jan 2027. Directly relevant if your work touches fungi or mycobiome."
+          }
+        ],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": "2026-02-01",
+        "source_text": "Feb 1 · Feb 1 deadline, 2026 cycle passed. Diary for Jan 2027. Directly relevant if your work touches fungi or mycobiome."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Financial Support",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "Feb 1 deadline, 2026 cycle passed. Diary for Jan 2027. Directly relevant if your work touches fungi or mycobiome.",
+      "availability": {
+        "state": "past_cycle",
+        "reported_end": "2026-02-01"
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 69,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Feb 1"
+        ]
+      }
+    },
+    {
+      "id": "grc-carl-storm-fellowship",
+      "title": "GRC Carl Storm Fellowship",
+      "description": "Full registration waiver for first time GRC attendees.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Per conference",
+      "official_url": "https://www.grc.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "First-time GRC attendance and conference-specific rules",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Per conference · Abstract required by the conference deadline. Eligibility rules vary by conference, verify on the specific GRC page."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Abstract required by the conference deadline. Eligibility rules vary by conference, verify on the specific GRC page.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 70,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Per conference"
+        ]
+      }
+    },
+    {
+      "id": "daad-doctoral-programmes",
+      "title": "DAAD Doctoral Programmes",
+      "description": "1,400 euros per month + insurance + travel + 460 euros per year.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · See DAAD",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=145&subjectGrps=&daad=&intention=&q=&page=1&detail=57135739",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Admission to a German or bi-national doctoral programme and current provider requirements; a doctoral award does not imply applicants must already be PhD students",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "See DAAD"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Doctoral programme in Germany, not a short visit grant. Possible rent and family subsidies. Only relevant if considering a German or bi-national PhD.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 71,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "See DAAD"
+        ]
+      }
+    },
+    {
+      "id": "boren-fellowship",
+      "title": "Boren Fellowship",
+      "description": "Up to $30,000 combined. Requires 1 year federal service after graduation.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Campus first",
+      "official_url": "https://www.borenawards.org/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "Master's",
+              "PhD"
+            ],
+            "label": "Academic stage described in the directory",
+            "source_text": "Boren Fellowship — Up to $30,000 combined. Requires 1 year federal service after graduation. US grad student. Language study must be integral. Africa, Asia, Central and Eastern Europe, Eurasia, Latin America, Middle East only. Check K-State campus deadline."
+          }
+        ],
+        "unknown": [
+          "US eligibility definition, language study, destination, and federal-service commitment",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Campus first · US grad student. Language study must be integral. Africa, Asia, Central and Eastern Europe, Eurasia, Latin America, Middle East only. Check K-State campus deadline."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "US grad student. Language study must be integral. Africa, Asia, Central and Eastern Europe, Eurasia, Latin America, Middle East only. Check K-State campus deadline.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 72,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Campus first"
+        ]
+      }
+    },
+    {
+      "id": "fulbright-us-student-program",
+      "title": "Fulbright US Student Program",
+      "description": "Full year award for study, research, or teaching abroad.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Next cycle 2027",
+      "official_url": "https://us.fulbrightonline.org/fulbright-us-student-program",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Current cycle, citizenship rules, degree requirements, and campus deadline",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": "2026-10-06",
+        "source_text": "Next cycle 2027 · National deadline Oct 6, 2026 has passed. Campus deadlines are earlier. Planning item for 2027, not claimable now."
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "National deadline Oct 6, 2026 has passed. Campus deadlines are earlier. Planning item for 2027, not claimable now.",
+      "availability": {
+        "state": "past_cycle",
+        "reported_end": "2026-10-06"
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 73,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Next cycle 2027"
+        ]
+      }
+    },
+    {
+      "id": "embl-theory-embl-fellowships",
+      "title": "EMBL Theory@EMBL Fellowships",
+      "description": "Up to 6 months for theory and modelling visits.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Mar 31 / Jun 30 / Sep 30 / Dec 31",
+      "official_url": "https://www.embl.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Agreement with an EMBL host and current call",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Mar 31 / Jun 30 / Sep 30 / Dec 31"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Travel",
+        "Financial Support",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Requires EMBL host agreement. Stipend amount not confirmed for this specific fellowship. Verify on EMBL official pages.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 74,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Mar 31 / Jun 30 / Sep 30 / Dec 31"
+        ]
+      }
+    },
+    {
+      "id": "noster-science-microbiome-prize",
+      "title": "NOSTER & Science Microbiome Prize",
+      "description": "$25,000 grand prize. PhD degree required at entry.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Free to apply · Watchlist",
+      "official_url": "https://www.science.org/content/prize-award/noster-and-science-microbiome-prize",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "An already awarded PhD (current academic level does not establish an earned degree)",
+          "Research recency and current competition",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Watchlist"
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Scholarships",
+        "Financial Support",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "Current PhD students without the degree are not eligible. File as a post-PhD target. 1,000 word essay, work from last 3 years.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 75,
+        "categories": [
+          "deadline"
+        ],
+        "labels": [
+          "Free to apply",
+          "Watchlist"
+        ]
+      }
+    },
+    {
+      "id": "plos-fee-assistance",
+      "title": "PLOS fee assistance",
+      "description": "APC waiver. Apply at submission, not after acceptance.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free · Apply at submission",
+      "official_url": "http://journals.plos.org/plospathogens/s/submit-now",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Fees billed on acceptance. Ability to pay is never a publication criterion. Editors have no access to payment info.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 76,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free",
+          "Apply at submission"
+        ]
+      }
+    },
+    {
+      "id": "addgene",
+      "title": "Addgene",
+      "description": "Deposit plasmids free. Request at academic prices.",
+      "category": "research",
+      "categories": [
+        "research"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://help.addgene.org/hc/en-us/articles/206135555-Is-there-a-cost-to-deposit-plasmids",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "Deposit is free, Addgene sequences and handles MTAs. Request example: plasmid agar stab $94 for academics. Many items academics only.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 77,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "protocols-io",
+      "title": "protocols.io",
+      "description": "Unlimited public protocols with DOI. 2 private, 100 MB.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "http://protocols.io/plans/academia",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Free Open Research tier. Premium is $318.89 per user per year. K-State Premium not confirmed, check before paying.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 78,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "open-science-framework",
+      "title": "Open Science Framework",
+      "description": "Projects, preprints with DOI, preregistration.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://osf.io/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Free account. Check journal policy before preprinting. K-State SSO unverified.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 79,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "lens-org",
+      "title": "Lens.org",
+      "description": "Scholarly + patent search. API terms conflict.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://about.lens.org/lens-apis/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Free for research and academic use per secondary sources. API free vs paid is conflicting. Verify Lens Terms before building a pipeline.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 80,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "ugene",
+      "title": "UGENE",
+      "description": "Open source bioinformatics toolkit.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://ugeneunipro.github.io/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "BLAST, MUSCLE, Clustal, HMMER, Bowtie, BWA, Primer3, workflow designer, BAM viewer, phylogenetics. Windows, Linux, macOS.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 81,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "jasp-jamovi",
+      "title": "JASP + jamovi",
+      "description": "Free open source stats. Classical + Bayesian.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://jasp-stats.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "biology",
+        "bioinformatics",
+        "computer science",
+        "data science"
+      ],
+      "notes": "JASP has APA tables and OSF integration. jamovi has t-tests, ANOVA, regression, factor analysis, R integration. Not for genomics scale data.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 82,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "graphpad-prism",
+      "title": "GraphPad Prism",
+      "description": "30 day trial only. Do not start until a figure deadline is near.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "30-day trial",
+      "official_url": "https://www.graphpad.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Starting price $252 per year per secondary source. Older $168 figure conflicts. Verify on GraphPad pricing page. Prefer JASP or jamovi for routine stats.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 83,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "30-day trial"
+        ]
+      }
+    },
+    {
+      "id": "scite",
+      "title": "Scite",
+      "description": "Free Connect tier is thin. 7 day trial auto-enrolls.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free tier + trial trap",
+      "official_url": "https://scite.ai/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Free: 25 MCP credits per month, no Assistant or Search. Do not enter payment details unless you intend to pay. Check K-State institutional access first.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 84,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free tier + trial trap"
+        ]
+      }
+    },
+    {
+      "id": "scholarcy",
+      "title": "Scholarcy",
+      "description": "Summarises papers into flashcards.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.scholarcy.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Extracts participants, methods, findings, limitations. Free version exists, daily limit unverified. Paid $7.99 per user per month per secondary sources.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 85,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "hugging-face-zerogpu",
+      "title": "Hugging Face ZeroGPU",
+      "description": "Free GPU for demos. Quota is tiny and conflicting.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://huggingface.co/docs/hub/en/spaces-zerogpu",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Free quota conflicts: 5 vs 3.5 min per day across HF doc versions. Max 2 ZeroGPU Spaces for free accounts, verified email, account over 30 days.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 86,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "cerebras-sambanova-github-models",
+      "title": "Cerebras + SambaNova + GitHub Models",
+      "description": "Free inference tiers. Verify limits on official pages.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://github.com/features/models",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Cerebras: secondary claims 1M tokens per day free, conflicts with earlier gone claim. SambaNova: persistent free tier + $5 credit, limits conflict. GitHub Models: free playground with rate limits.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 87,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "nvidia-nim",
+      "title": "NVIDIA NIM",
+      "description": "Free tier. Credit figures conflict.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://build.nvidia.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Secondary claims conflict: 1,000 credits vs 5,000 credits vs rate limit only about 40 RPM. Do not state any single figure as fact. Verify on build.nvidia.com.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 88,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "deepgram",
+      "title": "Deepgram",
+      "description": "$200 free credit, no expiry. About 43,000 min transcription.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "$200 credit",
+      "official_url": "https://deepgram.com/pricing",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Available until you use it up. Nova-3 $0.29 per hour monolingual streaming. For interviews, talks, captions.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 89,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "$200 credit"
+        ]
+      }
+    },
+    {
+      "id": "assemblyai",
+      "title": "AssemblyAI",
+      "description": "$50 one time credit at signup, no card.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "$50 credit",
+      "official_url": "https://www.assemblyai.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Older 100 hours free claim is likely stale, use $50. After credits, you need to upgrade.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 90,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "$50 credit"
+        ]
+      }
+    },
+    {
+      "id": "prisma-postgres-convex-deno-koyeb",
+      "title": "Prisma Postgres + Convex + Deno + Koyeb",
+      "description": "Free tiers for side projects and lab tools.",
+      "category": "research",
+      "categories": [
+        "research",
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.prisma.io/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Research",
+        "Free Software"
+      ],
+      "notes": "Prisma: 200,000 ops per month, 50 DBs, no card, no backups. Convex: 0.5 GB storage, 1M calls per month. Deno and Koyeb free tiers exist, limits unverified.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 91,
+        "categories": [
+          "research"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "paperpal-trinka-writefull",
+      "title": "Paperpal + Trinka + Writefull",
+      "description": "Free academic writing tiers.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://paperpal.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Paperpal free: 200 edits per month, 5 per day paraphrase and Q&A. Trinka Basic: 5,000 words per month. Writefull free tier exists, limits unverified.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 92,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "windsurf",
+      "title": "Windsurf",
+      "description": "Free tier + reported 50 percent student discount.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://windsurf.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software"
+      ],
+      "notes": "Free: light daily quota + unlimited Tab completions. Pro $20 per month. Student about $10 per month per secondary sources, verify on windsurf.com. Ownership changed in 2026, do not depend on Windsurf specific features.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 93,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "aider-pearai-void-tabby",
+      "title": "Aider + PearAI + Void + Tabby",
+      "description": "Free open source coding assistants. BYOK for models.",
+      "category": "ai-software",
+      "categories": [
+        "ai-software"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://aider.chat/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "AI Tools",
+        "Free Software",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Aider: terminal pair programmer, edits local git repo, commits each change. PearAI, Void, Tabby: free editors, local model support. Tool free, you pay model provider.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 94,
+        "categories": [
+          "ai"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "ibm-skillsbuild",
+      "title": "IBM SkillsBuild",
+      "description": "1,000+ free courses + badges in AI, data, cloud, cyber.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://skillsbuild.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "Career",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Free to enrol. Some IBM Professional Certificates may carry $200 to $300 fees per secondary sources, verify before starting a specific certificate.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 95,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "cisco-netacad",
+      "title": "Cisco NetAcad",
+      "description": "Free CCNA pathway + reported 58 percent exam voucher.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.netacad.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "Career"
+      ],
+      "notes": "Free self paced CCNA pathway + Packet Tracer. Voucher requires 70 percent final, survey, all activities. Exam $300 at Pearson VUE per secondary sources. Verify on netacad.com.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 96,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "fortinet-nse-1-2",
+      "title": "Fortinet NSE 1-2",
+      "description": "Foundational cyber courses free. Higher levels paid.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://training.fortinet.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "Career"
+      ],
+      "notes": "All courses free was a 2020 announcement, do not assume full catalogue is still free. Verify current Fortinet Training Institute pricing.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 97,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "neo4j-graphacademy",
+      "title": "Neo4j GraphAcademy",
+      "description": "Free courses + free certs, free retakes.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://graphacademy.neo4j.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "Career",
+        "biology",
+        "bioinformatics"
+      ],
+      "notes": "All certifications completely free, no fee to register, take, or retake. 60 min exams, 80 percent pass, open book. Maps to pangenome graphs and RAG projects.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 98,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "confluent-databricks",
+      "title": "Confluent + Databricks",
+      "description": "Free streaming and data certs. Verify time limits.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://developer.confluent.io/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning",
+        "Career",
+        "computer science",
+        "data science"
+      ],
+      "notes": "Confluent: 2 free certs, 30 questions, 60 min, online, not proctored. Databricks: 7 free accreditations + Student Fellows vouchers reported, verify on databricks.com.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 99,
+        "categories": [
+          "learn"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "open-path-collective",
+      "title": "Open Path Collective",
+      "description": "$65 one time + $40 to $70 per session therapy.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://openpathcollective.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Affordability and household-income criteria on the provider site",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Health"
+      ],
+      "notes": "40,000+ therapists, online or in person. For people who cannot afford market rates, household income below $100,000 per Open Path directory. Session fees go to therapist.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 100,
+        "categories": [
+          "money"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "7-cups",
+      "title": "7 Cups",
+      "description": "Free peer support. Not therapy.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.7cups.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Health"
+      ],
+      "notes": "Free 24/7 text chat with trained volunteer listeners. Not therapy, not counselling, not a distress line. Paid therapy about $150 per month per secondary sources.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 101,
+        "categories": [
+          "money"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "zenni-warby-parker",
+      "title": "Zenni + Warby Parker",
+      "description": "Glasses discounts. Warby student discount not verified.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Not specified in source",
+      "official_url": "https://www.zenni.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support",
+        "Health"
+      ],
+      "notes": "Zenni: 10 percent student per coupon sites, verify at checkout. Warby: no verified student programme found, conflicting claims. Warby Home Try-On: 5 frames free both ways.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 102,
+        "categories": [
+          "money"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "id": "regal-cinemark-student-pricing",
+      "title": "Regal + Cinemark student pricing",
+      "description": "Student pricing at box office with student ID.",
+      "category": "financial-support",
+      "categories": [
+        "financial-support"
+      ],
+      "benefit_type": "Not specified in source",
+      "official_url": "https://www.regmovies.com/student-discount",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Financial Support"
+      ],
+      "notes": "Amount varies by theatre. Excludes special engagement films at Cinemark. Check local theatre for pricing and participation.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 103,
+        "categories": [
+          "money"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "id": "hostelling-international",
+      "title": "Hostelling International",
+      "description": "10 percent off at 4,000 hostels in 91 countries.",
+      "category": "travel",
+      "categories": [
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Not specified in source",
+      "official_url": "https://www.hiusa.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Membership, location, and separate time-limited J1 offer terms; visa status is never inferred",
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Membership price not confirmed. Non-members pay plus $3 per person per day at some US hostels. J1 visitors: 15 percent off with code STAYHI through Dec 31, 2026."
+      },
+      "last_verified": null,
+      "tags": [
+        "Travel",
+        "Financial Support"
+      ],
+      "notes": "Membership price not confirmed. Non-members pay plus $3 per person per day at some US hostels. J1 visitors: 15 percent off with code STAYHI through Dec 31, 2026.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 104,
+        "categories": [
+          "money"
+        ],
+        "labels": []
+      }
+    },
+    {
+      "id": "insight-timer-healthy-minds-ucla-mindful-smiling-mind",
+      "title": "Insight Timer + Healthy Minds + UCLA Mindful + Smiling Mind",
+      "description": "Free meditation apps.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://insighttimer.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Health"
+      ],
+      "notes": "Insight Timer: 260,000+ meditations free. Healthy Minds: completely free, science backed. UCLA Mindful: free audios, English and Spanish. Smiling Mind: free nonprofit.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 105,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "darebee-fitness-blender",
+      "title": "Darebee + Fitness Blender",
+      "description": "Free workouts, nonprofit and ad free options.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://darebee.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [
+        "Health"
+      ],
+      "notes": "Darebee: 2,000+ workouts, 50+ programmes, no ads. Fitness Blender: hundreds of free full length videos, free membership to save favourites.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 106,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "tubi-pluto-plex-pbs",
+      "title": "Tubi + Pluto + Plex + PBS",
+      "description": "Free ad supported streaming. No account needed for Tubi.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://tubitv.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Tubi: 50,000+ titles. Pluto: 250+ live channels. Plex: 50,000+ titles + 600+ live channels free, Plex Pass is for your own media server, not for unlocking movies. PBS: free, some titles need Passport.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 107,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "mubi-student",
+      "title": "MUBI student",
+      "description": "30 day trial then $9.99 per month per secondary sources.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "30-day trial",
+      "official_url": "https://mubi.com/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Verify on MUBI student page. Trial auto-renews unless cancelled.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 108,
+        "categories": [
+          "fun"
+        ],
+        "labels": [
+          "30-day trial"
+        ]
+      }
+    }
+  ]
+}

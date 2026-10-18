@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover K-State student resources with a private, browser-only opportunity matcher. No account, uploads, or AI API required.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Student Opportunity Matcher · Kinley Tenzin</title>
+  <link rel="icon" href="assets/student-match-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/student-match.css">
+  <script defer src="assets/student-match-file-help.js"></script>
+  <script type="module" src="assets/student-match.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">KT</span><span><b>Kinley Tenzin</b><small>Student notes · K-State</small></span></a>
+      <nav aria-label="Main navigation"><a href="student-benefits.html">Resource directory <span aria-hidden="true">↗</span></a><a class="nav-active" href="student-match.html" aria-current="page">Opportunity matcher</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> For your next chapter</p>
+      <h1 id="hero-title">Discover the opportunities<br class="wide-break"> you're missing at <span>K-State.</span></h1>
+      <p class="lede">Find scholarships, research funding, student discounts, free software, campus resources, and more, matched to your profile.</p>
+      <div class="hero-meta"><span>No login required</span><span>Browser-only matching</span><span>Independent student-built project</span></div>
+      <p class="independent">Not an official Kansas State University service. Always confirm terms on the resource’s official website.</p>
+    </section>
+
+    <ol class="steps" aria-label="How it works"><li><span>01</span> Add a CV <small>optional</small></li><li><span>02</span> Review your profile</li><li><span>03</span> Explore your matches</li></ol>
+
+    <section class="start-grid" aria-label="Get started">
+      <div class="upload-panel panel">
+        <div class="section-heading"><span class="step-label">01 / START HERE</span><span class="small-pill">Optional</span></div>
+        <h2>A starting point, already on your CV.</h2>
+        <p class="muted">Add a document for a few profile suggestions, or start with a blank profile below.</p>
+        <div id="drop-zone" class="drop-zone" aria-busy="false">
+          <svg class="upload-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5h13l9 9v28H11V5h4Z"/><path d="M28 5v10h9M24 33V21m-5 5 5-5 5 5"/></svg>
+          <h3>Drop your resume or CV here</h3>
+          <p>PDF or DOCX · up to 8 MB · PDF up to 30 pages</p>
+          <input class="visually-hidden" id="document-input" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-label="Choose a resume or CV" tabindex="-1">
+          <div class="upload-actions"><button type="button" class="button primary" id="browse-files">Browse files <span aria-hidden="true">↑</span></button><button type="button" class="text-button" id="skip-upload">Skip upload <span aria-hidden="true">→</span></button></div>
+        </div>
+        <div class="document-feedback"><p id="document-status" role="status" aria-live="polite">Your document stays on this device. It is never uploaded.</p><button type="button" class="text-button danger" id="remove-document" hidden>Remove document &amp; suggestions</button></div>
+        <div id="suggestions" class="suggestions" hidden>
+          <h3>Review the suggestions</h3><p class="muted">Keyword hints can miss context. Nothing is added until you choose to use it. Existing answers are preserved; every field is editable.</p>
+          <dl id="suggestion-list"></dl>
+          <button type="button" class="button secondary" id="use-suggestions">Use suggestions in blank fields</button>
+        </div>
+      </div>
+      <aside class="privacy-panel" aria-labelledby="privacy-title">
+        <span class="privacy-icon" aria-hidden="true">◇</span>
+        <p class="eyebrow">Local by design</p>
+        <h2 id="privacy-title">Your next step.<br>Your information.</h2>
+        <p>Your CV is read in your browser. Only a few academic keywords become suggestions for you to review.</p>
+        <ul class="privacy-list"><li>No document uploads or external AI calls</li><li>No account, database, or browser storage</li><li>No citizenship or immigration inference</li></ul>
+        <p class="privacy-small">Use a CV or resume only. Do not add student IDs, birthdates, SSNs, passport numbers, transcripts, or immigration documents. Scanned documents? Enter your profile manually.</p>
+        <details><summary>How privacy and matching work</summary><p>This page downloads its own static files, data, fonts, and parsers. The matcher has no analytics. Document text is processed transiently in a worker, then discarded; only allowlisted suggestions return to this page. A file may contain sensitive details: remove those before selecting it. Profile answers remain in this tab’s memory and are cleared on reload or reset. Following a resource link takes you to that provider’s website.</p><p>Matching uses explicit rules and keywords, with no LLM. Relevance describes fit with your interests, never a chance of winning an award. Unverified requirements stay unknown.</p></details>
+      </aside>
+    </section>
+
+    <section class="profile-panel panel" aria-labelledby="profile-title">
+      <div class="profile-heading"><div><p class="step-label">02 / A LITTLE CONTEXT</p><h2 id="profile-title" tabindex="-1">Make it relevant to you.</h2><p class="muted">Every answer is optional. Missing answers remain unknown.</p></div><span class="small-pill">Only in this tab</span></div>
+      <form id="profile-form" autocomplete="off">
+        <div class="profile-fields">
+          <div class="field"><label for="academic-level">Academic level</label><select id="academic-level" name="academic_level"><option value="">Not specified</option><option>Undergraduate</option><option>Master's</option><option>PhD</option><option>Postdoc</option><option>Other</option></select></div>
+          <div class="field"><label for="major">Field or major</label><input id="major" name="field" maxlength="120" placeholder="e.g. Biology" spellcheck="false"></div>
+          <div class="field"><label for="student-status">Student status</label><select id="student-status" name="student_status" aria-describedby="status-help"><option value="">Not specified</option><option value="international">International</option><option value="domestic">Domestic</option><option value="prefer-not">Prefer not to say</option></select></div>
+          <div class="field"><label for="enrolled">Currently enrolled at K-State?</label><select id="enrolled" name="enrolled"><option value="">Not specified</option><option value="yes">Yes</option><option value="no">No</option><option value="prefer-not">Prefer not to say</option></select></div>
+        </div>
+        <p id="status-help" class="field-help">Student status alone does not establish citizenship, residency, or funding eligibility. We never infer it from your CV.</p>
+        <fieldset class="interest-fieldset"><legend>What would you like to explore?</legend><div id="interests" class="interest-chips"></div></fieldset>
+        <div class="field skills-field"><label for="skills">Research interests or skills <span class="optional">optional</span></label><textarea id="skills" name="skills" rows="2" maxlength="500" placeholder="e.g. genomics, Python, science communication"></textarea><p class="field-help">Topics and skills only. Leave out personal identifiers or sensitive information.</p></div>
+        <div class="form-actions"><button class="button primary" type="submit" id="match-button">Find my opportunities <span aria-hidden="true">→</span></button><button class="text-button" type="button" id="browse-all">Browse all resources</button><button class="text-button reset-button" type="button" id="reset-all">Reset everything</button></div>
+        <p id="profile-feedback" role="status" class="field-help" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="results-title">
+      <div class="results-heading"><div><p class="step-label">03 / OPEN A FEW DOORS</p><h2 id="results-title" tabindex="-1">Your opportunity shortlist</h2><p id="results-description" class="muted">Browse the directory now, or add a profile to personalize the order.</p></div><span class="directory-count" id="directory-count">Local resource directory</span></div>
+      <div class="verification-note"><b>A useful starting point, with a necessary check.</b> These are existing directory entries, not a freshly verified catalogue. Prices, awards, quotas, and eligibility may have changed. “Verification needed” means current availability is unknown. Past listed cycles are excluded from recommendations. <a href="student-benefits.html">See the original notes ↗</a></div>
+      <div class="summary-grid" aria-label="Eligibility overview" id="eligibility-summary"><div><span id="likely-count">—</span><p>Likely eligible</p></div><div><span id="verify-count">—</span><p>Needs eligibility verification</p></div><div><span id="ineligible-count">—</span><p>Not eligible based on supplied information</p></div></div>
+      <p class="field-help">Counts cover the full directory. Unverified entries stay in “Needs eligibility verification” unless a known restriction conflicts with your answers. Eligibility and relevance are separate.</p>
+      <div class="result-controls">
+        <div class="search-row"><div class="field search-field"><label for="resource-search">Search resources</label><input type="search" id="resource-search" placeholder="Try travel, food, Python…" maxlength="160"></div><div class="field"><label for="sort-order">Sort by</label><select id="sort-order"><option value="relevance">Relevance</option><option value="title">Name A–Z</option><option value="eligibility">Eligibility status</option><option value="deadline">Verified deadline</option></select></div></div>
+        <div class="filter-chips" id="category-filters" role="group" aria-label="Filter by category"><button type="button" data-category="all" aria-pressed="true">All</button><button type="button" data-category="scholarships" aria-pressed="false">Scholarships</button><button type="button" data-category="research" aria-pressed="false">Research</button><button type="button" data-category="ai-software" aria-pressed="false">AI/Software</button><button type="button" data-category="travel" aria-pressed="false">Travel</button><button type="button" data-category="campus-benefits" aria-pressed="false">Campus Benefits</button><button type="button" data-category="financial-support" aria-pressed="false">Financial Support</button></div>
+        <div class="view-row"><div class="scope-toggle" role="group" aria-label="Result scope"><button type="button" id="view-recommended" aria-pressed="false">Recommended</button><button type="button" id="view-all" aria-pressed="true">All opportunities</button></div><div class="field eligibility-filter"><label for="eligibility-filter">Eligibility</label><select id="eligibility-filter"><option value="all">All statuses</option><option value="likely">Likely eligible</option><option value="verify">Needs eligibility verification</option><option value="ineligible">Not eligible based on supplied information</option></select></div></div>
+      </div>
+      <p id="result-count" class="result-count" role="status" aria-live="polite">Loading the local directory…</p>
+      <p id="data-error" class="error-note" role="alert" hidden></p>
+      <div id="resource-grid" class="resource-grid" aria-label="Opportunity results"></div>
+      <div id="empty-state" class="empty-state panel" hidden><h3>No resources in this view.</h3><p>Try a broader search, change your profile, or explore the full directory, including past cycles and conflicting eligibility.</p><button type="button" class="button secondary" id="clear-filters">Show all opportunities</button></div>
+      <button type="button" id="show-more" class="button secondary show-more" hidden>Show more resources</button>
+    </section>
+    <noscript><p class="verification-note">The matcher needs JavaScript for local processing. You can still use the <a href="student-benefits.html">original resource directory</a>.</p></noscript>
+    <footer><a class="footer-brand" href="index.html">KT <span>Made by a student, for fellow students.</span></a><p>Independent project by Kinley Tenzin. Not affiliated with or endorsed by Kansas State University.</p><div><a href="student-benefits.html">Back to the resource directory ↗</a><a href="#main">Back to top ↑</a></div></footer>
+  </main>
+</body>
+</html>
