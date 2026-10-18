@@ -51,6 +51,21 @@ const pass = (name) => console.log(`PASS ${name}`);
     const anytimeMeta = await page.locator('#group-anytime .card .meta').allInnerTexts();
     assert.ok(anytimeMeta.length && anytimeMeta.every((t) => /^Checked /.test(t)));
     assert.match(await page.locator('.lede').innerText(), /sorted by deadline/);
+    // The list starts below the fold. The inline button is visible on a big
+    // screen, so the sticky bar stays out of the way until that button isn't.
+    assert.equal(await page.locator('#see-list').isVisible(), true);
+    assert.equal(await page.locator('#results-bar').isVisible(), false, 'no duplicate shortcut while the inline button shows');
+    await page.locator('#see-list').click();
+    await page.waitForFunction(() => document.getElementById('results').getBoundingClientRect().top < innerHeight * 0.55);
+    assert.equal(await page.locator('#results-bar').isVisible(), false);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForFunction(() => !document.getElementById('results-bar').hidden, null, { timeout: 3000 });
+    assert.match(await page.locator('#results-bar-text').innerText(), /^\d+ to look at$/);
+    await page.locator('#results-bar-go').click();
+    await page.waitForFunction(() => document.getElementById('results-bar').hidden);
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.evaluate(() => window.scrollTo(0, 0));
     pass('loads with grouped results, no upload control, GRFP first in Apply soon');
 
     await page.locator('label.option', { hasText: /^PhD$/ }).click();

@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=6';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=8';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -172,6 +172,7 @@ function summarize(answers, shown, out) {
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
   $('results-bar-text').textContent = `${shown} to look at`;
+  syncBar();
 }
 
 form.addEventListener('change', () => { expanded.clear(); render(); });
@@ -195,18 +196,24 @@ window.addEventListener('pageshow', (event) => {
   render();
 });
 
-// Sticky results shortcut for phones: show it only while the results are off
-// screen, so answering the questions always offers a way down to the list.
-$('results-bar-go').addEventListener('click', () => {
+// Results shortcuts: an inline button under the questions, and a sticky bar
+// for when that button is off screen. The bar hides once the list reaches the
+// upper half of the window, and stays hidden after you scroll into or past it.
+function goToResults() {
   const smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   $('results-title').scrollIntoView({ behavior: smooth, block: 'start' });
-});
-if ('IntersectionObserver' in window) {
-  const bar = $('results-bar');
-  new IntersectionObserver((entries) => {
-    bar.hidden = entries[0].isIntersecting || !items.length;
-  }, { threshold: 0.08 }).observe($('results'));
+  $('results-title').focus({ preventScroll: true });
 }
+function syncBar() {
+  const top = $('results').getBoundingClientRect().top;
+  const inline = $('see-list').getBoundingClientRect();
+  const inlineVisible = inline.top >= 0 && inline.bottom <= window.innerHeight;
+  $('results-bar').hidden = !items.length || inlineVisible || top < window.innerHeight * 0.55;
+}
+$('results-bar-go').addEventListener('click', goToResults);
+$('see-list').addEventListener('click', goToResults);
+window.addEventListener('scroll', syncBar, { passive: true });
+window.addEventListener('resize', syncBar);
 
 async function load() {
   try {
