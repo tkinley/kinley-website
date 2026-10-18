@@ -8,338 +8,991 @@
     "level_reason": "Optional text shown when the chosen level is not in 'levels'.",
     "citizenship": "us_only (citizens, nationals, permanent residents) | us_citizen_only (permanent residents excluded) | international_only | any | not_stated",
     "deadline": "dates: ISO dates as published; annual: MM-DD cycles the source lists without a year; rolling: true; note: plain words. No dates and no rolling means the next date is not posted.",
-    "exclude": "Optional reason that rules the entry out for every current student."
+    "exclude": "Optional reason that rules the entry out for every current student.",
+    "unit": "Optional short tag for entries limited to one department, college, or degree (shown on the card, never used to exclude)."
   },
   "entries": {
     "nsf-grfp": {
-      "needs": ["money"],
-      "levels": ["Undergraduate", "Master's", "PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "us_only",
       "kstate": false,
       "amount": "$37,000 a year for 3 years, plus $16,000 a year to your school",
       "who": "STEM seniors, recent graduates, and first-year grad students.",
-      "deadline": { "dates": ["2026-10-19"], "label": "Life Sciences", "note": "Other fields close Oct 20 to 23, 2026." },
-      "check": ["You must have finished less than one academic year of grad school. Grad students get one try, in the first year of their first program."],
+      "deadline": {
+        "dates": [
+          "2026-10-19"
+        ],
+        "label": "Life Sciences",
+        "note": "Other fields close Oct 20 to 23, 2026."
+      },
+      "check": [
+        "You must have finished less than one academic year of grad school. Grad students get one try, in the first year of their first program."
+      ],
       "source": "https://www.nsf.gov/funding/initiatives/grfp/eligibility",
       "checked": "2026-10-18"
     },
     "doe-scgsr": {
-      "needs": ["money", "research"],
-      "levels": ["PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "us_only",
       "kstate": false,
       "amount": "Supplemental funding for a 3 to 12 month stay at a DOE national lab",
       "who": "PhD students who want to do part of their thesis research at a DOE lab or facility.",
-      "deadline": { "dates": ["2026-11-04"] },
-      "check": ["You need proof of PhD candidacy in the application."],
+      "deadline": {
+        "dates": [
+          "2026-11-04"
+        ]
+      },
+      "check": [
+        "You need proof of PhD candidacy in the application."
+      ],
       "source": "https://science.osti.gov/wdts/scgsr",
       "checked": "2026-10-18"
     },
     "nih-f31": {
       "url": "https://grants.nih.gov/grants/guide/pa-files/PA-25-422.html",
-      "needs": ["money"],
-      "levels": ["PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "us_only",
       "kstate": false,
       "amount": "Stipend plus tuition and fees support",
       "who": "PhD students in biomedical, behavioral, or clinical science, applying with a mentor.",
-      "deadline": { "dates": ["2026-12-08", "2027-04-08", "2027-08-08", "2027-12-08"], "note": "Three standard rounds a year." },
-      "check": ["You must be a citizen, national, or permanent resident by the time of award, not just when you apply."],
+      "deadline": {
+        "dates": [
+          "2026-12-08",
+          "2027-04-08",
+          "2027-08-08",
+          "2027-12-08"
+        ],
+        "note": "Three standard rounds a year."
+      },
+      "check": [
+        "You must be a citizen, national, or permanent resident by the time of award, not just when you apply."
+      ],
       "source": "https://grants.nih.gov/grants/guide/pa-files/PA-25-422.html",
       "checked": "2026-10-18"
     },
     "usda-nifa-afri-predoctoral": {
-      "needs": ["money"],
-      "levels": ["PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "us_only",
       "kstate": false,
       "amount": "Up to $60,000 a year for up to 3 years (stipend capped at $35,000 a year)",
       "who": "PhD students in food and agriculture science doing dissertation research.",
-      "deadline": { "dates": ["2026-04-16"], "note": "The 2026 round closed Apr 16. The 2027 call isn't posted yet." },
-      "check": ["You must be advanced to candidacy by the deadline."],
+      "deadline": {
+        "dates": [
+          "2026-04-16"
+        ],
+        "note": "The 2026 round closed Apr 16. The 2027 call isn't posted yet."
+      },
+      "check": [
+        "You must be advanced to candidacy by the deadline."
+      ],
       "source": "https://files.simpler.grants.gov/opportunities/5bf434f3-5a29-4c07-a179-1ba41c662fd3/attachments/28b2925c-af30-44b7-967b-b4f826ff2657/FY26-AFRI-EWD-NOFO-P.pdf",
       "checked": "2026-10-18"
     },
     "boren-fellowship": {
-      "needs": ["money", "travel"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "us_citizen_only",
       "kstate": false,
       "amount": "Up to $25,000 for 25 to 52 weeks abroad, or $12,500 for 12 to 24 weeks",
       "who": "Grad students who want long-term study abroad and then a federal job.",
-      "deadline": { "dates": ["2027-01-20"] },
-      "check": ["You owe at least one year of federal service afterward."],
+      "deadline": {
+        "dates": [
+          "2027-01-20"
+        ]
+      },
+      "check": [
+        "You owe at least one year of federal service afterward."
+      ],
       "source": "https://www.borenawards.org/",
       "checked": "2026-10-18"
     },
     "daad-doctoral-programmes": {
       "title": "DAAD Research Grants for Doctoral Candidates",
       "url": "https://www.daad.org/en/find-funding/",
-      "needs": ["money", "travel", "research"],
-      "levels": ["PhD"],
+      "needs": [
+        "money",
+        "travel",
+        "research"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "any",
       "kstate": false,
       "amount": "A 2 to 12 month research stay in Germany",
       "who": "Doctoral students who want to do part of their research at a German university or institute.",
-      "deadline": { "dates": ["2026-10-31", "2027-04-30"], "note": "Oct 31 is for projects starting the next June to September; Apr 30 for October or later." },
-      "check": ["Not a U.S. or Canadian citizen or permanent resident? You must live in the U.S. or Canada and your latest degree must be from there (a master's earned inside your PhD counts)."],
+      "deadline": {
+        "dates": [
+          "2026-10-31",
+          "2027-04-30"
+        ],
+        "note": "Oct 31 is for projects starting the next June to September; Apr 30 for October or later."
+      },
+      "check": [
+        "Not a U.S. or Canadian citizen or permanent resident? You must live in the U.S. or Canada and your latest degree must be from there (a master's earned inside your PhD counts)."
+      ],
       "source": "https://grad.uchicago.edu/?p=5580",
       "source_note": "Checked on UChicago's graduate fellowships page because DAAD's own page did not load.",
       "checked": "2026-10-18"
     },
     "cgs-proquest-distinguished-dissertation-award": {
-      "needs": ["money"],
-      "levels": ["PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$2,000 honorarium",
       "who": "Recent K-State PhD graduates in that year's rotating fields.",
-      "deadline": { "dates": ["2026-06-02"], "note": "2026 round closed. The 2026 fields were social sciences and engineering, math, and physical sciences." },
-      "check": ["Your program nominates you, and your degree date has to fall inside the award window."],
+      "deadline": {
+        "dates": [
+          "2026-06-02"
+        ],
+        "note": "2026 round closed. The 2026 fields were social sciences and engineering, math, and physical sciences."
+      },
+      "check": [
+        "Your program nominates you, and your degree date has to fall inside the award window."
+      ],
       "source": "https://www.k-state.edu/grad/student-success/awards/cgs-dissertation.html",
       "checked": "2026-10-18"
     },
     "sigma-xi-giar": {
-      "needs": ["money", "research"],
-      "levels": ["Undergraduate", "Master's", "PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "Grad students: up to $5,000 if you or your advisor are members, up to $1,000 if not",
       "who": "Students who need money for research costs.",
-      "deadline": { "annual": ["03-15", "10-01"], "note": "Two rounds every year." },
-      "check": ["About 75% of the money goes to members or students whose advisor is a member."],
+      "deadline": {
+        "annual": [
+          "03-15",
+          "10-01"
+        ],
+        "note": "Two rounds every year."
+      },
+      "check": [
+        "About 75% of the money goes to members or students whose advisor is a member."
+      ],
       "source": "https://www.sigmaxi.org/programs/grants-in-aid-of-research",
       "checked": "2026-10-18"
     },
     "fems-research-training-grants": {
-      "needs": ["money", "research", "travel"],
+      "needs": [
+        "money",
+        "research",
+        "travel"
+      ],
       "levels": null,
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "Up to €5,000",
       "who": "PhD students and microbiologists within 5 years of their last degree, for a research visit to a European lab.",
-      "deadline": { "dates": ["2026-01-01", "2026-07-01"], "note": "Applications are closed. FEMS hasn't posted the next round." },
-      "check": ["You must belong to a FEMS member society.", "The host lab must be in a European country other than the one you live in."],
+      "deadline": {
+        "dates": [
+          "2026-01-01",
+          "2026-07-01"
+        ],
+        "note": "Applications are closed. FEMS hasn't posted the next round."
+      },
+      "check": [
+        "You must belong to a FEMS member society.",
+        "The host lab must be in a European country other than the one you live in."
+      ],
       "source": "https://fems-microbiology.org/about_fems/network-and-activities/grants/fems-research-grants/",
       "checked": "2026-10-18"
     },
     "fems-meeting-attendance-grants": {
-      "needs": ["money", "travel"],
+      "needs": [
+        "money",
+        "travel"
+      ],
       "levels": null,
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "Up to €750",
       "who": "PhD students and microbiologists within 5 years of their last degree, presenting at a meeting anywhere.",
-      "deadline": { "dates": ["2026-09-01", "2027-03-01"], "note": "The Mar 1 round covers meetings from May 2027 to April 2028." },
-      "check": ["You must belong to a FEMS member society and be the presenting author."],
+      "deadline": {
+        "dates": [
+          "2026-09-01",
+          "2027-03-01"
+        ],
+        "note": "The Mar 1 round covers meetings from May 2027 to April 2028."
+      },
+      "check": [
+        "You must belong to a FEMS member society and be the presenting author."
+      ],
       "source": "https://fems-microbiology.org/fems-work/grants/fems-meeting-grants/",
       "checked": "2026-10-18"
     },
     "grc-carl-storm-fellowship": {
-      "needs": ["money", "travel"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "$1,250 toward a Gordon Research Conference (international version)",
       "who": "Grad students and postdocs from China, Africa, India, Central or South America, Russia, or Ukraine. A second version supports underrepresented minority scientists.",
-      "deadline": { "rolling": true, "note": "No fixed deadline. Limited money, first come, first served." },
-      "check": ["You can't apply yourself. The conference chair nominates you, so ask the chair."],
+      "deadline": {
+        "rolling": true,
+        "note": "No fixed deadline. Limited money, first come, first served."
+      },
+      "check": [
+        "You can't apply yourself. The conference chair nominates you, so ask the chair."
+      ],
       "source": "https://grc.org/about/grc-diversity-initiatives",
       "checked": "2026-10-18"
     },
     "noster-science-microbiome-prize": {
-      "needs": ["money"],
+      "needs": [
+        "money"
+      ],
       "levels": null,
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "$25,000 essay prize",
       "who": "Early-career microbiome researchers.",
-      "deadline": { "note": "The 2027 entry portal is up." },
+      "deadline": {
+        "note": "The 2027 entry portal is up."
+      },
       "exclude": "You need a PhD or MD already, earned in the last 10 years. Students can't enter.",
       "source": "https://iums.org/news/noster-science-microbiome-prize-.html",
       "checked": "2026-10-18"
     },
     "phi-kappa-phi-graduate-research-grant": {
-      "needs": ["money", "research"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": false,
       "amount": "$1,500 (50 awards a year)",
       "who": "Phi Kappa Phi members in grad school doing or presenting research between Jan 1 and Aug 31, 2027.",
-      "deadline": { "dates": ["2026-11-30"] },
-      "check": ["You must be a dues-paying member, or accept membership, by Nov 30, 2026."],
+      "deadline": {
+        "dates": [
+          "2026-11-30"
+        ]
+      },
+      "check": [
+        "You must be a dues-paying member, or accept membership, by Nov 30, 2026."
+      ],
       "source": "https://www.phikappaphi.org/grants-awards/graduate-research",
       "checked": "2026-10-18"
     },
     "gsc-travel-funding": {
-      "needs": ["money", "travel"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "Up to $750 domestic or $1,000 international, one trip per fiscal year",
       "who": "K-State grad students going to an event. Presenting your own work gets priority.",
-      "deadline": { "rolling": true, "note": "Apply at least 21 days before the event. This round covers events starting through Jan 31, 2027." },
-      "check": ["You need a 3.0 GPA and at least 1 graduate credit hour, both when you apply and when you travel."],
+      "deadline": {
+        "rolling": true,
+        "note": "Apply at least 21 days before the event. This round covers events starting through Jan 31, 2027."
+      },
+      "check": [
+        "You need a 3.0 GPA and at least 1 graduate credit hour, both when you apply and when you travel."
+      ],
       "source": "https://www.k-state.edu/grad/financial-support/travel-grants/",
       "checked": "2026-10-18"
     },
     "bgsa-travel-research-and-training-grants": {
-      "needs": ["money", "travel", "research"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel",
+        "research"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": null,
       "who": "Division of Biology grad students, for travel, research, or training costs.",
-      "deadline": { "note": "No dates posted. Awards run June to June and depend on available funds." },
-      "check": ["Division of Biology grad students only."],
+      "deadline": {
+        "note": "No dates posted. Awards run June to June and depend on available funds."
+      },
+      "check": [
+        "Division of Biology grad students only."
+      ],
       "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/bgsa/grants.html",
-      "checked": "2026-10-18"
+      "checked": "2026-10-18",
+      "unit": "Division of Biology only"
     },
     "bgsa-finishing-grants": {
-      "needs": ["money"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": null,
       "who": "Helps pay thesis or dissertation fees and other costs of finishing an MS or PhD in Biology.",
-      "deadline": { "rolling": true, "note": "Contact the BGSA treasurer before your defense." },
-      "check": ["You must be an active BGSA member when you defend."],
+      "deadline": {
+        "rolling": true,
+        "note": "Contact the BGSA treasurer before your defense."
+      },
+      "check": [
+        "You must be an active BGSA member when you defend."
+      ],
       "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/bgsa/grants.html",
-      "checked": "2026-10-18"
+      "checked": "2026-10-18",
+      "unit": "Division of Biology only"
     },
     "arts-and-sciences-research-travel-awards": {
-      "needs": ["money", "travel"],
-      "levels": ["Undergraduate", "Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "Up to $500 per academic year",
       "who": "Arts and Sciences students presenting research, traveling to do research, or learning a technique.",
-      "deadline": { "rolling": true, "note": "Apply at least one month before the trip." },
-      "check": ["Your degree program must be in the College of Arts and Sciences."],
+      "deadline": {
+        "rolling": true,
+        "note": "Apply at least one month before the trip."
+      },
+      "check": [
+        "Your degree program must be in the College of Arts and Sciences."
+      ],
       "source": "https://artsci.k-state.edu/research/undergraduate/student_travel.html",
-      "checked": "2026-10-18"
+      "checked": "2026-10-18",
+      "unit": "Arts & Sciences only"
     },
     "k-state-sigma-xi-research-grants": {
-      "needs": ["money", "research"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "level_reason": "The K-State chapter award is for graduate students.",
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$400 for one strong proposal the national round didn't fund",
       "who": "K-State grad students who also apply to Sigma Xi's national Grants in Aid of Research.",
-      "deadline": { "dates": ["2026-10-01", "2027-03-15"] },
-      "check": ["You or your faculty adviser must be a Sigma Xi member, and you send the same proposal to the national round."],
+      "deadline": {
+        "dates": [
+          "2026-10-01",
+          "2027-03-15"
+        ]
+      },
+      "check": [
+        "You or your faculty adviser must be a Sigma Xi member, and you send the same proposal to the national round."
+      ],
       "source": "https://www.k-state.edu/sigmaxi/grant-in-aid/",
       "checked": "2026-10-18"
     },
     "kansas-water-institute-graduate-water-fellows": {
-      "needs": ["money", "research"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "Up to $10,000 in matching support to the department that hosts you",
       "who": "Grad students with an advisor whose work fits the Kansas Water Institute's priorities.",
-      "deadline": { "rolling": true, "note": "No deadline posted. Send a request to water@ksu.edu." },
-      "check": ["Your research has to fit KWI's water priorities."],
+      "deadline": {
+        "rolling": true,
+        "note": "No deadline posted. Send a request to water@ksu.edu."
+      },
+      "check": [
+        "Your research has to fit KWI's water priorities."
+      ],
       "source": "https://www.k-state.edu/water-institute/our-work/funding/student-grants.html",
       "checked": "2026-10-18"
     },
     "presidential-teaching-award-gta-category": {
       "title": "Presidential Teaching Award (GTA category)",
-      "needs": ["money"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$5,000",
       "who": "One graduate teaching assistant a year, for undergraduate teaching.",
-      "deadline": { "note": "Nominations open each spring." },
-      "check": ["Your department head nominates you. You can't apply directly."],
+      "deadline": {
+        "note": "Nominations open each spring."
+      },
+      "check": [
+        "Your department head nominates you. You can't apply directly."
+      ],
       "source": "https://www.k-state.edu/grad/student-success/awards/",
       "checked": "2026-10-18"
     },
     "marie-r-bonebrake-graduate-award": {
-      "needs": ["money"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$4,000 for the year, split between fall and spring",
       "who": "On-campus grad students, judged on merit and financial need. The eligible college rotates.",
-      "deadline": { "dates": ["2026-09-21"], "note": "2026 nominations closed Sep 21." },
-      "check": ["Your college's associate dean nominates you. You can't apply directly."],
+      "deadline": {
+        "dates": [
+          "2026-09-21"
+        ],
+        "note": "2026 nominations closed Sep 21."
+      },
+      "check": [
+        "Your college's associate dean nominates you. You can't apply directly."
+      ],
       "source": "https://www.k-state.edu/grad/student-success/awards/mariebonebrake.html",
       "checked": "2026-10-18"
     },
     "timothy-r-donoghue-graduate-scholarship": {
-      "needs": ["money"],
-      "levels": ["Undergraduate"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Undergraduate"
+      ],
       "level_reason": "Only for students about to start a K-State grad program. Current grad students can't be nominated.",
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$5,000 doctoral or $3,000 master's, renewable for a second year",
       "who": "Incoming K-State grad students with a half-time assistantship.",
-      "deadline": { "dates": ["2026-10-01"], "note": "Nominations for Spring 2027 starts closed Oct 1." },
-      "check": ["Your future grad program nominates you. No self-nominations."],
+      "deadline": {
+        "dates": [
+          "2026-10-01"
+        ],
+        "note": "Nominations for Spring 2027 starts closed Oct 1."
+      },
+      "check": [
+        "Your future grad program nominates you. No self-nominations."
+      ],
       "source": "https://www.k-state.edu/grad/financial-support/scholarships-fellowships-grants/donoghue/",
       "checked": "2026-10-18"
     },
     "graduate-rscad-grant": {
-      "needs": ["money", "research"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "Up to $1,000 for direct research costs",
       "who": "K-State master's and doctoral students with a faculty-supervised project.",
-      "deadline": { "note": "The Spring 2026 round closed. 2026 to 2027 dates aren't posted yet." },
-      "check": ["You can get it only once during your K-State grad studies."],
+      "deadline": {
+        "note": "The Spring 2026 round closed. 2026 to 2027 dates aren't posted yet."
+      },
+      "check": [
+        "You can get it only once during your K-State grad studies."
+      ],
       "source": "https://www.k-state.edu/grad/financial-support/scholarships-fellowships-grants/grscad/",
       "checked": "2026-10-18"
     },
     "three-minute-thesis-competition": {
-      "needs": ["money"],
-      "levels": ["Master's", "PhD"],
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$500 first, $250 second, $125 people's choice",
       "who": "Explain your research in three minutes with one slide.",
-      "deadline": { "dates": ["2026-10-06"], "note": "2026 sign-ups closed Oct 6. First round Oct 28, final Jan 27, 2027." },
+      "deadline": {
+        "dates": [
+          "2026-10-06"
+        ],
+        "note": "2026 sign-ups closed Oct 6. First round Oct 28, final Jan 27, 2027."
+      },
       "check": [],
       "source": "https://www.k-state.edu/grad/student-success/research-forums/three-minute-thesis/on-campus.html",
       "checked": "2026-10-18"
     },
     "sarachek-predoctoral-honors-fellowship": {
-      "needs": ["money", "research"],
-      "levels": ["PhD"],
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "PhD"
+      ],
       "citizenship": "not_stated",
       "kstate": true,
       "amount": "$19,000",
       "who": "K-State doctoral candidates whose research leans on modern molecular biology methods.",
-      "deadline": { "note": "The 2026 round closed. The next date isn't posted." },
-      "check": ["You must have passed prelims and reached candidacy. Final-year students are encouraged, and you can nominate yourself."],
+      "deadline": {
+        "note": "The 2026 round closed. The next date isn't posted."
+      },
+      "check": [
+        "You must have passed prelims and reached candidacy. Final-year students are encouraged, and you can nominate yourself."
+      ],
       "source": "https://www.k-state.edu/grad/financial-support/scholarships-fellowships-grants/sarachek/",
       "checked": "2026-10-18"
     },
     "k-state-alumni-international-leadership-award": {
-      "needs": ["money"],
+      "needs": [
+        "money"
+      ],
       "levels": null,
       "citizenship": "international_only",
       "kstate": true,
       "amount": null,
       "who": "Recognizes four graduating international students for their impact on K-State's international community.",
-      "deadline": { "note": "Alumni Association nominations are due in February or March." },
-      "check": ["For students who are graduating."],
+      "deadline": {
+        "note": "Alumni Association nominations are due in February or March."
+      },
+      "check": [
+        "For students who are graduating."
+      ],
       "source": "https://www.k-state.com/participate/alumniandfriends/awards/internationalleadership.php",
       "checked": "2026-10-18"
     },
     "fulbright-us-student-program": {
-      "needs": ["money", "travel"],
-      "levels": ["Undergraduate", "Master's", "PhD"],
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
       "citizenship": "us_citizen_only",
       "kstate": false,
       "amount": null,
       "who": "A year abroad to study, research, or teach, for people with a bachelor's degree by the start of the grant.",
-      "deadline": { "note": "The 2027 to 2028 competition is closed." },
+      "deadline": {
+        "note": "The 2027 to 2028 competition is closed."
+      },
       "check": [],
       "source": "https://us.fulbrightonline.org/about/eligibility",
+      "checked": "2026-10-18"
+    },
+    "oip-scholarship-for-international-students": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "international_only",
+      "kstate": true,
+      "amount": null,
+      "who": "International students who have finished at least one semester at K-State and are returning next year.",
+      "deadline": {
+        "note": "The 2026 round closed Mar 17. No 2027 date posted yet."
+      },
+      "check": [
+        "One ISSS application covers these: two essays (campus involvement and financial need, no AI-written answers) and a K-State faculty or staff recommendation."
+      ],
+      "source": "https://www.k-state.edu/isss/resources/scholarships_kstate.html",
+      "checked": "2026-10-18"
+    },
+    "m-h-international-scholarship": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "international_only",
+      "kstate": true,
+      "amount": null,
+      "who": "International undergrad or grad students, including English Language Program students.",
+      "deadline": {
+        "note": "The 2026 round closed Mar 17. No 2027 date posted yet."
+      },
+      "check": [
+        "One ISSS application covers these: two essays (campus involvement and financial need, no AI-written answers) and a K-State faculty or staff recommendation."
+      ],
+      "source": "https://www.k-state.edu/isss/resources/scholarships_kstate.html",
+      "checked": "2026-10-18"
+    },
+    "william-l-richter-international-scholarship": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "international_only",
+      "kstate": true,
+      "amount": null,
+      "who": "International students in any K-State program. Preference for financial need and academic potential.",
+      "deadline": {
+        "note": "The 2026 round closed Mar 17. No 2027 date posted yet."
+      },
+      "check": [
+        "One ISSS application covers these: two essays (campus involvement and financial need, no AI-written answers) and a K-State faculty or staff recommendation."
+      ],
+      "source": "https://www.k-state.edu/isss/resources/scholarships_kstate.html",
+      "checked": "2026-10-18"
+    },
+    "international-student-center-scholarship": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "international_only",
+      "kstate": true,
+      "amount": null,
+      "who": "Eight scholarships open to all international students.",
+      "deadline": {
+        "note": "The 2026 round closed Mar 17. No 2027 date posted yet."
+      },
+      "check": [
+        "One ISSS application covers these: two essays (campus involvement and financial need, no AI-written answers) and a K-State faculty or staff recommendation."
+      ],
+      "source": "https://www.k-state.edu/isss/resources/scholarships_kstate.html",
+      "checked": "2026-10-18"
+    },
+    "k-state-alumni-international-student-scholarship": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "international_only",
+      "kstate": true,
+      "amount": null,
+      "who": "Degree-seeking international students on the Manhattan, Salina, or Olathe campus.",
+      "deadline": {
+        "note": "The 2026 round closed Mar 17. No 2027 date posted yet."
+      },
+      "check": [
+        "One ISSS application covers these: two essays (campus involvement and financial need, no AI-written answers) and a K-State faculty or staff recommendation.",
+        "You need leadership that has promoted international involvement on campus."
+      ],
+      "source": "https://www.k-state.edu/isss/resources/scholarships_kstate.html",
+      "checked": "2026-10-18"
+    },
+    "l-evans-roth-graduate-research-award": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "Biology grad students with superior research in cell, molecular, or developmental biology.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "Your major professor or committee nominates you with a letter, your CV, and a paragraph on your accomplishments. You present at the forum that year."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "john-c-frazier-plant-science-research-award": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "Biology grad students with superior research in plant science.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "Your major professor or committee nominates you with a letter, your CV, and a paragraph on your accomplishments. You present at the forum that year."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "christopher-c-smith-evolutionary-biology-award": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "A Biology doctoral student doing excellent work in evolutionary biology.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "Your major professor or committee nominates you with a letter, your CV, and a paragraph on your accomplishments. You present at the forum that year."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "chris-edler-award-for-konza-research": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "Biology grad students with superior research and service on Konza Prairie and a strong teaching record.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "You must present at the forum at some point in your graduate career."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "james-e-ackert-presentation-award": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "Best talk at the Biology Graduate Student Research Forum by a newer student.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "Only if you've been in the Biology grad program less than two years."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "h-henley-haymaker-presentation-award": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "unit": "Division of Biology only",
+      "amount": null,
+      "who": "Best talk at the Biology Graduate Student Research Forum by a more senior student.",
+      "deadline": {
+        "note": "Given each year at the Biology Graduate Research Forum. No date posted."
+      },
+      "check": [
+        "Only if you've been in the program two or more years, or already have an MS."
+      ],
+      "source": "https://www.k-state.edu/biology/studentsuccess/graduate-students/awards.html",
+      "checked": "2026-10-18"
+    },
+    "sarachek-scientific-travel-awards": {
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "amount": "$1,500 (up to two a year)",
+      "who": "Travel money for K-State doctoral candidates whose research uses modern molecular biology methods.",
+      "deadline": {
+        "note": "The 2026 round closed. The next date isn't posted."
+      },
+      "check": [
+        "You must have passed prelims and reached candidacy."
+      ],
+      "source": "https://www.k-state.edu/grad/financial-support/scholarships-fellowships-grants/sarachek/",
+      "checked": "2026-10-18"
+    },
+    "ift-feeding-tomorrow-graduate-scholarships": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": false,
+      "unit": "Food science degree",
+      "amount": null,
+      "who": "Grad students in a food science degree program with a commitment to the field. IFT membership isn't required.",
+      "deadline": {
+        "note": "The next cycle opens in January 2027."
+      },
+      "check": [
+        "Grad students must be pursuing a degree in food science, not just doing food-related research."
+      ],
+      "source": "https://www.ift.org/advance-your-career/students/scholarships",
+      "checked": "2026-10-18"
+    },
+    "ift-first-travel-scholarships": {
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": null,
+      "citizenship": "any",
+      "kstate": false,
+      "unit": "Food science degree",
+      "amount": null,
+      "who": "Money to attend the IFT Annual Meeting and Expo. Open to international students.",
+      "deadline": {
+        "note": "The next cycle opens in January 2027."
+      },
+      "check": [
+        "Grad students must be pursuing a degree in food science."
+      ],
+      "source": "https://www.ift.org/advance-your-career/students/scholarships",
+      "checked": "2026-10-18"
+    },
+    "nres-graduate-fellowship": {
+      "needs": [
+        "money",
+        "research"
+      ],
+      "levels": [
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "amount": "$1,500, plus a separate $500 travel award you can apply for",
+      "who": "Doctoral students in any discipline whose research is in natural resources, environmental science, or sustainability.",
+      "deadline": {
+        "dates": [
+          "2026-04-10"
+        ],
+        "note": "The 2026 round closed Apr 10. The next date isn't posted."
+      },
+      "check": [
+        "You mentor senior undergrads in the NRES capstone class during the fellowship semester. Candidacy is preferred."
+      ],
+      "source": "https://www.k-state.edu/news/articles/2026/03/natural-resources-and-environmental-sciences-graduate-fellowship.html",
+      "checked": "2026-10-18"
+    },
+    "gsc-and-mags-graduate-teaching-awards": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "amount": "$500 scholarship; winners go on to the MAGS award ($750)",
+      "who": "Grad students who teach at K-State. One master's and one doctoral nominee per department.",
+      "deadline": {
+        "dates": [
+          "2026-09-29"
+        ],
+        "note": "2026 department nominations closed Sep 29."
+      },
+      "check": [
+        "Your department nominates you, with a head's letter and a teaching portfolio."
+      ],
+      "source": "https://www.k-state.edu/grad/student-success/awards/gsc-teaching.html",
+      "checked": "2026-10-18"
+    },
+    "k-state-scholarship-network": {
+      "needs": [
+        "money"
+      ],
+      "levels": null,
+      "citizenship": "any",
+      "kstate": true,
+      "amount": null,
+      "who": "One K-State profile that matches you to donor and department scholarships. Open to incoming, continuing, international, and graduate students.",
+      "deadline": {
+        "dates": [
+          "2026-03-15"
+        ],
+        "note": "The 2026 priority deadline for continuing, transfer, international, and grad students was Mar 15. 2027 dates aren't posted."
+      },
+      "check": [],
+      "source": "https://www.k-state.edu/sfa/scholarships-aid/scholarships/ksn/",
       "checked": "2026-10-18"
     }
   }

@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=4';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=5';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -26,12 +26,13 @@ for (const need of NEEDS) {
 
 function readAnswers() {
   const data = new FormData(form);
-  return { level: data.get('level') || '', citizen: data.get('citizen') || '', needs: data.getAll('needs') };
+  return { level: data.get('level') || '', citizen: data.get('citizen') || '', needs: data.getAll('needs'), kstate: $('kstate-only').checked };
 }
 
-function writeAnswers({ level = '', needs = [] }) {
+function writeAnswers({ level = '', needs = [], kstate = false }) {
   for (const input of form.querySelectorAll('input[name="level"]')) input.checked = input.value === level;
   for (const input of form.querySelectorAll('input[name="needs"]')) input.checked = needs.includes(input.value);
+  $('kstate-only').checked = kstate;
 }
 
 function safeUrl(url) {
@@ -49,6 +50,7 @@ function card(result) {
   const tags = make('p', 'card-tags');
   tags.append(make('span', '', KIND_LABELS[item.category] || 'Resource'));
   if (result.kstate) tags.append(make('span', 'tag-ks', 'K-State'));
+  if (result.unit) tags.append(make('span', 'tag-unit', result.unit));
   article.append(tags);
 
   const h4 = make('h4');
@@ -73,6 +75,12 @@ function card(result) {
     if (result.deadline.kind === 'date' && result.deadline.days <= 14) line.classList.add('urgent');
     article.append(line);
     if (result.deadline.kind === 'date' && result.deadline.note) article.append(make('p', 'when-note', result.deadline.note));
+  }
+
+  for (const line of result.warnings) {
+    const warn = make('p', 'warning', line);
+    article.classList.add('is-warned');
+    article.append(warn);
   }
 
   if (result.checks.length) {
@@ -137,11 +145,14 @@ function render() {
     const href = safeUrl(r.item.official_url);
     const name = href ? make('a', '', r.item.title) : make('span', '', r.item.title);
     if (href) { name.href = href; name.target = '_blank'; name.rel = 'noopener noreferrer'; }
-    li.append(name, make('span', 'reason', r.reasons[0]));
+    const why = make('span', 'reason', r.reasons[0]);
+    if (r.checked) why.append(make('small', '', ` Checked ${formatDate(r.checked)}.`));
+    li.append(name, why);
     outList.append(li);
   }
 
   $('empty-state').hidden = shown > 0 || !items.length;
+  $('ksn-note').hidden = !items.length || !(answers.needs.length === 0 || answers.needs.includes('money'));
   summarize(answers, shown, out.length);
 
   const hash = toHash(answers);
@@ -155,8 +166,9 @@ function summarize(answers, shown, out) {
   const bits = [];
   if (answers.level) bits.push(answers.level);
   if (answers.citizen === 'yes') bits.push('citizen or PR');
-  if (answers.citizen === 'no') bits.push('student visa');
+  if (answers.citizen === 'no') bits.push('not citizen or PR');
   if (answers.needs.length) bits.push(answers.needs.map((n) => NEEDS.find((x) => x.id === n).label).join(', '));
+  if (answers.kstate) bits.push('K-State only');
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
 }
@@ -164,9 +176,11 @@ function summarize(answers, shown, out) {
 form.addEventListener('change', () => { expanded.clear(); render(); });
 form.addEventListener('submit', (event) => event.preventDefault());
 $('search').addEventListener('input', render);
+$('kstate-only').addEventListener('change', () => { expanded.clear(); render(); });
 $('clear-search').addEventListener('click', () => { $('search').value = ''; render(); $('search').focus(); });
 $('start-over').addEventListener('click', () => {
   form.reset();
+  $('kstate-only').checked = false;
   $('search').value = '';
   expanded.clear();
   render();

@@ -8,8 +8,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Student Opportunities · Kinley Tenzin</title>
   <link rel="icon" href="assets/student-match-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/student-match.css?v=4">
-  <script type="module" src="assets/student-match.mjs?v=4"></script>
+  <link rel="stylesheet" href="assets/student-match.css?v=5">
+  <script type="module" src="assets/student-match.mjs?v=5"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -38,10 +38,10 @@
           <legend><span class="q-num">2</span> U.S. citizen or permanent resident?</legend>
           <div class="options">
             <label class="option"><input type="radio" name="citizen" value="yes"><span>Yes</span></label>
-            <label class="option"><input type="radio" name="citizen" value="no"><span>No, student visa</span></label>
+            <label class="option"><input type="radio" name="citizen" value="no"><span>No</span></label>
             <label class="option"><input type="radio" name="citizen" value="" checked><span>Skip</span></label>
           </div>
-          <p class="help" id="citizen-help">Many federal fellowships require it. This answer only sorts this page. It isn't saved or put in the link.</p>
+          <p class="help" id="citizen-help">Many federal fellowships require it. “No” covers any other status: F-1, J-1, H-4, DACA, and so on. This answer only sorts this page. It isn't saved or put in the link.</p>
         </fieldset>
         <fieldset class="question">
           <legend><span class="q-num">3</span> What do you need? <small>Pick any</small></legend>
@@ -57,13 +57,17 @@
     <section id="results" class="results" aria-labelledby="results-title">
       <div class="results-head">
         <h2 id="results-title" tabindex="-1">Your list</h2>
-        <div class="search"><label for="search">Search the list</label><input type="search" id="search" maxlength="120" placeholder="Try GRFP, Python, food…"></div>
+        <div class="tools">
+          <label class="option ks-toggle"><input type="checkbox" id="kstate-only"><span>K-State only</span></label>
+          <div class="search"><label for="search">Search the list</label><input type="search" id="search" maxlength="120" placeholder="Try GRFP, Python, food…"></div>
+        </div>
       </div>
+      <p id="ksn-note" class="ksn-note" hidden><b>Looking for scholarships?</b> Fill out your <a id="ksn-link" href="https://www.k-state.edu/sfa/scholarships-aid/scholarships/ksn/" target="_blank" rel="noopener noreferrer">K-State Scholarship Network</a> profile too. One profile matches you to donor and department scholarships, grad students included. This list covers what it doesn't.</p>
       <p id="data-error" class="error-note" role="alert" hidden></p>
       <div id="groups"></div>
       <div id="empty-state" class="empty-state" hidden><h3>Nothing matches that.</h3><p>Try fewer needs, or clear the search.</p><button type="button" class="button secondary" id="clear-search">Clear search</button></div>
       <details id="group-out" class="out-group" hidden>
-        <summary><span>Not for you</span> <span class="count" id="out-count">0</span><small>Ruled out by your answers. Each one says why.</small></summary>
+        <summary><span>Not for you</span> <span class="count" id="out-count">0</span><small>Ruled out by a checked rule. Each one says why and when it was checked.</small></summary>
         <ul id="out-list" class="out-list"></ul>
       </details>
     </section>
@@ -72,8 +76,8 @@
       <h2 id="how-title">How this works</h2>
       <div class="how-grid">
         <p><b>Checked facts.</b> <span id="checked-line">The big funding entries were checked on their official pages.</span> Each card says when. Everything else comes from my resource list and may be out of date.</p>
-        <p><b>Ruled out means a written rule.</b> A card moves to “Not for you” only when its own rules exclude your level or citizenship. Nothing is guessed from your answers.</p>
-        <p><b>Private.</b> Matching runs in your browser. No uploads, cookies, or tracking. Level and needs go in the address bar so you can bookmark the list; citizenship never does.</p>
+        <p><b>Ruled out means a checked rule.</b> A card moves to “Not for you” only when a rule read from its official page excludes your level or citizenship. Rules that come from my own notes and haven't been checked show as a warning on the card instead, and those cards sort last.</p>
+        <p><b>Private.</b> Matching runs in your browser. No uploads, cookies, or tracking. Level, needs, and the K-State toggle go in the address bar so you can bookmark the list; citizenship never does.</p>
       </div>
     </section>
     <noscript><p class="error-note">This list needs JavaScript. The full <a href="student-benefits.html">resource library</a> works without it.</p></noscript>

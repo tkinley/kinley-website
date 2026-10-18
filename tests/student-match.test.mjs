@@ -27,7 +27,7 @@ test('every checked entry exists, cites a source, and uses a known shape', () =>
   const ids = new Set(catalogue.opportunities.map((o) => o.id));
   const needIds = NEEDS.map((n) => n.id);
   const entries = Object.entries(checks.entries);
-  assert.ok(entries.length >= 25);
+  assert.ok(entries.length >= 40);
   for (const [id, e] of entries) {
     assert.ok(ids.has(id), `${id} is not in the catalogue`);
     assert.match(e.source, /^https:\/\//, id);
@@ -38,6 +38,7 @@ test('every checked entry exists, cites a source, and uses a known shape', () =>
     for (const d of e.deadline.dates || []) assert.match(d, /^\d{4}-\d{2}-\d{2}$/, id);
     for (const d of e.deadline.annual || []) assert.match(d, /^\d{2}-\d{2}$/, id);
     assert.ok(e.who && e.who.length < 260, id);
+    assert.ok(!('unit' in e) || (typeof e.unit === 'string' && e.unit.length < 40), id);
   }
 });
 
@@ -71,6 +72,40 @@ test('international-only awards leave a citizen list and stay for visa holders',
     assert.equal(evaluate(byId(id), { citizen: 'yes' }, TODAY).group, 'out', id);
     assert.notEqual(evaluate(byId(id), { citizen: 'no' }, TODAY).group, 'out', id);
   }
+});
+
+test('only checked rules exclude; rules from unchecked notes become warnings', () => {
+  const grad = byId('graduate-leadership-development');
+  assert.equal(grad.check, null);
+  const r = evaluate(grad, { level: 'Undergraduate' }, TODAY);
+  assert.notEqual(r.group, 'out');
+  assert.match(r.warnings[0], /My notes list this for master's students and PhD students only\. Not checked yet\./);
+  const g = groupResults(items, { level: 'Undergraduate' }, TODAY);
+  assert.ok(g.out.every((x) => x.item.check), 'every exclusion comes from the checked file');
+  for (const list of [g.anytime, g.dates]) {
+    const firstWarned = list.findIndex((x) => x.warnings.length);
+    if (firstWarned >= 0) assert.ok(list.slice(firstWarned).every((x) => x.warnings.length), 'warned cards sort last');
+  }
+});
+
+test('K-State only filter and K-State-first order in the undated groups', () => {
+  const g = groupResults(items, { level: 'PhD', needs: ['money'], kstate: true }, TODAY);
+  assert.ok(Object.values(g).flat().every((r) => r.kstate));
+  const all = groupResults(items, { level: 'PhD', needs: ['money'] }, TODAY);
+  for (const list of [all.anytime, all.dates]) {
+    const firstOutside = list.findIndex((r) => !r.kstate);
+    if (firstOutside >= 0) assert.ok(list.slice(firstOutside).every((r) => !r.kstate || r.warnings.length), 'K-State entries come first');
+  }
+  assert.deepEqual(all.soon.map((r) => r.deadline.date), [...all.soon.map((r) => r.deadline.date)].sort(), 'dated groups stay in date order');
+});
+
+test('unit-limited awards carry a tag but are never excluded by it', () => {
+  for (const id of ['l-evans-roth-graduate-research-award', 'james-e-ackert-presentation-award', 'bgsa-finishing-grants']) {
+    const r = evaluate(byId(id), { level: 'PhD' }, TODAY);
+    assert.equal(r.unit, 'Division of Biology only', id);
+    assert.notEqual(r.group, 'out', id);
+  }
+  assert.equal(evaluate(byId('christopher-c-smith-evolutionary-biology-award'), { level: "Master's" }, TODAY).reasons[0], 'Open to PhD students only.');
 });
 
 test('level rules exclude with a readable reason', () => {
@@ -122,11 +157,11 @@ test('needs filter, and nothing is lost without answers', () => {
 });
 
 test('hash keeps level and needs, never citizenship', () => {
-  const hash = toHash({ level: 'PhD', citizen: 'no', needs: ['money', 'travel'] });
-  assert.equal(hash, '#level=phd&needs=money,travel');
-  assert.doesNotMatch(hash, /citizen|visa|no/);
-  assert.deepEqual(fromHash(hash), { level: 'PhD', needs: ['money', 'travel'] });
-  assert.deepEqual(fromHash('#scholarships'), { level: '', needs: ['money'] });
-  assert.deepEqual(fromHash('#level=bogus&needs=money,<script>'), { level: '', needs: ['money'] });
+  const hash = toHash({ level: 'PhD', citizen: 'no', needs: ['money', 'travel'], kstate: true });
+  assert.equal(hash, '#level=phd&needs=money,travel&ks=1');
+  assert.doesNotMatch(hash, /citizen|visa|=no/);
+  assert.deepEqual(fromHash(hash), { level: 'PhD', needs: ['money', 'travel'], kstate: true });
+  assert.deepEqual(fromHash('#scholarships'), { level: '', needs: ['money'], kstate: false });
+  assert.deepEqual(fromHash('#level=bogus&needs=money,<script>'), { level: '', needs: ['money'], kstate: false });
   assert.equal(toHash({}), '');
 });

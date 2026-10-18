@@ -1,23 +1,25 @@
 # Student Opportunities
 
-`student-match.html` sorts K-State student resources by three answers: academic level, whether you're a U.S. citizen or permanent resident, and what you need. It is plain static HTML, CSS, JavaScript, and JSON on GitHub Pages. No build step, backend, account, uploads, or AI service.
+`student-match.html` sorts opportunities for K-State students by three answers: academic level, whether you're a U.S. citizen or permanent resident, and what you need. The audience is K-State students; the list includes both K-State resources and outside programs they can use. It is plain static HTML, CSS, JavaScript, and JSON on GitHub Pages. No build step, backend, account, uploads, or AI service.
 
 ## How it works
 
-1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No/student visa, Skip), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap.
+1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No, Skip; "No" covers every other status, not just student visas), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap. A "K-State only" toggle hides outside programs.
 2. **Five groups.**
    - *Apply soon*: a confirmed deadline in the next 60 days.
    - *Open anytime*: rolling applications and ongoing benefits.
    - *Later this year*: a confirmed deadline more than 60 days out.
    - *Check the dates*: the round is closed, the next date isn't posted, or nobody has checked the dates yet.
-   - *Not for you* (collapsed): ruled out by a rule written in the data, with the reason shown.
-3. **Ruling out is explicit.** An entry moves to *Not for you* only when its own data excludes the chosen level or citizenship answer, or it can't apply to any current student (for example, a prize that needs a finished PhD). Skipping the citizenship question rules nothing out; restricted entries show the rule as something to check instead.
-4. **No invented dates.** Only dates read from an official page (or a verified catalogue date) are shown as deadlines. Unchecked funding entries say "Dates not checked yet."
+   - *Not for you* (collapsed): ruled out by a checked rule, with the reason and the check date.
+3. **Only checked rules exclude.** An entry moves to *Not for you* only when a rule from `data/eligibility-checks.json` (read from the official page) excludes the chosen level or citizenship, or the entry can't apply to any current student. The same kind of rule coming from the unchecked catalogue (level limits and "international students" flags copied from the original cards) shows as a warning on the card ("My notes list this for... Not checked yet") and the card sorts to the bottom of its group. Skipping the citizenship question rules nothing out; restricted entries show the rule as something to check.
+4. **Order.** Dated groups sort by deadline. In *Open anytime* and *Check the dates*, K-State entries come first, then checked entries. Cards limited to one department, college, or degree carry a tag such as "Division of Biology only"; the tag never excludes anyone.
+5. **Scholarship Network pointer.** When money is selected (or nothing is), a note points to the K-State Scholarship Network, which matches one profile to donor and department scholarships. This list is meant to cover what that doesn't.
+6. **No invented dates.** Only dates read from an official page (or a verified catalogue date) are shown as deadlines. Unchecked funding entries say "Dates not checked yet."
 
 ## Data
 
 - `data/student-opportunities.json`: the catalogue (158 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
-- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (27 as of Oct 18, 2026). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
+- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (44 as of Oct 18, 2026, including the ISSS international scholarships, the Division of Biology awards, and the IFT and NRES awards). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
 
 Overlay fields:
 
@@ -30,6 +32,7 @@ Overlay fields:
 | `deadline` | `dates` (ISO, as published), `annual` (`MM-DD` cycles the source lists without a year), `rolling: true`, `label`, `note`. No dates and no `rolling` means the next date isn't posted. |
 | `check` | Short lines shown under "before you apply." |
 | `exclude` | Rules the entry out for every current student, with this reason. |
+| `unit` | Short tag for entries limited to one department, college, or degree. Display only. |
 | `title`, `url` | Optional display overrides. |
 | `source`, `source_note`, `checked` | Where and when the facts were read. |
 
@@ -38,7 +41,7 @@ To refresh: open each `source`, update the fields and `checked`, then bump `chec
 ## Privacy
 
 - Matching runs in the browser. The page fetches only its own two JSON files.
-- Level and needs are written to the URL hash so a list can be bookmarked or shared. The citizenship answer is never written to the URL, storage, or cookies, and is reset when a page is restored from the back-forward cache.
+- Level, needs, and the K-State toggle are written to the URL hash so a list can be bookmarked or shared. The citizenship answer is never written to the URL, storage, or cookies, and is reset when a page is restored from the back-forward cache.
 - A strict CSP limits everything to this origin, disables workers, objects, and form submission. External links open with `noopener noreferrer`.
 
 ## Preview and tests
@@ -55,7 +58,7 @@ npm install
 npm run test:browser
 ```
 
-The unit tests cover the catalogue-to-library match, the overlay's shape and sources, citizenship and level rules, deadline selection (next date, annual cycles, rolling, closed), grouping, the needs filter, and the hash format. The browser test pins the date to Oct 18, 2026 and checks the three-tap flow, reasons in *Not for you*, citizenship staying out of the URL, bookmarked hashes and the old `#scholarships` link, search, keyboard use, no storage or third-party requests, data-load fallbacks, the funding redirect, and automated WCAG A/AA plus overflow checks at 320, 390, 768, and 1440 px. Set `MATCHER_BROWSER` to use a specific Chrome or Edge.
+The unit tests cover the catalogue-to-library match, the overlay's shape and sources, citizenship and level rules, checked rules versus unchecked warnings, the K-State filter and ordering, unit tags, deadline selection (next date, annual cycles, rolling, closed), grouping, the needs filter, and the hash format. The browser test pins the date to Oct 18, 2026 and checks the three-tap flow, checked reasons in *Not for you*, warnings on unchecked cards, the K-State toggle, the Scholarship Network note, citizenship staying out of the URL, bookmarked hashes and the old `#scholarships` link, search, keyboard use, no storage or third-party requests, data-load fallbacks, the funding redirect, and automated WCAG A/AA plus overflow checks at 320, 390, 768, and 1440 px. Set `MATCHER_BROWSER` to use a specific Chrome or Edge.
 
 ## History
 

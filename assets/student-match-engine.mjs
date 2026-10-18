@@ -132,20 +132,27 @@ const CITIZEN_TEXT = {
   us_citizen_only: 'U.S. citizens only. Permanent residents can’t apply.',
 };
 
-// answers: { level: '' | 'Undergraduate' | "Master's" | 'PhD', citizen: '' | 'yes' | 'no', needs: [] }
+// answers: { level: '' | 'Undergraduate' | "Master's" | 'PhD', citizen: '' | 'yes' | 'no', needs: [], kstate: false }
+//
+// Only rules from the checked-facts file can exclude ("reasons"). The same
+// kind of rule coming from the unchecked catalogue becomes a warning instead:
+// the card stays in its group, says the rule is unverified, and sorts last.
 export function evaluate(item, answers = {}, today = localToday()) {
   const level = levelValues.includes(answers.level) ? answers.level : '';
   const citizen = ['yes', 'no'].includes(answers.citizen) ? answers.citizen : '';
+  const checked = Boolean(item.check);
   const reasons = [];
+  const warnings = [];
   const checks = [];
+  const conflict = (text) => (checked ? reasons : warnings).push(text);
 
   if (item.check?.exclude) reasons.push(item.check.exclude);
 
   const { levels, exclude } = levelsOf(item);
   if (level && levels && !levels.includes(level)) {
-    reasons.push(item.check?.level_reason || `Open to ${listLevels(levels)} only.`);
+    conflict(checked ? item.check.level_reason || `Open to ${listLevels(levels)} only.` : `My notes list this for ${listLevels(levels)} only. Not checked yet.`);
   }
-  if (level && exclude?.includes(level)) reasons.push(`Not open to ${level} students.`);
+  if (level && exclude?.includes(level)) conflict(`My notes say this isn't open to ${level} students. Not checked yet.`);
 
   const rule = citizenshipOf(item);
   if (rule === 'us_only' || rule === 'us_citizen_only') {
@@ -153,7 +160,7 @@ export function evaluate(item, answers = {}, today = localToday()) {
     else if (citizen === '' || rule === 'us_citizen_only') checks.push(CITIZEN_TEXT[rule]);
   }
   if (rule === 'international_only') {
-    if (citizen === 'yes') reasons.push('For international students.');
+    if (citizen === 'yes') conflict(checked ? 'For international students.' : 'My notes list this for international students. Not checked yet.');
     else if (citizen === '') checks.push('For international students.');
   }
 
@@ -171,6 +178,8 @@ export function evaluate(item, answers = {}, today = localToday()) {
     item,
     group,
     reasons,
+    warnings,
+    unit: item.check?.unit || '',
     checks: [...new Set(checks)],
     deadline,
     needs: needsOf(item),
@@ -209,11 +218,17 @@ export function deadlineText(result) {
 const haystack = (r) => [r.item.title, r.who, r.item.description, r.item.notes, r.amount, ...(r.item.tags || [])].join(' ').toLowerCase();
 
 const byTitle = (a, b) => a.item.title.localeCompare(b.item.title);
+const flag = (x) => Number(Boolean(x));
+// Unverified conflicts always sink to the bottom of their group.
+const warned = (a, b) => flag(a.warnings.length) - flag(b.warnings.length);
+const byDate = (a, b) => warned(a, b) || a.deadline.days - b.deadline.days || byTitle(a, b);
+// In the long, undated groups, K-State entries come first, then checked ones.
+const local = (a, b) => warned(a, b) || flag(b.kstate) - flag(a.kstate) || flag(!a.item.check) - flag(!b.item.check);
 const SORTS = {
-  soon: (a, b) => a.deadline.days - b.deadline.days || byTitle(a, b),
-  later: (a, b) => a.deadline.days - b.deadline.days || byTitle(a, b),
-  anytime: (a, b) => Number(!a.item.check) - Number(!b.item.check) || Number(a.item.category !== 'scholarships') - Number(b.item.category !== 'scholarships') || byTitle(a, b),
-  dates: (a, b) => Number(!a.item.check) - Number(!b.item.check) || byTitle(a, b),
+  soon: byDate,
+  later: byDate,
+  anytime: (a, b) => local(a, b) || flag(a.item.category !== 'scholarships') - flag(b.item.category !== 'scholarships') || byTitle(a, b),
+  dates: (a, b) => local(a, b) || byTitle(a, b),
   out: byTitle,
 };
 
@@ -226,6 +241,7 @@ export function groupResults(items, answers = {}, today = localToday(), query = 
   for (const item of items) {
     const r = evaluate(item, answers, today);
     if (needs.length && !r.needs.some((n) => needs.includes(n))) continue;
+    if (answers.kstate && !r.kstate) continue;
     if (q && !haystack(r).includes(q)) continue;
     groups[r.group].push(r);
   }
@@ -233,22 +249,23 @@ export function groupResults(items, answers = {}, today = localToday(), query = 
   return groups;
 }
 
-// Level and needs live in the URL hash so a list can be bookmarked or shared.
-// The citizenship answer is never written there.
+// Level, needs, and the K-State-only toggle live in the URL hash so a list
+// can be bookmarked or shared. The citizenship answer is never written there.
 export function toHash(answers = {}) {
   const parts = [];
   const level = LEVELS.find((l) => l.value === answers.level);
   if (level) parts.push(`level=${level.id}`);
   const needs = (answers.needs || []).filter((n) => NEEDS.some((x) => x.id === n));
   if (needs.length) parts.push(`needs=${needs.join(',')}`);
+  if (answers.kstate) parts.push('ks=1');
   return parts.length ? `#${parts.join('&')}` : '';
 }
 
 export function fromHash(hash = '') {
   const raw = String(hash).replace(/^#/, '');
-  if (raw === 'scholarships') return { level: '', needs: ['money'] };
+  if (raw === 'scholarships') return { level: '', needs: ['money'], kstate: false };
   const params = new URLSearchParams(raw);
   const level = LEVELS.find((l) => l.id === params.get('level'))?.value || '';
   const needs = (params.get('needs') || '').split(',').filter((n) => NEEDS.some((x) => x.id === n));
-  return { level, needs: [...new Set(needs)] };
+  return { level, needs: [...new Set(needs)], kstate: params.get('ks') === '1' };
 }
