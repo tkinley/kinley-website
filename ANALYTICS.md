@@ -1,31 +1,44 @@
-# Student Notes visitor statistics
+# Site visitor statistics (private)
 
-The widget uses GoatCounter's public page-view counter. It records only the
-published Student Notes page, not local previews, other pages, or forks.
-No API keys or passwords belong in this repository.
+Page views are measured with GoatCounter on three pages: the homepage
+(`index.html`), the Student Opportunities page (`student-match.html`), and the
+resource library (`student-benefits.html`). Each page loads the standard
+tracker tag:
 
-## Connect the account
+```html
+<script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+```
 
-1. Create your account at https://www.goatcounter.com/signup. Suggested account
-   name: `kinley-notes`; site domain: `tkinley.github.io`.
-2. In GoatCounter's site settings, enable **Allow adding visitor counts on your
-   website**. This exposes aggregate counts for use by the widget. Keep the
-   detailed dashboard private if you do not want to share its other statistics.
-3. Set `siteCode` in `assets/visitor-stats-config.js` to your actual account name
-   (the part before `.goatcounter.com`). The widget stays hidden until this is set.
-4. Publish the updated config and visit the live Student Notes page once.
-5. Check your GoatCounter dashboard to confirm the visit arrived. The public
-   counters can take up to four hours to refresh.
+## Privacy
 
-Open `visitor-stats-preview.html` to see the design without sending analytics
-requests. Its dashes represent unavailable data, not zero visits.
+- No cookies. GoatCounter does not use cookies or persistent identifiers.
+- IP addresses are not stored: location is resolved on arrival and kept only
+  as totals, so visits cannot be traced back to a person.
+- The dashboard at `https://kinley-site.goatcounter.com/` is private. The
+  public visitor counter ("Allow adding visitor counts on your website") stays
+  OFF, and the old public counter widget was removed from the resource
+  library page.
+- The Student Opportunities page says this in its own words: anonymous visit
+  counts (GoatCounter), no cookies, no IP addresses stored.
+- Referrer policy is `strict-origin-when-cross-origin`: GoatCounter sees
+  which site a visit came from (for example instagram.com), never the full
+  referring URL.
 
-The public widget displays page views since tracking began, over the past 30
-days, and over the past 7 days. These are not unique-person counts. Detailed
-statistics and estimated unique visits are available in GoatCounter itself.
-Earlier visits cannot be recovered by this integration.
+## Limits
+
+- Location comes from the IP address, so it is approximate. VPNs and some
+  phone carriers report the wrong state, and campus Wi-Fi shows as Kansas.
+- Ad blockers such as uBlock Origin block GoatCounter, so counts undercount.
+  Use the numbers for trends, not exact totals.
+- GoatCounter reports where visits came from, never who visited.
+
+## Notes for maintainers
+
+- `assets/visitor-stats.js`, `assets/visitor-stats-config.js`,
+  `assets/visitor-stats.css`, and `visitor-stats-preview.html` belonged to the
+  retired public counter widget and are no longer referenced by any page.
+- The browser test (`npm run test:browser`) stubs the GoatCounter script and
+  counter endpoint so test runs never send real pageviews, and asserts the
+  tracker tag is present on the Student Opportunities page.
 
 Official setup: https://www.goatcounter.com/help/start
-
-Official public counter documentation:
-https://www.goatcounter.com/help/visitor-counter

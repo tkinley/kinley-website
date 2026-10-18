@@ -31,6 +31,10 @@ const pass = (name) => console.log(`PASS ${name}`);
       Date = class extends RealDate { constructor(...a) { super(...(a.length ? a : [fixed])); } static now() { return fixed; } };
     });
     const page = await context.newPage();
+    // Stub GoatCounter: the tracker tag must be present, but tests must not
+    // send real pageviews or trip the console-error listener on a blocked load.
+    await page.route('https://gc.zgo.at/count.js', (r) => r.fulfill({ contentType: 'application/javascript', body: '/* goatcounter stubbed in tests */' }));
+    await page.route('https://kinley-site.goatcounter.com/count*', (r) => r.fulfill({ status: 200, body: '' }));
     const requests = [], errors = [];
     page.on('request', (r) => requests.push({ url: r.url(), method: r.method() }));
     page.on('pageerror', (e) => errors.push(e.message));
@@ -140,10 +144,12 @@ const pass = (name) => console.log(`PASS ${name}`);
 
     const stored = await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length, cookie: document.cookie }));
     assert.deepEqual(stored, { local: 0, session: 0, cookie: '' });
-    assert.ok(requests.every((r) => r.url.startsWith(origin) && r.method === 'GET'), JSON.stringify(requests.filter((r) => !r.url.startsWith(origin) || r.method !== 'GET')));
+    assert.equal(await page.locator('script[data-goatcounter="https://kinley-site.goatcounter.com/count"]').count(), 1, 'goatcounter tracker tag present');
+    const gcAllowed = (r) => r.url.startsWith('https://gc.zgo.at/') || r.url.startsWith('https://kinley-site.goatcounter.com/');
+    assert.ok(requests.every((r) => (r.url.startsWith(origin) && r.method === 'GET') || gcAllowed(r)), JSON.stringify(requests.filter((r) => !((r.url.startsWith(origin) && r.method === 'GET') || gcAllowed(r)))));
     assert.ok(!requests.some((r) => /pdfjs|mammoth|worker/.test(r.url)));
     assert.deepEqual(errors, []);
-    pass('no storage, no cookies, same-origin GETs only, no parser downloads, no page errors');
+    pass('no storage, no cookies, own-origin GETs plus stubbed GoatCounter, no parser downloads, no page errors');
 
     const broken = await context.newPage();
     await broken.route('**/student-opportunities.json', (r) => r.fulfill({ status: 500, body: '' }));
