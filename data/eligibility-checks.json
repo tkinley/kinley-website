@@ -7,7 +7,7 @@
     "levels": "Academic levels that can apply (Undergraduate, Master's, PhD). null means the source doesn't limit it.",
     "level_reason": "Optional text shown when the chosen level is not in 'levels'.",
     "citizenship": "us_only (citizens, nationals, permanent residents) | us_citizen_only (permanent residents excluded) | international_only | any | not_stated",
-    "deadline": "dates: ISO dates as published; annual: MM-DD cycles the source lists without a year; rolling: true; note: plain words. No dates and no rolling means the next date is not posted.",
+    "deadline": "dates: ISO dates as published; annual: MM-DD cycles the source lists without a year; rolling: true; note: plain words. No dates and no rolling means the next date is not posted. annual dates are shown as likely, never confirmed.",
     "exclude": "Optional reason that rules the entry out for every current student.",
     "unit": "Optional short tag for entries limited to one department, college, or degree (shown on the card, never used to exclude)."
   },
@@ -993,6 +993,32 @@
       },
       "check": [],
       "source": "https://www.k-state.edu/sfa/scholarships-aid/scholarships/ksn/",
+      "checked": "2026-10-18"
+    },
+    "sdur-research-and-travel-awards": {
+      "needs": [
+        "money",
+        "research",
+        "travel"
+      ],
+      "levels": [
+        "Undergraduate"
+      ],
+      "citizenship": "not_stated",
+      "kstate": true,
+      "amount": "Up to $500 for research, or $200 to $500 for conference travel",
+      "who": "Undergrads doing mentored research in spring 2027, or traveling to a research conference.",
+      "deadline": {
+        "dates": [
+          "2026-11-10"
+        ],
+        "label": "noon",
+        "note": "Application and your mentor's letter are both due."
+      },
+      "check": [
+        "You need a letter from your faculty mentor, and you must be enrolled for credit to receive research funds."
+      ],
+      "source": "https://www.k-state.edu/leadership/scholar-development-and-undergraduate-research/undergrad-research/grant-awards/",
       "checked": "2026-10-18"
     }
   }

@@ -3385,6 +3385,72 @@
         "categories": [],
         "original_title": "Phi Kappa Phi Love of Learning"
       }
+    },
+    {
+      "id": "sdur-research-and-travel-awards",
+      "title": "Undergraduate Research and Travel Awards (SDUR)",
+      "description": "Up to $500 for a mentored research project or for travel to a research conference, from Scholar Development and Undergraduate Research.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "travel",
+        "financial-support"
+      ],
+      "benefit_type": "Up to $500",
+      "official_url": "https://www.k-state.edu/leadership/scholar-development-and-undergraduate-research/undergrad-research/grant-awards/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "Undergraduate"
+            ],
+            "label": "Listed academic level",
+            "source_text": "Undergraduate research office; research funds are for students doing mentored research in spring 2027."
+          }
+        ],
+        "unknown": [
+          "A faculty mentor letter is required.",
+          "Students must be enrolled for credit to receive research funds."
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "Undergraduate"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": "2026-11-10",
+        "verified": true,
+        "reported_date": "2026-11-10",
+        "source_text": "Applications and letters of reference due noon on Tuesday, November 10 (spring 2027 funding)."
+      },
+      "last_verified": "2026-10-18",
+      "tags": [
+        "Scholarships",
+        "Financial Support",
+        "Research",
+        "Travel"
+      ],
+      "notes": "Research awards up to $500 for mentored research in spring 2027. Travel awards up to $500 (points-based, $200 to $500) for research conferences; group travel up to $2,000. Each application needs a faculty mentor letter.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": "2026-11-10"
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "kstate",
+          "research",
+          "money",
+          "deadline"
+        ],
+        "original_title": "Research and Travel Funding"
+      }
     }
   ]
 }

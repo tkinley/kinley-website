@@ -4,22 +4,23 @@
 
 ## How it works
 
-1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No, Skip; "No" covers every other status, not just student visas), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap. A "K-State only" toggle hides outside programs.
-2. **Five groups.**
-   - *Apply soon*: a confirmed deadline in the next 60 days.
-   - *Open anytime*: rolling applications and ongoing benefits.
-   - *Later this year*: a confirmed deadline more than 60 days out.
-   - *Check the dates*: the round is closed, the next date isn't posted, or nobody has checked the dates yet.
+1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No, Skip; "No" covers every other status, not just student visas, so international-only awards stay visible for "No" with a line asking students who aren't on a student or exchange visa to confirm their status counts), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap. A "K-State only" toggle hides outside programs.
+2. **Groups.**
+   - *Apply soon*: a deadline in the next 60 days.
+   - *Open anytime*: rolling programs checked on their official pages. Nothing unchecked goes here.
+   - *Later deadlines*: more than 60 days out.
+   - *Ongoing benefits*: unchecked tools and services with no deadline in my notes. The group note and each card say they haven't been re-checked.
+   - *Check the dates*: the round is closed, the next date isn't posted, the dates haven't been checked, or my notes mention an end date or a cohort (time-limited offers such as ChatGPT Plus, yearly cohorts such as Staley Food Security Scholars).
    - *Not for you* (collapsed): ruled out by a checked rule, with the reason and the check date.
 3. **Only checked rules exclude.** An entry moves to *Not for you* only when a rule from `data/eligibility-checks.json` (read from the official page) excludes the chosen level or citizenship, or the entry can't apply to any current student. The same kind of rule coming from the unchecked catalogue (level limits and "international students" flags copied from the original cards) shows as a warning on the card ("My notes list this for... Not checked yet") and the card sorts to the bottom of its group. Skipping the citizenship question rules nothing out; restricted entries show the rule as something to check.
-4. **Order.** Dated groups sort by deadline. In *Open anytime* and *Check the dates*, K-State entries come first, then checked entries. Cards limited to one department, college, or degree carry a tag such as "Division of Biology only"; the tag never excludes anyone.
+4. **Order.** Dated groups sort by deadline. In the undated groups, K-State entries come first, then checked entries. Cards limited to one department, college, or degree carry a tag such as "Division of Biology only"; the tag never excludes anyone.
 5. **Scholarship Network pointer.** When money is selected (or nothing is), a note points to the K-State Scholarship Network, which matches one profile to donor and department scholarships. This list is meant to cover what that doesn't.
-6. **No invented dates.** Only dates read from an official page (or a verified catalogue date) are shown as deadlines. Unchecked funding entries say "Dates not checked yet."
+6. **No invented dates.** Only dates read from an official page (or a verified catalogue date) are shown as deadlines. A yearly cycle the source gives without a year (Sigma Xi's Mar 15 / Oct 1) is shown as "Likely Mar 15, 2027 (yearly cycle, not confirmed)." Timing copied from my notes is quoted as "My notes: ... Not checked yet." Unchecked funding entries with no notes say "Dates not checked yet."
 
 ## Data
 
-- `data/student-opportunities.json`: the catalogue (158 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
-- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (44 as of Oct 18, 2026, including the ISSS international scholarships, the Division of Biology awards, and the IFT and NRES awards). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
+- `data/student-opportunities.json`: the catalogue (159 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
+- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (45 as of Oct 18, 2026, including the ISSS international scholarships, the Division of Biology awards, the IFT and NRES awards, and the SDUR undergraduate research and travel awards). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
 
 Overlay fields:
 
@@ -63,3 +64,5 @@ The unit tests cover the catalogue-to-library match, the overlay's shape and sou
 ## History
 
 The first version read a CV (PDF.js and Mammoth in a worker) to pre-fill a long profile form. It found only a few keywords, labelled every entry "needs verification," and refused to use citizenship, so federal fellowships still showed for visa holders. It was replaced on Oct 18, 2026 by the three-question flow and the checked-facts file; the parsers (about 3.4 MB) were removed.
+
+To add an opportunity that isn't in the resource library, add a record to `data/student-funding-updates.json` (source sheet "Manual addition"), run `node scripts/extract-student-opportunities.mjs`, then add its checked facts to `data/eligibility-checks.json`.

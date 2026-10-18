@@ -19,9 +19,10 @@ export const NEEDS = [
 
 export const GROUPS = [
   { id: 'soon', title: 'Apply soon', note: 'Deadlines in the next 60 days.' },
-  { id: 'anytime', title: 'Open anytime', note: 'Rolling applications and ongoing benefits.' },
-  { id: 'later', title: 'Later this year', note: 'Confirmed deadlines more than 60 days out.' },
-  { id: 'dates', title: 'Check the dates', note: 'This round is closed or the next date isn’t posted yet.' },
+  { id: 'anytime', title: 'Open anytime', note: 'Rolling programs, checked on their official pages.' },
+  { id: 'later', title: 'Later deadlines', note: 'More than 60 days out.' },
+  { id: 'benefits', title: 'Ongoing benefits', note: 'Tools and services with no deadline in my notes. Not re-checked, so confirm on the official page.' },
+  { id: 'dates', title: 'Check the dates', note: 'The round is closed, the next date isn’t posted, or the dates haven’t been checked.' },
 ];
 
 export const SOON_DAYS = 60;
@@ -127,6 +128,10 @@ export function deadlineState(item, today) {
   return { kind: 'unchecked', note: '' };
 }
 
+// Unchecked benefits whose notes mention an end date or a cohort aren't
+// "anytime": they belong with the entries whose dates need checking.
+const TIMED = /\bdeadline\b|cohort/i;
+
 const CITIZEN_TEXT = {
   us_only: 'U.S. citizens, nationals, and permanent residents only.',
   us_citizen_only: 'U.S. citizens only. Permanent residents can’t apply.',
@@ -161,7 +166,8 @@ export function evaluate(item, answers = {}, today = localToday()) {
   }
   if (rule === 'international_only') {
     if (citizen === 'yes') conflict(checked ? 'For international students.' : 'My notes list this for international students. Not checked yet.');
-    else if (citizen === '') checks.push('For international students.');
+    else if (citizen === 'no') checks.push('For international students. If you’re not on a student or exchange visa, confirm your status counts.');
+    else checks.push('For international students.');
   }
 
   for (const line of item.check?.check || []) checks.push(line);
@@ -172,7 +178,8 @@ export function evaluate(item, answers = {}, today = localToday()) {
   else if (deadline.kind === 'date') group = deadline.days <= SOON_DAYS ? 'soon' : 'later';
   else if (deadline.kind === 'rolling') group = 'anytime';
   else if (deadline.kind === 'closed') group = 'dates';
-  else group = item.category === 'scholarships' ? 'dates' : 'anytime';
+  else if (item.category === 'scholarships' || TIMED.test(item.deadline?.source_text || '')) group = 'dates';
+  else group = 'benefits';
 
   return {
     item,
@@ -207,11 +214,17 @@ export function deadlineText(result) {
   const d = result.deadline;
   if (d.kind === 'date') {
     const left = d.days === 0 ? 'due today' : d.days === 1 ? '1 day left' : `${d.days} days left`;
-    const when = d.annual ? `Next round ${formatDate(d.date)}` : `Due ${formatDate(d.date)}`;
-    return [when + (d.label ? ` (${d.label})` : ''), left].join(' · ');
+    // A yearly cycle the source lists without a year is a likely date, not a confirmed one.
+    if (d.annual) return [`Likely ${formatDate(d.date)} (yearly cycle, not confirmed)`, left].join(' · ');
+    return [`Due ${formatDate(d.date)}` + (d.label ? ` (${d.label})` : ''), left].join(' · ');
   }
   if (d.kind === 'rolling') return d.note || 'Rolling. Apply anytime.';
   if (d.kind === 'closed') return d.note || (d.last ? `Last round closed ${formatDate(d.last)}. Next date not posted.` : 'Last round closed. Next date not posted.');
+  const notes = String(result.item.deadline?.source_text || '').trim();
+  if (notes) {
+    const short = notes.length > 110 ? `${notes.slice(0, 107).replace(/\s+\S*$/, '')}…` : notes;
+    return `My notes: ${/[.!?…]$/.test(short) ? short : `${short}.`} Not checked yet.`;
+  }
   return result.item.category === 'scholarships' ? 'Dates not checked yet. See the official page.' : '';
 }
 
@@ -228,6 +241,7 @@ const SORTS = {
   soon: byDate,
   later: byDate,
   anytime: (a, b) => local(a, b) || flag(a.item.category !== 'scholarships') - flag(b.item.category !== 'scholarships') || byTitle(a, b),
+  benefits: (a, b) => local(a, b) || byTitle(a, b),
   dates: (a, b) => local(a, b) || byTitle(a, b),
   out: byTitle,
 };
@@ -237,7 +251,7 @@ const SORTS = {
 export function groupResults(items, answers = {}, today = localToday(), query = '') {
   const needs = (answers.needs || []).filter((n) => NEEDS.some((x) => x.id === n));
   const q = String(query).toLowerCase().trim();
-  const groups = { soon: [], anytime: [], later: [], dates: [], out: [] };
+  const groups = { soon: [], anytime: [], later: [], benefits: [], dates: [], out: [] };
   for (const item of items) {
     const r = evaluate(item, answers, today);
     if (needs.length && !r.needs.some((n) => needs.includes(n))) continue;

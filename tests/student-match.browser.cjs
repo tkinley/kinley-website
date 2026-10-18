@@ -43,6 +43,10 @@ const pass = (name) => console.log(`PASS ${name}`);
     assert.match(await page.locator('#group-soon .card').first().innerText(), /1 day left/);
     assert.equal(await page.locator('input[type=file]').count(), 0);
     await page.screenshot({ path: path.join(out, 'matcher-desktop.png'), fullPage: false });
+    assert.deepEqual(await page.locator('.group h3').evaluateAll((n) => n.map((x) => x.firstChild.textContent)), ['Apply soon', 'Open anytime', 'Later deadlines', 'Ongoing benefits', 'Check the dates']);
+    const anytimeMeta = await page.locator('#group-anytime .card .meta').allInnerTexts();
+    assert.ok(anytimeMeta.length && anytimeMeta.every((t) => /^Checked /.test(t)));
+    assert.match(await page.locator('.lede').innerText(), /sorted by deadline/);
     pass('loads with grouped results, no upload control, GRFP first in Apply soon');
 
     await page.locator('label.option', { hasText: /^PhD$/ }).click();

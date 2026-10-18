@@ -15,7 +15,7 @@ test('catalogue cards still match the resource library one to one', async () => 
   const html = await readFile(new URL('../student-benefits.html', import.meta.url), 'utf8');
   const cards = [...html.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
   assert.equal(cards.length, 108);
-  assert.equal(catalogue.opportunities.length, 158);
+  assert.equal(catalogue.opportunities.length, 159);
   assert.equal(new Set(catalogue.opportunities.map((o) => o.id)).size, catalogue.opportunities.length);
   for (const [i, card] of cards.entries()) {
     const o = catalogue.opportunities[i].original_card || catalogue.opportunities[i];
@@ -82,7 +82,7 @@ test('only checked rules exclude; rules from unchecked notes become warnings', (
   assert.match(r.warnings[0], /My notes list this for master's students and PhD students only\. Not checked yet\./);
   const g = groupResults(items, { level: 'Undergraduate' }, TODAY);
   assert.ok(g.out.every((x) => x.item.check), 'every exclusion comes from the checked file');
-  for (const list of [g.anytime, g.dates]) {
+  for (const list of [g.anytime, g.benefits, g.dates]) {
     const firstWarned = list.findIndex((x) => x.warnings.length);
     if (firstWarned >= 0) assert.ok(list.slice(firstWarned).every((x) => x.warnings.length), 'warned cards sort last');
   }
@@ -92,7 +92,7 @@ test('K-State only filter and K-State-first order in the undated groups', () => 
   const g = groupResults(items, { level: 'PhD', needs: ['money'], kstate: true }, TODAY);
   assert.ok(Object.values(g).flat().every((r) => r.kstate));
   const all = groupResults(items, { level: 'PhD', needs: ['money'] }, TODAY);
-  for (const list of [all.anytime, all.dates]) {
+  for (const list of [all.anytime, all.benefits, all.dates]) {
     const firstOutside = list.findIndex((r) => !r.kstate);
     if (firstOutside >= 0) assert.ok(list.slice(firstOutside).every((r) => !r.kstate || r.warnings.length), 'K-State entries come first');
   }
@@ -129,6 +129,34 @@ test('deadlines: next published date, annual cycles, rolling, and closed rounds'
   assert.equal(deadlineText(evaluate(byId('nsf-grfp'), {}, TODAY)), 'Due Oct 19, 2026 (Life Sciences) · 1 day left');
 });
 
+test('Open anytime holds only checked rolling programs; unchecked benefits are labelled', () => {
+  const g = groupResults(items, {}, TODAY);
+  assert.ok(g.anytime.length && g.anytime.every((r) => r.item.check && r.deadline.kind === 'rolling'));
+  assert.ok(g.benefits.every((r) => !r.item.check && r.item.category !== 'scholarships'));
+  const where = (id) => Object.values(g).flat().find((r) => r.item.id === id);
+  for (const id of ['chatgpt-plus', 'google-ai-pro', 'staley-school-food-security-scholars', 'graduate-leadership-development']) assert.equal(where(id).group, 'dates', id);
+  assert.equal(deadlineText(where('chatgpt-plus')), 'My notes: Deadline Oct 31. Not checked yet.');
+  assert.equal(where('cats-cupboard').group, 'benefits');
+});
+
+test('yearly cycles without a published year are shown as likely, not confirmed', () => {
+  assert.equal(deadlineText(evaluate(byId('sigma-xi-giar'), {}, TODAY)), 'Likely Mar 15, 2027 (yearly cycle, not confirmed) · 148 days left');
+  assert.match(deadlineText(evaluate(byId('k-state-sigma-xi-research-grants'), {}, TODAY)), /^Due Mar 15, 2027/);
+});
+
+test('answering No keeps international-only awards but flags the status question', () => {
+  const r = evaluate(byId('m-h-international-scholarship'), { citizen: 'no' }, TODAY);
+  assert.notEqual(r.group, 'out');
+  assert.match(r.checks[0], /not on a student or exchange visa, confirm your status counts/);
+});
+
+test('SDUR undergraduate research and travel awards are in the catalogue with the checked Nov 10 deadline', () => {
+  const r = evaluate(byId('sdur-research-and-travel-awards'), { level: 'Undergraduate' }, TODAY);
+  assert.equal(r.group, 'soon');
+  assert.equal(r.deadline.date, '2026-11-10');
+  assert.equal(evaluate(byId('sdur-research-and-travel-awards'), { level: 'PhD' }, TODAY).group, 'out');
+});
+
 test('soon and later split at 60 days and sort by date', () => {
   const g = groupResults(items, { level: 'PhD', citizen: 'yes', needs: ['money'] }, TODAY);
   assert.ok(g.soon.every((r) => r.deadline.days <= 60));
@@ -142,7 +170,7 @@ test('unchecked catalogue entries are never presented with dates nobody verified
   for (const r of [...g.soon, ...g.later]) assert.ok(r.item.check || r.item.deadline?.verified, r.item.id);
   const unchecked = g.dates.filter((r) => !r.item.check && r.deadline.kind === 'unchecked');
   assert.ok(unchecked.length);
-  assert.ok(unchecked.every((r) => /not checked yet/.test(deadlineText(r))));
+  assert.ok(unchecked.every((r) => /not checked yet/i.test(deadlineText(r))));
 });
 
 test('needs filter, and nothing is lost without answers', () => {
@@ -150,7 +178,7 @@ test('needs filter, and nothing is lost without answers', () => {
   const total = Object.values(all).reduce((n, list) => n + list.length, 0);
   assert.equal(total, items.length);
   const food = groupResults(items, { needs: ['everyday'] }, TODAY, 'cupboard');
-  assert.deepEqual(titles(food.anytime), ['cats-cupboard']);
+  assert.deepEqual(titles(food.benefits), ['cats-cupboard']);
   const software = groupResults(items, { needs: ['software'] }, TODAY);
   assert.ok(Object.values(software).flat().every((r) => r.needs.includes('software')));
   assert.ok(titles(groupResults(items, { needs: ['travel'] }, TODAY).anytime).includes('gsc-travel-funding'));
