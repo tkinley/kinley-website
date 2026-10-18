@@ -171,6 +171,7 @@ function summarize(answers, shown, out) {
   if (answers.kstate) bits.push('K-State only');
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
+  $('results-bar-text').textContent = `${shown} to look at`;
 }
 
 form.addEventListener('change', () => { expanded.clear(); render(); });
@@ -193,6 +194,19 @@ window.addEventListener('pageshow', (event) => {
   for (const input of form.querySelectorAll('input[name="citizen"]')) input.checked = input.value === '';
   render();
 });
+
+// Sticky results shortcut for phones: show it only while the results are off
+// screen, so answering the questions always offers a way down to the list.
+$('results-bar-go').addEventListener('click', () => {
+  const smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  $('results-title').scrollIntoView({ behavior: smooth, block: 'start' });
+});
+if ('IntersectionObserver' in window) {
+  const bar = $('results-bar');
+  new IntersectionObserver((entries) => {
+    bar.hidden = entries[0].isIntersecting || !items.length;
+  }, { threshold: 0.08 }).observe($('results'));
+}
 
 async function load() {
   try {
