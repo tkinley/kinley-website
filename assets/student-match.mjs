@@ -1,4 +1,4 @@
-import { INTERESTS, STATUS_LABELS, CATEGORY_LABELS, normalizeProfile, evaluateOpportunity, selectResults } from './student-match-engine.mjs?v=2';
+import { INTERESTS, STATUS_LABELS, CATEGORY_LABELS, normalizeProfile, evaluateOpportunity, selectResults } from './student-match-engine.mjs?v=3';
 
 const $ = id => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -7,7 +7,8 @@ const make = (tag, className, text) => {
   if (text !== undefined) node.textContent = text;
   return node;
 };
-let opportunities = [], profile = normalizeProfile(), evaluated = [], visibleLimit = 24;
+const PAGE_SIZE = 12;
+let opportunities = [], profile = normalizeProfile(), evaluated = [], visibleLimit = PAGE_SIZE;
 let filters = { category: 'all', query: '', scope: 'all', sort: 'relevance', eligibility: 'all', interest: '' };
 const TOPIC_TITLES = { Food: 'Free food resources', Scholarships: 'Scholarships & funding', 'Free Software': 'Software & student tools', Research: 'Research opportunities', Travel: 'Travel grants & resources' };
 let parsingWorker = null, parseTimer = null, documentGeneration = 0, suggestions = null;
@@ -151,7 +152,7 @@ function resetFilters() {
   filters = { category:'all', query:'', scope:'all', sort:'relevance', eligibility:'all', interest:'' };
   $('resource-search').value = ''; $('sort-order').value = 'relevance'; $('eligibility-filter').value = 'all';
   for (const b of $('category-filters').querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.category==='all'));
-  setScope('all'); visibleLimit = 24;
+  setScope('all'); visibleLimit = PAGE_SIZE;
 }
 function updateTopicUI() {
   for (const button of document.querySelectorAll('button[data-interest]')) button.setAttribute('aria-pressed', String(button.dataset.interest===filters.interest));
@@ -162,24 +163,24 @@ function updateTopicUI() {
 for (const button of document.querySelectorAll('button[data-interest]')) button.addEventListener('click',()=> {
   resetFilters(); filters.interest = button.dataset.interest;
   $('results-title').textContent = TOPIC_TITLES[filters.interest] || 'Student opportunities';
-  $('results-description').textContent = 'Resources for your selected topic. Check access and current terms with the provider.';
+  $('results-description').textContent = '';
   evaluateAndRender(); goToResults();
 });
 function exploreEverything() {
-  resetFilters(); $('results-title').textContent='Student opportunities';
-  $('results-description').textContent='Browse every resource, including entries that need verification.';
+  resetFilters(); $('results-title').textContent='Opportunities';
+  $('results-description').textContent='';
   evaluateAndRender(); goToResults();
 }
 $('explore-all').addEventListener('click', exploreEverything);
 $('explore-deadlines').addEventListener('click',()=> {
   resetFilters(); filters.sort='deadline'; $('sort-order').value='deadline';
   $('results-title').textContent='Find by deadline';
-  $('results-description').textContent='Only confirmed upcoming dates can be sorted by deadline. Reported dates stay unverified.';
+  $('results-description').textContent='Confirmed upcoming deadlines first.';
   evaluateAndRender(); goToResults();
 });
 $('clear-topic').addEventListener('click',()=> {
-  filters.interest=''; visibleLimit=24; $('results-title').textContent='Student opportunities';
-  $('results-description').textContent='Topic filter cleared. Search or explore every resource.';
+  filters.interest=''; visibleLimit=PAGE_SIZE; $('results-title').textContent='Opportunities';
+  $('results-description').textContent='';
   evaluateAndRender(); $('resource-search').focus();
 });
 $('open-profile').addEventListener('click',()=> {
@@ -195,7 +196,7 @@ $('profile-form').addEventListener('submit', event=> {
   const hasRecommendations = hasSignals && opportunities.some(o=>evaluateOpportunity(o,profile).recommended);
   $('results-title').textContent='Your opportunity matches';
   setScope(hasRecommendations ? 'recommended' : 'all');
-  $('results-description').textContent = hasRecommendations ? 'Ranked by your supplied profile. Review eligibility separately before applying.' : 'No specific relevance matches yet. Explore the full directory, or add interests to personalize it. Missing answers remain unknown.';
+  $('results-description').textContent = hasRecommendations ? 'Based on your profile. Check eligibility before applying.' : 'No specific relevance matches yet. Try adding interests.';
   $('profile-feedback').textContent = 'Results updated from the answers shown above. Your profile is only in this tab.';
   evaluateAndRender(); goToResults();
 });
@@ -204,8 +205,8 @@ $('reset-all').addEventListener('click', ()=> {
   clearDocument(false); $('profile-form').reset(); derivedFields.clear(); profile = normalizeProfile(); resetFilters();
   documentStatus('Your document stays on this device. It is never uploaded.');
   $('profile-feedback').textContent = 'Everything has been reset. No document or profile is retained by the matcher.';
-  $('results-title').textContent='Student opportunities';
-  $('results-description').textContent = 'Choose a topic above, search, or browse everything below.';
+  $('results-title').textContent='Opportunities';
+  $('results-description').textContent = '';
   evaluateAndRender(); $('profile-title').focus();
 });
 function card(result) {
@@ -213,26 +214,33 @@ function card(result) {
   const article = make('article','resource-card'); article.dataset.id = o.id;
   const h3 = make('h3','',o.title); h3.id = `title-${o.id}`; article.setAttribute('aria-labelledby',h3.id);
   article.append(make('p','card-eyebrow',CATEGORY_LABELS[o.category] || o.category));
-  const heading = make('div','card-heading'); heading.append(h3,make('span','card-relevance',result.relevance)); article.append(heading);
-  article.append(make('p','source-label','DIRECTORY SUMMARY · UNVERIFIED'),make('p','description',o.description));
+  article.append(h3);
+  const summary=o.description.length>150 ? o.description.slice(0,147).replace(/\s+\S*$/,'')+'…' : o.description;
+  article.append(make('p','description',summary));
   article.append(make('span',`eligibility-badge ${result.status}`,STATUS_LABELS[result.status]));
-  article.append(make('p',`availability${result.expired?' past':''}`,result.expired ? 'Past listed cycle / deadline · current availability unverified' : 'Verification needed · current availability unknown'));
-  if (result.conflicts.length) { const ul = make('ul','conflict-list'); for (const c of result.conflicts) ul.append(make('li','',c)); article.append(ul); }
-  const why = make('div','why'); why.append(make('h4','', 'Why it matches · relevance only'));
-  const ul = make('ul'); for (const reason of result.reasons) ul.append(make('li','',reason)); why.append(ul); article.append(why);
-  const missing = make('div','missing'); missing.append(make('h4','', 'Missing eligibility information'),make('p','',result.missing[0] || 'No missing information in the documented rules; confirm current terms.')); article.append(missing);
-  article.append(make('p','deadline-line',o.deadline?.verified && o.deadline.date ? `Verified deadline: ${o.deadline.date}` : 'Deadline: Verification needed'));
-  const details = document.createElement('details'); details.append(make('summary','', 'Original notes & eligibility checks'));
-  details.append(make('p','',`Original notes (unverified): ${o.notes}`));
-  details.append(make('p','',`Original benefit label (unverified): ${o.benefit_type}`));
+  if(result.expired) article.append(make('p','availability past','Past listed cycle'));
+  if(o.deadline?.verified && o.deadline.date) article.append(make('p','deadline-line',`Deadline: ${o.deadline.date}`));
+  const details = document.createElement('details');
+  const disclosure=make('summary','','Details');disclosure.setAttribute('aria-label',`Eligibility and matching details: ${o.title}`);details.append(disclosure);
+  if(summary!==o.description) details.append(make('p','',o.description));
+  details.append(make('p','',`Eligibility: ${STATUS_LABELS[result.status]}`));
+  details.append(make('p','',`Availability: ${result.expired?'Past listed cycle; a new call is not established.':result.availability==='current'?'Current call reviewed; confirm before applying.':'Unverified. Check the official site.'}`));
+  details.append(make('h4','','Why it matches'));
+  const ul=make('ul');for(const reason of result.reasons)ul.append(make('li','',reason));details.append(ul);
+  if(result.conflicts.length) { const conflicts=make('ul','conflict-list');for(const conflict of result.conflicts)conflicts.append(make('li','',conflict));details.append(conflicts); }
+  details.append(make('h4','','Eligibility to check'));
   if (o.deadline?.source_text) details.append(make('p','',`Reported timing (unverified; not a confirmed deadline): ${o.deadline.source_text}`));
   const checks = make('ul'); for (const item of result.missing) checks.append(make('li','',item)); details.append(checks);
+  details.append(make('p','',`Notes: ${o.notes}`));
+  details.append(make('p','',`Benefit / amount: ${o.benefit_type}`));
+  if(!o.deadline?.verified) details.append(make('p','','Deadline: Not verified.'));
+  details.append(make('p','',`Last checked: ${o.last_verified || 'Unknown'}`));
   if (result.met.length) details.append(make('p','',`Supplied answers align with: ${result.met.join('; ')}. This does not establish complete eligibility.`));
-  details.append(make('p','','No student-status restriction is established unless explicitly recorded. Domestic/international labels never establish citizenship or residency.'));
+  if(o.source?.file==='student-funding-updates.json') details.append(make('p','','Source: updated funding tracker and the linked issuer.'));
   article.append(details);
   const footer = make('div','card-footer');
-  try { const url = new URL(o.official_url); if (!['http:','https:'].includes(url.protocol)) throw new Error('url'); const link = make('a','','Check official resource ↗'); link.href = o.official_url; link.target = '_blank'; link.rel='noopener noreferrer'; link.setAttribute('aria-label',`Check official resource: ${o.title} (opens in new tab)`); footer.append(link); } catch { footer.append(make('span','','Resource link unavailable')); }
-  footer.append(make('small','',`Last verified: ${o.last_verified || 'Unknown'}`)); article.append(footer);
+  try { const url = new URL(o.official_url); if (!['http:','https:'].includes(url.protocol)) throw new Error('url'); const link = make('a','','Official site ↗'); link.href = o.official_url; link.target = '_blank'; link.rel='noopener noreferrer'; link.setAttribute('aria-label',`Official site: ${o.title} (opens in new tab)`); footer.append(link); } catch { footer.append(make('span','','Link unavailable')); }
+  footer.append(make('small','',o.last_verified?`Checked ${o.last_verified}`:'Availability unverified')); article.append(footer);
   return article;
 }
 function renderResults() {
@@ -240,24 +248,24 @@ function renderResults() {
   const list = selectResults(evaluated, filters);
   const shown = list.slice(0, visibleLimit);
   const fragment = document.createDocumentFragment(); shown.forEach(r=>fragment.append(card(r))); $('resource-grid').replaceChildren(fragment);
-  $('result-count').textContent = `Showing ${shown.length} of ${list.length} ${filters.scope==='recommended'?'recommended opportunities':'opportunities'} · ${opportunities.length} in the directory`;
-  if (filters.sort==='deadline' && !list.some(r=>!r.expired && r.opportunity.deadline?.verified && r.opportunity.deadline.date)) $('result-count').textContent += ' · No verified upcoming deadlines; sorted by name';
+  $('result-count').textContent = `${shown.length} of ${list.length} ${filters.scope==='recommended'?'matches':'opportunities'}`;
+  if (filters.sort==='deadline' && !list.some(r=>!r.expired && r.opportunity.deadline?.verified && r.opportunity.deadline.date)) $('result-count').textContent += ' · No verified dates; alphabetical.';
   $('empty-state').hidden = list.length > 0 || opportunities.length === 0;
   $('show-more').hidden = shown.length >= list.length;
-  $('show-more').textContent = `Show ${Math.min(24, list.length-shown.length)} more resources`;
+  $('show-more').textContent = `Show ${Math.min(PAGE_SIZE, list.length-shown.length)} more`;
 }
 $('category-filters').addEventListener('click', event=> {
   const button = event.target.closest('button[data-category]'); if (!button) return;
   filters.category = button.dataset.category;
   for (const b of $('category-filters').querySelectorAll('button')) b.setAttribute('aria-pressed',String(b===button));
-  visibleLimit=24; renderResults();
+  visibleLimit=PAGE_SIZE; renderResults();
 });
-$('resource-search').addEventListener('input',()=>{ filters.query=$('resource-search').value; visibleLimit=24; renderResults(); });
-$('sort-order').addEventListener('change',()=>{ filters.sort=$('sort-order').value; visibleLimit=24; renderResults(); });
-$('eligibility-filter').addEventListener('change',()=>{ filters.eligibility=$('eligibility-filter').value; visibleLimit=24; renderResults(); });
-for (const scope of ['all','recommended']) $(`view-${scope}`).addEventListener('click',()=>{ setScope(scope); visibleLimit=24; renderResults(); });
+$('resource-search').addEventListener('input',()=>{ filters.query=$('resource-search').value; visibleLimit=PAGE_SIZE; renderResults(); });
+$('sort-order').addEventListener('change',()=>{ filters.sort=$('sort-order').value; visibleLimit=PAGE_SIZE; renderResults(); });
+$('eligibility-filter').addEventListener('change',()=>{ filters.eligibility=$('eligibility-filter').value; visibleLimit=PAGE_SIZE; renderResults(); });
+for (const scope of ['all','recommended']) $(`view-${scope}`).addEventListener('click',()=>{ setScope(scope); visibleLimit=PAGE_SIZE; renderResults(); });
 $('clear-filters').addEventListener('click',()=>{ resetFilters(); $('results-title').textContent='Student opportunities'; evaluateAndRender(); $('resource-search').focus(); });
-$('show-more').addEventListener('click',()=>{ const previous=visibleLimit; visibleLimit+=24; renderResults(); const next=$('resource-grid').children[previous]?.querySelector('summary'); next?.focus(); });
+$('show-more').addEventListener('click',()=>{ const previous=visibleLimit; visibleLimit+=PAGE_SIZE; renderResults(); const next=$('resource-grid').children[previous]?.querySelector('summary'); next?.focus(); });
 window.addEventListener('pagehide',()=>{ stopWorker(); suggestions=null; profile=normalizeProfile(); derivedFields.clear(); });
 // A restored back-forward-cache page must not restore a previous private profile.
 window.addEventListener('pageshow',event=>{ if(event.persisted) $('reset-all').click(); });
@@ -270,7 +278,7 @@ async function loadData() {
     const data = await response.json();
     if (!Array.isArray(data.opportunities) || !data.opportunities.length) throw new Error('data');
     opportunities = data.opportunities;
-    $('directory-count').textContent = `${opportunities.length} resources · one place`;
+    $('directory-count').textContent = `${opportunities.length} resources`;
     evaluateAndRender();
   } catch {
     $('result-count').textContent='The local directory could not be loaded.';
@@ -280,5 +288,6 @@ async function loadData() {
     $('match-button').disabled = opportunities.length===0;
     for (const button of document.querySelectorAll('[data-interest], #explore-deadlines, #explore-all')) button.disabled=opportunities.length===0;
   }
+  if(opportunities.length && window.location.hash==='#scholarships') document.querySelector('.quick-choice[data-interest="Scholarships"]').click();
 }
 loadData();

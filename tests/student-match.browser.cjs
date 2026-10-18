@@ -9,6 +9,9 @@ const { default: AxeBuilder } = require('@axe-core/playwright');
 const { pdf, docx } = require('./student-match-fixtures.cjs');
 const root=path.resolve(__dirname,'..'), out=path.join(root,'test-results');
 const origin='http://127.0.0.1:4187';
+const catalogue=JSON.parse(fs.readFileSync(path.join(root,'data/student-opportunities.json')));
+const expectedCount=catalogue.opportunities.length;
+const firstDeadline=catalogue.opportunities.find(o=>o.id==='commerce-bank-presidential-student-belonging-award').title;
 fs.mkdirSync(out,{recursive:true});
 const results=[];
 const pass = name => { results.push(name); console.log(`PASS ${name}`); };
@@ -29,10 +32,17 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(`${origin}/student-match.html`);
     await page.waitForSelector('.resource-card');
-    assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
-    assert.equal(await page.locator('#verify-count').textContent(),'108');
+    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
+    assert.equal(await page.locator('#verify-count').textContent(),String(expectedCount));
     await page.screenshot({path:path.join(out,'matcher-desktop.png')});
-    pass('initial directory: 108 resources, unknown eligibility preserved, no login');
+    pass('expanded directory: compact cards, unknown eligibility preserved, no login');
+    assert.equal(await page.locator('.resource-card details[open]').count(),0);
+    assert.ok(await page.locator('.resource-card').first().evaluate(e=>e.innerText.split(/\s+/).length)<75);
+    await page.locator('.resource-card summary').first().click();
+    assert.match(await page.locator('.resource-card').first().innerText(),/Why it matches/);
+    assert.match(await page.locator('.resource-card').first().innerText(),/Eligibility to check/);
+    await page.locator('.resource-card summary').first().click();
+    pass('short cards keep complete eligibility, provenance, and relevance under Details');
     assert.equal(await page.locator('#personalize').evaluate(e=>e.open),false);
     assert.equal(await page.locator('#hero-title').innerText(),'What are you\nlooking for?');
     await page.locator('.quick-choice[data-interest="Food"]').click();
@@ -40,7 +50,7 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     assert.match(await page.locator('#results-title').innerText(),/Free food/);
     assert.ok((await page.locator('.resource-card h3').allInnerTexts()).includes("Cats' Cupboard"));
     await page.locator('#clear-topic').click();
-    assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
+    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
     for(const interest of ['Scholarships','Free Software','Research','Travel']) {
       await page.locator(`button[data-interest="${interest}"]`).first().click();
       assert.ok(await page.locator('.resource-card').count());
@@ -48,9 +58,9 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     }
     await page.locator('#explore-deadlines').click();
     assert.equal(await page.locator('#sort-order').inputValue(),'deadline');
-    assert.match(await page.locator('#result-count').innerText(),/No verified upcoming deadlines/);
+    assert.equal(await page.locator('.resource-card h3').first().innerText(),firstDeadline);
     await page.locator('#explore-all').click();
-    assert.match(await page.locator('#result-count').innerText(),/24 of 108/);
+    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
     await page.locator('#open-profile').click();
     assert.equal(await page.locator('#personalize').evaluate(e=>e.open),true);
     assert.equal(await page.locator('#open-profile').getAttribute('aria-expanded'),'true');
@@ -90,13 +100,13 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     await page.locator('#sort-order').selectOption('title');
     assert.equal(await page.locator('.resource-card h3').first().innerText(),'7 Cups');
     await page.locator('#sort-order').selectOption('deadline');
-    assert.equal(await page.locator('.resource-card h3').first().innerText(),'7 Cups');
-    await page.locator('#show-more').click(); assert.equal(await page.locator('.resource-card').count(),48);
+    assert.equal(await page.locator('.resource-card h3').first().innerText(),firstDeadline);
+    await page.locator('#show-more').click(); assert.equal(await page.locator('.resource-card').count(),24);
     await page.locator('#eligibility-filter').selectOption('ineligible');
     assert.ok(await page.locator('.eligibility-badge.ineligible').count());
     await page.locator('#reset-all').click();
     pass('all six category filters, search, empty state, sorting, pagination, and eligibility filter');
-    await page.locator('#academic-level').selectOption('Undergraduate');
+    await page.locator('#academic-level').selectOption('Other');
     await page.locator('#match-button').click();
     assert.equal(await page.locator('#view-all').getAttribute('aria-pressed'),'true');
     assert.match(await page.locator('#results-description').innerText(),/No specific relevance matches/);
@@ -208,7 +218,7 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     const prefixed=await context.newPage();
     await prefixed.goto(`${origin}/kinley-website/student-match.html`);
     await prefixed.waitForSelector('.resource-card');
-    assert.match(await prefixed.locator('#result-count').innerText(),/24 of 108/);
+    assert.match(await prefixed.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
     await prefixed.locator('#document-input').setInputFiles({name:'prefixed.pdf',mimeType:'application/pdf',buffer:pdf(fictional)});
     await prefixed.waitForFunction(()=>document.getElementById('document-status').textContent.startsWith('Read locally'));
     await prefixed.close(); pass('GitHub Pages repository subpath supports JSON, modules, fonts, and PDF workers');
@@ -233,6 +243,11 @@ const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.d
     }
     await navigation.goto(`${origin}/funding.html`);
     assert.equal(await navigation.locator('nav a[href="student-match.html"]').innerText(),'Student Opportunities');
+    await navigation.locator('a[href="student-match.html#scholarships"]').click();
+    await navigation.waitForFunction(()=>document.getElementById('clear-topic').textContent.includes('Scholarships'));
+    assert.match(await navigation.locator('#results-title').innerText(),/Scholarships/);
+    assert.ok(await navigation.locator('.resource-card').count());
+    pass('funding page opens the updated scholarship list directly');
     await navigation.close();pass('desktop/mobile homepage menu and funding navigation open Student Opportunities directly');
     fs.writeFileSync(path.join(out,'student-match-report.json'),JSON.stringify({browser:browser.version(),passed:results,requests:requests.length,externalRequests:requests.filter(r=>!r.url.startsWith(origin+'/')).length},null,2));
     console.log(`Completed ${results.length} browser check groups.`);

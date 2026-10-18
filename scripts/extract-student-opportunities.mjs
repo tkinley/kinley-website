@@ -86,5 +86,17 @@ const opportunities = cards.map(([, attrs, body], index) => {
   };
 });
 await mkdir(new URL('../data/', import.meta.url), { recursive: true });
-await writeFile(new URL('../data/student-opportunities.json', import.meta.url), JSON.stringify({ schema_version: 1, source: 'student-benefits.html', verification_note: 'Migrated directory text, not an independently verified catalogue. Null means unknown. Original price, quota, and award claims are unverified. Never roll recurring deadlines into a new cycle.', opportunities }, null, 2)+'\n');
-console.log(`Extracted ${opportunities.length} cards, preserving descriptions, notes, and URLs.`);
+const updates = JSON.parse(await readFile(new URL('../data/student-funding-updates.json', import.meta.url),'utf8'));
+for (const update of updates.opportunities) {
+  const index = update.replaces_id ? opportunities.findIndex(o=>o.id===update.replaces_id) : -1;
+  if (update.replaces_id && index<0) throw new Error(`Missing original card: ${update.replaces_id}`);
+  if (index>=0) {
+    const original=opportunities[index];
+    opportunities[index]={...update,id:original.id,categories:[...new Set([...original.categories,...update.categories])],tags:[...new Set([...original.tags,...update.tags])],original_card:original};
+  } else {
+    if(opportunities.some(o=>o.id===update.id)) throw new Error(`Duplicate opportunity: ${update.id}`);
+    opportunities.push(update);
+  }
+}
+await writeFile(new URL('../data/student-opportunities.json', import.meta.url), JSON.stringify({ schema_version: 2, sources: ['student-benefits.html','student-funding-updates.json'], original_card_count:cards.length, funding_record_count:updates.opportunities.length, verification_note: 'Null means unknown. Workbook fit scores and personal tracking notes are excluded. Only explicitly reviewed official information receives a check date or verified deadline. Never roll recurring dates into a new cycle.', opportunities }, null, 2)+'\n');
+console.log(`Preserved ${cards.length} original cards and merged funding updates into ${opportunities.length} unique opportunities.`);

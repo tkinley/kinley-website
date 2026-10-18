@@ -26,12 +26,17 @@ export function evaluateOpportunity(opportunity, suppliedProfile, today = new Da
   const missing = [...(opportunity.eligibility_rules?.unknown || [])];
   const conflicts = [], met = [];
   for (const rule of opportunity.eligibility_rules?.known || []) {
+    if (rule.when) {
+      const conditions=Object.entries(rule.when);
+      if (conditions.some(([field])=>!p[field] || p[field]==='prefer-not')) { missing.push(`Verify: ${rule.label}`); continue; }
+      if (conditions.some(([field,value])=>p[field]!==value)) continue;
+    }
     const actual = p[rule.field];
     if (!actual || actual === 'prefer-not') { missing.push(`Not supplied: ${rule.label}`); continue; }
-    const matches = rule.operator === 'in' ? rule.values.includes(actual) : rule.operator === 'equals' ? actual === rule.value : null;
+    const matches = rule.operator === 'in' ? rule.values.includes(actual) : rule.operator === 'not_in' ? !rule.values.includes(actual) : rule.operator === 'equals' ? actual === rule.value : null;
     if (matches === null) missing.push(`Verify: ${rule.label}`);
     else if (matches) met.push(rule.label);
-    else conflicts.push(`${rule.label}: the directory lists ${rule.values?.join(' or ') || rule.value}; you supplied ${actual}.`);
+    else conflicts.push(rule.operator==='not_in' ? `${rule.label}; you supplied ${actual}.` : `${rule.label}: the directory lists ${rule.values?.join(' or ') || rule.value}; you supplied ${actual}.`);
   }
   if (!opportunity.eligibility_rules?.complete && !missing.length) missing.push('Complete eligibility rules are unknown.');
   // A broad domestic/international answer is never evidence of citizenship,
@@ -44,7 +49,7 @@ export function evaluateOpportunity(opportunity, suppliedProfile, today = new Da
   const expired = opportunity.availability?.state === 'past_cycle' ||
     Boolean(opportunity.availability?.reported_end && opportunity.availability.reported_end < today) ||
     Boolean(opportunity.deadline?.verified && opportunity.deadline.date && opportunity.deadline.date < today);
-  const availability = expired ? 'past' : 'verify';
+  const availability = expired ? 'past' : opportunity.availability?.state==='verified_current' ? 'current' : 'verify';
   const status = conflicts.length ? 'ineligible' : missing.length ? 'verify' : 'likely';
   let score = 0;
   const reasons = [];

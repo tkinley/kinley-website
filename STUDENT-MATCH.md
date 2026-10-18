@@ -31,7 +31,7 @@ Open <http://127.0.0.1:4173/student-match.html>. Stop the preview with Ctrl+C. A
 
 ## Data and matching rules
 
-Every original resource URL is retained, including generic provider pages and older notices. The migration is **not an independent verification** of the original claims. All `last_verified` values and confirmed `deadline.date` values are `null`. Current availability remains “Verification needed.” Unknowns are never filled with a conversion date, an assumed annual cycle, or a guessed requirement.
+Every original resource URL is retained, including generic provider pages and older notices. The migration is **not an independent verification** of the original claims. Original directory entries keep unknown check dates and deadlines. Public funding updates may include an actual official-page check date; verified full deadlines are recorded only when the current call establishes them. Unchecked availability remains “Verification needed.” Unknowns are never filled with a conversion date, an assumed annual cycle, or a guessed requirement.
 
 1. Evaluate explicit restrictions documented in the original card before ranking. The small set of hard rules covers explicit PhD/graduate-stage conditions and explicit current-enrollment conditions. Missing or “Prefer not to say” answers remain unknown. A contradiction yields “Not eligible based on supplied information,” with the rule and answer shown. Those rules still need confirmation against current provider terms.
 2. Keep other conditions as unresolved checks: candidacy, memberships, host agreement, research purpose, semester credit hours, fees, citizenship, and current access terms. No extra sensitive information is requested to resolve these.
@@ -50,7 +50,7 @@ To reproduce the original-card migration:
 node scripts/extract-student-opportunities.mjs
 ```
 
-This regenerates migration metadata and will overwrite future manual verification edits; preserve those edits separately or update the extraction script first. The `schema_version` is 1.
+This regenerates the original 108-card migration and merges `data/student-funding-updates.json`. Edit that curated file to retain funding updates across rebuilds. Updated original records retain their earlier descriptions, notes, eligibility metadata, and URLs under `original_card`. The combined catalogue uses `schema_version` 2.
 
 ## Privacy and document handling
 
@@ -98,3 +98,13 @@ The matcher is deployed alongside the existing website by pushing to the existin
 Student Opportunities is its own top-level navigation tab on the academic homepage, Funding Notes, and the original resource library. It opens `student-match.html` directly. The Student Notes navigation label has been removed; the old directory URL, cards, links, and visitor counters are retained as a resource library. The academic homepage remains in place.
 
 The matcher now starts with “What are you looking for?” and direct choices for Free food, Scholarships, Free software, and Match to me. Topic choices filter by exact resource interest tags, and can be cleared independently of other filters. Research, travel, and deadline browsing are also available. CV upload and the questionnaire are inside an optional expandable profile section. Deadline browsing explicitly explains when no verified upcoming dates exist. Matching and document privacy rules are unchanged. Updated checks passed: 25 unit tests across the combined repository and 24 browser check groups, including the new choices, expandable profile, and desktop/mobile navigation.
+
+## Updated funding workbook and compact presentation
+
+The catalogue now contains 158 unique opportunities. A read-only import curated 52 public funding records, including all 29 New K-State Additions; two duplicate existing resources were updated in place. Two unclear award names without an established official resource page were left out. The original workbook, private intermediate extraction, profile rules, fit scores, application status, and personalized next steps were not published. The workbook was not edited. Public provenance records sheet/row references and the issuer URL.
+
+Official checks corrected the BGSA finishing-grant scope to include both MS and PhD defenses, marked listed closed ISSS/Sarachek/first-generation cycles as past, and established the Commerce Bank student award nomination deadline of October 30, 2026 from its current announcement. Recurring yearless dates and event dates are not treated as verified application deadlines. Incoming-graduate exclusions apply only when both the supplied enrollment and graduate level establish the condition.
+
+The landing copy and buttons are shorter. Cards show a brief description, eligibility label, and official link; full notes, missing requirements, match reasons, source checks, and timing are under Details. Pages show 12 cards initially. The funding page links directly to the expanded scholarship view. Privacy and matching remain browser-only.
+
+Validation for this update: 29 unit tests and 26 browser check groups passed, including compact cards, private-field exclusion, deduplication, new eligibility restrictions, actual versus reported deadlines, the scholarship deep link, PDF/DOCX parsing, network/storage privacy, and automated accessibility/mobile checks.

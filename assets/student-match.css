@@ -55,3 +55,18 @@ main{max-width:1132px;padding:0 26px;margin:auto}.hero{padding:66px 0 36px}.eyeb
 @media(max-width:850px){.quick-choice{padding:17px 14px}.quick-choice b{font-size:19px}.quick-choice small{font-size:9px}}
 @media(max-width:620px){.hero{padding:35px 0 23px}.hero h1{font-size:44px}.hero .lede{font-size:14px}.quick-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:23px}.quick-choice{min-height:129px;padding:16px}.quick-choice b{font-size:22px;margin-top:17px}.quick-choice small{font-size:10px;line-height:1.5}.quick-links{gap:3px 18px;margin-top:10px}.quick-links button{font-size:11px;min-height:38px}.hero-meta{font-size:10px;gap:8px 15px;margin-top:13px}.personalize>summary{padding:17px}.personalize>summary b{font-size:13px}.personalize>summary small{font-size:10px}.personalize-content{padding:13px}.personalize .profile-panel{padding:20px 15px}.personalize .privacy-panel{padding:20px}.results{padding-top:30px}.results-heading h2{font-size:28px}.result-meta{gap:10px}.result-meta .result-count{flex-basis:100%}}
 @media(max-width:360px){.hero h1{font-size:40px}.quick-choice{padding:14px 12px}.quick-choice b{font-size:20px}.quick-choice small{font-size:9px}.quick-links{column-gap:17px}}
+
+/* Compact copy and cards; full evidence remains available under Details. */
+.hero{padding:38px 0 22px}.hero h1{font-size:clamp(40px,4.8vw,58px)}
+.hero .lede{font-size:15px;margin-top:15px}.hero .eyebrow{margin-bottom:16px}
+.quick-choices{margin-top:22px}.quick-choice{min-height:86px;padding:22px 40px 22px 18px}
+.quick-choice b{margin-top:0;font-size:21px}.choice-arrow{top:50%;transform:translateY(-50%)}
+.independent{margin-top:8px}.personalize>summary{padding:15px 22px}
+.muted:empty{display:none}.results-heading{margin-bottom:15px}.results-heading h2{margin-top:0}
+.verification-note{padding:10px 15px}.resource-grid{align-items:start}
+.resource-card{padding:20px}.resource-card h3{font-size:21px}.resource-card .description{margin:10px 0 12px}
+.resource-card .card-eyebrow{margin-bottom:10px}.resource-card details{margin-top:12px;padding-top:10px}
+.resource-card details h4{font-size:11px;margin:12px 0 6px}.resource-card summary{min-height:24px}
+.card-footer{padding-top:13px}.availability.past{margin-top:6px}
+@media(max-width:620px){.hero{padding-top:28px}.hero h1{font-size:42px}.hero .lede{font-size:13px}.quick-choice{min-height:78px;padding:18px 15px}.quick-choice b{font-size:20px}.quick-choice .choice-arrow{display:none}.quick-links{margin-top:8px}.personalize>summary{padding:14px 17px}.resource-card h3{font-size:21px}.card-footer a{font-size:12px}.card-footer small{font-size:9px}.result-controls{margin-top:10px}}
+@media(max-width:360px){.quick-choice b{font-size:18px}.hero h1{font-size:38px}}

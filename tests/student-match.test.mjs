@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { normalizeProfile, evaluateOpportunity, selectResults, suggestProfile } from '../assets/student-match-engine.mjs';
 const { opportunities } = JSON.parse(await readFile(new URL('../data/student-opportunities.json', import.meta.url)));
-const find = title => opportunities.find(o=>o.title===title);
+const find = title => opportunities.find(o=>o.title===title || o.original_card?.title===title);
 const profiles = {
   domesticUndergrad: { academic_level:'Undergraduate', student_status:'domestic', enrolled:'yes', field:'Biology', interests:['Food','Scholarships','Learning'] },
   internationalUndergrad: { academic_level:'Undergraduate', student_status:'international', enrolled:'yes', interests:['Food','Free Software'] },
@@ -13,9 +13,9 @@ const profiles = {
 test('all 108 source cards retain titles, descriptions, notes, and original resource links', async()=> {
   const html = await readFile(new URL('../student-benefits.html',import.meta.url),'utf8');
   const cards = [...html.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
-  assert.equal(cards.length,108); assert.equal(opportunities.length,108); assert.equal(new Set(opportunities.map(o=>o.id)).size,108);
+  assert.equal(cards.length,108); assert.equal(opportunities.length,158); assert.equal(new Set(opportunities.map(o=>o.id)).size,opportunities.length);
   for (const [i,card] of cards.entries()) {
-    const o=opportunities[i];
+    const o=opportunities[i].original_card || opportunities[i];
     assert.equal(o.official_url,card[1].match(/href="([^"]*)"/)[1].replace(/&amp;/g,'&'));
     assert.ok(o.title && o.description && o.notes);
     for (const key of ['id','title','description','category','benefit_type','official_url','eligibility_rules','academic_levels','student_status_restrictions','deadline','last_verified','tags','notes']) assert.ok(key in o,key);
@@ -70,7 +70,7 @@ test('likely eligible is possible only when documented requirements are complete
 });
 test('all view includes restricted and past entries; filters and sorting remain deterministic',()=> {
   const evaluated=opportunities.map(o=>evaluateOpportunity(o,profiles.domesticUndergrad,'2026-10-18'));
-  assert.equal(selectResults(evaluated).length,108);
+  assert.equal(selectResults(evaluated).length,opportunities.length);
   assert.ok(selectResults(evaluated,{scope:'recommended'}).every(r=>r.recommended));
   for(const category of ['scholarships','research','ai-software','travel','campus-benefits','financial-support']) {
     const list=selectResults(evaluated,{category}); assert.ok(list.length); assert.ok(list.every(r=>r.opportunity.categories.includes(category)));
@@ -78,8 +78,10 @@ test('all view includes restricted and past entries; filters and sorting remain 
   assert.equal(selectResults(evaluated,{query:'cupboard'})[0].opportunity.title,"Cats' Cupboard");
   const titles=selectResults(evaluated,{sort:'title'}).map(r=>r.opportunity.title);
   assert.deepEqual(titles,[...titles].sort((a,b)=>a.localeCompare(b)));
-  const noVerified=selectResults(evaluated,{sort:'deadline'}).map(r=>r.opportunity.title);
-  assert.deepEqual(noVerified,titles); // Never sort by a made-up annual deadline.
+  const byDeadline=selectResults(evaluated,{sort:'deadline'});
+  assert.equal(byDeadline[0].opportunity.id,'commerce-bank-presidential-student-belonging-award');
+  assert.equal(byDeadline[0].opportunity.deadline.date,'2026-10-30');
+  assert.ok(byDeadline.slice(1).every(r=>!r.opportunity.deadline.verified || r.expired));
 });
 test('CV suggestions use an allowlist and never return raw identifiers, status, or enrollment',()=> {
   const raw='Fictional Person. PhD candidate in Biology at Kansas State University. International student. SSN 123-45-6789. fake@example.test. Passport ABC123. Research in Python and Genomics. Conference poster.';
@@ -97,5 +99,41 @@ test('quick topic filtering uses the interest tag, without requiring or guessing
   assert.ok(food.every(r=>r.status==='verify'));
   assert.equal(selectResults(all,{interest:'Food',category:'ai-software'}).length,0);
   assert.equal(selectResults(all,{interest:'Food',query:'cupboard'}).length,1);
-  assert.equal(selectResults(all,{interest:''}).length,108);
+  assert.equal(selectResults(all,{interest:''}).length,opportunities.length);
+});
+test('funding import preserves 29 new K-State entries and excludes private tracking content',async()=> {
+  const funding=JSON.parse(await readFile(new URL('../data/student-funding-updates.json',import.meta.url)));
+  assert.equal(funding.opportunities.length,52);
+  assert.equal(funding.opportunities.filter(o=>o.source.sheet==='New K-State Additions').length,29);
+  assert.equal(funding.excluded_unresolved_records,2);
+  assert.doesNotMatch(JSON.stringify(funding),/Kinley|Expected candidacy|already received|Fit score|Fit Score|Application Tracker|Profile Rules|final PhD year|Two Food Research/i);
+  assert.equal(opportunities.filter(o=>o.id==='gsc-travel-funding').length,1);
+  assert.equal(opportunities.filter(o=>o.id==='k-state-emergency-aid').length,1);
+  assert.ok(find('BGSA Finishing Grants').academic_levels.includes("Master's"));
+});
+test('closed and independently reviewed funding calls retain their actual timing',()=> {
+  for(const id of ['oip-scholarship-for-international-students','sarachek-predoctoral-honors-fellowship','proud-to-be-first-scholarship']) {
+    const o=opportunities.find(o=>o.id===id);assert.ok(o,id);
+    const r=evaluateOpportunity(o,profiles.domesticGrad,'2026-10-18');assert.equal(r.expired,true);assert.equal(r.recommended,false);
+  }
+  const commerce=find('Commerce Bank Presidential Student Belonging Award');
+  assert.equal(commerce.deadline.verified,true);assert.equal(commerce.last_verified,'2026-10-18');
+  assert.equal(evaluateOpportunity(commerce,profiles.domesticGrad,'2026-10-31').expired,true);
+  const sigma=find('K-State Sigma Xi Research Grants');
+  assert.equal(evaluateOpportunity(sigma,profiles.domesticGrad,'2027-04-01').expired,false);
+  assert.equal(evaluateOpportunity(sigma,profiles.domesticGrad,'2027-10-02').expired,true);
+});
+test('public international eligibility differs from personal fit and legal status inference',()=> {
+  const o=find('M&H International Scholarship');
+  assert.equal(evaluateOpportunity(o,{student_status:'domestic',enrolled:'yes'}).status,'ineligible');
+  assert.equal(evaluateOpportunity(o,{student_status:'international',enrolled:'yes'}).status,'verify');
+  assert.equal(evaluateOpportunity(o,{student_status:'prefer-not',enrolled:'yes'}).status,'verify');
+  assert.equal(evaluateOpportunity(find('NSF GRFP'),{student_status:'international'}).status,'verify');
+});
+test('incoming-student exclusion needs both supplied graduate level and K-State enrollment',()=> {
+  const o=find('Timothy R. Donoghue Graduate Scholarship');
+  assert.equal(evaluateOpportunity(o,{academic_level:'PhD',enrolled:'yes'}).status,'ineligible');
+  assert.equal(evaluateOpportunity(o,{academic_level:'PhD',enrolled:'no'}).status,'verify');
+  assert.equal(evaluateOpportunity(o,{academic_level:'Undergraduate',enrolled:'yes'}).status,'verify');
+  assert.equal(evaluateOpportunity(o,{academic_level:'PhD'}).status,'verify');
 });
