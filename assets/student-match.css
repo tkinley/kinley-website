@@ -73,7 +73,7 @@ h1 span{color:var(--teal)}
 .answers-actions{display:flex;align-items:center;gap:14px}
 .button.primary{background:var(--grad);border-color:transparent;color:#fff}
 .button.primary:hover{background:var(--grad);color:#fff;filter:brightness(1.1)}
-.see-list{white-space:nowrap}
+.see-list{white-space:nowrap;min-height:58px;padding:15px 38px;font-size:16px;font-weight:700;border-radius:14px;box-shadow:0 12px 28px -14px rgba(36,99,84,.6)}
 .text-button{border:0;background:transparent;padding:8px 0;min-height:40px;font-size:12px;font-weight:500;color:var(--muted);text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .text-button:hover{color:var(--teal)}
 
