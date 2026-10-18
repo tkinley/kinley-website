@@ -18,8 +18,7 @@ for (const need of NEEDS) {
   input.type = 'checkbox';
   input.name = 'needs';
   input.value = need.id;
-  const text = make('span');
-  text.append(make('b', '', need.label), make('small', '', need.hint));
+  const text = make('span', '', need.label);
   label.append(input, text);
   $('need-options').append(label);
 }
