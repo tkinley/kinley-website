@@ -1,255 +1,143 @@
-// Optional integration checks. Uses fictional files only and a local server.
+// Optional integration checks against a local static server.
+// Run: npm run test:browser  (set MATCHER_BROWSER to use a specific Chrome/Edge)
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { pathToFileURL } = require('node:url');
 const { spawn } = require('node:child_process');
 const { chromium } = require('playwright');
 const { default: AxeBuilder } = require('@axe-core/playwright');
-const { pdf, docx } = require('./student-match-fixtures.cjs');
-const root=path.resolve(__dirname,'..'), out=path.join(root,'test-results');
-const origin='http://127.0.0.1:4187';
-const catalogue=JSON.parse(fs.readFileSync(path.join(root,'data/student-opportunities.json')));
-const expectedCount=catalogue.opportunities.length;
-const firstDeadline=catalogue.opportunities.find(o=>o.id==='commerce-bank-presidential-student-belonging-award').title;
-fs.mkdirSync(out,{recursive:true});
-const results=[];
-const pass = name => { results.push(name); console.log(`PASS ${name}`); };
-const fictional='MATCHER_PRIVATE_SENTINEL_789. Fictional Person PhD candidate in Biology. Research Python Genomics conference poster. International student. fake@example.test. <img src="https://example.test/private" onerror="alert(1)">';
-const docxMime='application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-(async()=> {
-  const server=spawn(process.execPath,['scripts/serve-student-match.mjs'],{cwd:root,env:{...process.env,PORT:'4187',MATCHER_BASE_PATH:'/kinley-website'},stdio:['ignore','pipe','pipe']});
+
+const root = path.resolve(__dirname, '..');
+const out = path.join(root, 'test-results');
+const origin = 'http://127.0.0.1:4187';
+const page_url = `${origin}/kinley-website/student-match.html`;
+fs.mkdirSync(out, { recursive: true });
+const pass = (name) => console.log(`PASS ${name}`);
+
+(async () => {
+  const server = spawn(process.execPath, ['scripts/serve-student-match.mjs'], { cwd: root, env: { ...process.env, PORT: '4187', MATCHER_BASE_PATH: '/kinley-website' }, stdio: ['ignore', 'pipe', 'pipe'] });
   let browser;
   try {
-    await new Promise((resolve,reject)=>{server.stdout.once('data',resolve);server.once('error',reject);server.once('exit',code=>reject(new Error(`Preview server exited ${code}`)));});
-    const executablePath=process.env.MATCHER_BROWSER || ['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(p=>fs.existsSync(p));
-    browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
-    const context=await browser.newContext({viewport:{width:1440,height:1000}});
+    await new Promise((resolve, reject) => { server.stdout.once('data', resolve); server.once('error', reject); server.once('exit', (code) => reject(new Error(`Preview server exited ${code}`))); });
+    const executablePath = process.env.MATCHER_BROWSER || ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find((p) => fs.existsSync(p));
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
     context.setDefaultTimeout(10000);
-    const page=await context.newPage();
-    const requests=[],errors=[];
-    page.on('request',r=>requests.push({url:r.url(),method:r.method(),body:r.postData()}));
-    page.on('pageerror',e=>errors.push(e.message));
-    await page.goto(`${origin}/student-match.html`);
-    await page.waitForSelector('.resource-card');
-    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
-    assert.equal(await page.locator('#verify-count').textContent(),String(expectedCount));
-    await page.screenshot({path:path.join(out,'matcher-desktop.png')});
-    pass('expanded directory: compact cards, unknown eligibility preserved, no login');
-    assert.equal(await page.locator('.resource-card details[open]').count(),0);
-    assert.ok(await page.locator('.resource-card').first().evaluate(e=>e.innerText.split(/\s+/).length)<75);
-    await page.locator('.resource-card summary').first().click();
-    assert.match(await page.locator('.resource-card').first().innerText(),/Why it matches/);
-    assert.match(await page.locator('.resource-card').first().innerText(),/Eligibility to check/);
-    await page.locator('.resource-card summary').first().click();
-    pass('short cards keep complete eligibility, provenance, and relevance under Details');
-    assert.equal(await page.locator('#personalize').evaluate(e=>e.open),false);
-    assert.equal(await page.locator('#hero-title').innerText(),'What are you\nlooking for?');
-    await page.locator('.quick-choice[data-interest="Food"]').click();
-    assert.equal(await page.locator('.resource-card').count(),2);
-    assert.match(await page.locator('#results-title').innerText(),/Free food/);
-    assert.ok((await page.locator('.resource-card h3').allInnerTexts()).includes("Cats' Cupboard"));
-    await page.locator('#clear-topic').click();
-    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
-    for(const interest of ['Scholarships','Free Software','Research','Travel']) {
-      await page.locator(`button[data-interest="${interest}"]`).first().click();
-      assert.ok(await page.locator('.resource-card').count());
-      assert.equal(await page.locator('#clear-topic').isVisible(),true);
+    // Pin "today" so the deadline groups are reproducible.
+    await context.addInitScript(() => {
+      const fixed = new Date('2026-10-18T12:00:00').valueOf();
+      const RealDate = Date;
+      // eslint-disable-next-line no-global-assign
+      Date = class extends RealDate { constructor(...a) { super(...(a.length ? a : [fixed])); } static now() { return fixed; } };
+    });
+    const page = await context.newPage();
+    const requests = [], errors = [];
+    page.on('request', (r) => requests.push({ url: r.url(), method: r.method() }));
+    page.on('pageerror', (e) => errors.push(e.message));
+    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+
+    await page.goto(page_url);
+    await page.waitForSelector('.card');
+    assert.match(await page.locator('#answer-summary').innerText(), /^Everything: \d+ to look at/);
+    assert.equal(await page.locator('#group-soon .card').first().getAttribute('data-id'), 'nsf-grfp');
+    assert.match(await page.locator('#group-soon .card').first().innerText(), /1 day left/);
+    assert.equal(await page.locator('input[type=file]').count(), 0);
+    await page.screenshot({ path: path.join(out, 'matcher-desktop.png'), fullPage: false });
+    pass('loads with grouped results, no upload control, GRFP first in Apply soon');
+
+    await page.locator('label.option', { hasText: /^PhD$/ }).click();
+    await page.locator('label.option', { hasText: 'No, student visa' }).click();
+    await page.locator('#need-options label', { hasText: 'Money' }).click();
+    await page.waitForFunction(() => location.hash === '#level=phd&needs=money');
+    assert.doesNotMatch(await page.evaluate(() => location.href), /visa|citizen/);
+    assert.match(await page.locator('#answer-summary').innerText(), /PhD · student visa · Money: \d+ to look at, \d+ ruled out\./);
+    const soon = await page.locator('#group-soon .card').evaluateAll((n) => n.map((x) => x.dataset.id));
+    assert.ok(!soon.includes('nsf-grfp') && !soon.includes('doe-scgsr'));
+    await page.locator('#group-out summary').click();
+    const outText = await page.locator('#out-list').innerText();
+    assert.match(outText, /NSF GRFP\s+Needs U\.S\. citizenship or permanent residency\./);
+    assert.match(outText, /Boren Fellowship\s+Needs U\.S\. citizenship\./);
+    await page.screenshot({ path: path.join(out, 'matcher-visa-phd.png'), fullPage: true });
+    pass('three taps rule out citizenship-restricted fellowships with reasons; citizenship stays out of the URL');
+
+    const hidden = await page.locator('#group-dates .card').count();
+    const more = page.locator('#group-dates .show-all');
+    if (await more.count()) { await more.click(); assert.ok(await page.locator('#group-dates .card').count() > hidden); }
+    await page.fill('#search', 'sigma xi');
+    assert.deepEqual((await page.locator('.card').evaluateAll((n) => n.map((x) => x.dataset.id))).sort(), ['k-state-sigma-xi-research-grants', 'sigma-xi-giar']);
+    await page.fill('#search', 'zzzz-nothing');
+    assert.equal(await page.locator('#empty-state').isVisible(), true);
+    await page.locator('#clear-search').click();
+    pass('show all, search, and empty state');
+
+    await page.goto('about:blank');
+    await page.goto(`${page_url}#level=ms&needs=travel,everyday`);
+    await page.waitForSelector('.card');
+    assert.equal(await page.locator('input[name=level][value="Master\'s"]').isChecked(), true);
+    assert.equal(await page.locator('input[name=needs][value=travel]').isChecked(), true);
+    assert.equal(await page.locator('input[name=citizen][value=""]').isChecked(), true);
+    await page.locator('#start-over').click();
+    assert.equal(await page.evaluate(() => location.hash), '');
+    await page.goto(`${page_url}#scholarships`);
+    await page.waitForSelector('.card');
+    assert.equal(await page.locator('input[name=needs][value=money]').isChecked(), true);
+    pass('bookmarked hashes restore answers; old #scholarships links still work; start over clears');
+
+    for (const [width, height] of [[1440, 1000], [768, 1000], [390, 844], [320, 700]]) {
+      await page.setViewportSize({ width, height });
+      await page.goto('about:blank');
+      await page.goto(`${page_url}#level=phd&needs=money,travel`);
+      await page.waitForSelector('.card');
+      await page.locator('#group-out summary').click();
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `overflow at ${width}px`);
+      const audit = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+      fs.writeFileSync(path.join(out, `accessibility-${width}.json`), JSON.stringify(audit.violations, null, 2));
+      assert.deepEqual(audit.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) })), [], `accessibility at ${width}px`);
+      await page.screenshot({ path: path.join(out, `matcher-${width}.png`) });
+      pass(`${width}px: no horizontal overflow, no automated WCAG A/AA violations`);
     }
-    await page.locator('#explore-deadlines').click();
-    assert.equal(await page.locator('#sort-order').inputValue(),'deadline');
-    assert.equal(await page.locator('.resource-card h3').first().innerText(),firstDeadline);
-    await page.locator('#explore-all').click();
-    assert.match(await page.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
-    await page.locator('#open-profile').click();
-    assert.equal(await page.locator('#personalize').evaluate(e=>e.open),true);
-    assert.equal(await page.locator('#open-profile').getAttribute('aria-expanded'),'true');
-    pass('topic-first choices filter accurately; deadline unknowns stay explicit; profile is optional and expandable');
 
-    const profiles=[
-      ['Undergraduate','domestic',['Food','Scholarships']],
-      ['Undergraduate','international',['Free Software','Learning']],
-      ['PhD','domestic',['Research','Travel']],
-      ["Master's",'international',['Research','Financial Support']],
-    ];
-    for(const [level,status,interests] of profiles) {
-      await page.locator('#reset-all').click();
-      await page.locator('#academic-level').selectOption(level);
-      await page.locator('#student-status').selectOption(status);
-      await page.locator('#enrolled').selectOption('yes');
-      await page.locator('#major').fill('Biology');
-      for(const interest of interests) await page.getByRole('checkbox',{name:interest,exact:true}).check();
-      await page.locator('#match-button').click();
-      assert.ok(await page.locator('.resource-card').count());
-      assert.equal(await page.locator('#view-recommended').getAttribute('aria-pressed'),'true');
-      assert.equal(await page.locator('.availability.past').count(),0);
-      assert.equal(await page.locator('.eligibility-badge.ineligible').count(),0);
-      pass(`fictional ${status} ${level}: relevant results, no conflicting or past entries recommended`);
-    }
-    await page.locator('#view-all').click();
-    for(const category of ['scholarships','research','ai-software','travel','campus-benefits','financial-support']) {
-      await page.locator(`[data-category="${category}"]`).click();
-      assert.ok(await page.locator('.resource-card').count());
-    }
-    await page.locator('[data-category="all"]').click();
-    await page.locator('#resource-search').fill('cupboard');
-    assert.equal(await page.locator('.resource-card h3').innerText(),"Cats' Cupboard");
-    await page.locator('#resource-search').fill('no-such-fictional-resource');
-    assert.equal(await page.locator('#empty-state').isVisible(),true);
-    await page.locator('#clear-filters').click();
-    await page.locator('#sort-order').selectOption('title');
-    assert.equal(await page.locator('.resource-card h3').first().innerText(),'7 Cups');
-    await page.locator('#sort-order').selectOption('deadline');
-    assert.equal(await page.locator('.resource-card h3').first().innerText(),firstDeadline);
-    await page.locator('#show-more').click(); assert.equal(await page.locator('.resource-card').count(),24);
-    await page.locator('#eligibility-filter').selectOption('ineligible');
-    assert.ok(await page.locator('.eligibility-badge.ineligible').count());
-    await page.locator('#reset-all').click();
-    pass('all six category filters, search, empty state, sorting, pagination, and eligibility filter');
-    await page.locator('#academic-level').selectOption('Other');
-    await page.locator('#match-button').click();
-    assert.equal(await page.locator('#view-all').getAttribute('aria-pressed'),'true');
-    assert.match(await page.locator('#results-description').innerText(),/No specific relevance matches/);
-    await page.locator('#reset-all').click();
-    pass('a minimal profile with no relevance signals still opens the full directory');
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto('about:blank');
+    await page.goto(page_url);
+    await page.waitForSelector('.card');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.locator('.skip-link').evaluate((e) => e === document.activeElement), true);
+    await page.locator('input[name=level]').first().focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('input[name=level][value="Master\'s"]').isChecked(), true);
+    await page.locator('input[name=needs]').first().focus();
+    await page.keyboard.press('Space');
+    assert.equal(await page.locator('input[name=needs]').first().isChecked(), true);
+    pass('keyboard: skip link, arrow keys on radios, space on needs');
 
-    // Full browser parsing through the actual vendored libraries.
-    async function upload(name,buffer,mimeType='application/pdf') {
-      await page.locator('#document-input').setInputFiles({name,mimeType,buffer});
-      await page.waitForFunction(()=>document.getElementById('drop-zone').getAttribute('aria-busy')==='false');
-    }
-    for(const [name,data,mime] of [['fictional.pdf',pdf(fictional),'application/pdf'],['fictional.docx',docx(fictional),docxMime]]) {
-      await upload(name,data,mime);
-      assert.match(await page.locator('#document-status').innerText(),/Read locally/);
-      assert.equal(await page.locator('#student-status').inputValue(),'');
-      assert.equal(await page.locator('#enrolled').inputValue(),'');
-      assert.equal(await page.locator('#academic-level').inputValue(),'');
-      await page.locator('#use-suggestions').click();
-      assert.equal(await page.locator('#academic-level').inputValue(),'PhD');
-      assert.equal(await page.locator('#major').inputValue(),'Biology');
-      assert.match(await page.locator('#skills').inputValue(),/Python/);
-      assert.doesNotMatch(await page.locator('body').innerText(),/MATCHER_PRIVATE_SENTINEL|fake@example/);
-      await page.locator('#major').fill('Manually edited major');
-      await page.locator('#remove-document').click();
-      assert.equal(await page.locator('#major').inputValue(),'Manually edited major');
-      assert.equal(await page.locator('#academic-level').inputValue(),'');
-      assert.equal(await page.locator('#skills').inputValue(),'');
-      await page.locator('#reset-all').click();
-      pass(`${name}: parsed locally, reviewed suggestions, no status inference, safe rendering, removal preserves edits`);
-    }
-    await upload('scan.pdf',pdf(''));
-    assert.match(await page.locator('#document-status').innerText(),/Scanned or image-only/);
-    await upload('too-many-pages.pdf',pdf('Fictional research resume',31));
-    assert.match(await page.locator('#document-status').innerText(),/processing limits/);
-    await upload('wrong.pdf',Buffer.from('not a PDF'));
-    assert.match(await page.locator('#document-status').innerText(),/could not be read/);
-    await upload('broken.pdf',Buffer.from('%PDF-1.4 broken fictional file'));
-    assert.match(await page.locator('#document-status').innerText(),/could not be read/);
-    await upload('broken.docx',Buffer.from('PK broken fictional file'),docxMime);
-    assert.match(await page.locator('#document-status').innerText(),/could not be read/);
-    await upload('wrong.txt',Buffer.from('Fictional text'),'text/plain');
-    assert.match(await page.locator('#document-status').innerText(),/PDF or DOCX/);
-    await upload('empty.pdf',Buffer.alloc(0));
-    assert.match(await page.locator('#document-status').innerText(),/non-empty/);
-    await upload('large.pdf',Buffer.alloc(8*1024*1024+1));
-    assert.match(await page.locator('#document-status').innerText(),/up to 8 MB/);
-    await page.locator('#skip-upload').click(); assert.equal(await page.locator('#profile-title').evaluate(e=>e===document.activeElement),true);
-    pass('scanned PDF, long PDF, wrong signature, damaged PDF/DOCX, unsupported/empty/oversized files, and manual fallback');
+    const stored = await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length, cookie: document.cookie }));
+    assert.deepEqual(stored, { local: 0, session: 0, cookie: '' });
+    assert.ok(requests.every((r) => r.url.startsWith(origin) && r.method === 'GET'), JSON.stringify(requests.filter((r) => !r.url.startsWith(origin) || r.method !== 'GET')));
+    assert.ok(!requests.some((r) => /pdfjs|mammoth|worker/.test(r.url)));
+    assert.deepEqual(errors, []);
+    pass('no storage, no cookies, same-origin GETs only, no parser downloads, no page errors');
 
-    // Real drag-and-drop event with a fictional File, never a document upload.
-    const transfer=await page.evaluateHandle(buffer=>{const t=new DataTransfer();t.items.add(new File([new Uint8Array(buffer)],'drop.docx',{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}));return t;},[...docx(fictional)]);
-    await page.locator('#drop-zone').dispatchEvent('drop',{dataTransfer:transfer});
-    await page.waitForFunction(()=>document.getElementById('document-status').textContent.startsWith('Read locally'));
-    await page.locator('#reset-all').click();
-    assert.equal(await page.locator('#document-input').inputValue(),''); assert.equal(await page.locator('#suggestions').isVisible(),false);
-    assert.equal(await page.locator('#major').inputValue(),'');
-    await page.reload(); await page.waitForSelector('.resource-card');
-    assert.equal(await page.locator('#major').inputValue(),'');
-    assert.deepEqual(await page.evaluate(async()=>({local:localStorage.length,session:sessionStorage.length,databases:(await indexedDB.databases()).length})),{local:0,session:0,databases:0});
-    assert.ok(requests.every(r=>r.url.startsWith(origin+'/') && r.method==='GET' && !r.body));
-    assert.ok(requests.every(r=>!r.url.includes('MATCHER_PRIVATE_SENTINEL')));
-    assert.deepEqual(errors,[]);
-    pass('drag-and-drop, reset/reload, no storage, no POSTs, no third-party requests, and no page errors');
+    const broken = await context.newPage();
+    await broken.route('**/student-opportunities.json', (r) => r.fulfill({ status: 500, body: '' }));
+    await broken.goto(page_url);
+    await broken.waitForSelector('#data-error:not([hidden])');
+    assert.match(await broken.locator('#data-error').innerText(), /resource library/);
+    await broken.close();
+    const noOverlay = await context.newPage();
+    await noOverlay.route('**/eligibility-checks.json', (r) => r.fulfill({ status: 404, body: '' }));
+    await noOverlay.goto(page_url);
+    await noOverlay.waitForSelector('.card');
+    await noOverlay.close();
+    pass('catalogue failure shows a fallback; a missing checks file degrades to the catalogue alone');
 
-    for(const [width,height] of [[1440,1000],[768,1024],[375,812],[320,720]]) {
-      await page.setViewportSize({width,height});
-      await page.evaluate(()=>window.scrollTo(0,0));
-      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`overflow at ${width}px`);
-      const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
-      fs.writeFileSync(path.join(out,`accessibility-${width}.json`),JSON.stringify(audit.violations,null,2));
-      assert.deepEqual(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[],`accessibility at ${width}px`);
-      await page.screenshot({path:path.join(out,`matcher-${width}.png`)});
-      if(width===375) {
-        await page.locator('#results').scrollIntoViewIfNeeded();
-        await page.screenshot({path:path.join(out,'matcher-mobile-results.png')});
-      }
-      pass(`${width}px layout: no horizontal overflow and no automated WCAG A/AA violations`);
-    }
-    await page.setViewportSize({width:1440,height:1000});await page.reload();await page.waitForSelector('.resource-card');
-    await page.keyboard.press('Tab'); assert.equal(await page.locator('.skip-link').evaluate(e=>e===document.activeElement),true);
-    await page.keyboard.press('Enter');
-    await page.locator('#open-profile').click();
-    await page.locator('#browse-files').focus();
-    const chooser=page.waitForEvent('filechooser'); await page.keyboard.press('Enter'); const dialog=await chooser; await dialog.setFiles([]);
-    await page.locator('#interests input').first().focus(); await page.keyboard.press('Space'); assert.equal(await page.locator('#interests input').first().isChecked(),true);
-    pass('keyboard skip link, file chooser, and interest checkboxes');
-    const expandedAudit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
-    assert.deepEqual(expandedAudit.violations.map(v=>v.id),[]);
-    pass('expanded profile and upload controls have no automated WCAG A/AA violations');
-
-    // A failed data request leaves a readable fallback and the directory link.
-    const fallback=await context.newPage();await fallback.route('**/data/student-opportunities.json',r=>r.abort());await fallback.goto(`${origin}/student-match.html`);await fallback.locator('#data-error').waitFor({state:'visible'});
-    assert.equal(await fallback.locator('#match-button').isDisabled(),true);
-    assert.ok(await fallback.locator('a[href="student-benefits.html"]').count());
-    await fallback.close(); pass('data-load failure has an accessible manual explanation and directory fallback');
-
-    const timed=await context.newPage();
-    await timed.clock.install();
-    await timed.route('**/student-document-worker.js',r=>r.fulfill({contentType:'text/javascript',body:'self.onmessage = () => {};'}));
-    await timed.goto(`${origin}/student-match.html`);
-    const started=timed.waitForEvent('worker');
-    await timed.locator('#document-input').setInputFiles({name:'timeout.pdf',mimeType:'application/pdf',buffer:pdf(fictional)});
-    await started; await timed.clock.fastForward(26000);
-    await timed.waitForFunction(()=>document.getElementById('document-status').textContent.includes('timed out'));
-    assert.equal(await timed.locator('#drop-zone').getAttribute('aria-busy'),'false');
-    await timed.close(); pass('a stalled parser is terminated with a manual-entry fallback');
-
-    // Exercise repository-prefixed paths without modifying any production URLs.
-    const prefixed=await context.newPage();
-    await prefixed.goto(`${origin}/kinley-website/student-match.html`);
-    await prefixed.waitForSelector('.resource-card');
-    assert.match(await prefixed.locator('#result-count').innerText(),new RegExp(`12 of ${expectedCount}`));
-    await prefixed.locator('#document-input').setInputFiles({name:'prefixed.pdf',mimeType:'application/pdf',buffer:pdf(fictional)});
-    await prefixed.waitForFunction(()=>document.getElementById('document-status').textContent.startsWith('Read locally'));
-    await prefixed.close(); pass('GitHub Pages repository subpath supports JSON, modules, fonts, and PDF workers');
-
-    const nojs=await browser.newContext({javaScriptEnabled:false});const basic=await nojs.newPage();
-    await basic.goto(`${origin}/student-match.html`);
-    assert.equal(await basic.locator('noscript a[href="student-benefits.html"]').isVisible(),true);
-    await nojs.close(); pass('JavaScript-disabled visitors retain a visible original-directory fallback');
-    const local=await context.newPage();await local.goto(pathToFileURL(path.join(root,'student-match.html')).href);
-    await local.locator('#local-preview-help').waitFor({state:'visible'});
-    assert.equal(await local.locator('#browse-files').isDisabled(),true);
-    await local.close();pass('direct-file opening provides HTTP preview instructions and a directory fallback');
-    const navigation=await context.newPage();
-    for(const width of [1440,375]) {
-      await navigation.setViewportSize({width,height:900});
-      await navigation.goto(`${origin}/index.html`);
-      assert.equal(await navigation.locator('h1').innerText(),'Kinley Tenzin');
-      if(width===375) await navigation.locator('#burger').click();
-      assert.equal(await navigation.locator('#navlinks a[href="student-benefits.html"]').count(),0);
-      await navigation.locator('#navlinks a[href="student-match.html"]').click();
-      assert.equal(await navigation.locator('#hero-title').innerText(),'What are you\nlooking for?');
-    }
-    await navigation.goto(`${origin}/funding.html`);
-    assert.equal(await navigation.locator('nav a[href="student-match.html"]').innerText(),'Student Opportunities');
-    await navigation.locator('a[href="student-match.html#scholarships"]').click();
-    await navigation.waitForFunction(()=>document.getElementById('clear-topic').textContent.includes('Scholarships'));
-    assert.match(await navigation.locator('#results-title').innerText(),/Scholarships/);
-    assert.ok(await navigation.locator('.resource-card').count());
-    pass('funding page opens the updated scholarship list directly');
-    await navigation.close();pass('desktop/mobile homepage menu and funding navigation open Student Opportunities directly');
-    fs.writeFileSync(path.join(out,'student-match-report.json'),JSON.stringify({browser:browser.version(),passed:results,requests:requests.length,externalRequests:requests.filter(r=>!r.url.startsWith(origin+'/')).length},null,2));
-    console.log(`Completed ${results.length} browser check groups.`);
-  } finally { if(browser) await browser.close(); server.kill(); }
-})().catch(error=>{console.error(error);process.exitCode=1;});
+    const funding = await context.newPage();
+    await funding.goto(`${origin}/kinley-website/funding.html`);
+    await funding.waitForURL(/student-match\.html/, { timeout: 8000 });
+    await funding.close();
+    pass('funding.html still redirects here');
+  } finally {
+    await browser?.close();
+    server.kill();
+  }
+})().catch((error) => { console.error(error); process.exitCode = 1; });

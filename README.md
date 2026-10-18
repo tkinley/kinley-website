@@ -7,13 +7,15 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | Path | What it is |
 |---|---|
 | `index.html` | Homepage: publications, ongoing research, experience, teaching |
-| `student-benefits.html` | Student Notes, a public guide to research computing, funding, and K-State resources |
+| `student-match.html` | Student Opportunities: three questions, then a list of funding, tools, and help sorted by deadline. See `STUDENT-MATCH.md` |
+| `data/eligibility-checks.json` | Hand-checked eligibility, amounts, and deadlines for the main funding entries, with sources and dates |
+| `student-benefits.html` | Resource library: the full list of research computing, funding, and K-State resources |
 | `assets/kalman-model.mjs`, `assets/kalman-sketch.js` | Fig. 1: a Kalman filter tracking a simulated random walk, with a 95% band and an adjustable noise assumption |
 | `assets/fdr-model.mjs`, `assets/fdr-sketch.js` | Fig. 2: 100 simulated z-tests, p < 0.05 versus the Benjamini–Hochberg procedure |
 | `assets/sketches.css` | Styles for both sketches |
 | `assets/katex/` | KaTeX stylesheet and fonts for the pre-rendered equations (MIT license) |
 | `assets/visitor-stats*`, `ANALYTICS.md` | Optional GoatCounter page counter for Student Notes |
-| `tests/` | Unit tests for the two statistical models |
+| `tests/` | Unit tests for the two statistical models and the opportunity matcher, plus an optional browser test |
 
 Both sketches use seeded random numbers, so every visitor sees the same simulated data, and the models are tested separately from the drawing code.
 

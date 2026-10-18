@@ -1,107 +1,254 @@
-export const INTERESTS = ['Research', 'Scholarships', 'Travel', 'AI Tools', 'Free Software', 'Food', 'Financial Support', 'Career', 'Health', 'Learning'];
-export const LEVELS = ['Undergraduate', "Master's", 'PhD', 'Postdoc', 'Other'];
-export const STATUS_LABELS = {
-  likely: 'Likely eligible',
-  verify: 'Needs eligibility verification',
-  ineligible: 'Not eligible based on supplied information',
+// Deterministic matching for the Student Opportunities page.
+// Three answers in (level, U.S. citizen or permanent resident, needs),
+// five groups out. No scores, no guessing: an entry is ruled out only by a
+// rule written in the data, and every rule shows its reason.
+
+export const LEVELS = [
+  { id: 'ug', value: 'Undergraduate', label: 'Undergrad' },
+  { id: 'ms', value: "Master's", label: "Master's" },
+  { id: 'phd', value: 'PhD', label: 'PhD' },
+];
+
+export const NEEDS = [
+  { id: 'money', label: 'Money', hint: 'Fellowships, scholarships, grants, awards' },
+  { id: 'travel', label: 'Travel', hint: 'Conferences and research trips' },
+  { id: 'research', label: 'Research tools', hint: 'Compute, databases, lab software' },
+  { id: 'software', label: 'Software & AI', hint: 'Free apps, credits, AI tools' },
+  { id: 'everyday', label: 'Everyday help', hint: 'Food, health, transit, emergencies' },
+];
+
+export const GROUPS = [
+  { id: 'soon', title: 'Apply soon', note: 'Deadlines in the next 60 days.' },
+  { id: 'anytime', title: 'Open anytime', note: 'Rolling applications and ongoing benefits.' },
+  { id: 'later', title: 'Later this year', note: 'Confirmed deadlines more than 60 days out.' },
+  { id: 'dates', title: 'Check the dates', note: 'This round is closed or the next date isn’t posted yet.' },
+];
+
+export const SOON_DAYS = 60;
+
+const CATEGORY_NEEDS = {
+  scholarships: ['money'],
+  research: ['research'],
+  'ai-software': ['software'],
+  'campus-benefits': ['everyday'],
+  'financial-support': ['everyday'],
+  travel: ['travel'],
 };
-export const CATEGORY_LABELS = {
-  scholarships: 'Scholarships & fellowships', research: 'Research', 'ai-software': 'AI / Software',
-  travel: 'Travel', 'campus-benefits': 'Campus & student resources', 'financial-support': 'Financial Support',
+
+export const KIND_LABELS = {
+  scholarships: 'Funding',
+  research: 'Research tool',
+  'ai-software': 'Software & AI',
+  'campus-benefits': 'Campus',
+  'financial-support': 'Everyday help',
+  travel: 'Travel',
 };
-const tokens = text => [...new Set(String(text || '').toLowerCase().match(/[\p{L}][\p{L}\p{N}+#.-]{2,}/gu) || [])];
-const stopwords = new Set(['and','the','for','with','from','that','this','student','students','university','state','kansas','interest','interests','research','skills','study']);
-export function normalizeProfile(input = {}) {
-  return {
-    academic_level: LEVELS.includes(input.academic_level) ? input.academic_level : '',
-    field: String(input.field || '').slice(0, 120).trim(),
-    interests: [...new Set((input.interests || []).filter(x => INTERESTS.includes(x)))],
-    student_status: ['international','domestic','prefer-not'].includes(input.student_status) ? input.student_status : '',
-    enrolled: ['yes','no','prefer-not'].includes(input.enrolled) ? input.enrolled : '',
-    skills: String(input.skills || '').slice(0, 500).trim(),
-  };
-}
-export function evaluateOpportunity(opportunity, suppliedProfile, today = new Date().toISOString().slice(0, 10)) {
-  const p = normalizeProfile(suppliedProfile);
-  const missing = [...(opportunity.eligibility_rules?.unknown || [])];
-  const conflicts = [], met = [];
-  for (const rule of opportunity.eligibility_rules?.known || []) {
-    if (rule.when) {
-      const conditions=Object.entries(rule.when);
-      if (conditions.some(([field])=>!p[field] || p[field]==='prefer-not')) { missing.push(`Verify: ${rule.label}`); continue; }
-      if (conditions.some(([field,value])=>p[field]!==value)) continue;
-    }
-    const actual = p[rule.field];
-    if (!actual || actual === 'prefer-not') { missing.push(`Not supplied: ${rule.label}`); continue; }
-    const matches = rule.operator === 'in' ? rule.values.includes(actual) : rule.operator === 'not_in' ? !rule.values.includes(actual) : rule.operator === 'equals' ? actual === rule.value : null;
-    if (matches === null) missing.push(`Verify: ${rule.label}`);
-    else if (matches) met.push(rule.label);
-    else conflicts.push(rule.operator==='not_in' ? `${rule.label}; you supplied ${actual}.` : `${rule.label}: the directory lists ${rule.values?.join(' or ') || rule.value}; you supplied ${actual}.`);
-  }
-  if (!opportunity.eligibility_rules?.complete && !missing.length) missing.push('Complete eligibility rules are unknown.');
-  // A broad domestic/international answer is never evidence of citizenship,
-  // nationality, residency, visa type, or other legal eligibility.
-  if (opportunity.student_status_restrictions?.length) {
-    if (!p.student_status || p.student_status === 'prefer-not') missing.push('Student status not supplied.');
-    else if (!opportunity.student_status_restrictions.includes(p.student_status)) conflicts.push('The supplied student status is outside the explicitly listed student-status restriction.');
-    else met.push('Explicit student-status restriction');
-  }
-  const expired = opportunity.availability?.state === 'past_cycle' ||
-    Boolean(opportunity.availability?.reported_end && opportunity.availability.reported_end < today) ||
-    Boolean(opportunity.deadline?.verified && opportunity.deadline.date && opportunity.deadline.date < today);
-  const availability = expired ? 'past' : opportunity.availability?.state==='verified_current' ? 'current' : 'verify';
-  const status = conflicts.length ? 'ineligible' : missing.length ? 'verify' : 'likely';
-  let score = 0;
-  const reasons = [];
-  const common = p.interests.filter(t => opportunity.tags.includes(t));
-  if (common.length) { score += common.length * 4; reasons.push(`Your interests: ${common.join(', ')}.`); }
-  const haystack = tokens([opportunity.title, opportunity.description, opportunity.notes, ...opportunity.tags].join(' '));
-  const keywords = tokens(`${p.field} ${p.skills}`).filter(t => !stopwords.has(t));
-  const hits = keywords.filter(t => haystack.includes(t)).slice(0, 6);
-  if (hits.length) { score += hits.length * 2; reasons.push(`Profile keywords: ${hits.join(', ')}.`); }
-  if (p.academic_level && opportunity.academic_levels?.includes(p.academic_level)) { score += 2; reasons.push(`The directory describes support at your academic level (${p.academic_level}).`); }
-  if (p.enrolled === 'yes' && opportunity.source?.categories.includes('kstate')) { score += 1; reasons.push('A K-State resource; you indicated current enrollment. Access still needs checking.'); }
-  if (!reasons.length) reasons.push('Included for exploration; no specific relevance signal from your supplied profile.');
-  return { opportunity, status, missing: [...new Set(missing)], conflicts, met, expired, availability, score, reasons,
-    relevance: score >= 8 ? 'Strong relevance' : score > 0 ? 'Some relevance' : 'Explore',
-    recommended: !expired && status !== 'ineligible' && score > 0 };
-}
-export function selectResults(evaluated, { category = 'all', query = '', scope = 'all', sort = 'relevance', eligibility = 'all', interest = '' } = {}) {
-  const q = query.toLowerCase().trim();
-  const list = evaluated.filter(r => (category === 'all' || r.opportunity.categories.includes(category)) &&
-    (!interest || r.opportunity.tags.includes(interest)) &&
-    (scope !== 'recommended' || r.recommended) && (eligibility === 'all' || r.status === eligibility) &&
-    (!q || [r.opportunity.title, r.opportunity.description, r.opportunity.notes, ...r.opportunity.tags].join(' ').toLowerCase().includes(q)));
-  const priority = { likely: 0, verify: 1, ineligible: 2 };
-  return list.sort((a,b) => {
-    if (sort === 'title') return a.opportunity.title.localeCompare(b.opportunity.title);
-    if (sort === 'eligibility') return priority[a.status] - priority[b.status] || Number(a.expired)-Number(b.expired) || b.score-a.score || a.opportunity.title.localeCompare(b.opportunity.title);
-    if (sort === 'deadline') {
-      const date = r => !r.expired && r.opportunity.deadline?.verified && r.opportunity.deadline.date ? r.opportunity.deadline.date : '9999';
-      return date(a).localeCompare(date(b)) || a.opportunity.title.localeCompare(b.opportunity.title);
-    }
-    return Number(a.expired)-Number(b.expired) || priority[a.status]-priority[b.status] || b.score-a.score || a.opportunity.title.localeCompare(b.opportunity.title);
+
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+const levelValues = LEVELS.map((l) => l.value);
+
+// Merge the hand-checked facts over the catalogue. The catalogue stays the
+// list of what exists; the overlay is what was confirmed and when.
+export function mergeChecks(opportunities, checks = {}) {
+  const entries = checks.entries || {};
+  return opportunities.map((o) => {
+    const check = entries[o.id] || null;
+    return {
+      ...o,
+      title: check?.title || o.title,
+      official_url: check?.url || o.official_url,
+      check,
+    };
   });
 }
-// Only allowlisted, reviewable suggestions leave the document worker.
-// No arbitrary CV passages, contact details, identifiers, or status inference.
-export function suggestProfile(rawText) {
-  const text = String(rawText).slice(0, 200000);
-  const levels = [
-    ['Undergraduate', /\b(?:current(?:ly)?\s+)?undergraduate student\b/i],
-    ["Master's", /\bmaster(?:'s|s)? (?:student|candidate)\b/i],
-    ['PhD', /\b(?:ph\.?d\.?|doctoral) (?:student|candidate)\b/i],
-    ['Postdoc', /\bpostdoc(?:toral)? (?:researcher|fellow)\b/i],
-  ].filter(([,pattern]) => pattern.test(text)).map(([level])=>level);
-  const fields = ['Bioinformatics','Biology','Computer Science','Data Science','Agriculture','Chemistry','Physics','Engineering','Mathematics','Psychology','Business','Economics','Education','Architecture','Microbiology'];
-  const foundFields = fields.filter(field => new RegExp(`\\b${field}\\b`, 'i').test(text));
-  const skills = ['Python','R','SQL','JavaScript','MATLAB','GIS','Statistics','Genomics','Machine Learning','LaTeX','Microscopy','Writing','Teaching'];
-  const foundSkills = skills.filter(skill=>new RegExp(`\\b${skill}\\b`, 'i').test(text));
-  const interests = [];
-  if (/\bresearch|laboratory|publication\b/i.test(text)) interests.push('Research');
-  if (/\bscholarship|fellowship\b/i.test(text)) interests.push('Scholarships');
-  if (/\bconference|poster presentation|travel\b/i.test(text)) interests.push('Travel');
-  if (/\bartificial intelligence|machine learning\b/i.test(text)) interests.push('AI Tools');
-  if (/\bprogramming|software|python|javascript\b/i.test(text)) interests.push('Free Software');
-  return { academic_level: levels.length === 1 ? levels[0] : '', field: foundFields.length === 1 ? foundFields[0] : '', skills: foundSkills.join(', '), interests };
+
+export function needsOf(item) {
+  if (item.check?.needs?.length) return item.check.needs;
+  const needs = new Set(CATEGORY_NEEDS[item.category] || []);
+  if (item.tags?.includes('Travel') && item.category === 'scholarships') needs.add('travel');
+  if (item.tags?.includes('Food') || item.tags?.includes('Health')) needs.add('everyday');
+  return [...needs];
+}
+
+function levelsOf(item) {
+  if (item.check && 'levels' in item.check) return { levels: item.check.levels, exclude: null };
+  const rules = item.eligibility_rules?.known || [];
+  const allow = rules.find((r) => r.field === 'academic_level' && r.operator === 'in' && !r.when);
+  const deny = rules.find((r) => r.field === 'academic_level' && r.operator === 'not_in' && !r.when);
+  return { levels: allow ? allow.values : null, exclude: deny ? deny.values : null };
+}
+
+function citizenshipOf(item) {
+  if (item.check?.citizenship) return item.check.citizenship;
+  const status = item.student_status_restrictions;
+  if (status?.length === 1 && status[0] === 'international') return 'international_only';
+  return 'not_stated';
+}
+
+export function formatDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+export function daysBetween(fromIso, toIso) {
+  const t = (iso) => { const [y, m, d] = iso.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  return Math.round((t(toIso) - t(fromIso)) / 86400000);
+}
+
+export function localToday(now = new Date()) {
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+}
+
+// The next published date on or after today, or the most recent past one.
+export function deadlineState(item, today) {
+  const d = item.check?.deadline;
+  if (d) {
+    let dates = (d.dates || []).filter((x) => ISO.test(x));
+    if (d.annual?.length) {
+      const year = Number(today.slice(0, 4));
+      dates = [...dates, ...[year, year + 1].flatMap((y) => d.annual.map((md) => `${y}-${md}`))];
+    }
+    dates = [...new Set(dates)].sort();
+    const next = dates.find((x) => x >= today) || null;
+    const last = [...dates].reverse().find((x) => x < today) || null;
+    if (next) return { kind: 'date', date: next, days: daysBetween(today, next), label: d.label || '', note: d.note || '', annual: Boolean(d.annual?.length) };
+    if (d.rolling) return { kind: 'rolling', note: d.note || '' };
+    return { kind: 'closed', last, note: d.note || '' };
+  }
+  // Catalogue-only entries: trust only dates someone verified.
+  if (item.deadline?.verified && item.deadline.date) {
+    const date = item.deadline.date;
+    if (date >= today) return { kind: 'date', date, days: daysBetween(today, date), label: '', note: '' };
+    return { kind: 'closed', last: date, note: '' };
+  }
+  const end = item.availability?.reported_end;
+  if (item.availability?.state === 'past_cycle' || (end && end < today)) return { kind: 'closed', last: end || null, note: '' };
+  return { kind: 'unchecked', note: '' };
+}
+
+const CITIZEN_TEXT = {
+  us_only: 'U.S. citizens, nationals, and permanent residents only.',
+  us_citizen_only: 'U.S. citizens only. Permanent residents can’t apply.',
+};
+
+// answers: { level: '' | 'Undergraduate' | "Master's" | 'PhD', citizen: '' | 'yes' | 'no', needs: [] }
+export function evaluate(item, answers = {}, today = localToday()) {
+  const level = levelValues.includes(answers.level) ? answers.level : '';
+  const citizen = ['yes', 'no'].includes(answers.citizen) ? answers.citizen : '';
+  const reasons = [];
+  const checks = [];
+
+  if (item.check?.exclude) reasons.push(item.check.exclude);
+
+  const { levels, exclude } = levelsOf(item);
+  if (level && levels && !levels.includes(level)) {
+    reasons.push(item.check?.level_reason || `Open to ${listLevels(levels)} only.`);
+  }
+  if (level && exclude?.includes(level)) reasons.push(`Not open to ${level} students.`);
+
+  const rule = citizenshipOf(item);
+  if (rule === 'us_only' || rule === 'us_citizen_only') {
+    if (citizen === 'no') reasons.push(rule === 'us_only' ? 'Needs U.S. citizenship or permanent residency.' : 'Needs U.S. citizenship.');
+    else if (citizen === '' || rule === 'us_citizen_only') checks.push(CITIZEN_TEXT[rule]);
+  }
+  if (rule === 'international_only') {
+    if (citizen === 'yes') reasons.push('For international students.');
+    else if (citizen === '') checks.push('For international students.');
+  }
+
+  for (const line of item.check?.check || []) checks.push(line);
+
+  const deadline = deadlineState(item, today);
+  let group;
+  if (reasons.length) group = 'out';
+  else if (deadline.kind === 'date') group = deadline.days <= SOON_DAYS ? 'soon' : 'later';
+  else if (deadline.kind === 'rolling') group = 'anytime';
+  else if (deadline.kind === 'closed') group = 'dates';
+  else group = item.category === 'scholarships' ? 'dates' : 'anytime';
+
+  return {
+    item,
+    group,
+    reasons,
+    checks: [...new Set(checks)],
+    deadline,
+    needs: needsOf(item),
+    amount: amountOf(item),
+    who: item.check?.who || item.description,
+    kstate: item.check ? Boolean(item.check.kstate) : Boolean(item.source?.categories?.includes('kstate')),
+    checked: item.check?.checked || item.last_verified || null,
+  };
+}
+
+function listLevels(levels) {
+  const names = levels.map((l) => (l === 'Undergraduate' ? 'undergrads' : l === 'PhD' ? 'PhD students' : l === "Master's" ? "master's students" : l));
+  return names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0];
+}
+
+function amountOf(item) {
+  if (item.check && 'amount' in item.check) return item.check.amount || '';
+  const b = String(item.benefit_type || '');
+  if (item.category === 'scholarships') return /[$€]\s?\d/.test(b) ? b.replace(/^Reported\s+/i, '') : '';
+  if (!b || /^(Varies|Not specified in source|Amount not established)$/i.test(b)) return '';
+  return b;
+}
+
+export function deadlineText(result) {
+  const d = result.deadline;
+  if (d.kind === 'date') {
+    const left = d.days === 0 ? 'due today' : d.days === 1 ? '1 day left' : `${d.days} days left`;
+    const when = d.annual ? `Next round ${formatDate(d.date)}` : `Due ${formatDate(d.date)}`;
+    return [when + (d.label ? ` (${d.label})` : ''), left].join(' · ');
+  }
+  if (d.kind === 'rolling') return d.note || 'Rolling. Apply anytime.';
+  if (d.kind === 'closed') return d.note || (d.last ? `Last round closed ${formatDate(d.last)}. Next date not posted.` : 'Last round closed. Next date not posted.');
+  return result.item.category === 'scholarships' ? 'Dates not checked yet. See the official page.' : '';
+}
+
+const haystack = (r) => [r.item.title, r.who, r.item.description, r.item.notes, r.amount, ...(r.item.tags || [])].join(' ').toLowerCase();
+
+const byTitle = (a, b) => a.item.title.localeCompare(b.item.title);
+const SORTS = {
+  soon: (a, b) => a.deadline.days - b.deadline.days || byTitle(a, b),
+  later: (a, b) => a.deadline.days - b.deadline.days || byTitle(a, b),
+  anytime: (a, b) => Number(!a.item.check) - Number(!b.item.check) || Number(a.item.category !== 'scholarships') - Number(b.item.category !== 'scholarships') || byTitle(a, b),
+  dates: (a, b) => Number(!a.item.check) - Number(!b.item.check) || byTitle(a, b),
+  out: byTitle,
+};
+
+// Entries that don't match the chosen needs are left out entirely; entries
+// that match but are ruled out land in "out" with their reasons.
+export function groupResults(items, answers = {}, today = localToday(), query = '') {
+  const needs = (answers.needs || []).filter((n) => NEEDS.some((x) => x.id === n));
+  const q = String(query).toLowerCase().trim();
+  const groups = { soon: [], anytime: [], later: [], dates: [], out: [] };
+  for (const item of items) {
+    const r = evaluate(item, answers, today);
+    if (needs.length && !r.needs.some((n) => needs.includes(n))) continue;
+    if (q && !haystack(r).includes(q)) continue;
+    groups[r.group].push(r);
+  }
+  for (const [id, list] of Object.entries(groups)) list.sort(SORTS[id]);
+  return groups;
+}
+
+// Level and needs live in the URL hash so a list can be bookmarked or shared.
+// The citizenship answer is never written there.
+export function toHash(answers = {}) {
+  const parts = [];
+  const level = LEVELS.find((l) => l.value === answers.level);
+  if (level) parts.push(`level=${level.id}`);
+  const needs = (answers.needs || []).filter((n) => NEEDS.some((x) => x.id === n));
+  if (needs.length) parts.push(`needs=${needs.join(',')}`);
+  return parts.length ? `#${parts.join('&')}` : '';
+}
+
+export function fromHash(hash = '') {
+  const raw = String(hash).replace(/^#/, '');
+  if (raw === 'scholarships') return { level: '', needs: ['money'] };
+  const params = new URLSearchParams(raw);
+  const level = LEVELS.find((l) => l.id === params.get('level'))?.value || '';
+  const needs = (params.get('needs') || '').split(',').filter((n) => NEEDS.some((x) => x.id === n));
+  return { level, needs: [...new Set(needs)] };
 }

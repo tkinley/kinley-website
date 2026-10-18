@@ -1,110 +1,62 @@
-# Student Opportunity Matcher
+# Student Opportunities
 
-The standalone page is `student-match.html`. Production is plain static HTML, CSS, JavaScript, JSON, and vendored libraries: no build step, Node runtime, backend, account, API key, or external AI service. Deployment uses the existing GitHub Pages setup on `main`. The matcher does not require repository-setting changes.
+`student-match.html` sorts K-State student resources by three answers: academic level, whether you're a U.S. citizen or permanent resident, and what you need. It is plain static HTML, CSS, JavaScript, and JSON on GitHub Pages. No build step, backend, account, uploads, or AI service.
 
-## Preview locally
+## How it works
 
-From this folder, with Node installed for local development:
+1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No/student visa, Skip), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap.
+2. **Five groups.**
+   - *Apply soon*: a confirmed deadline in the next 60 days.
+   - *Open anytime*: rolling applications and ongoing benefits.
+   - *Later this year*: a confirmed deadline more than 60 days out.
+   - *Check the dates*: the round is closed, the next date isn't posted, or nobody has checked the dates yet.
+   - *Not for you* (collapsed): ruled out by a rule written in the data, with the reason shown.
+3. **Ruling out is explicit.** An entry moves to *Not for you* only when its own data excludes the chosen level or citizenship answer, or it can't apply to any current student (for example, a prize that needs a finished PhD). Skipping the citizenship question rules nothing out; restricted entries show the rule as something to check instead.
+4. **No invented dates.** Only dates read from an official page (or a verified catalogue date) are shown as deadlines. Unchecked funding entries say "Dates not checked yet."
 
-```powershell
+## Data
+
+- `data/student-opportunities.json`: the catalogue (158 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
+- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (27 as of Oct 18, 2026). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
+
+Overlay fields:
+
+| Field | Meaning |
+| --- | --- |
+| `needs` | `money`, `travel`, `research`, `software`, `everyday`. Overrides the category mapping. |
+| `levels` | `Undergraduate`, `Master's`, `PhD`, or `null` if the source doesn't limit it. |
+| `level_reason` | Optional wording when the chosen level isn't allowed. |
+| `citizenship` | `us_only` (citizens, nationals, permanent residents), `us_citizen_only` (no permanent residents), `international_only`, `any`, `not_stated`. |
+| `deadline` | `dates` (ISO, as published), `annual` (`MM-DD` cycles the source lists without a year), `rolling: true`, `label`, `note`. No dates and no `rolling` means the next date isn't posted. |
+| `check` | Short lines shown under "before you apply." |
+| `exclude` | Rules the entry out for every current student, with this reason. |
+| `title`, `url` | Optional display overrides. |
+| `source`, `source_note`, `checked` | Where and when the facts were read. |
+
+To refresh: open each `source`, update the fields and `checked`, then bump `checked_on`. Dates roll forward only when the source publishes new ones; `annual` is for sources that state a yearly cycle without a year.
+
+## Privacy
+
+- Matching runs in the browser. The page fetches only its own two JSON files.
+- Level and needs are written to the URL hash so a list can be bookmarked or shared. The citizenship answer is never written to the URL, storage, or cookies, and is reset when a page is restored from the back-forward cache.
+- A strict CSP limits everything to this origin, disables workers, objects, and form submission. External links open with `noopener noreferrer`.
+
+## Preview and tests
+
+```
 node scripts/serve-student-match.mjs
 ```
 
-Open <http://127.0.0.1:4173/student-match.html>. Stop the preview with Ctrl+C. An existing VS Code static HTTP preview also works. Direct `file://` opening cannot load the JSON/modules/workers reliably; the page explains this and links to the original directory. On GitHub Pages the existing static host serves everything without Node. All asset paths are relative and support the repository's `/kinley-website/` path.
+Open http://127.0.0.1:4173/student-match.html. Opening the file directly (`file://`) won't work because browsers block modules there.
 
-## Changed files
-
-- `student-benefits.html`: one additional link panel before the existing controls. All prior content, cards, URLs, scripts, styles, and visitor statistics remain intact.
-- `student-match.html`: accessible upload → profile → results workflow, privacy explanation, independent-project notice, and directory links.
-- `assets/student-match.css`: isolated responsive styling using the existing cream, forest green, teal, typography, and rounded cards.
-- `assets/student-match.mjs`: transient profile state, file controls, reviewable suggestions, filters, sorting, explanations, and reset controls.
-- `assets/student-match-file-help.js`: classic-script explanation for direct `file://` opening, where browser modules cannot run.
-- `assets/student-match-engine.mjs`: deterministic eligibility checks, relevance ranking, date handling, and allowlisted CV hints.
-- `assets/student-document-worker.js`: PDF/DOCX text parsing outside the UI thread.
-- `data/student-opportunities.json`: all 108 original cards, including original descriptions, benefit labels, nuanced notes, URLs, and card-number provenance.
-- `assets/vendor/`: PDF.js 6.4.299, Mammoth 1.13.0, local copies of the existing font families, license files, and a source/SHA-256 manifest. `assets/student-match-icon.svg` provides the local favicon.
-- `scripts/`: optional local preview, reproducible card extraction, and pinned dependency-vendoring helpers.
-- `tests/student-match*`: rule, integrity, privacy, parser, browser interaction, accessibility, and layout checks using entirely fictional files/profiles.
-- `package.json`, `package-lock.json`, `.gitignore`: optional development checks only. `node_modules/` and generated `test-results/` are ignored.
-
-`index.html`, the visitor-statistics assets/configuration, existing directory controls, and unrelated components are unchanged. This workspace had no `.git` metadata; preservation was checked against hashes taken before editing, with the single added directory panel removed for comparison.
-
-## Data and matching rules
-
-Every original resource URL is retained, including generic provider pages and older notices. The migration is **not an independent verification** of the original claims. Original directory entries keep unknown check dates and deadlines. Public funding updates may include an actual official-page check date; verified full deadlines are recorded only when the current call establishes them. Unchecked availability remains “Verification needed.” Unknowns are never filled with a conversion date, an assumed annual cycle, or a guessed requirement.
-
-1. Evaluate explicit restrictions documented in the original card before ranking. The small set of hard rules covers explicit PhD/graduate-stage conditions and explicit current-enrollment conditions. Missing or “Prefer not to say” answers remain unknown. A contradiction yields “Not eligible based on supplied information,” with the rule and answer shown. Those rules still need confirmation against current provider terms.
-2. Keep other conditions as unresolved checks: candidacy, memberships, host agreement, research purpose, semester credit hours, fees, citizenship, and current access terms. No extra sensitive information is requested to resolve these.
-3. Broad domestic/international status never proves citizenship, nationality, permanent residency, visa category, or funding eligibility. The imported data establishes no broad student-status exclusions. An international student is therefore not automatically rejected from NSF GRFP or another citizenship-restricted program: the legal criteria remain unresolved. Destination words such as “domestic/international” travel do not restrict student status.
-4. Rank by selected interest overlap (4 points per matching interest), exact field/skill token overlap (2 per token, up to six), explicitly listed academic level (2), and K-State resource relevance for a self-reported enrolled student (1). These internal weights are deterministic relevance signals, not eligibility or acceptance probabilities. The UI shows qualitative relevance and the actual matching reasons, never percentages.
-5. Recommend entries with a positive relevance signal, no known contradiction, and no elapsed listed cycle. A profile with no matching signals opens the full directory. “All opportunities” always includes every card, including clearly labeled past cycles and conflicts. Filters, search, and status selection further narrow either view.
-6. Past listed cycles (MSA/Fulbright) and elapsed explicitly dated source deadlines are excluded from recommendations. Unverified recurring or yearless deadlines are never advanced into a new cycle. Deadline sorting uses only verified upcoming dates; when none exist it explicitly falls back to name order.
-
-The imported catalogue cannot establish **complete** eligibility for any resource. Therefore its “Likely eligible” count is initially zero. That is intentional: an incomplete source should not become a claim of eligibility. The engine supports that label when a future maintainer establishes complete documented rules and the student's supplied answers satisfy them. Availability is presented separately and still needs checking.
-
-For a future verified entry, record the official evidence and nuanced conditions in notes, set `last_verified` only to the actual check date, and set `deadline.verified: true` plus an ISO `deadline.date` only after confirming a full date/current call. `eligibility_rules.complete` must remain false while conditions are unknown. The `academic_levels` field is `null` for unknown, rather than an invented list; `student_status_restrictions` is likewise `null`. Each known machine rule carries its source text. Additional matching tags describe relevance only.
-
-To reproduce the original-card migration:
-
-```powershell
-node scripts/extract-student-opportunities.mjs
 ```
-
-This regenerates the original 108-card migration and merges `data/student-funding-updates.json`. Edit that curated file to retain funding updates across rebuilds. Updated original records retain their earlier descriptions, notes, eligibility metadata, and URLs under `original_card`. The combined catalogue uses `schema_version` 2.
-
-## Privacy and document handling
-
-- No analytics or third-party fonts/scripts are loaded by the matcher. The original pages keep their existing analytics unchanged.
-- The only application `fetch` loads the local opportunity JSON. Document bytes/text are never submitted with a request, written to storage, placed in URLs, rendered as HTML, or logged by application code. A restrictive page CSP limits asset loading to this origin and disables form submissions/objects. External resource links use `noopener noreferrer` and no-referrer policy.
-- Selecting a file does not transmit it. Bytes are transferred to a disposable worker. PDF.js uses its local worker; Mammoth uses `extractRawText`, with external-file access disabled. PDF evaluation, font rendering, and WASM are disabled for text extraction. Libraries/fonts are pinned and served locally rather than fetched at file-selection time from a CDN.
-- The worker returns only allowlisted possible academic level/field, skill keywords, and broad interests. No arbitrary CV passage, filename, identity, contact details, citizenship, immigration status, or K-State enrollment is returned. Hints may be ambiguous; conflicting levels/fields yield no suggestion. All suggestions require explicit review/use and remain manually editable.
-- “Remove document & suggestions” cancels parsing and clears suggestions plus unedited fields originating from them; manual edits are preserved. “Reset everything” clears the complete form, suggestions, worker, and results profile. Reload also clears the profile. There is no localStorage, sessionStorage, IndexedDB, database, cookies, or service worker in the matcher.
-- Files are limited to 8 MB, PDFs to 30 pages, extracted text to 200,000 characters, and DOCX declared expanded contents to 30 MB/2,000 entries. Parsing has a 25-second timeout and is cancellable. Invalid, encrypted, scanned, image-only, or complex documents fall back to manual entry. No OCR is performed. Unusual font encodings may also require manual entry.
-
-Selecting a document should be optional throughout. The form intentionally does not request student IDs, birthdates, passports, SSNs, transcripts, immigration documents, income figures, or contact information.
-
-## Validation
-
-Run built-in tests (no installation needed):
-
-```powershell
 node --test tests/*.test.mjs
+npm install
+npm run test:browser
 ```
 
-For browser checks only:
+The unit tests cover the catalogue-to-library match, the overlay's shape and sources, citizenship and level rules, deadline selection (next date, annual cycles, rolling, closed), grouping, the needs filter, and the hash format. The browser test pins the date to Oct 18, 2026 and checks the three-tap flow, reasons in *Not for you*, citizenship staying out of the URL, bookmarked hashes and the old `#scholarships` link, search, keyboard use, no storage or third-party requests, data-load fallbacks, the funding redirect, and automated WCAG A/AA plus overflow checks at 320, 390, 768, and 1440 px. Set `MATCHER_BROWSER` to use a specific Chrome or Edge.
 
-```powershell
-npm.cmd install
-npm.cmd run test:browser
-```
+## History
 
-The browser script starts/stops its own loopback static server on port 4187. It uses installed Chrome/Edge on Windows. On another host, install Playwright Chromium (`npx playwright install chromium`) or set `MATCHER_BROWSER` to a Chromium executable. No production dependency installation is required.
-
-Validation completed with installed Chrome 156:
-
-- 14 Node tests passed, including the 5 existing Kalman model tests.
-- 21 browser check groups passed: fictional domestic/international undergraduate and graduate profiles; all filters/search/sorting/pagination; minimal-profile fallback; real PDF.js/Mammoth extraction of synthetic files; review/edit/removal; drag-and-drop; scan/empty/oversized/corrupt/unsupported file fallbacks; parser timeout; reset/reload and data-load failure; keyboard controls; GitHub Pages repository paths; JavaScript-disabled and direct-file fallbacks. The direct-file helper was added after the complete 20-group run and validated separately along with HTTP startup.
-- The tested matcher flow made only same-origin GET requests, no POSTs or third-party requests, and left browser storage empty. No page JavaScript errors were observed.
-- No automated WCAG A/AA violations or horizontal overflow at 320, 375, 768, and 1440 px. Screenshots were visually reviewed. Automated checks do not replace testing with a screen reader or real mobile devices.
-
-Reports/screenshots are generated into ignored `test-results/`. Live offer availability, every external link's current destination, real-world eligibility, current scholarship cycles, Safari/Firefox, OCR, and assistive-technology behavior have not been independently verified. The interface communicates unknown availability and eligibility rather than manufacturing answers.
-
-## GitHub Pages deployment
-
-The matcher is deployed alongside the existing website by pushing to the existing `main` branch. Before deployment, the matcher was applied to the latest upstream revision, preserving Funding Notes, the homepage, both statistics sketches, and visitor analytics. The two newer Google AI Pro/ChatGPT Plus source notes were retained in the JSON migration without inventing verification dates. All 24 tests in the combined upstream-and-matcher checkout passed.
-
-## Student Opportunities navigation and simpler start
-
-Student Opportunities is its own top-level navigation tab on the academic homepage, Funding Notes, and the original resource library. It opens `student-match.html` directly. The Student Notes navigation label has been removed; the old directory URL, cards, links, and visitor counters are retained as a resource library. The academic homepage remains in place.
-
-The matcher now starts with “What are you looking for?” and direct choices for Free food, Scholarships, Free software, and Match to me. Topic choices filter by exact resource interest tags, and can be cleared independently of other filters. Research, travel, and deadline browsing are also available. CV upload and the questionnaire are inside an optional expandable profile section. Deadline browsing explicitly explains when no verified upcoming dates exist. Matching and document privacy rules are unchanged. Updated checks passed: 25 unit tests across the combined repository and 24 browser check groups, including the new choices, expandable profile, and desktop/mobile navigation.
-
-## Updated funding workbook and compact presentation
-
-The catalogue now contains 158 unique opportunities. A read-only import curated 52 public funding records, including all 29 New K-State Additions; two duplicate existing resources were updated in place. Two unclear award names without an established official resource page were left out. The original workbook, private intermediate extraction, profile rules, fit scores, application status, and personalized next steps were not published. The workbook was not edited. Public provenance records sheet/row references and the issuer URL.
-
-Official checks corrected the BGSA finishing-grant scope to include both MS and PhD defenses, marked listed closed ISSS/Sarachek/first-generation cycles as past, and established the Commerce Bank student award nomination deadline of October 30, 2026 from its current announcement. Recurring yearless dates and event dates are not treated as verified application deadlines. Incoming-graduate exclusions apply only when both the supplied enrollment and graduate level establish the condition.
-
-The landing copy and buttons are shorter. Cards show a brief description, eligibility label, and official link; full notes, missing requirements, match reasons, source checks, and timing are under Details. Pages show 12 cards initially. The funding page links directly to the expanded scholarship view. Privacy and matching remain browser-only.
-
-Validation for this update: 29 unit tests and 26 browser check groups passed, including compact cards, private-field exclusion, deduplication, new eligibility restrictions, actual versus reported deadlines, the scholarship deep link, PDF/DOCX parsing, network/storage privacy, and automated accessibility/mobile checks.
+The first version read a CV (PDF.js and Mammoth in a worker) to pre-fill a long profile form. It found only a few keywords, labelled every entry "needs verification," and refused to use citizenship, so federal fellowships still showed for visa holders. It was replaced on Oct 18, 2026 by the three-question flow and the checked-facts file; the parsers (about 3.4 MB) were removed.
