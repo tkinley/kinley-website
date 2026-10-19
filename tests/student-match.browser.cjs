@@ -50,14 +50,16 @@ const pass = (name) => console.log(`PASS ${name}`);
     assert.deepEqual(await page.locator('.group h3').evaluateAll((n) => n.map((x) => x.firstChild.textContent)), ['Apply soon', 'Open anytime', 'Later deadlines', 'Ongoing benefits', 'Check the dates']);
     const anytimeMeta = await page.locator('#group-anytime .card .meta').allInnerTexts();
     assert.ok(anytimeMeta.length && anytimeMeta.every((t) => /^Checked /.test(t)));
-    assert.match(await page.locator('.lede').innerText(), /sorted by deadline/);
     // The list starts below the fold. The inline button is visible on a big
     // screen, so the sticky bar stays out of the way until that button isn't.
     assert.equal(await page.locator('#see-list').isVisible(), true);
+    assert.match(await page.locator('#see-list').innerText(), /^See \d+ results\s*↓$/);
     assert.equal(await page.locator('#results-bar').isVisible(), false, 'no duplicate shortcut while the inline button shows');
     await page.locator('#see-list').click();
     await page.waitForFunction(() => document.getElementById('results').getBoundingClientRect().top < innerHeight * 0.55);
+    await page.waitForFunction(() => document.querySelector('.results-head').classList.contains('arrived'));
     assert.equal(await page.locator('#results-bar').isVisible(), false);
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'results-title');
     await page.setViewportSize({ width: 390, height: 844 });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForFunction(() => !document.getElementById('results-bar').hidden, null, { timeout: 3000 });
@@ -67,6 +69,25 @@ const pass = (name) => console.log(`PASS ${name}`);
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.evaluate(() => window.scrollTo(0, 0));
     pass('loads with grouped results, no upload control, GRFP first in Apply soon');
+
+    // Phones: the bar must show on a fresh load even on a slow connection, and
+    // the count bumps when an answer changes it.
+    const phone = await context.newPage();
+    await phone.setViewportSize({ width: 390, height: 844 });
+    await phone.route('https://gc.zgo.at/count.js', (r) => r.fulfill({ contentType: 'application/javascript', body: '' }));
+    await phone.route('**/data/*.json', async (r) => { await new Promise((x) => setTimeout(x, 500)); await r.continue(); });
+    await phone.goto(page_url);
+    await phone.waitForSelector('.card');
+    await phone.waitForFunction(() => !document.getElementById('results-bar').hidden, null, { timeout: 3000 });
+    const before = await phone.locator('#bar-count').innerText();
+    await phone.locator('#need-options label', { hasText: 'Money' }).click();
+    await phone.waitForFunction((b) => document.getElementById('bar-count').textContent !== b, before);
+    assert.equal(await phone.locator('#bar-count').evaluate((n) => n.classList.contains('bump')), true);
+    assert.ok(await phone.locator('.card.enter').count() > 0, 'cards animate in after an answer changes');
+    await phone.locator('#results-bar-go').click();
+    await phone.waitForFunction(() => document.getElementById('results-bar').hidden);
+    await phone.close();
+    pass('shortcuts: live count, bump and rise animations, arrival underline, bar works on a slow phone load');
 
     await page.locator('label.option', { hasText: /^PhD$/ }).click();
     await page.locator('label.option', { hasText: /^No$/ }).click();

@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=6';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=9';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -96,7 +96,7 @@ function card(result) {
   return article;
 }
 
-function render() {
+function render(animate = false) {
   const answers = readAnswers();
   const query = $('search').value;
   const groups = groupResults(items, answers, localToday(), query);
@@ -119,7 +119,11 @@ function render() {
     section.append(head);
     const grid = make('div', 'cards');
     const open = expanded.has(id) || query.trim();
-    for (const r of open ? list : list.slice(0, PREVIEW)) grid.append(card(r));
+    (open ? list : list.slice(0, PREVIEW)).forEach((r, i) => {
+      const node = card(r);
+      if (animate) { node.classList.add('enter'); node.style.setProperty('--i', String(Math.min(i, 8))); }
+      grid.append(node);
+    });
     section.append(grid);
     if (!open && list.length > PREVIEW) {
       const more = make('button', 'button secondary show-all', `Show all ${list.length}`);
@@ -170,11 +174,10 @@ function summarize(answers, shown, out) {
   if (answers.kstate) bits.push('K-State only');
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
-  $('results-bar-text').textContent = `${shown} to look at`;
-  $('see-list').textContent = `See your list (${shown}) ↓`;
+  updateCounts(shown);
 }
 
-form.addEventListener('change', () => { expanded.clear(); render(); });
+form.addEventListener('change', () => { expanded.clear(); render(true); });
 form.addEventListener('submit', (event) => event.preventDefault());
 $('search').addEventListener('input', render);
 $('kstate-only').addEventListener('change', () => { expanded.clear(); render(); });
@@ -195,20 +198,53 @@ window.addEventListener('pageshow', (event) => {
   render();
 });
 
-// Sticky results shortcut for phones, and the big button under the questions:
-// both offer a way down to the list.
+// Shortcuts to the list: the big button under the questions (desktop) and the
+// sticky bar (phones). Both show the live count, which bumps when it changes.
+let lastShown = null;
+let travelling = false;
+const restart = (node, cls) => { node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls); };
+
+function updateCounts(shown) {
+  const noun = shown === 1 ? 'result' : 'results';
+  $('see-label').textContent = `See ${shown} ${noun}`;
+  $('bar-count').textContent = String(shown);
+  if (lastShown !== null && shown !== lastShown) {
+    restart($('bar-count'), 'bump');
+    restart($('see-list'), 'bump');
+    for (const arrow of document.querySelectorAll('#see-list .arrow, #results-bar .arrow')) restart(arrow, 'go');
+  }
+  lastShown = shown;
+  syncBar();
+}
+
+// The bar shows while the list is still below the middle of the screen, and
+// hides once you're in or past the list, or while the page is scrolling you there.
+function syncBar() {
+  const top = $('results').getBoundingClientRect().top;
+  $('results-bar').hidden = !items.length || travelling || top < window.innerHeight * 0.55;
+}
+
 function scrollToResults() {
   const smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  travelling = true;
+  syncBar();
+  const head = document.querySelector('.results-head');
+  head.classList.remove('arrived');
+  const arrive = () => {
+    if (!travelling) return;
+    travelling = false;
+    restart(head, 'arrived');
+    syncBar();
+  };
+  if ('onscrollend' in window) window.addEventListener('scrollend', arrive, { once: true });
+  setTimeout(arrive, smooth === 'smooth' ? 1200 : 50);
   $('results-title').scrollIntoView({ behavior: smooth, block: 'start' });
+  $('results-title').focus({ preventScroll: true });
 }
 $('results-bar-go').addEventListener('click', scrollToResults);
 $('see-list').addEventListener('click', scrollToResults);
-if ('IntersectionObserver' in window) {
-  const bar = $('results-bar');
-  new IntersectionObserver((entries) => {
-    bar.hidden = entries[0].isIntersecting || !items.length;
-  }, { threshold: 0.08 }).observe($('results'));
-}
+window.addEventListener('scroll', syncBar, { passive: true });
+window.addEventListener('resize', syncBar);
 
 async function load() {
   try {

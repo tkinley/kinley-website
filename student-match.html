@@ -8,7 +8,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self' https://kinley-site.goatcounter.com; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Student Opportunities · Kinley Tenzin</title>
   <link rel="icon" href="assets/student-match-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/student-match.css?v=11">
+  <link rel="stylesheet" href="assets/student-match.css?v=9">
   <script type="module" src="assets/student-match.mjs?v=9"></script>
   <script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -49,7 +49,7 @@
         <div class="answers-foot">
           <p id="answer-summary" class="answer-summary" role="status" aria-live="polite">Loading the list…</p>
           <div class="answers-actions">
-            <button type="button" class="button primary see-list" id="see-list">See your list ↓</button>
+            <button type="button" class="button primary see-list" id="see-list"><span id="see-label">See your list</span> <span class="arrow" aria-hidden="true">↓</span></button>
             <button type="button" class="text-button" id="start-over">Start over</button>
           </div>
         </div>
@@ -86,8 +86,8 @@
     <footer><a class="footer-brand" href="index.html">KT <span>By Kinley Tenzin</span></a><p>Independent student project. Not affiliated with Kansas State University. Always confirm on the official page before you apply.</p><div><a href="student-benefits.html">Resource library ↗</a><a href="#main">Top ↑</a></div></footer>
   </main>
   <div class="results-bar" id="results-bar" hidden>
-    <p class="results-bar-text" id="results-bar-text">Loading the list…</p>
-    <button type="button" class="results-bar-button" id="results-bar-go">See your list ↓</button>
+    <p class="results-bar-text" id="results-bar-text"><b class="num" id="bar-count">…</b> to look at</p>
+    <button type="button" class="results-bar-button" id="results-bar-go">See your list <span class="arrow" aria-hidden="true">↓</span></button>
   </div>
 </body>
 </html>
