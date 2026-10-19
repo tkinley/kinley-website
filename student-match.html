@@ -8,8 +8,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self' https://kinley-site.goatcounter.com; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Student Opportunities · Kinley Tenzin</title>
   <link rel="icon" href="assets/student-match-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/student-match.css?v=9">
-  <script type="module" src="assets/student-match.mjs?v=9"></script>
+  <link rel="stylesheet" href="assets/student-match.css?v=10">
+  <script type="module" src="assets/student-match.mjs?v=10"></script>
   <script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -21,73 +21,90 @@
     </div>
   </header>
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> For K-State students</p>
-      <h1 id="hero-title">Three taps. <span>Your list.</span></h1>
+    <section id="ask" class="view ask" aria-labelledby="hero-title">
+      <div class="ask-inner">
+        <h1 id="hero-title">Three taps. <span>Your list.</span></h1>
+        <p class="ask-sub">Funding, travel money, research tools, software, and everyday help for K-State students.</p>
 
-      <form id="answers" class="answers" autocomplete="off" novalidate>
-        <fieldset class="question">
-          <legend><span class="q-num">1</span> Who are you?</legend>
-          <div class="options" id="level-options">
-            <label class="option"><input type="radio" name="level" value="Undergraduate"><span>Undergrad</span></label>
-            <label class="option"><input type="radio" name="level" value="Master's"><span>Master's</span></label>
-            <label class="option"><input type="radio" name="level" value="PhD"><span>PhD</span></label>
-          </div>
-        </fieldset>
-        <fieldset class="question">
-          <legend><span class="q-num">2</span> U.S. citizen or permanent resident?</legend>
-          <div class="options">
-            <label class="option"><input type="radio" name="citizen" value="yes"><span>Yes</span></label>
-            <label class="option"><input type="radio" name="citizen" value="no"><span>No</span></label>
-            <label class="option"><input type="radio" name="citizen" value="" checked><span>Skip</span></label>
-          </div>
-        </fieldset>
-        <fieldset class="question">
-          <legend><span class="q-num">3</span> What do you need? <small>Pick any</small></legend>
-          <div class="options needs" id="need-options"></div>
-        </fieldset>
-        <div class="answers-foot">
-          <p id="answer-summary" class="answer-summary" role="status" aria-live="polite">Loading the list…</p>
-          <div class="answers-actions">
-            <button type="button" class="button primary see-list" id="see-list"><span id="see-label">See your list</span> <span class="arrow" aria-hidden="true">↓</span></button>
+        <form id="answers" class="answers" autocomplete="off" novalidate>
+          <fieldset class="question">
+            <legend><span class="q-num">1</span> Who are you?</legend>
+            <div class="options" id="level-options">
+              <label class="option"><input type="radio" name="level" value="Undergraduate"><span>Undergrad</span></label>
+              <label class="option"><input type="radio" name="level" value="Master's"><span>Master's</span></label>
+              <label class="option"><input type="radio" name="level" value="PhD"><span>PhD</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="question">
+            <legend><span class="q-num">2</span> U.S. citizen or permanent resident?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="citizen" value="yes"><span>Yes</span></label>
+              <label class="option"><input type="radio" name="citizen" value="no"><span>No</span></label>
+              <label class="option"><input type="radio" name="citizen" value="" checked><span>Skip</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="question">
+            <legend><span class="q-num">3</span> What do you need? <small>Pick any</small></legend>
+            <div class="options needs" id="need-options"></div>
+          </fieldset>
+          <div class="answers-foot">
+            <p id="answer-summary" class="answer-summary" role="status" aria-live="polite">Loading the list…</p>
             <button type="button" class="text-button" id="start-over">Start over</button>
+            <button type="submit" class="go" id="see-list"><span id="see-label">Show results</span><span class="go-icon" aria-hidden="true"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></button>
+          </div>
+        </form>
+
+        <div class="presets" id="presets" aria-label="Quick starts">
+          <span class="presets-label">Or start with</span>
+          <button type="button" class="preset" data-level="PhD" data-needs="travel">PhD travel money</button>
+          <button type="button" class="preset" data-level="Undergraduate" data-needs="money">Undergrad scholarships</button>
+          <button type="button" class="preset" data-needs="software">Free software and AI</button>
+          <button type="button" class="preset" data-needs="everyday">Food and everyday help</button>
+        </div>
+        <p class="ask-foot">No account, nothing to upload. Matching runs in your browser.</p>
+      </div>
+    </section>
+
+    <section id="list" class="view list" aria-labelledby="results-title" hidden>
+      <div class="list-bar">
+        <button type="button" class="back" id="back" aria-describedby="answer-chips">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 5l-5 5 5 5"/></svg>
+          <span>Change answers</span>
+        </button>
+        <p class="answer-chips" id="answer-chips"></p>
+        <p class="list-count" id="list-count"></p>
+      </div>
+
+      <div id="results" class="results">
+        <div class="results-head">
+          <h2 id="results-title" tabindex="-1">Your list</h2>
+          <div class="tools">
+            <label class="option ks-toggle"><input type="checkbox" id="kstate-only"><span>K-State only</span></label>
+            <div class="search"><label for="search">Search the list</label><input type="search" id="search" maxlength="120" placeholder="Try GRFP, Python, food…"></div>
           </div>
         </div>
-      </form>
-    </section>
+        <p id="ksn-note" class="ksn-note" hidden><b>Looking for scholarships?</b> Fill out your <a id="ksn-link" href="https://www.k-state.edu/sfa/scholarships-aid/scholarships/ksn/" target="_blank" rel="noopener noreferrer">K-State Scholarship Network</a> profile too. One profile matches you to donor and department scholarships, grad students included. This list covers what it doesn't.</p>
+        <div id="groups"></div>
+        <div id="empty-state" class="empty-state" hidden><h3>Nothing matches that.</h3><p>Try fewer needs, or clear the search.</p><button type="button" class="button secondary" id="clear-search">Clear search</button></div>
+        <details id="group-out" class="out-group" hidden>
+          <summary><span>Not for you</span> <span class="count" id="out-count">0</span><small>Ruled out by a checked rule. Each one says why and when it was checked.</small></summary>
+          <ul id="out-list" class="out-list"></ul>
+        </details>
+      </div>
 
-    <section id="results" class="results" aria-labelledby="results-title">
-      <div class="results-head">
-        <h2 id="results-title" tabindex="-1">Your list</h2>
-        <div class="tools">
-          <label class="option ks-toggle"><input type="checkbox" id="kstate-only"><span>K-State only</span></label>
-          <div class="search"><label for="search">Search the list</label><input type="search" id="search" maxlength="120" placeholder="Try GRFP, Python, food…"></div>
+      <section class="how" aria-labelledby="how-title">
+        <h2 id="how-title">How this works</h2>
+        <div class="how-grid">
+          <p><b>Checked facts.</b> <span id="checked-line">The big funding entries were checked on their official pages.</span> Each card says when. Everything else comes from my resource list and may be out of date: those cards say “Not re-checked yet,” and anything in my notes is quoted as notes, not facts.</p>
+          <p><b>Ruled out means a checked rule.</b> A card moves to “Not for you” only when a rule read from its official page excludes your level or citizenship. Rules that come from my own notes and haven't been checked show as a warning on the card instead, and those cards sort last.</p>
+          <p><b>Private.</b> Matching runs in your browser. No uploads or cookies: only anonymous visit counts (GoatCounter), and no IP addresses are stored. Level, needs, and the K-State toggle go in the address bar so you can bookmark the list; citizenship never does.</p>
         </div>
-      </div>
-      <p id="ksn-note" class="ksn-note" hidden><b>Looking for scholarships?</b> Fill out your <a id="ksn-link" href="https://www.k-state.edu/sfa/scholarships-aid/scholarships/ksn/" target="_blank" rel="noopener noreferrer">K-State Scholarship Network</a> profile too. One profile matches you to donor and department scholarships, grad students included. This list covers what it doesn't.</p>
-      <p id="data-error" class="error-note" role="alert" hidden></p>
-      <div id="groups"></div>
-      <div id="empty-state" class="empty-state" hidden><h3>Nothing matches that.</h3><p>Try fewer needs, or clear the search.</p><button type="button" class="button secondary" id="clear-search">Clear search</button></div>
-      <details id="group-out" class="out-group" hidden>
-        <summary><span>Not for you</span> <span class="count" id="out-count">0</span><small>Ruled out by a checked rule. Each one says why and when it was checked.</small></summary>
-        <ul id="out-list" class="out-list"></ul>
-      </details>
+      </section>
     </section>
 
-    <section class="how" aria-labelledby="how-title">
-      <h2 id="how-title">How this works</h2>
-      <div class="how-grid">
-        <p><b>Checked facts.</b> <span id="checked-line">The big funding entries were checked on their official pages.</span> Each card says when. Everything else comes from my resource list and may be out of date: those cards say “Not re-checked yet,” and anything in my notes is quoted as notes, not facts.</p>
-        <p><b>Ruled out means a checked rule.</b> A card moves to “Not for you” only when a rule read from its official page excludes your level or citizenship. Rules that come from my own notes and haven't been checked show as a warning on the card instead, and those cards sort last.</p>
-        <p><b>Private.</b> Matching runs in your browser. No uploads or cookies: only anonymous visit counts (GoatCounter), and no IP addresses are stored. Level, needs, and the K-State toggle go in the address bar so you can bookmark the list; citizenship never does.</p>
-      </div>
-    </section>
+    <p id="data-error" class="error-note" role="alert" hidden></p>
     <noscript><p class="error-note">This list needs JavaScript. The full <a href="student-benefits.html">resource library</a> works without it.</p></noscript>
-    <footer><a class="footer-brand" href="index.html">KT <span>By Kinley Tenzin</span></a><p>Independent student project. Not affiliated with Kansas State University. Always confirm on the official page before you apply.</p><div><a href="student-benefits.html">Resource library ↗</a><a href="#main">Top ↑</a></div></footer>
+    <footer><a class="footer-brand" href="index.html">KT <span>By Kinley Tenzin</span></a><p>Independent student project. Not affiliated with Kansas State University. Always confirm on the official page before you apply.</p><div><a href="student-benefits.html">Resource library ↗</a><button type="button" class="to-top" id="to-top">Top ↑</button></div></footer>
   </main>
-  <div class="results-bar" id="results-bar" hidden>
-    <p class="results-bar-text" id="results-bar-text"><b class="num" id="bar-count">…</b> to look at</p>
-    <button type="button" class="results-bar-button" id="results-bar-go">See your list <span class="arrow" aria-hidden="true">↓</span></button>
-  </div>
 </body>
 </html>

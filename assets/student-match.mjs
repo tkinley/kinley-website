@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=9';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=10';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -158,10 +158,8 @@ function render(animate = false) {
   $('ksn-note').hidden = !items.length || !(answers.needs.length === 0 || answers.needs.includes('money'));
   summarize(answers, shown, out.length);
 
-  const hash = toHash(answers);
-  if (hash !== window.location.hash) {
-    history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`);
-  }
+  const hash = hashFor(answers, view);
+  if (hash !== window.location.hash) history.replaceState(history.state, '', urlFor(hash));
 }
 
 function summarize(answers, shown, out) {
@@ -174,11 +172,14 @@ function summarize(answers, shown, out) {
   if (answers.kstate) bits.push('K-State only');
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
+  const chips = $('answer-chips');
+  chips.replaceChildren(...(bits.length ? bits : ['Everything']).flatMap((b) => b.split(', ')).map((b) => make('span', 'chip', b)));
+  $('list-count').textContent = `${shown} ${shown === 1 ? 'result' : 'results'}${out ? ` · ${out} ruled out` : ''}`;
   updateCounts(shown);
 }
 
-form.addEventListener('change', () => { expanded.clear(); render(true); });
-form.addEventListener('submit', (event) => event.preventDefault());
+form.addEventListener('change', () => { expanded.clear(); render(); });
+form.addEventListener('submit', (event) => { event.preventDefault(); showList(); });
 $('search').addEventListener('input', render);
 $('kstate-only').addEventListener('change', () => { expanded.clear(); render(); });
 $('clear-search').addEventListener('click', () => { $('search').value = ''; render(); $('search').focus(); });
@@ -190,7 +191,8 @@ $('start-over').addEventListener('click', () => {
   render();
   form.querySelector('input[name="level"]').focus();
 });
-window.addEventListener('hashchange', () => { writeAnswers(fromHash(window.location.hash)); render(); });
+window.addEventListener('popstate', syncFromLocation);
+window.addEventListener('hashchange', syncFromLocation);
 // A page restored from the back-forward cache must not keep an old citizenship answer.
 window.addEventListener('pageshow', (event) => {
   if (!event.persisted) return;
@@ -198,53 +200,79 @@ window.addEventListener('pageshow', (event) => {
   render();
 });
 
-// Shortcuts to the list: the big button under the questions (desktop) and the
-// sticky bar (phones). Both show the live count, which bumps when it changes.
+// Two views on one page: the questions, then the list. Going to the list adds
+// a history entry, so the browser's Back button returns to the questions.
+// The hash carries "list" plus level and needs; citizenship never goes there.
+let view = 'ask';
 let lastShown = null;
-let travelling = false;
 const restart = (node, cls) => { node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls); };
+const urlFor = (hash) => `${window.location.pathname}${window.location.search}${hash}`;
+
+function hashFor(answers, which) {
+  const rest = toHash(answers).slice(1);
+  const parts = which === 'list' ? ['list', rest] : [rest];
+  const joined = parts.filter(Boolean).join('&');
+  return joined ? `#${joined}` : '';
+}
+
+function wantsList(hash) {
+  const raw = String(hash).replace(/^#/, '');
+  return raw === 'scholarships' || new URLSearchParams(raw).has('list');
+}
 
 function updateCounts(shown) {
-  const noun = shown === 1 ? 'result' : 'results';
-  $('see-label').textContent = `See ${shown} ${noun}`;
-  $('bar-count').textContent = String(shown);
-  if (lastShown !== null && shown !== lastShown) {
-    restart($('bar-count'), 'bump');
-    restart($('see-list'), 'bump');
-    for (const arrow of document.querySelectorAll('#see-list .arrow, #results-bar .arrow')) restart(arrow, 'go');
-  }
+  $('see-label').textContent = `Show ${shown} ${shown === 1 ? 'result' : 'results'}`;
+  if (lastShown !== null && shown !== lastShown) restart($('see-list'), 'bump');
   lastShown = shown;
-  syncBar();
 }
 
-// The bar shows while the list is still below the middle of the screen, and
-// hides once you're in or past the list, or while the page is scrolling you there.
-function syncBar() {
-  const top = $('results').getBoundingClientRect().top;
-  $('results-bar').hidden = !items.length || travelling || top < window.innerHeight * 0.55;
+function setView(next, { focus = true } = {}) {
+  if (next === view && !$(next).hidden) return;
+  view = next;
+  $('ask').hidden = next !== 'ask';
+  $('list').hidden = next !== 'list';
+  document.body.dataset.view = next;
+  window.scrollTo(0, 0);
+  restart($(next), 'entering');
+  if (next === 'list') {
+    expanded.clear();
+    render(true);
+    restart(document.querySelector('.results-head'), 'arrived');
+    if (focus) $('results-title').focus({ preventScroll: true });
+  } else {
+    render();
+    if (focus) $('see-list').focus({ preventScroll: true });
+  }
 }
 
-function scrollToResults() {
-  const smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-  travelling = true;
-  syncBar();
-  const head = document.querySelector('.results-head');
-  head.classList.remove('arrived');
-  const arrive = () => {
-    if (!travelling) return;
-    travelling = false;
-    restart(head, 'arrived');
-    syncBar();
-  };
-  if ('onscrollend' in window) window.addEventListener('scrollend', arrive, { once: true });
-  setTimeout(arrive, smooth === 'smooth' ? 1200 : 50);
-  $('results-title').scrollIntoView({ behavior: smooth, block: 'start' });
-  $('results-title').focus({ preventScroll: true });
+function showList() {
+  if (!items.length) return;
+  history.pushState({ view: 'list' }, '', urlFor(hashFor(readAnswers(), 'list')));
+  setView('list');
 }
-$('results-bar-go').addEventListener('click', scrollToResults);
-$('see-list').addEventListener('click', scrollToResults);
-window.addEventListener('scroll', syncBar, { passive: true });
-window.addEventListener('resize', syncBar);
+
+function showAsk() {
+  if (history.state?.view === 'list') history.back();
+  else { history.replaceState(null, '', urlFor(hashFor(readAnswers(), 'ask'))); setView('ask'); }
+}
+
+function syncFromLocation() {
+  if (!items.length) return;
+  const hash = window.location.hash;
+  if (hash === '#main') return;
+  writeAnswers(fromHash(hash));
+  setView(wantsList(hash) ? 'list' : 'ask', { focus: false });
+  render();
+}
+
+$('back').addEventListener('click', showAsk);
+$('to-top').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+for (const preset of document.querySelectorAll('.preset')) {
+  preset.addEventListener('click', () => {
+    writeAnswers({ level: preset.dataset.level || '', needs: (preset.dataset.needs || '').split(',').filter(Boolean), kstate: false });
+    showList();
+  });
+}
 
 async function load() {
   try {
@@ -259,7 +287,8 @@ async function load() {
     const count = Object.keys(checks.entries || {}).length;
     if (count && checks.checked_on) $('checked-line').textContent = `${count} funding entries were checked on their official pages on ${formatDate(checks.checked_on)}.`;
     writeAnswers(fromHash(window.location.hash));
-    render();
+    view = '';
+    setView(wantsList(window.location.hash) ? 'list' : 'ask', { focus: false });
   } catch {
     $('answer-summary').textContent = 'The list could not be loaded.';
     $('data-error').textContent = window.location.protocol === 'file:'
