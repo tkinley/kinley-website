@@ -106,7 +106,15 @@ const pass = (name) => console.log(`PASS ${name}`);
     const tags = await page.locator('.card .card-tags').allInnerTexts();
     assert.ok(tags.length && tags.every((t) => /K-STATE/i.test(t)));
     assert.ok(await page.locator('.card .tag-unit', { hasText: 'Division of Biology only' }).count());
-    await page.locator('#kstate-only').uncheck({ force: true });
+    await page.fill('#search', 'sigma');
+    await page.locator('#back').click();
+    await page.waitForFunction(() => !document.getElementById('ask').hidden);
+    assert.equal(await page.locator('#search').inputValue(), '', 'going back clears the search so the count is honest');
+    assert.equal(await page.locator('#ks-note').isVisible(), true, 'the questions screen says K-State only is on');
+    await page.locator('#ks-off').click();
+    assert.equal(await page.locator('#ks-note').isHidden(), true);
+    await page.locator('#see-list').click();
+    await page.waitForFunction(() => location.hash === '#list&level=phd&needs=money');
     await page.screenshot({ path: path.join(out, 'matcher-visa-phd.png'), fullPage: true });
     pass('three taps rule out citizenship-restricted fellowships with checked reasons; answer chips, K-State toggle, unit tags; citizenship stays out of the URL');
 

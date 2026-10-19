@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=12';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=13';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -175,6 +175,7 @@ function summarize(answers, shown, out) {
   const chips = $('answer-chips');
   chips.replaceChildren(...(bits.length ? bits : ['Everything']).flatMap((b) => b.split(', ')).map((b) => make('span', 'chip', b)));
   $('list-count').textContent = `${shown} ${shown === 1 ? 'result' : 'results'}${out ? ` · ${out} ruled out` : ''}`;
+  $('ks-note').hidden = !answers.kstate;
   updateCounts(shown);
 }
 
@@ -202,6 +203,7 @@ window.addEventListener('hashchange', syncFromLocation);
 window.addEventListener('pageshow', (event) => {
   if (!event.persisted) return;
   for (const input of form.querySelectorAll('input[name="citizen"]')) input.checked = input.value === '';
+  touched.delete('citizen');
   render();
 });
 
@@ -279,6 +281,8 @@ function setView(next, { focus = true } = {}) {
     restart(document.querySelector('.results-head'), 'arrived');
     if (focus) $('results-title').focus({ preventScroll: true });
   } else {
+    // A search typed on the list would silently shrink the count on this screen.
+    $('search').value = '';
     render();
     if (focus) $('see-list').focus({ preventScroll: true });
   }
@@ -299,12 +303,17 @@ function syncFromLocation() {
   if (!items.length) return;
   const hash = window.location.hash;
   if (hash === '#main') return;
-  writeAnswers(fromHash(hash));
+  const next = fromHash(hash);
+  // Leaving the list with Back: the older history entry predates any K-State
+  // toggle made on the list, so carry the toggle over instead of undoing it.
+  if (view === 'list' && !wantsList(hash)) next.kstate = $('kstate-only').checked;
+  writeAnswers(next);
   setView(wantsList(hash) ? 'list' : 'ask', { focus: false });
   render();
 }
 
 $('back').addEventListener('click', showAsk);
+$('ks-off').addEventListener('click', () => { $('kstate-only').checked = false; render(); });
 $('to-top').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 for (const preset of document.querySelectorAll('.preset')) {
   preset.addEventListener('click', () => {

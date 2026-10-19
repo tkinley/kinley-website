@@ -4,7 +4,7 @@
 
 ## How it works
 
-The page has two steps, like a search page. Step 1 shows only the three questions in one card, a "Show N results" button with the live count, and four quick starts (PhD travel money, Undergrad scholarships, Free software and AI, Food and everyday help). Step 2 is the list, with the answers pinned in a bar at the top and a "Change answers" button. Moving to the list adds a browser history entry, so Back returns to the questions. A link with `#list&...` opens straight on the list; a link with only answers opens the questions with them filled in. Old `#scholarships` links open the list with Money selected.
+The page has two steps, like a search page. Step 1 shows only the three questions, on the page with thin lines between them (no box), a "Show N results" button with the live count, and four quick starts (PhD travel money, Undergrad scholarships, Free software and AI, Food and everyday help). Step 2 is the list, with the answers pinned in a bar at the top and a "Change answers" button. Moving to the list adds a browser history entry, so Back returns to the questions. A link with `#list&...` opens straight on the list; a link with only answers opens the questions with them filled in. Old `#scholarships` links open the list with Money selected.
 
 1. **Three questions.** Level (Undergrad, Master's, PhD), U.S. citizen or permanent resident (Yes, No, Skip; "No" covers every other status, not just student visas, so international-only awards stay visible for "No" with a line asking students who aren't on a student or exchange visa to confirm their status counts), and needs (Money, Travel, Research tools, Software & AI, Everyday help). Results update on every tap. A "K-State only" toggle hides outside programs.
 2. **Groups.**

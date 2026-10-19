@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="assets/katex/katex.min.css?v=4" />
 <script type="module" src="assets/kalman-sketch.js?v=4"></script>
 <script type="module" src="assets/fdr-sketch.js?v=4"></script>
-<script type="module" src="assets/hero-sketch.js?v=1"></script>
+<script type="module" src="assets/hero-sketch.js?v=2"></script>
 <script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-400.css" />
@@ -524,7 +524,7 @@ footer{border-top:1px solid var(--line-soft);margin-top:60px;padding:26px 24px 4
       <div class="hero">
         <figure class="cells" id="cells-sketch" aria-labelledby="cells-caption">
           <canvas width="420" height="232" role="img" aria-label="Animated diagram. Two rod-shaped bacteria release signal molecules until both switch on. The donor pairs with its neighbour and passes a copy of its plasmid across. In the recipient, a mobile element shuffles the plasmid's gene order and then jumps into the chromosome."></canvas>
-          <button type="button" class="sketch-btn cells-toggle" data-cells-toggle aria-pressed="false">Pause</button>
+          <button type="button" class="sketch-btn cells-toggle" data-cells-toggle aria-pressed="false" aria-label="Pause the cell animation">Pause</button>
           <figcaption id="cells-caption">Quorum sensing switches on plasmid transfer, as it does in <i>Agrobacterium</i>. Each loop, the genes land in a different order. Schematic, not to scale.</figcaption>
           <p class="sr-only" data-cells-status aria-live="polite"></p>
         </figure>

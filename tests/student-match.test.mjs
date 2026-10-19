@@ -124,7 +124,7 @@ test('deadlines: next published date, annual cycles, rolling, and closed rounds'
   const afri = deadlineState(byId('usda-nifa-afri-predoctoral'), TODAY);
   assert.equal(afri.kind, 'closed');
   assert.equal(afri.last, '2026-04-16');
-  assert.equal(evaluate(byId('nsf-grfp'), { citizen: 'yes' }, '2026-10-20').group, 'dates');
+  assert.equal(evaluate(byId('nsf-grfp'), { citizen: 'yes' }, '2026-10-24').group, 'dates');
   assert.equal(daysBetween('2026-10-18', '2026-10-19'), 1);
   assert.equal(deadlineText(evaluate(byId('nsf-grfp'), {}, TODAY)), 'Due Oct 19, 2026 (Life Sciences) · 1 day left');
 });
@@ -137,6 +137,21 @@ test('Open anytime holds only checked rolling programs; unchecked benefits are l
   for (const id of ['chatgpt-plus', 'google-ai-pro', 'staley-school-food-security-scholars', 'graduate-leadership-development']) assert.equal(where(id).group, 'dates', id);
   assert.equal(deadlineText(where('chatgpt-plus')), 'My notes: Deadline Oct 31. Not checked yet.');
   assert.equal(where('cats-cupboard').group, 'benefits');
+});
+
+test('GRFP shows the next field deadline with its own label, and no stale detail once closed', () => {
+  assert.equal(deadlineText(evaluate(byId('nsf-grfp'), {}, '2026-10-21')), 'Due Oct 22, 2026 (Engineering) · 1 day left');
+  assert.equal(deadlineText(evaluate(byId('nsf-grfp'), {}, '2026-10-23')), 'Due Oct 23, 2026 (Chemistry, geosciences, math, physics and astronomy) · due today');
+  const closed = evaluate(byId('nsf-grfp'), {}, '2026-10-24');
+  assert.equal(closed.deadline.kind, 'closed');
+  assert.doesNotMatch(deadlineText(closed), /Check yours/);
+  assert.equal(deadlineText(closed), 'Last round closed Oct 23, 2026. Next date not posted.');
+});
+
+test('amounts from unchecked notes say so on the card', () => {
+  const r = evaluate(byId('cross-the-finish-line-scholarship'), {}, TODAY);
+  assert.equal(r.amount, '$2,000 (from my notes, not checked)');
+  assert.equal(evaluate(byId('gsc-travel-funding'), {}, TODAY).amount, 'Up to $750 domestic or $1,000 international, one trip per fiscal year');
 });
 
 test('yearly cycles without a published year are shown as likely, not confirmed', () => {

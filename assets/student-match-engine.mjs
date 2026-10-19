@@ -105,15 +105,16 @@ export function localToday(now = new Date()) {
 export function deadlineState(item, today) {
   const d = item.check?.deadline;
   if (d) {
-    let dates = (d.dates || []).filter((x) => ISO.test(x));
-    if (d.annual?.length) {
-      const year = Number(today.slice(0, 4));
-      dates = [...dates, ...[year, year + 1].flatMap((y) => d.annual.map((md) => `${y}-${md}`))];
-    }
-    dates = [...new Set(dates)].sort();
+    const published = (d.dates || []).filter((x) => ISO.test(x));
+    const year = Number(today.slice(0, 4));
+    const yearly = (d.annual || []).flatMap((md) => [`${year}-${md}`, `${year + 1}-${md}`]);
+    const dates = [...new Set([...published, ...yearly])].sort();
     const next = dates.find((x) => x >= today) || null;
     const last = [...dates].reverse().find((x) => x < today) || null;
-    if (next) return { kind: 'date', date: next, days: daysBetween(today, next), label: d.label || '', note: d.note || '', annual: Boolean(d.annual?.length) };
+    if (next) {
+      const label = d.labels?.[next] || d.label || '';
+      return { kind: 'date', date: next, days: daysBetween(today, next), label, note: d.detail || d.note || '', annual: !published.includes(next) };
+    }
     if (d.rolling) return { kind: 'rolling', note: d.note || '' };
     return { kind: 'closed', last, note: d.note || '' };
   }
@@ -205,7 +206,8 @@ function listLevels(levels) {
 function amountOf(item) {
   if (item.check && 'amount' in item.check) return item.check.amount || '';
   const b = String(item.benefit_type || '');
-  if (item.category === 'scholarships') return /[$€]\s?\d/.test(b) ? b.replace(/^Reported\s+/i, '') : '';
+  // Amounts from unchecked notes keep their uncertainty on the card.
+  if (item.category === 'scholarships') return /[$€]\s?\d/.test(b) ? `${b.replace(/^Reported\s+/i, '')} (from my notes, not checked)` : '';
   if (!b || /^(Varies|Not specified in source|Amount not established)$/i.test(b)) return '';
   return b;
 }

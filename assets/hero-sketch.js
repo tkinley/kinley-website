@@ -308,6 +308,7 @@ function initCells(root) {
     new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; if (inView) schedule(); else stop(); }).observe(root);
   }
   window.addEventListener('beforeprint', () => { stop(); still(); });
+  window.addEventListener('afterprint', applyMotion);
 
   applyMotion();
 }

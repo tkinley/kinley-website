@@ -7,7 +7,7 @@
     "levels": "Academic levels that can apply (Undergraduate, Master's, PhD). null means the source doesn't limit it.",
     "level_reason": "Optional text shown when the chosen level is not in 'levels'.",
     "citizenship": "us_only (citizens, nationals, permanent residents) | us_citizen_only (permanent residents excluded) | international_only | any | not_stated",
-    "deadline": "dates: ISO dates as published; annual: MM-DD cycles the source lists without a year; rolling: true; note: plain words. No dates and no rolling means the next date is not posted. annual dates are shown as likely, never confirmed.",
+    "deadline": "dates: ISO dates as published; labels: optional {date: label}; annual: MM-DD cycles the source lists without a year (shown as likely, never confirmed); rolling: true; detail: shown only while a date is upcoming; note: shown otherwise (closed, rolling, or not posted).",
     "exclude": "Optional reason that rules the entry out for every current student.",
     "unit": "Optional short tag for entries limited to one department, college, or degree (shown on the card, never used to exclude)."
   },
@@ -27,10 +27,18 @@
       "who": "STEM seniors, recent graduates, and first-year grad students.",
       "deadline": {
         "dates": [
-          "2026-10-19"
+          "2026-10-19",
+          "2026-10-20",
+          "2026-10-22",
+          "2026-10-23"
         ],
-        "label": "Life Sciences",
-        "note": "Other fields close Oct 20 to 23, 2026."
+        "labels": {
+          "2026-10-19": "Life Sciences",
+          "2026-10-20": "CISE, materials, psychology, social sciences",
+          "2026-10-22": "Engineering",
+          "2026-10-23": "Chemistry, geosciences, math, physics and astronomy"
+        },
+        "detail": "Each field has its own deadline, Oct 19 to 23. Check yours."
       },
       "check": [
         "You must have finished less than one academic year of grad school. Grad students get one try, in the first year of their first program."
@@ -80,7 +88,7 @@
           "2027-08-08",
           "2027-12-08"
         ],
-        "note": "Three standard rounds a year."
+        "detail": "Three standard rounds a year."
       },
       "check": [
         "You must be a citizen, national, or permanent resident by the time of award, not just when you apply."
@@ -154,7 +162,7 @@
           "2026-10-31",
           "2027-04-30"
         ],
-        "note": "Oct 31 is for projects starting the next June to September; Apr 30 for October or later."
+        "detail": "Oct 31 is for projects starting the next June to September; Apr 30 for October or later."
       },
       "check": [
         "Not a U.S. or Canadian citizen or permanent resident? You must live in the U.S. or Canada and your latest degree must be from there (a master's earned inside your PhD counts)."
@@ -205,7 +213,7 @@
           "03-15",
           "10-01"
         ],
-        "note": "Two rounds every year."
+        "detail": "Two rounds every year."
       },
       "check": [
         "About 75% of the money goes to members or students whose advisor is a member."
@@ -253,7 +261,7 @@
           "2026-09-01",
           "2027-03-01"
         ],
-        "note": "The Mar 1 round covers meetings from May 2027 to April 2028."
+        "detail": "The Mar 1 round covers meetings from May 2027 to April 2028."
       },
       "check": [
         "You must belong to a FEMS member society and be the presenting author."
@@ -1012,7 +1020,7 @@
           "2026-11-10"
         ],
         "label": "noon",
-        "note": "Application and your mentor's letter are both due."
+        "detail": "Application and your mentor's letter are both due."
       },
       "check": [
         "You need a letter from your faculty mentor, and you must be enrolled for credit to receive research funds."
