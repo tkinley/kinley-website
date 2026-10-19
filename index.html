@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="assets/katex/katex.min.css?v=4" />
 <script type="module" src="assets/kalman-sketch.js?v=4"></script>
 <script type="module" src="assets/fdr-sketch.js?v=4"></script>
+<script type="module" src="assets/hero-sketch.js?v=1"></script>
 <script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/latin-400.css" />
@@ -482,10 +483,13 @@ footer{border-top:1px solid var(--line-soft);margin-top:60px;padding:26px 24px 4
 @media(max-width:760px){.dashboard-comparison{grid-template-columns:1fr}.dashboard-content{padding:20px 15px}.dashboard-box{padding:16px}.dashboard-header{flex-wrap:wrap}.dashboard-tabs{gap:6px}.dashboard-tabs button{padding:9px 10px}.study-dashboard>summary{padding:16px}.dashboard-table th,.dashboard-table td{padding:8px 6px}}
 @media(max-width:480px){.dashboard-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-stage{padding:12px}.dashboard-stage b{font-size:24px}.dashboard-header h4{font-size:23px}.dashboard-metrics dd{font-size:25px}}
 @media print{.study-dashboard>summary,.dashboard-controls{display:none!important}.study-dashboard::details-content{display:block!important;content-visibility:visible!important}.dashboard-panel[hidden]{display:block!important}.dashboard-content{padding:12px}.dashboard-box,.dashboard-stage{break-inside:avoid}.dashboard-panel{animation:none!important}}
-/* ---------- profile image ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) 220px;max-width:none;gap:40px;align-items:start}
-.hero-profile{grid-column:2;grid-row:1;display:block;width:220px;height:220px;object-fit:contain;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow)}
-@media(max-width:1020px){.hero{grid-template-columns:1fr;gap:24px}.hero-profile{grid-column:1;grid-row:1;width:160px;height:160px}}
+/* ---------- hero sketch: two cells swapping DNA ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 420px;max-width:none;gap:44px;align-items:center}
+.cells{grid-column:2;grid-row:1;position:relative;margin:0}
+.cells canvas{display:block;width:100%;height:auto;aspect-ratio:420/232}
+.cells-toggle{position:absolute;top:0;right:0}
+.cells figcaption{margin-top:4px;max-width:46ch;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+@media(max-width:1020px){.hero{grid-template-columns:1fr;gap:18px}.cells{grid-column:1;grid-row:1;width:100%;max-width:480px}}
 </style>
 </head>
 <body>
@@ -518,7 +522,12 @@ footer{border-top:1px solid var(--line-soft);margin-top:60px;padding:26px 24px 4
   <section id="home">
     <div class="hero-wrap">
       <div class="hero">
-        <img class="hero-profile" src="images/profile.jpg" alt="Three seated figures beneath an overhead light" width="800" height="800" decoding="async" />
+        <figure class="cells" id="cells-sketch" aria-labelledby="cells-caption">
+          <canvas width="420" height="232" role="img" aria-label="Animated diagram. Two rod-shaped bacteria release signal molecules until both switch on. The donor pairs with its neighbour and passes a copy of its plasmid across. In the recipient, a mobile element shuffles the plasmid's gene order and then jumps into the chromosome."></canvas>
+          <button type="button" class="sketch-btn cells-toggle" data-cells-toggle aria-pressed="false">Pause</button>
+          <figcaption id="cells-caption">Quorum sensing switches on plasmid transfer, as it does in <i>Agrobacterium</i>. Each loop, the genes land in a different order. Schematic, not to scale.</figcaption>
+          <p class="sr-only" data-cells-status aria-live="polite"></p>
+        </figure>
         <div class="reveal">
           <span class="hero-badge">Bacterial genomes &amp; other rabbit holes</span>
           <h1>Kinley Tenzin</h1>
