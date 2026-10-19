@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=10';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=11';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -178,12 +178,17 @@ function summarize(answers, shown, out) {
   updateCounts(shown);
 }
 
-form.addEventListener('change', () => { expanded.clear(); render(); });
+form.addEventListener('change', (event) => { if (event.target.name) touched.add(event.target.name); expanded.clear(); render(); });
+// Tapping the already-selected "Skip" fires no change event, but it still answers question 2.
+form.addEventListener('click', (event) => {
+  if (event.target.name === 'citizen' && !touched.has('citizen')) { touched.add('citizen'); updateTaps(); }
+});
 form.addEventListener('submit', (event) => { event.preventDefault(); showList(); });
 $('search').addEventListener('input', render);
 $('kstate-only').addEventListener('change', () => { expanded.clear(); render(); });
 $('clear-search').addEventListener('click', () => { $('search').value = ''; render(); $('search').focus(); });
 $('start-over').addEventListener('click', () => {
+  touched.clear();
   form.reset();
   $('kstate-only').checked = false;
   $('search').value = '';
@@ -220,10 +225,44 @@ function wantsList(hash) {
   return raw === 'scholarships' || new URLSearchParams(raw).has('list');
 }
 
+// The Show button is the page's one bit of play. Three dots fill as each
+// question gets an answer ("three taps"), the count rolls like an odometer
+// when it changes, and a light sweeps across once all three are answered.
+const touched = new Set();
 function updateCounts(shown) {
-  $('see-label').textContent = `Show ${shown} ${shown === 1 ? 'result' : 'results'}`;
-  if (lastShown !== null && shown !== lastShown) restart($('see-list'), 'bump');
+  const noun = shown === 1 ? 'result' : 'results';
+  $('see-label').textContent = `Show ${shown} ${noun}`;
+  $('go-noun').textContent = noun;
+  setOdometer($('odo'), shown);
   lastShown = shown;
+  updateTaps();
+}
+
+function setOdometer(node, value) {
+  const digits = String(value).split('').map(Number);
+  while (node.children.length < digits.length) {
+    const wheel = make('span', 'wheel');
+    const strip = make('span', 'strip');
+    for (let d = 0; d <= 9; d += 1) strip.append(make('span', '', String(d)));
+    wheel.append(strip);
+    node.prepend(wheel);
+  }
+  while (node.children.length > digits.length) node.firstElementChild.remove();
+  [...node.children].forEach((wheel, i) => wheel.firstElementChild.style.setProperty('--d', String(digits[i])));
+}
+
+function updateTaps() {
+  const answers = readAnswers();
+  const done = {
+    level: Boolean(answers.level),
+    citizen: Boolean(answers.citizen) || touched.has('citizen'),
+    needs: answers.needs.length > 0,
+  };
+  for (const dot of document.querySelectorAll('.taps i')) dot.classList.toggle('on', done[dot.dataset.q]);
+  const ready = done.level && done.citizen && done.needs;
+  const button = $('see-list');
+  if (ready && !button.classList.contains('ready')) restart(button, 'shine');
+  button.classList.toggle('ready', ready);
 }
 
 function setView(next, { focus = true } = {}) {
