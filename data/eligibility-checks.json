@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_on": "2026-10-18",
+  "checked_on": "2026-10-23",
   "about": "Hand-checked facts for the funding entries that matter most to K-State grad students. Each entry was read from the source page on the date in 'checked'. The matcher merges this file over data/student-opportunities.json at load time, so rebuilding the catalogue never erases it.",
   "fields": {
     "needs": "money | travel | research | software | everyday. Overrides the catalogue's category mapping.",
@@ -1027,6 +1027,104 @@
       ],
       "source": "https://www.k-state.edu/leadership/scholar-development-and-undergraduate-research/undergrad-research/grant-awards/",
       "checked": "2026-10-18"
+    },
+    "hertz-fellowship": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "us_only",
+      "kstate": false,
+      "amount": "$38,000 nine-month stipend plus full tuition equivalent, renewable up to 5 years (up to $250,000 total)",
+      "who": "Students starting a PhD in the applied physical or biological sciences, mathematics, or engineering.",
+      "deadline": {
+        "dates": [
+          "2026-10-30"
+        ]
+      },
+      "check": [
+        "You must be a college senior, a first-year grad student, or in a gap year before grad school. Funding starts fall 2027, and you must be in your first or second PhD year then.",
+        "Fellows make a non-binding moral commitment to make their skills available to the U.S. in a national emergency."
+      ],
+      "source": "https://www.hertzfoundation.org/hertz-fellowship/",
+      "checked": "2026-10-23"
+    },
+    "charlotte-w-newcombe-doctoral-dissertation-fellowship": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
+      "citizenship": "any",
+      "kstate": false,
+      "amount": "$33,500 for 12 months of dissertation writing; your school is asked to waive tuition and fees",
+      "who": "PhD candidates in their final writing year whose dissertation centers on religion, ethics, morals, or values.",
+      "deadline": {
+        "dates": [
+          "2026-11-01"
+        ],
+        "detail": "Phase 1 deadline. Recommendation rubrics are due Nov 5."
+      },
+      "check": [
+        "You must be ABD with an approved dissertation proposal by Nov 1, 2026, and expect to finish between April 1 and August 31, 2027.",
+        "You cannot have held a similar national award for the final year of dissertation writing.",
+        "STEM students can apply only when religion, ethics, or values are central to the dissertation."
+      ],
+      "source": "https://newcombefoundation.org/fellowships/",
+      "checked": "2026-10-23"
+    },
+    "graduate-ellison-scholars": {
+      "needs": [
+        "money"
+      ],
+      "levels": [
+        "PhD"
+      ],
+      "citizenship": "any",
+      "kstate": false,
+      "amount": "Full Oxford course fees and a living stipend, plus travel, a tech setup, and arrival costs",
+      "who": "Students ready to start a DPhil at Oxford in October 2027, working on an Ellison Institute project.",
+      "deadline": {
+        "dates": [
+          "2026-12-01"
+        ],
+        "detail": "Apply to EIT by 5pm UK time. Picked candidates then apply to Oxford between January and March 2027."
+      },
+      "check": [
+        "This funds a new doctorate at Oxford starting October 2027. It does not fund your current program.",
+        "EIT gives a GPA of 3.7 of 4 or higher as example evidence, on top of Oxford’s own entry requirements."
+      ],
+      "source": "https://eit.org/news/applications-now-open-for-graduate-ellison-scholars-programme",
+      "checked": "2026-10-23"
+    },
+    "humane-studies-fellowship": {
+      "needs": [
+        "money",
+        "travel"
+      ],
+      "levels": [
+        "Master's",
+        "PhD"
+      ],
+      "citizenship": "any",
+      "kstate": false,
+      "amount": "$2,000 conference grants, $5,000 publication grants, up to $15,000 sabbatical grants",
+      "who": "PhD students and postdocs whose research advances classical liberal scholarship.",
+      "deadline": {
+        "rolling": true,
+        "note": "Rolling. Decisions within about eight weeks."
+      },
+      "check": [
+        "The main fellowship needs full-time PhD enrollment. The $2,000 conference tier also covers master’s and PhD students who have not reached candidacy.",
+        "Preference goes to research tied to IHS focus areas."
+      ],
+      "source": "https://www.theihs.org/funding-opportunities/",
+      "checked": "2026-10-23"
     }
   }
 }

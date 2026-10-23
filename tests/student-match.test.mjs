@@ -15,7 +15,7 @@ test('catalogue cards still match the resource library one to one', async () => 
   const html = await readFile(new URL('../student-benefits.html', import.meta.url), 'utf8');
   const cards = [...html.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
   assert.equal(cards.length, 108);
-  assert.equal(catalogue.opportunities.length, 159);
+  assert.equal(catalogue.opportunities.length, 166);
   assert.equal(new Set(catalogue.opportunities.map((o) => o.id)).size, catalogue.opportunities.length);
   for (const [i, card] of cards.entries()) {
     const o = catalogue.opportunities[i].original_card || catalogue.opportunities[i];

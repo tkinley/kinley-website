@@ -21,8 +21,8 @@ The page has two steps, like a search page. Step 1 shows only the three question
 
 ## Data
 
-- `data/student-opportunities.json`: the catalogue (159 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
-- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (45 as of Oct 18, 2026, including the ISSS international scholarships, the Division of Biology awards, the IFT and NRES awards, and the SDUR undergraduate research and travel awards). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
+- `data/student-opportunities.json`: the catalogue (166 entries) built from `student-benefits.html` plus `data/student-funding-updates.json` by `scripts/extract-student-opportunities.mjs`. It says what exists.
+- `data/eligibility-checks.json`: hand-checked facts for the funding entries that matter most (49 as of Oct 23, 2026, including the ISSS international scholarships, the Division of Biology awards, the IFT and NRES awards, and the SDUR undergraduate research and travel awards). Each entry records needs, levels, citizenship rule, amount, a one-line "who," deadline, things to check, the source URL, and the check date. The page merges it over the catalogue at load time, so a catalogue rebuild never erases it.
 
 Overlay fields:
 

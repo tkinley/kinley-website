@@ -5,7 +5,7 @@
     "student-funding-updates.json"
   ],
   "original_card_count": 108,
-  "funding_record_count": 53,
+  "funding_record_count": 60,
   "verification_note": "Null means unknown. Workbook fit scores and personal tracking notes are excluded. Only explicitly reviewed official information receives a check date or verified deadline. Never roll recurring dates into a new cycle.",
   "opportunities": [
     {
@@ -8731,6 +8731,398 @@
           "deadline"
         ],
         "original_title": "Research and Travel Funding"
+      }
+    },
+    {
+      "id": "hertz-fellowship",
+      "title": "Hertz Fellowship",
+      "description": "Five years of doctoral funding with a $38,000 nine-month stipend and full tuition equivalent.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "Up to $250,000 over 5 years",
+      "official_url": "https://www.hertzfoundation.org/hertz-fellowship/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "Undergraduate",
+              "Master's",
+              "PhD"
+            ],
+            "label": "Listed academic level",
+            "source_text": "College seniors, first-year graduate students, or a gap year before grad school."
+          }
+        ],
+        "unknown": [
+          "US citizens or permanent residents only; funding starts fall 2027.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "Undergraduate",
+        "Master's",
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": "2026-10-30",
+        "verified": true,
+        "reported_date": "2026-10-30",
+        "source_text": "Applications close October 30, 2026."
+      },
+      "last_verified": "2026-10-23",
+      "tags": [
+        "Scholarships",
+        "Financial Support",
+        "Research"
+      ],
+      "notes": "US citizens and permanent residents only. College seniors, first-year grad students, or a gap year before grad school; you must be in your first or second PhD year when funding starts in fall 2027.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": "2026-10-30"
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "money",
+          "deadline"
+        ],
+        "original_title": "Hertz Fellowship"
+      }
+    },
+    {
+      "id": "charlotte-w-newcombe-doctoral-dissertation-fellowship",
+      "title": "Charlotte W. Newcombe Doctoral Dissertation Fellowship",
+      "description": "A final-year dissertation fellowship for projects centered on religion, ethics, or values.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "$33,500",
+      "official_url": "https://newcombefoundation.org/fellowships/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "PhD"
+            ],
+            "label": "Listed academic level",
+            "source_text": "ABD doctoral candidates in the final writing year."
+          }
+        ],
+        "unknown": [
+          "The dissertation must center on religion, ethics, morals, or values.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": "2026-11-01",
+        "verified": true,
+        "reported_date": "2026-11-01",
+        "source_text": "Phase 1 applications due November 1, 2026."
+      },
+      "last_verified": "2026-10-23",
+      "tags": [
+        "Scholarships",
+        "Financial Support",
+        "Research"
+      ],
+      "notes": "ABD with an approved proposal by November 1, 2026, research done, and finishing between April 1 and August 31, 2027. International students at U.S. institutions can apply.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": "2026-11-01"
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "money",
+          "deadline"
+        ],
+        "original_title": "Newcombe Fellowship"
+      }
+    },
+    {
+      "id": "graduate-ellison-scholars",
+      "title": "Graduate Ellison Scholars",
+      "description": "A fully funded Oxford DPhil, done alongside Ellison Institute of Technology research projects.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support",
+        "travel"
+      ],
+      "benefit_type": "Fully funded",
+      "official_url": "https://eit.org/news/applications-now-open-for-graduate-ellison-scholars-programme",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "PhD"
+            ],
+            "label": "Listed academic level",
+            "source_text": "Applicants for a DPhil at Oxford starting October 2027."
+          }
+        ],
+        "unknown": [
+          "Funds a new doctorate at Oxford, not a current program.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": "2026-12-01",
+        "verified": true,
+        "reported_date": "2026-12-01",
+        "source_text": "EIT applications close December 1, 2026."
+      },
+      "last_verified": "2026-10-23",
+      "tags": [
+        "Scholarships",
+        "Financial Support",
+        "Research",
+        "Travel"
+      ],
+      "notes": "For a new DPhil at Oxford starting October 2027, not a current program. Project areas include pathogen research, plant biology, generative biology, AI and robotics, and economics.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": "2026-12-01"
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "money",
+          "travel",
+          "deadline"
+        ],
+        "original_title": "Graduate Ellison Scholars"
+      }
+    },
+    {
+      "id": "humane-studies-fellowship",
+      "title": "Humane Studies Fellowship",
+      "description": "Tiered grants for graduate students whose research advances classical liberal scholarship.",
+      "category": "scholarships",
+      "categories": [
+        "scholarships",
+        "research",
+        "financial-support"
+      ],
+      "benefit_type": "$2,000 to $15,000",
+      "official_url": "https://www.theihs.org/funding-opportunities/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "academic_level",
+            "operator": "in",
+            "values": [
+              "Master's",
+              "PhD"
+            ],
+            "label": "Listed academic level",
+            "source_text": "Full-time PhD students and postdocs; the conference tier also covers master’s students."
+          }
+        ],
+        "unknown": [
+          "Research must advance classical liberal scholarship.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Applications are reviewed on a rolling basis."
+      },
+      "last_verified": "2026-10-23",
+      "tags": [
+        "Scholarships",
+        "Financial Support",
+        "Research"
+      ],
+      "notes": "Conference Accelerator grants $2,000, Publication Accelerator grants $5,000, Graduate Sabbatical grants up to $15,000. Decisions within about eight weeks.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "money"
+        ],
+        "original_title": "Humane Studies Fellowship"
+      }
+    },
+    {
+      "id": "flint-hills-discovery-center",
+      "title": "Flint Hills Discovery Center",
+      "description": "Prairie science and history museum in downtown Manhattan, at 315 South 3rd Street.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "$10 with college ID",
+      "official_url": "https://www.flinthillsdiscovery.org/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Show a college ID for the $10 rate.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Open Tuesday to Saturday 10am to 5pm and Sunday noon to 5pm; closed Mondays."
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning"
+      ],
+      "notes": "College students pay $10 (adult $12, youth $7). With an EBT card, admission is $5 for adults and $3 for kids through Museums for All. Closed Mondays.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "fun",
+          "learn"
+        ],
+        "original_title": "Flint Hills Discovery Center"
+      }
+    },
+    {
+      "id": "museum-of-art-light",
+      "title": "Museum of Art + Light",
+      "description": "Contemporary and immersive art museum in downtown Manhattan.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "$10 with college ID",
+      "official_url": "https://artlightmuseum.org/plan-your-visit/",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "College student rate is listed on the plan-your-visit page.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Open Wednesday to Saturday 10am to 5pm and Sunday noon to 5pm; closed Monday and Tuesday."
+      },
+      "last_verified": null,
+      "tags": [
+        "Learning"
+      ],
+      "notes": "College students pay $10 for the museum (adult $15). The immersive Picasso: Art in Motion show is a separate $25 for students, $30 for adults. Closed Monday and Tuesday.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "fun",
+          "learn"
+        ],
+        "original_title": "Museum of Art + Light"
+      }
+    },
+    {
+      "id": "free-k-state-sports-admission",
+      "title": "Free K-State Sports Admission",
+      "description": "Volleyball and the other non-revenue sports admit K-State students free with a valid student ID.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free with student ID",
+      "official_url": "https://www.kstatesports.com/news/2006/1/1/5583dda1e4b06b726e6642bd_131478177237459641",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "A valid K-State student ID is required at the gate.",
+          "Complete current criteria and access terms need confirmation."
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": "Schedules vary by sport and season."
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Football and men’s basketball need the paid student sports pass. Volleyball at Ahearn Field House and the other non-revenue sports are free with a valid student ID.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-funding-updates.json",
+        "sheet": "Manual addition",
+        "row": null,
+        "categories": [
+          "kstate",
+          "fun"
+        ],
+        "original_title": "Free K-State Sports Admission"
       }
     }
   ]
