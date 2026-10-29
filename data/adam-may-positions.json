@@ -1,0 +1,1296 @@
+{
+ "updated": "2026-10-29",
+ "scope": "Biotech and pharma only, 2024 onward",
+ "pitches": [
+  {
+   "ticker": "NKTR",
+   "company": "Nektar Therapeutics",
+   "date": "2025-02-10",
+   "price": "$0.676",
+   "note": "Atopic dermatitis readout; ~0.45x cash. Still a large long-term holding in Oct 2026.",
+   "url": "https://x.com/A_May_MD/status/1888946758895411623"
+  },
+  {
+   "ticker": "ABVX",
+   "company": "Abivax",
+   "date": "2025-07-21",
+   "price": "$9.95",
+   "note": "Phase 3 UC readout the next day. His biggest position ever; +1,247% by his count a year later.",
+   "url": "https://x.com/A_May_MD/status/1947288947991761047"
+  },
+  {
+   "ticker": "ZURA",
+   "company": "Zura Bio",
+   "date": "2026-10-13",
+   "price": "$4.00",
+   "note": "HS readout he expects around mid-November 2026, then SSc data.",
+   "url": "https://x.com/A_May_MD/status/2110010685455286544"
+  }
+ ],
+ "scorecard": [
+  {
+   "ticker": "NKTR",
+   "period": "2025",
+   "bet": "Pitched long at $0.676 into the atopic dermatitis readout",
+   "date": "2025-06-24",
+   "outcome": "won",
+   "note": "Stock re-rated after the data; by Dec 2025 he says it was up about 400% since the pitch.",
+   "url": "https://x.com/A_May_MD/status/2001300342013604322"
+  },
+  {
+   "ticker": "ABVX",
+   "period": "2025",
+   "bet": "Pitched long at $9.95 the day before the Phase 3 UC readout",
+   "date": "2025-07-22",
+   "outcome": "won",
+   "note": "Data positive; a year later he puts the return at 1,247%.",
+   "url": "https://x.com/A_May_MD/status/2079589486267105380"
+  },
+  {
+   "ticker": "TENX",
+   "period": "2026",
+   "bet": "Long as his 2026 BioPick into the HFpEF readout",
+   "date": "2026-08-10",
+   "outcome": "unclear",
+   "note": "Readout appears to have failed; he never said how much he held into it.",
+   "url": "https://x.com/A_May_MD/status/2086804643212845229"
+  },
+  {
+   "ticker": "ZURA",
+   "period": "2026",
+   "bet": "Pitched long at $4 into the HS readout",
+   "date": "2026-10-13",
+   "outcome": "pending",
+   "note": "He expects the HS data around mid-November 2026.",
+   "url": "https://x.com/A_May_MD/status/2110010685455286544"
+  }
+ ],
+ "positions": [
+  {
+   "period": "2026",
+   "ticker": "ABVX",
+   "company": "Abivax",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Largest position; holding long-term shares plus dip buys",
+   "firstSeen": "2026-01-01",
+   "lastSeen": "2026-10-22",
+   "summary": "Jan 1: calls ABVX the largest position by cost basis he has ever taken. Jun 12: bought the first dip after the safety-slide selloff. Jun 24: confirms it is his largest position and he is not selling. Jul 21: still his biggest position, holding all long-term shares from the maintenance readout plus new dip buys. Oct 22: still holding a large long-term position.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2069803076563669310"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2079593355319656560"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2113369530093154579"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NKTR",
+   "company": "Nektar Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Second-biggest position; keeps adding",
+   "firstSeen": "2026-02-11",
+   "lastSeen": "2026-10-22",
+   "summary": "Feb 11: bought more at the open despite already being hugely overweight. May 26: says it is still his second-biggest position and he keeps buying more. Oct 22: still holding a large long-term position.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2021595553381937402"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2059359162400694370"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2113369530093154579"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "ZURA",
+   "company": "Zura Bio",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "pitch",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Pitched Oct 13 at $4; HS readout he expects around mid-November",
+   "firstSeen": "2026-10-13",
+   "lastSeen": "2026-10-25",
+   "summary": "Oct 13: third formal pitch (after NKTR and ABVX), a full thread plus research document, with bias disclaimers. Oct 23: says the stock was the only one that mattered to him that day. Oct 24-25: added an addendum to the pitch.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2110010685455286544"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2113615321802154400"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2114430596931854740"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "QURE",
+   "company": "uniQure",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Bought a bunch in the mid teens",
+   "firstSeen": "2026-09-29",
+   "lastSeen": "2026-09-30",
+   "summary": "Sep 29: says he bought a lot of QURE in the mid teens after the stock sold off toward cash on the 4-year Huntington's data.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2104920428842275313"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2105122663542767690"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NVO",
+   "company": "Novo Nordisk",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Bought Feb 6; still long Mar 7",
+   "firstSeen": "2026-02-06",
+   "lastSeen": "2026-03-07",
+   "summary": "Feb 6: shorted HIMS and bought Novo and Lilly the same day, a bet on a crackdown on compounded GLP-1s. Mar 7: says he is long Novo.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2019595216681070667"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2030094999979971063"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "LLY",
+   "company": "Eli Lilly",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Bought Feb 6 and again Feb 14",
+   "firstSeen": "2026-02-06",
+   "lastSeen": "2026-02-14",
+   "summary": "Bought alongside Novo on Feb 6 and again on Feb 14 (high tide on orals plus decline of compounders).",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2019595216681070667"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2022679431517471000"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "TENX",
+   "company": "Tenax Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "2026 BioPick; Aug readout looks to have failed; exit not stated",
+   "firstSeen": "2026-01-14",
+   "lastSeen": "2026-08-10",
+   "summary": "Jan 14: explains why he flipped bullish and made TENX his BioPick for 2026, while saying it is more likely than not to fail. Jan 22: no TENX sales so far. Aug 10: 'Tenth-X it is!', implying the binary failed; he does not say how much he held into it.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2011457302096748706"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2086804643212845229"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NTLA",
+   "company": "Intellia Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Still short; says he will cover in single digits",
+   "firstSeen": "2026-01-22",
+   "lastSeen": "2026-04-29",
+   "summary": "Jan 22: still short Intellia. Apr 27: calls himself a long-term NTLA bear and notes the stock is down more than 90%. Apr 29: expects single-digit prices to cover his shorts.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2014299508306223383"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2048751457357234375"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2049469880450134386"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "ORKA",
+   "company": "Oruka Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Got short Apr 27 after the psoriasis data",
+   "firstSeen": "2026-04-27",
+   "lastSeen": "2026-04-27",
+   "summary": "Apr 27: says he just got short ORKA after its psoriasis data, comparing PASI100 to Skyrizi and Bimzelx.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2048751457357234375"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "SYRE",
+   "company": "Spyre Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "open",
+   "statusNote": "Shorted the +40% open on Apr 13",
+   "firstSeen": "2026-04-13",
+   "lastSeen": "2026-05-19",
+   "summary": "Apr 13: glad to short the 40% gap up on open-label UC data. May 19: still bearish on the valuation and timelines.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2043684475750465942"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2056708293423194494"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "APGE",
+   "company": "Apogee Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Covered the rest Mar 18; small win",
+   "firstSeen": "2026-01-23",
+   "lastSeen": "2026-03-18",
+   "summary": "Jan 23: short. Jan 30: covered a few thousand shares at $62-63. Feb 2: added them back at $66.60. Mar 11: his smallest position. Mar 18: closed the remainder, a single-digit % win he calls beta, not alpha.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2014735543007896023"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2017281123332895221"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2034329533147381842"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "ABVX",
+   "company": "Abivax",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "pitch",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Pitched Jul 21 at $9.95; largest position ever by cost",
+   "firstSeen": "2025-07-21",
+   "lastSeen": "2025-10-30",
+   "summary": "Jul 21: second formal pitch, a 25,000-word research document, the day before the Phase 3 UC readout. Jul 22: data positive; stock halted and then re-rated. Jan 1, 2026: says it was the largest position by cost basis he had ever taken.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1947288947991761047"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2006724860211257480"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2079589486267105380"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "NKTR",
+   "company": "Nektar Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "pitch",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Pitched Feb 10 at $0.676; biggest position; added repeatedly",
+   "firstSeen": "2025-02-10",
+   "lastSeen": "2025-12-17",
+   "summary": "Feb 10: first formal pitch at $0.676, about 0.45x cash, into the atopic dermatitis readout (also published as a guest pitch saying he is long). Mar 31 and early Apr: bought more; Apr 8: his biggest position. Jun 24-25: bought more in the $21-23 and $17 range and added to what was already his largest position. Dec 16: bought the dip after alopecia data.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1888946758895411623"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1937885395825401895"
+    },
+    {
+     "label": "Guest pitch",
+     "url": "https://www.specialsituationinvestments.com/2025/02/guest-pitch-nektar-therapeutics-nktr/"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "QURE",
+   "company": "uniQure",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "3rd largest position after the Sep Huntington's data; long Oct 27",
+   "firstSeen": "2025-09-29",
+   "lastSeen": "2025-10-27",
+   "summary": "Sep 29: says that on the morning of the Huntington's data he made QURE his third-largest position, behind ABVX and NKTR. Oct 27: still long.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1972618105533894812"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1982894549325492378"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "PALI",
+   "company": "Palisade Bio",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Long and adding; 480K more shares Oct 28",
+   "firstSeen": "2025-10-06",
+   "lastSeen": "2025-10-29",
+   "summary": "Oct 6: 'THIS IS NOT A PITCH', but says he is long and bought more that morning. Oct 29: bought 480K more shares the day before.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1975198546707058860"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1983655024472531422"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "RGLS",
+   "company": "Regulus Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "2025 BioPick (+416%); acquired, rolled into CTMX",
+   "firstSeen": "2025-05-13",
+   "lastSeen": "2026-01-01",
+   "summary": "His 2025 BioPick, up 416% when Novartis bought the company early in the year. May 13: says most of that position rolled into CytomX.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2006724860211257480"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1922341612463460819"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "CTMX",
+   "company": "CytomX Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Most of the RGLS proceeds rolled into it",
+   "firstSeen": "2025-05-13",
+   "lastSeen": "2025-05-13",
+   "summary": "May 13: says most of his Regulus position rolled into CytomX.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1922341612463460819"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "BBIO",
+   "company": "BridgeBio Pharma",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Bought more Feb 3; long calls Apr 29",
+   "firstSeen": "2025-02-03",
+   "lastSeen": "2025-04-29",
+   "summary": "Feb 3: bought more at the $31 level. Apr 29: says he is long BBIO calls and was shocked by the strong Q1 launch.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1886504770778636529"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1917309489113424044"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "IONS",
+   "company": "Ionis Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Bought for the first time Apr 2",
+   "firstSeen": "2025-04-02",
+   "lastSeen": "2025-04-02",
+   "summary": "Apr 2: just bought IONS for the first time, on what looked like forced selling during the crash.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1907447073659588834"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "CYTK",
+   "company": "Cytokinetics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Building a position Mar 4",
+   "firstSeen": "2025-03-04",
+   "lastSeen": "2025-03-04",
+   "summary": "Mar 4: says he is building a CYTK position and thinks they can turn it around.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1896935144075952410"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "LXEO",
+   "company": "Lexeo Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Says he owns it (Jun 6)",
+   "firstSeen": "2025-06-06",
+   "lastSeen": "2025-06-06",
+   "summary": "Jun 6: one of the gene therapy companies he says he knows well and owns.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1931000481100210497"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "FATE",
+   "company": "Fate Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Selling it in Apr to buy more NKTR",
+   "firstSeen": "2025-04-09",
+   "lastSeen": "2025-05-31",
+   "summary": "Apr 9: selling relative outperformers such as FATE to buy more underperformers (NKTR). May 31: says he made a lot of money on it when it was way up.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1909988557726380287"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1928632961324232742"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "VKTX",
+   "company": "Viking Therapeutics",
+   "sector": "Biotech",
+   "side": "mixed",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Short earlier in 2025, then several brief longs",
+   "firstSeen": "2025-03-31",
+   "lastSeen": "2025-12-16",
+   "summary": "Mar 31: says he is exposed long. May 6: not long right now. Jun 24 and Dec 16: counts VKTX among shorts he made money on. Aug 21: most recent position was a brief long trade from the low $20s. Nov 5: bought a VKTX dip. Sep 2026: says he was long for about 30 seconds at some point in 2025.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1906708582130753841"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1958556647195828323"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2000989811403022475"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "NTLA",
+   "company": "Intellia Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Repeated shorts from June; re-shorted >$11 in Nov",
+   "firstSeen": "2025-06-06",
+   "lastSeen": "2025-11-25",
+   "summary": "Jun: shorted and covered within 1-2 days. Oct 27: shorted again at a >$1.5B valuation. Nov 5: covered (too early, he says). Nov 6-7: re-entered short above $11 after a patient death. Nov 25: added again.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1934973831501815939"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1982780827592229086"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1986871112555241898"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "JANX",
+   "company": "Janux Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Shorted after hours, covered next day +30%",
+   "firstSeen": "2025-12-01",
+   "lastSeen": "2025-12-02",
+   "summary": "Shorted after hours on Dec 1 on worse PSA responses; covered Dec 2 with a gain of more than 30% in under 24 hours.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1995933612621877605"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "IOVA",
+   "company": "Iovance Biotherapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "He says he 'crushed' an IOVA short in 2025",
+   "firstSeen": "2025-03-04",
+   "lastSeen": "2026-04-27",
+   "summary": "Apr 27, 2026: lists IOVA with VKTX as shorts he 'crushed last year'. Mar 2025: says his bearishness was tied to setup and valuation. Still publicly bearish on IOVA in Aug-Oct 2026, without saying he is short.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/2048751457357234375"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1896722083092348979"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "SRRK",
+   "company": "Scholar Rock",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Named as his only obesity exposure in spring 2025",
+   "firstSeen": "2024-11-25",
+   "lastSeen": "2025-03-31",
+   "summary": "Nov 25, 2024: adds SRRK to his list of likely buyout targets. In a reply under his Mar 31, 2025 Viking post (before May 2), he says he owns nothing in obesity 'unless you count SRRK'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1861064353367081272"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1906708582130753841"
+    }
+   ]
+  },
+  {
+   "period": "2024",
+   "ticker": "VRNA",
+   "company": "Verona Pharma",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Long; named as a buyout target",
+   "firstSeen": "2024-11-04",
+   "lastSeen": "2024-11-04",
+   "summary": "Nov 4, 2024: likes VRNA and TARS as buyout targets and says he is long both.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1853533817459401171"
+    }
+   ]
+  },
+  {
+   "period": "2024",
+   "ticker": "TARS",
+   "company": "Tarsus Pharmaceuticals",
+   "sector": "Specialty pharma",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Long; named as a buyout target",
+   "firstSeen": "2024-11-04",
+   "lastSeen": "2024-11-04",
+   "summary": "Nov 4, 2024: likes TARS and VRNA as buyout targets and says he is long both.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1853533817459401171"
+    }
+   ]
+  },
+  {
+   "period": "2024",
+   "ticker": "VKTX",
+   "company": "Viking Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Long at points in 2024; not long by Aug 26",
+   "firstSeen": "2024-08-24",
+   "lastSeen": "2024-08-26",
+   "summary": "Aug 24, 2024: says he has been long VKTX at certain points that year. Aug 26: not long.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1827418356623786403"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1827881122992210355"
+    }
+   ]
+  },
+  {
+   "period": "2024",
+   "ticker": "REPL",
+   "company": "Replimune",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Long into CSCC data (he calls it a miss)",
+   "firstSeen": "2025-05-31",
+   "lastSeen": "2025-05-31",
+   "summary": "In a May 31, 2025 post listing calls he got wrong, he says he was long REPL into its CSCC data.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1928632961324232742"
+    }
+   ]
+  },
+  {
+   "period": "2024",
+   "ticker": "ELYM",
+   "company": "Eliem Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Long for much of 2024 (he calls it a miss)",
+   "firstSeen": "2025-05-31",
+   "lastSeen": "2025-05-31",
+   "summary": "Same May 31, 2025 post: says he was long ELYM during much of 2024.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/A_May_MD/status/1928632961324232742"
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-10-25",
+   "tickers": [
+    "ZURA"
+   ],
+   "action": "info",
+   "note": "Adds an addendum to the ZURA pitch.",
+   "url": "https://x.com/A_May_MD/status/2114430596931854740"
+  },
+  {
+   "date": "2026-10-22",
+   "tickers": [
+    "ABVX",
+    "NKTR"
+   ],
+   "action": "info",
+   "note": "Still holding large long-term ABVX and NKTR positions.",
+   "url": "https://x.com/A_May_MD/status/2113369530093154579"
+  },
+  {
+   "date": "2026-10-13",
+   "tickers": [
+    "ZURA"
+   ],
+   "action": "long",
+   "note": "PITCH: Zura Bio at $4, his third formal pitch, ahead of HS data.",
+   "url": "https://x.com/A_May_MD/status/2110010685455286544"
+  },
+  {
+   "date": "2026-09-29",
+   "tickers": [
+    "QURE"
+   ],
+   "action": "long",
+   "note": "Bought a bunch of uniQure in the mid teens.",
+   "url": "https://x.com/A_May_MD/status/2104920428842275313"
+  },
+  {
+   "date": "2026-08-10",
+   "tickers": [
+    "TENX"
+   ],
+   "action": "result",
+   "note": "'Tenth-X it is!': the TENX binary appears to have failed.",
+   "url": "https://x.com/A_May_MD/status/2086804643212845229"
+  },
+  {
+   "date": "2026-07-21",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "info",
+   "note": "Pitch anniversary: says ABVX is up 1,247% from $9.95 and still his biggest position.",
+   "url": "https://x.com/A_May_MD/status/2079589486267105380"
+  },
+  {
+   "date": "2026-06-24",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "info",
+   "note": "Abivax is his largest position; not selling.",
+   "url": "https://x.com/A_May_MD/status/2069803076563669310"
+  },
+  {
+   "date": "2026-06-12",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "long",
+   "note": "Buys the first Abivax dip after the safety-slide selloff.",
+   "url": "https://x.com/A_May_MD/status/2065473264206459360"
+  },
+  {
+   "date": "2026-05-26",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "info",
+   "note": "Nektar still his second-biggest position.",
+   "url": "https://x.com/A_May_MD/status/2059359162400694370"
+  },
+  {
+   "date": "2026-04-29",
+   "tickers": [
+    "NTLA"
+   ],
+   "action": "info",
+   "note": "Expects single-digit Intellia prices to cover his shorts.",
+   "url": "https://x.com/A_May_MD/status/2049469880450134386"
+  },
+  {
+   "date": "2026-04-27",
+   "tickers": [
+    "ORKA",
+    "NTLA"
+   ],
+   "action": "short",
+   "note": "Just got short Oruka; notes Intellia is down more than 90%.",
+   "url": "https://x.com/A_May_MD/status/2048751457357234375"
+  },
+  {
+   "date": "2026-04-13",
+   "tickers": [
+    "SYRE"
+   ],
+   "action": "short",
+   "note": "Shorts Spyre into a 40% gap up.",
+   "url": "https://x.com/A_May_MD/status/2043684475750465942"
+  },
+  {
+   "date": "2026-03-18",
+   "tickers": [
+    "APGE"
+   ],
+   "action": "close",
+   "note": "Closes the rest of the Apogee short, a small win.",
+   "url": "https://x.com/A_May_MD/status/2034329533147381842"
+  },
+  {
+   "date": "2026-02-14",
+   "tickers": [
+    "LLY"
+   ],
+   "action": "long",
+   "note": "Buys more Lilly.",
+   "url": "https://x.com/A_May_MD/status/2022679431517471000"
+  },
+  {
+   "date": "2026-02-11",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "long",
+   "note": "Buys more Nektar at the open despite being hugely overweight.",
+   "url": "https://x.com/A_May_MD/status/2021595553381937402"
+  },
+  {
+   "date": "2026-02-06",
+   "tickers": [
+    "NVO",
+    "LLY"
+   ],
+   "action": "long",
+   "note": "Buys Novo and Lilly (and shorts HIMS) on the compounding crackdown.",
+   "url": "https://x.com/A_May_MD/status/2019595216681070667"
+  },
+  {
+   "date": "2026-02-02",
+   "tickers": [
+    "APGE"
+   ],
+   "action": "short",
+   "note": "Adds the Apogee short back at $66.60.",
+   "url": "https://x.com/A_May_MD/status/2018357598693609889"
+  },
+  {
+   "date": "2026-01-30",
+   "tickers": [
+    "APGE"
+   ],
+   "action": "close",
+   "note": "Covers a few thousand Apogee shares at $62-63.",
+   "url": "https://x.com/A_May_MD/status/2017281123332895221"
+  },
+  {
+   "date": "2026-01-23",
+   "tickers": [
+    "APGE"
+   ],
+   "action": "short",
+   "note": "Short Apogee.",
+   "url": "https://x.com/A_May_MD/status/2014735543007896023"
+  },
+  {
+   "date": "2026-01-22",
+   "tickers": [
+    "NTLA"
+   ],
+   "action": "info",
+   "note": "Still short Intellia.",
+   "url": "https://x.com/A_May_MD/status/2014299508306223383"
+  },
+  {
+   "date": "2026-01-14",
+   "tickers": [
+    "TENX"
+   ],
+   "action": "long",
+   "note": "Explains his TENX BioPick for 2026, while warning it is more likely than not to fail.",
+   "url": "https://x.com/A_May_MD/status/2011457302096748706"
+  },
+  {
+   "date": "2026-01-01",
+   "tickers": [
+    "ABVX",
+    "RGLS"
+   ],
+   "action": "info",
+   "note": "Year-end recap: ABVX was the largest position by cost he had ever taken; RGLS was his 2025 BioPick (+416%).",
+   "url": "https://x.com/A_May_MD/status/2006724860211257480"
+  },
+  {
+   "date": "2025-12-16",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "long",
+   "note": "Buys the Nektar dip after the alopecia data.",
+   "url": "https://x.com/A_May_MD/status/2000957761278849268"
+  },
+  {
+   "date": "2025-12-02",
+   "tickers": [
+    "JANX"
+   ],
+   "action": "close",
+   "note": "Covers Janux, up more than 30% in under 24 hours.",
+   "url": "https://x.com/A_May_MD/status/1995933612621877605"
+  },
+  {
+   "date": "2025-12-01",
+   "tickers": [
+    "JANX"
+   ],
+   "action": "short",
+   "note": "Shorts Janux after hours on the PSA data.",
+   "url": "https://x.com/A_May_MD/status/1995933612621877605"
+  },
+  {
+   "date": "2025-11-07",
+   "tickers": [
+    "NTLA"
+   ],
+   "action": "short",
+   "note": "Re-shorts Intellia above $11 after hours.",
+   "url": "https://x.com/A_May_MD/status/1986871112555241898"
+  },
+  {
+   "date": "2025-11-05",
+   "tickers": [
+    "NTLA",
+    "VKTX"
+   ],
+   "action": "close",
+   "note": "Covers the Intellia short (too early, he says) and buys a Viking dip.",
+   "url": "https://x.com/A_May_MD/status/1986083869179662577"
+  },
+  {
+   "date": "2025-10-29",
+   "tickers": [
+    "PALI"
+   ],
+   "action": "long",
+   "note": "Bought 480K more Palisade shares.",
+   "url": "https://x.com/A_May_MD/status/1983655024472531422"
+  },
+  {
+   "date": "2025-10-27",
+   "tickers": [
+    "NTLA"
+   ],
+   "action": "short",
+   "note": "Shorts Intellia again at a >$1.5B valuation.",
+   "url": "https://x.com/A_May_MD/status/1982780827592229086"
+  },
+  {
+   "date": "2025-10-06",
+   "tickers": [
+    "PALI"
+   ],
+   "action": "long",
+   "note": "Long Palisade Bio and bought more ('not a pitch').",
+   "url": "https://x.com/A_May_MD/status/1975198546707058860"
+  },
+  {
+   "date": "2025-09-29",
+   "tickers": [
+    "QURE"
+   ],
+   "action": "long",
+   "note": "Says he made uniQure his third-largest position on the morning of the Huntington's data.",
+   "url": "https://x.com/A_May_MD/status/1972618105533894812"
+  },
+  {
+   "date": "2025-08-21",
+   "tickers": [
+    "VKTX"
+   ],
+   "action": "info",
+   "note": "Says his most recent Viking position was a brief long trade from the low $20s.",
+   "url": "https://x.com/A_May_MD/status/1958556647195828323"
+  },
+  {
+   "date": "2025-07-22",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "result",
+   "note": "Abivax Phase 3 data out and the stock halts; he says ABVX will likely soon be up more on the year than any other biotech.",
+   "url": "https://x.com/A_May_MD/status/1947752223108104630"
+  },
+  {
+   "date": "2025-07-21",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "long",
+   "note": "PITCH: Abivax at $9.95, a 25,000-word document, a day before the Phase 3 UC readout.",
+   "url": "https://x.com/A_May_MD/status/1947288947991761047"
+  },
+  {
+   "date": "2025-06-25",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "result",
+   "note": "AD data out; he adds to what was already his largest position.",
+   "url": "https://x.com/A_May_MD/status/1937885395825401895"
+  },
+  {
+   "date": "2025-06-24",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "long",
+   "note": "Buys more Nektar in the $21-23 range and again in the $17s before the readout.",
+   "url": "https://x.com/A_May_MD/status/1937492693556338846"
+  },
+  {
+   "date": "2025-06-17",
+   "tickers": [
+    "NTLA"
+   ],
+   "action": "close",
+   "note": "Says he covered a June Intellia short after 24 to 48 hours.",
+   "url": "https://x.com/A_May_MD/status/1934973831501815939"
+  },
+  {
+   "date": "2025-06-06",
+   "tickers": [
+    "LXEO"
+   ],
+   "action": "info",
+   "note": "Says he owns Lexeo.",
+   "url": "https://x.com/A_May_MD/status/1931000481100210497"
+  },
+  {
+   "date": "2025-05-13",
+   "tickers": [
+    "RGLS",
+    "CTMX"
+   ],
+   "action": "long",
+   "note": "Regulus acquired; most of that position rolled into CytomX.",
+   "url": "https://x.com/A_May_MD/status/1922341612463460819"
+  },
+  {
+   "date": "2025-04-29",
+   "tickers": [
+    "BBIO"
+   ],
+   "action": "long",
+   "note": "Says he is long BridgeBio calls after a strong Q1 launch.",
+   "url": "https://x.com/A_May_MD/status/1917309489113424044"
+  },
+  {
+   "date": "2025-04-09",
+   "tickers": [
+    "FATE",
+    "NKTR"
+   ],
+   "action": "close",
+   "note": "Selling outperformers like Fate to buy more Nektar.",
+   "url": "https://x.com/A_May_MD/status/1909988557726380287"
+  },
+  {
+   "date": "2025-04-08",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "info",
+   "note": "Calls Nektar his biggest position.",
+   "url": "https://x.com/A_May_MD/status/1909588331421114791"
+  },
+  {
+   "date": "2025-04-02",
+   "tickers": [
+    "IONS"
+   ],
+   "action": "long",
+   "note": "Buys Ionis for the first time during the crash.",
+   "url": "https://x.com/A_May_MD/status/1907447073659588834"
+  },
+  {
+   "date": "2025-03-31",
+   "tickers": [
+    "NKTR",
+    "VKTX"
+   ],
+   "action": "long",
+   "note": "Bought a bunch more Nektar; says he is exposed long Viking.",
+   "url": "https://x.com/A_May_MD/status/1906709536871682347"
+  },
+  {
+   "date": "2025-03-04",
+   "tickers": [
+    "CYTK"
+   ],
+   "action": "long",
+   "note": "Says he is building a Cytokinetics position.",
+   "url": "https://x.com/A_May_MD/status/1896935144075952410"
+  },
+  {
+   "date": "2025-02-10",
+   "tickers": [
+    "NKTR"
+   ],
+   "action": "long",
+   "note": "PITCH: Nektar at $0.676, about 0.45x cash, into the atopic dermatitis readout.",
+   "url": "https://x.com/A_May_MD/status/1888946758895411623"
+  },
+  {
+   "date": "2025-02-03",
+   "tickers": [
+    "BBIO"
+   ],
+   "action": "long",
+   "note": "Bought more BridgeBio around $31.",
+   "url": "https://x.com/A_May_MD/status/1886504770778636529"
+  },
+  {
+   "date": "2024-11-25",
+   "tickers": [
+    "SRRK"
+   ],
+   "action": "call",
+   "note": "Adds Scholar Rock to his buyout-target list.",
+   "url": "https://x.com/A_May_MD/status/1861064353367081272"
+  },
+  {
+   "date": "2024-11-04",
+   "tickers": [
+    "VRNA",
+    "TARS"
+   ],
+   "action": "long",
+   "note": "Names Verona and Tarsus as buyout targets and says he is long both.",
+   "url": "https://x.com/A_May_MD/status/1853533817459401171"
+  },
+  {
+   "date": "2024-08-24",
+   "tickers": [
+    "VKTX"
+   ],
+   "action": "info",
+   "note": "Says he has been long Viking at points this year; not long by Aug 26.",
+   "url": "https://x.com/A_May_MD/status/1827418356623786403"
+  }
+ ],
+ "courtNamed": []
+}
