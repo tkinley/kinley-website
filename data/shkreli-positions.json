@@ -1,0 +1,2179 @@
+{
+ "updated": "2026-10-29",
+ "scorecard": [
+  {
+   "ticker": "INMB",
+   "period": "2025",
+   "bet": "Short into the Alzheimer's readout",
+   "date": "2025-06-30",
+   "outcome": "won",
+   "note": "Placebo beat drug. He called it a monster short.",
+   "url": "https://x.com/MartinShkreli/status/1948490438668648647"
+  },
+  {
+   "ticker": "ATYR",
+   "period": "2025",
+   "bet": "Short into the Phase 3 readout, his biggest short",
+   "date": "2025-09-15",
+   "outcome": "won",
+   "note": "Phase 3 failed; stock down about 80% premarket.",
+   "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+  },
+  {
+   "ticker": "CAPR",
+   "period": "2025",
+   "bet": "Short into HOPE-3, with a 46-page report",
+   "date": "2025-12-03",
+   "outcome": "lost",
+   "note": "Data positive, stock up more than 370%. Ended the $30K account; he says he lost millions.",
+   "url": "https://x.com/MartinShkreli/status/1996244856004370615"
+  },
+  {
+   "ticker": "KOD",
+   "period": "2026",
+   "bet": "Short into the DAYBREAK readout",
+   "date": "2026-09-28",
+   "outcome": "lost",
+   "note": "Met primary endpoints. Covered Sep 30 and re-shorted smaller; clip titles say he lost millions.",
+   "url": "https://www.youtube.com/watch?v=zofexUgQV4U"
+  },
+  {
+   "ticker": "CAPR",
+   "period": "2026",
+   "bet": "Short again, round two",
+   "date": "2026-07-29",
+   "outcome": "pending",
+   "note": "FDA AdCom voted 9-3 that the evidence fell short; FDA has not made a final decision (per the court filing).",
+   "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+  }
+ ],
+ "scope": "Biotech and pharma only, January 2025 onward",
+ "positions": [
+  {
+   "period": "2026",
+   "ticker": "CAPR",
+   "company": "Capricor Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Re-shorted in Aug 2026 after losing on it in 2025",
+   "firstSeen": "2026-07-08",
+   "lastSeen": "2026-09-03",
+   "summary": "Jul 8: says he is short some Capricor and unsure how much more to add; Jul 27 tweets it is a complete fraud; Aug 26 says he shorted it again (round two); Sep 3 says he is always short CAPR. FDA AdCom voted 9-3 against on Jul 29, 2026.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=yE_-hyYdY6k"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2081710209219580134"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "KOD",
+   "company": "Kodiak Sciences",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Covered Sep 30, re-shorted at smaller size the same day",
+   "firstSeen": "2026-09-25",
+   "lastSeen": "2026-09-30",
+   "summary": "Sep 25 tweet: short ahead of DAYBREAK readout. Data met primary endpoints Sep 28; stock squeezed. Sep 30 tweet says he covered; Sep 30 stream says he covered everything, got back into the short, then reduced. Clip titles say he lost millions on it.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2103521047639171529"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2105404300029784085"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=zofexUgQV4U"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "MRNA",
+   "company": "Moderna",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Last said short Oct 24; on Oct 21 avoided saying he owns any position",
+   "firstSeen": "2026-07-08",
+   "lastSeen": "2026-10-24",
+   "summary": "Lists Moderna among shorts on Jul 8; on Aug 26 says he is definitely short with ~$100 target; Sep 23 says still short and has traded in/out; Oct 9 tweet calls it a great short on a 6-month view; Oct 9 stream says still short. On Oct 21 stream he says he does not want the FTC to think he owns shares.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2108633640263450879"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=-w9dMS4bJ0c"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "SLS",
+   "company": "SELLAS Life Sciences",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Court filing (Oct 2026) says he is shorting it",
+   "firstSeen": "2026-06-30",
+   "lastSeen": "2026-09-03",
+   "summary": "Jun 30: says the new portfolio is not short yet and he will put it on that day (hard to borrow). Aug 26 calls it a great short; Sep 3 lists it among current shorts; hosted AML KOL calls on SLS in Aug. Aug 26 stream (yE_-hyYdY6k) also calls it a great short. Court memo says he is shorting SELLAS and 'guarantees' its AML study will fail.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=lAwTvzg6qmg"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=sdNSlHtjNVE"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "AGEN",
+   "company": "Agenus",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "medium",
+   "status": "none",
+   "statusNote": "Short call only",
+   "firstSeen": "2026-07-13",
+   "lastSeen": "2026-07-13",
+   "summary": "Tweet says short AGEN; PIPE does not change outlook, should trade back to PIPE price.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2076669793495548102"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "ALNY",
+   "company": "Alnylam Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Covered (too early, he says)",
+   "firstSeen": "2026-07-09",
+   "lastSeen": "2026-07-09",
+   "summary": "Tweet says he covered his Alnylam short too early.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2075307062003638545"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "AMLX",
+   "company": "Amylyx Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Small short, not mentioned since Sep 3",
+   "firstSeen": "2026-09-03",
+   "lastSeen": "2026-09-03",
+   "summary": "Says he is short a little AMLX and expects it to fade into its launch.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=sdNSlHtjNVE"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "PFE",
+   "company": "Pfizer",
+   "sector": "Big pharma",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Tiny short, not mentioned since Jul 8",
+   "firstSeen": "2026-07-08",
+   "lastSeen": "2026-07-08",
+   "summary": "Lists 'a tiny bit of Pfizer' among shorts, just started. Jul 3 tweet says the PFE pipeline is sad. Pfizer also on the court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2073096616278384641"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "RXRX",
+   "company": "Recursion Pharmaceuticals",
+   "sector": "Biotech (AI drug discovery)",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "medium",
+   "status": "none",
+   "statusNote": "Calls it a good short; clip title says he is shorting, he never says he holds it",
+   "firstSeen": "2026-10-05",
+   "lastSeen": "2026-10-08",
+   "summary": "Oct 5 tweets call RXRX a good short and a long-time 'dumpster fire'; lumps it with TWST and DNA as AI-drug-dev shorts. Oct 7 stream titled 'AI BIO'. Clip title: 'Why I'm Shorting Recursion'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2107145525665403176"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2107170890890854733"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=8_vx5OCC-BQ"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "VKTX",
+   "company": "Viking Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Flat as of Sep 23",
+   "firstSeen": "2026-09-23",
+   "lastSeen": "2026-09-23",
+   "summary": "Expects Viking to keep selling off; says he should short more but is flat right now.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=-w9dMS4bJ0c"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "CPHI",
+   "company": "China Pharma Holdings",
+   "sector": "Specialty pharma",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Short call only",
+   "firstSeen": "2026-07-22",
+   "lastSeen": "2026-07-22",
+   "summary": "Tweet says short it if you can; fair value ~$0.10.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2079921437649822125"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "DNA",
+   "company": "Ginkgo Bioworks",
+   "sector": "Tools/services",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Short call only",
+   "firstSeen": "2026-10-01",
+   "lastSeen": "2026-10-05",
+   "summary": "Included in Oct 5 AI-bio short list; clip title 'Ginkgo Bioworks Short'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2107170890890854733"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=vYtSXWkXIR0"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NAUT",
+   "company": "Nautilus Biotechnology",
+   "sector": "Tools/services",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Said he wants to short it",
+   "firstSeen": "2026-10-13",
+   "lastSeen": "2026-10-13",
+   "summary": "Says he wants to short Nautilus after a caller pitched it; 'sounds like a nice zero'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=f47plnfoD1k"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "TENX",
+   "company": "Tenax Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Only a clip title says short",
+   "firstSeen": "2026-08-05",
+   "lastSeen": "2026-08-07",
+   "summary": "Hosted cardiologist expert calls on the TENX binary (Aug 5, Aug 7). Clip title says 'Tenax Stock Short'; direction not verified in his own words.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=EiKomcS0tzE"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2085740677313278295"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "TWST",
+   "company": "Twist Bioscience",
+   "sector": "Tools/services",
+   "side": "short",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Called it a short, then said it is hard to short",
+   "firstSeen": "2026-09-17",
+   "lastSeen": "2026-10-09",
+   "summary": "Sep 17 tweet: thinks TWST is a short; Oct 5 includes it in AI-bio short list. But Oct 9 stream says it is hard to short a company compounding growth this fast.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2100594614558241041"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2107170890890854733"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=SfCshd_cPQg"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "BCRX",
+   "company": "BioCryst Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Refers to 'my $BCRX' on Sep 10",
+   "firstSeen": "2026-06-25",
+   "lastSeen": "2026-09-10",
+   "summary": "Jun 25 tweet: long idea, $10 stock should be $30 (navenibart). Jul 8 stream lists BioCryst among his longs. Sep 10 tweet refers to 'my $RARE $BCRX'. On court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2070143492764946802"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2098113610002432121"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "EVMN",
+   "company": "Evommune",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "5,000 shares bought Jun 30; not mentioned since",
+   "firstSeen": "2026-06-29",
+   "lastSeen": "2026-06-30",
+   "summary": "Jun 29 tweet: long EVMN on the drop, new position (IL-18 thesis). Jun 30 stream: just bought 5,000 shares. Evommune is on the court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2071592596959326381"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=lAwTvzg6qmg"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "LQDA",
+   "company": "Liquidia",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Calls it a huge position",
+   "firstSeen": "2026-10-01",
+   "lastSeen": "2026-10-13",
+   "summary": "Oct 1 tweet: significant buying opportunity, expects a double. Oct 5 tweet: long LQDA. Oct 13 stream: calls it a huge position for him and is bullish despite the patent ruling.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2107101677023281342"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2105633392851083540"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=f47plnfoD1k"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "SPRB",
+   "company": "Spruce Biosciences",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "open",
+   "statusNote": "Holding through the drawdown, waiting on the BLA",
+   "firstSeen": "2026-06-27",
+   "lastSeen": "2026-10-13",
+   "summary": "Jun 30 and Jul 8 streams: bullish, listed among longs. Aug 26: says he is long Spruce. Oct 13: still holding, expects BLA submission and a double or triple after approval. Clip titles 'Buying more Spruce' (Jun 27) and 'Spruce SPRB Long' (Jul 7).",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=yE_-hyYdY6k"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=f47plnfoD1k"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "ABVX",
+   "company": "Abivax",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "open",
+   "statusNote": "Holding; says it has given him headaches",
+   "firstSeen": "2026-06-24",
+   "lastSeen": "2026-10-13",
+   "summary": "Jun 24 tweet: ABVX has given him headaches. Sep 23 stream: says he is long it and likes it a lot (captions render it 'ABX'). Oct 13 stream discusses the big fall in Abivax and Spruce; clip title 'Abivax: Betting Millions'. On court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=-w9dMS4bJ0c"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=f47plnfoD1k"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2069794570653598066"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "ALMS",
+   "company": "Alumis",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Bought ~$9.5, sold",
+   "firstSeen": "2026-09-02",
+   "lastSeen": "2026-09-03",
+   "summary": "Sep 3 stream: bought Alumis around $9.5 and sold it after a compelling short pitch from someone else.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=sdNSlHtjNVE"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "CRNX",
+   "company": "Crinetics Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Exited before Jul 8",
+   "firstSeen": "2026-07-08",
+   "lastSeen": "2026-07-08",
+   "summary": "Jul 8 stream: says he was long Crinetics (past tense). On court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "QURE",
+   "company": "uniQure",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Day trade, bought ~17, sold ~20",
+   "firstSeen": "2026-09-30",
+   "lastSeen": "2026-09-30",
+   "summary": "Sep 30 stream: traded uniQure for a profit, bought around 17 and sold around 20.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=zofexUgQV4U"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "RARE",
+   "company": "Ultragenyx",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "open",
+   "statusNote": "Implied by 'my $RARE' on Sep 10",
+   "firstSeen": "2026-09-03",
+   "lastSeen": "2026-09-18",
+   "summary": "Sep 3 tweet: RARE very cheap after the failed Angelman trial, a takeover candidate. Sep 10 tweet refers to 'my $RARE $BCRX'. Clip titles 'Ultragenyx Lost' (Sep 3) and 'Ultragenyx: Crazy Cheap' (Sep 18).",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2095490113857851515"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2098113610002432121"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=5kt8jO6LKrQ"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "SRPT",
+   "company": "Sarepta Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "open",
+   "statusNote": "On his Jul 8 longs list; not restated since late Jul",
+   "firstSeen": "2026-07-08",
+   "lastSeen": "2026-07-28",
+   "summary": "Jul 8 stream lists Sarepta among his longs. Clip title Jul 28: 'Sarepta Bullish'. On court memo's 2026 list.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=t4gt5U5dvfA"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NKTR",
+   "company": "Nektar Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "unclear",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "The losing Nektar holder appears to be a colleague",
+   "firstSeen": "2026-10-09",
+   "lastSeen": "2026-10-09",
+   "summary": "Clip title 'Down 50% On Nektar And Holding'; in the transcript the losing Nektar holder appears to be a colleague, and Shkreli advises not buying more.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=SfCshd_cPQg"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "NVO",
+   "company": "Novo Nordisk",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "unclear",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Remark made while trading with his team; not clearly his own book",
+   "firstSeen": "2026-09-23",
+   "lastSeen": "2026-09-23",
+   "summary": "Stream remark 'long Novo, but it's not going anywhere' during a session with his traders; not clear it is his own book.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=-w9dMS4bJ0c"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "OABI",
+   "company": "OmniAb",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Bullish call, $15 target",
+   "firstSeen": "2026-08-17",
+   "lastSeen": "2026-08-17",
+   "summary": "Tweet: bullish on OABI, price target $15 (ramantamig royalty).",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2089342950601847045"
+    }
+   ]
+  },
+  {
+   "period": "2026",
+   "ticker": "FBRX",
+   "company": "Forte Biosciences",
+   "sector": "Biotech",
+   "side": "mixed",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Tried to short at $31, then bought for a trade",
+   "firstSeen": "2026-07-09",
+   "lastSeen": "2026-07-11",
+   "summary": "Jul 9 tweet says he tried to short FBRX at $31; Jul 10-11 stream says he bought some FBRX for a trade after good data.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2075307062003638545"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=fXHjvFMYzHw"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "ATYR",
+   "company": "aTyr Pharma",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Won: Phase 3 failed, Sep 15, 2025",
+   "firstSeen": "2025-07-29",
+   "lastSeen": "2025-09-15",
+   "summary": "Jul 29 tweet: short, predicts an 80% drop in 4-6 weeks. Aug 26: calls ATYR his biggest short. Court memo says he 'sold everything and went all in' on the short.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1950200402059670003"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1960357746001207553"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "AVXL",
+   "company": "Anavex Life Sciences",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Announced Nov 13, 2025; no exit stated",
+   "firstSeen": "2024-12-23",
+   "lastSeen": "2025-11-14",
+   "summary": "Dec 23, 2024 tweet: predicts it will be the next big biotech short. Aug 23, 2025: listed in his short book. Nov 13, 2025: 'My next short is $AVXL', targets <$1.25. Clip title Nov 14: 'Shorting Anavex'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1989005266751574250"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1959299347633381750"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=nYMvAsSZHcM"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "CAPR",
+   "company": "Capricor Therapeutics",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Lost: HOPE-3 positive Dec 3, 2025; ended the $30K account",
+   "firstSeen": "2025-04-02",
+   "lastSeen": "2025-12-04",
+   "summary": "Court memo: short built from Day 1 of the Schwab challenge. Nov 24 tweet announces it as his next biotech short with a 46-page report. Dec 3 tweet apologizes for a bad call; Dec 4 says the Schwab account is over.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1992971976294498581"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1996244856004370615"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "HUMA",
+   "company": "Humacyte",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "In his short book as of Aug 2025",
+   "firstSeen": "2025-03-25",
+   "lastSeen": "2025-08-23",
+   "summary": "Aug 23, 2025 tweet lists HUMA in his short book. Mar 2025 tweets keep bashing it. Court memo lists Humacyte in 2024 and 2025.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1959299347633381750"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1904990310109008294"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "INMB",
+   "company": "INmune Bio",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "closed",
+   "statusNote": "Won: placebo beat drug, Jun 30, 2025",
+   "firstSeen": "2025-04-22",
+   "lastSeen": "2025-07-24",
+   "summary": "Built the short from April 2025 (court memo). Jun 17 tweet: very likely to fail; Jun 27 tweets on covering/re-shorting around a registered direct; Jun 30: placebo beat drug. Jul 24: calls it a monster short.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1935054648471416933"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1948490438668648647"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "OLMA",
+   "company": "Olema Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Announced Nov 18, 2025; no exit stated",
+   "firstSeen": "2025-11-18",
+   "lastSeen": "2025-11-18",
+   "summary": "Tweet: shorting OLMA, skeptical another SERD's results are 3x better.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1990794899680342334"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "PROK",
+   "company": "ProKidney",
+   "sector": "Biotech",
+   "side": "short",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Only a clip title",
+   "firstSeen": "2025-07-10",
+   "lastSeen": "2025-07-10",
+   "summary": "Clip title: 'ProKidney Short Thesis'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=t5Y7e73jUYk"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "ABVX",
+   "company": "Abivax",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Biggest long in Aug 2025; still held in 2026",
+   "firstSeen": "2025-07-23",
+   "lastSeen": "2025-08-26",
+   "summary": "Jul 24: says he bought ABVX after INMB. Aug 3: bought right after the data hit, ~$56 average, biggest long. Aug 26: 'my biggest long ABVX'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1960357746001207553"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1952131841227460751"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1948490438668648647"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "BHVN",
+   "company": "Biohaven",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Big position Nov 5, 2025",
+   "firstSeen": "2025-11-05",
+   "lastSeen": "2025-11-06",
+   "summary": "Tweet: took a big position long BHVN. Clip title Nov 6: 'All In on Biohaven'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1986078863034556918"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=c7PFMVnLrnM"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "EQ",
+   "company": "Equillium",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "unknown",
+   "statusNote": "Bought Aug 22, 2025",
+   "firstSeen": "2025-08-22",
+   "lastSeen": "2025-08-22",
+   "summary": "Tweet: bought some EQ as a cheap call option on the same mechanism as ABVX; expects 2x into data.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1958906812503101654"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "SPRB",
+   "company": "Spruce Biosciences",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Long since Oct 2025; still held in 2026",
+   "firstSeen": "2025-10-06",
+   "lastSeen": "2025-10-10",
+   "summary": "Oct 6 tweet: long SPRB, price target $500 (Sanfilippo ERT). Oct 10: saw the PIPE book.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1975241784369262649"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1976706586916929959"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "SRPT",
+   "company": "Sarepta Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "high",
+   "status": "carried",
+   "statusNote": "Large long in Nov 2025; on his 2026 longs list",
+   "firstSeen": "2025-03-18",
+   "lastSeen": "2025-11-04",
+   "summary": "May 6-7 tweets: likes it, expects a double. Nov 4 reply: 'long assloads'. Clip title Nov 4: 'Sarepta Now 40% of My Portfolio'. 2025 clip titles also describe a JPMorgan margin call after the Sarepta crash.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1985783666904297962"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1920092076873502742"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=dGEU3bOpm_0"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "AKRO",
+   "company": "Akero Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Long call; named in court filing",
+   "firstSeen": "2025-04-22",
+   "lastSeen": "2025-04-22",
+   "summary": "Tweet: efruxifermin for cirrhotic MASH, 'easy double'. Akero on court memo's 2025 list.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1914747634428105115"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "PGEN",
+   "company": "Precigen",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "stated",
+   "confidence": "medium",
+   "status": "closed",
+   "statusNote": "Sold Aug 2025 after a +33% day",
+   "firstSeen": "2025-08-15",
+   "lastSeen": "2025-08-16",
+   "summary": "Aug 15 stream title '+33% PGEN'; Aug 16 clip title 'Why I Sold Precigen'.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1956337718004457540"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=dhU7BFANDMA"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "QURE",
+   "company": "uniQure",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Bullish call, implies a position",
+   "firstSeen": "2025-09-24",
+   "lastSeen": "2025-09-24",
+   "summary": "Sep 24 tweets: FDA has no choice but to approve; 5-10x from $35; tells followers they can take profits.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1970826682870251680"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1970873598853390629"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "AMGN",
+   "company": "Amgen",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip title only",
+   "firstSeen": "2025-06-24",
+   "lastSeen": "2025-06-24",
+   "summary": "Clip title: 'AMGEN: I'm Buying the Dip'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=p430Ms0Tnoc"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "CELC",
+   "company": "Celcuity",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Clip title only",
+   "firstSeen": "2025-07-29",
+   "lastSeen": "2025-07-29",
+   "summary": "Clip title: 'Another BEAUTIFUL Long Biotech Stock | Celcuity'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=EjyfaIFSgu8"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "GRFS",
+   "company": "Grifols",
+   "sector": "Biotech (plasma)",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip title only",
+   "firstSeen": "2025-04-03",
+   "lastSeen": "2025-04-03",
+   "summary": "Clip title lists Grifols among longs.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=S0gEV1sqNKw"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "IDYA",
+   "company": "IDEAYA Biosciences",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip title only",
+   "firstSeen": "2025-10-17",
+   "lastSeen": "2025-10-17",
+   "summary": "Clip title: 'IDEAYA Biosciences Stock Long'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=yINdNePZ_oI"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "LLY",
+   "company": "Eli Lilly",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "closed",
+   "statusNote": "Clip title says he sold on the news",
+   "firstSeen": "2025-04-18",
+   "lastSeen": "2025-04-18",
+   "summary": "Clip title: 'I'm Selling Eli Lilly on the News'.",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=khuTLCrerHA"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "PHAR",
+   "company": "Pharming Group",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip title only",
+   "firstSeen": "2025-04-03",
+   "lastSeen": "2025-04-03",
+   "summary": "Clip title lists Pharming among longs ('I Have Longs If You Have Time').",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=S0gEV1sqNKw"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "REGN",
+   "company": "Regeneron",
+   "sector": "Big pharma",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip titles only",
+   "firstSeen": "2025-05-31",
+   "lastSeen": "2025-06-05",
+   "summary": "Clip titles: 'Regeneron Failure: Still Long?' (May 31) and 'My Long Positions | Regeneron' (Jun 5).",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=kF2dNQ5_FGw"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=0Fo_G1ne0io"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "REPL",
+   "company": "Replimune",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip titles only (long REPL vs short CAPR)",
+   "firstSeen": "2025-07-22",
+   "lastSeen": "2025-08-23",
+   "summary": "Clip titles: 'But I'm Long... Replimune, Sarepta' (Jul 22) and 'REPL - CAPR Stock Arbitrage' (Aug 23).",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=tkkPp5F-Oy4"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=bJlc5USIUVA"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "RVMD",
+   "company": "Revolution Medicines",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Clip titles only",
+   "firstSeen": "2025-10-21",
+   "lastSeen": "2025-10-27",
+   "summary": "Clip titles: 'New Long? RVMD' (Oct 21) and 'I'm Bullish on RVMD' (Oct 27).",
+   "sources": [
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=XyE4jSoUZWA"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=a95U_vLYmiM"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "TARS",
+   "company": "Tarsus Pharmaceuticals",
+   "sector": "Specialty pharma",
+   "side": "mixed",
+   "evidence": "title",
+   "confidence": "low",
+   "status": "unknown",
+   "statusNote": "Two same-day clip titles disagree",
+   "firstSeen": "2024-08-26",
+   "lastSeen": "2025-04-03",
+   "summary": "Aug 26, 2024 tweet: TARS a triple from here. Two Apr 3, 2025 clips conflict: one lists Tarsus among '5 Stocks I'm Shorting Immediately', the other among longs.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1828083388823339266"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=Av8Ri6tKFKw"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=S0gEV1sqNKw"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "VKTX",
+   "company": "Viking Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "medium",
+   "status": "unknown",
+   "statusNote": "Buy call Nov 2024; clip title 'Buying VKTX' Jan 2025",
+   "firstSeen": "2024-11-05",
+   "lastSeen": "2025-01-19",
+   "summary": "Nov 5, 2024 tweet: buy VKTX. Jan 19, 2025 clip title: 'Buying VKTX Stock'. Viking on court memo's 2024 list.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1853809074535588159"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=aE9CPoeV88Q"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "MDGL",
+   "company": "Madrigal Pharmaceuticals",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Says he is bullish",
+   "firstSeen": "2025-03-11",
+   "lastSeen": "2025-03-11",
+   "summary": "Tweet: says he is bullish and asks what the short thesis could be.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1899450182762222050"
+    }
+   ]
+  },
+  {
+   "period": "2025",
+   "ticker": "NMRA",
+   "company": "Neumora Therapeutics",
+   "sector": "Biotech",
+   "side": "long",
+   "evidence": "call",
+   "confidence": "low",
+   "status": "none",
+   "statusNote": "Long call, Jan 2025",
+   "firstSeen": "2025-01-02",
+   "lastSeen": "2025-01-02",
+   "summary": "Jan 2 tweet: a really good long, antidepressant works in women despite missing primary endpoint. Earlier clip (Nov 27, 2024) discussed a shorting strategy for NMRA. Neumora on court memo's 2024 list.",
+   "sources": [
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/1874813051985440860"
+    },
+    {
+     "label": "Stream clip",
+     "url": "https://www.youtube.com/watch?v=K5BgODv3-6Y"
+    },
+    {
+     "label": "Court filing",
+     "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-10-24",
+   "tickers": [
+    "MRNA"
+   ],
+   "action": "short",
+   "note": "Tells a caller: short Moderna.",
+   "url": "https://www.youtube.com/watch?v=bGCxx_xiyYI"
+  },
+  {
+   "date": "2026-10-21",
+   "tickers": [
+    "MRNA"
+   ],
+   "action": "info",
+   "note": "Says he does not want the FTC to think he owns Moderna shares.",
+   "url": "https://www.youtube.com/watch?v=TZ8Tobds79U"
+  },
+  {
+   "date": "2026-10-13",
+   "tickers": [],
+   "action": "info",
+   "note": "FTC and states ask the court to hold him in contempt of his lifetime pharma ban over these trades.",
+   "url": "https://www.ftc.gov/news-events/news/press-releases/2026/10/ftc-states-ask-federal-court-hold-martin-shkreli-contempt-allegedly-violating-lifetime"
+  },
+  {
+   "date": "2026-10-13",
+   "tickers": [
+    "LQDA",
+    "SPRB",
+    "ABVX",
+    "NAUT"
+   ],
+   "action": "info",
+   "note": "Liquidia is a huge position; holding Spruce and Abivax through the drop; wants to short Nautilus.",
+   "url": "https://www.youtube.com/watch?v=f47plnfoD1k"
+  },
+  {
+   "date": "2026-10-09",
+   "tickers": [
+    "MRNA"
+   ],
+   "action": "short",
+   "note": "Moderna a great short if you can wait 6 months.",
+   "url": "https://x.com/MartinShkreli/status/2108633640263450879"
+  },
+  {
+   "date": "2026-10-05",
+   "tickers": [
+    "LQDA"
+   ],
+   "action": "long",
+   "note": "Long Liquidia.",
+   "url": "https://x.com/MartinShkreli/status/2107101677023281342"
+  },
+  {
+   "date": "2026-10-05",
+   "tickers": [
+    "RXRX",
+    "TWST",
+    "DNA"
+   ],
+   "action": "call",
+   "note": "Short call on AI drug-discovery names: Recursion, Twist, Ginkgo.",
+   "url": "https://x.com/MartinShkreli/status/2107170890890854733"
+  },
+  {
+   "date": "2026-10-01",
+   "tickers": [
+    "LQDA"
+   ],
+   "action": "long",
+   "note": "Calls Liquidia a significant buying opportunity, expects a double.",
+   "url": "https://x.com/MartinShkreli/status/2105633392851083540"
+  },
+  {
+   "date": "2026-09-30",
+   "tickers": [
+    "KOD",
+    "QURE"
+   ],
+   "action": "close",
+   "note": "Covers Kodiak, then re-shorts smaller. Day-trades uniQure 17 to 20.",
+   "url": "https://x.com/MartinShkreli/status/2105404300029784085"
+  },
+  {
+   "date": "2026-09-28",
+   "tickers": [
+    "KOD"
+   ],
+   "action": "result",
+   "note": "Kodiak meets its primary endpoints; stock squeezes.",
+   "url": "https://x.com/MartinShkreli/status/2104520450999284092"
+  },
+  {
+   "date": "2026-09-25",
+   "tickers": [
+    "KOD"
+   ],
+   "action": "short",
+   "note": "Short Kodiak ahead of the DAYBREAK readout.",
+   "url": "https://x.com/MartinShkreli/status/2103521047639171529"
+  },
+  {
+   "date": "2026-09-23",
+   "tickers": [
+    "MRNA",
+    "ABVX",
+    "VKTX"
+   ],
+   "action": "info",
+   "note": "Still short Moderna, trading in and out; long Abivax; flat Viking.",
+   "url": "https://www.youtube.com/watch?v=-w9dMS4bJ0c"
+  },
+  {
+   "date": "2026-09-17",
+   "tickers": [
+    "TWST"
+   ],
+   "action": "call",
+   "note": "Says he thinks Twist is a short.",
+   "url": "https://x.com/MartinShkreli/status/2100594614558241041"
+  },
+  {
+   "date": "2026-09-10",
+   "tickers": [
+    "RARE",
+    "BCRX"
+   ],
+   "action": "info",
+   "note": "Refers to 'my $RARE $BCRX'.",
+   "url": "https://x.com/MartinShkreli/status/2098113610002432121"
+  },
+  {
+   "date": "2026-09-03",
+   "tickers": [
+    "AMLX",
+    "MRNA",
+    "SLS",
+    "CAPR",
+    "ALMS"
+   ],
+   "action": "short",
+   "note": "Short a little Amylyx plus Moderna, SELLAS, Capricor; bought and sold Alumis around $9.5.",
+   "url": "https://www.youtube.com/watch?v=sdNSlHtjNVE"
+  },
+  {
+   "date": "2026-09-03",
+   "tickers": [
+    "RARE"
+   ],
+   "action": "long",
+   "note": "Calls Ultragenyx very cheap after the failed Angelman trial.",
+   "url": "https://x.com/MartinShkreli/status/2095490113857851515"
+  },
+  {
+   "date": "2026-08-26",
+   "tickers": [
+    "SPRB",
+    "MRNA",
+    "CAPR",
+    "SLS"
+   ],
+   "action": "info",
+   "note": "Long Spruce; short Moderna with about $100 target; shorted Capricor again; SELLAS a great short.",
+   "url": "https://www.youtube.com/watch?v=yE_-hyYdY6k"
+  },
+  {
+   "date": "2026-07-27",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "short",
+   "note": "Calls Capricor a complete fraud ahead of the Jul 29 AdCom (FDA panel voted 9-3 against).",
+   "url": "https://x.com/MartinShkreli/status/2081710209219580134"
+  },
+  {
+   "date": "2026-07-22",
+   "tickers": [
+    "CPHI"
+   ],
+   "action": "call",
+   "note": "Short call on China Pharma, fair value $0.10.",
+   "url": "https://x.com/MartinShkreli/status/2079921437649822125"
+  },
+  {
+   "date": "2026-07-13",
+   "tickers": [
+    "AGEN"
+   ],
+   "action": "call",
+   "note": "Short call on Agenus after its PIPE.",
+   "url": "https://x.com/MartinShkreli/status/2076669793495548102"
+  },
+  {
+   "date": "2026-07-11",
+   "tickers": [
+    "FBRX"
+   ],
+   "action": "long",
+   "note": "Buys some Forte for a trade after good data.",
+   "url": "https://www.youtube.com/watch?v=fXHjvFMYzHw"
+  },
+  {
+   "date": "2026-07-09",
+   "tickers": [
+    "ALNY",
+    "FBRX"
+   ],
+   "action": "close",
+   "note": "Covered Alnylam too early; tried to short Forte at $31.",
+   "url": "https://x.com/MartinShkreli/status/2075307062003638545"
+  },
+  {
+   "date": "2026-07-08",
+   "tickers": [
+    "BCRX",
+    "SPRB",
+    "SRPT",
+    "MRNA",
+    "PFE",
+    "CAPR",
+    "CRNX"
+   ],
+   "action": "info",
+   "note": "Reads out his book: long BioCryst, Spruce, Sarepta; short Moderna, a little Pfizer, some Capricor; was long Crinetics.",
+   "url": "https://www.youtube.com/watch?v=Ntvdhuswuuk"
+  },
+  {
+   "date": "2026-06-30",
+   "tickers": [
+    "EVMN",
+    "SLS"
+   ],
+   "action": "long",
+   "note": "Bought 5,000 Evommune shares; says the SELLAS short goes on that day.",
+   "url": "https://www.youtube.com/watch?v=lAwTvzg6qmg"
+  },
+  {
+   "date": "2026-06-29",
+   "tickers": [
+    "EVMN"
+   ],
+   "action": "long",
+   "note": "Long Evommune on the drop, new position.",
+   "url": "https://x.com/MartinShkreli/status/2071592596959326381"
+  },
+  {
+   "date": "2026-06-25",
+   "tickers": [
+    "BCRX"
+   ],
+   "action": "long",
+   "note": "New $10M challenge starts. Posts BioCryst as a long idea, $10 stock worth $30.",
+   "url": "https://x.com/MartinShkreli/status/2070143492764946802"
+  },
+  {
+   "date": "2026-06-24",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "info",
+   "note": "Says Abivax has given him many headaches.",
+   "url": "https://x.com/MartinShkreli/status/2069794570653598066"
+  },
+  {
+   "date": "2025-12-04",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "close",
+   "note": "Stream title: challenge account -100%. Says the Schwab account is over.",
+   "url": "https://www.youtube.com/watch?v=G7rEfocWjo8"
+  },
+  {
+   "date": "2025-12-03",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "result",
+   "note": "HOPE-3 is positive, stock up more than 370%. He apologizes for the call.",
+   "url": "https://x.com/MartinShkreli/status/1996244856004370615"
+  },
+  {
+   "date": "2025-11-24",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "short",
+   "note": "Publishes a 46-page Capricor short report ahead of HOPE-3.",
+   "url": "https://x.com/MartinShkreli/status/1992971976294498581"
+  },
+  {
+   "date": "2025-11-18",
+   "tickers": [
+    "OLMA"
+   ],
+   "action": "short",
+   "note": "Shorting Olema.",
+   "url": "https://x.com/MartinShkreli/status/1990794899680342334"
+  },
+  {
+   "date": "2025-11-13",
+   "tickers": [
+    "AVXL"
+   ],
+   "action": "short",
+   "note": "Names Anavex his next short, targets under $1.25.",
+   "url": "https://x.com/MartinShkreli/status/1989005266751574250"
+  },
+  {
+   "date": "2025-11-05",
+   "tickers": [
+    "BHVN"
+   ],
+   "action": "long",
+   "note": "Takes a big long position in Biohaven.",
+   "url": "https://x.com/MartinShkreli/status/1986078863034556918"
+  },
+  {
+   "date": "2025-11-04",
+   "tickers": [
+    "SRPT"
+   ],
+   "action": "long",
+   "note": "Says he is long a lot of Sarepta; clip title says 40% of the portfolio.",
+   "url": "https://x.com/MartinShkreli/status/1985783666904297962"
+  },
+  {
+   "date": "2025-10-06",
+   "tickers": [
+    "SPRB"
+   ],
+   "action": "long",
+   "note": "Long Spruce, $500 price target.",
+   "url": "https://x.com/MartinShkreli/status/1975241784369262649"
+  },
+  {
+   "date": "2025-09-24",
+   "tickers": [
+    "QURE"
+   ],
+   "action": "long",
+   "note": "Bullish on uniQure: says FDA has no choice but to approve.",
+   "url": "https://x.com/MartinShkreli/status/1970826682870251680"
+  },
+  {
+   "date": "2025-09-15",
+   "tickers": [
+    "ATYR"
+   ],
+   "action": "result",
+   "note": "aTyr Phase 3 fails, stock down about 80% premarket. Short pays.",
+   "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+  },
+  {
+   "date": "2025-08-26",
+   "tickers": [
+    "ABVX",
+    "ATYR"
+   ],
+   "action": "info",
+   "note": "Abivax is his biggest long, aTyr his biggest short.",
+   "url": "https://x.com/MartinShkreli/status/1960357746001207553"
+  },
+  {
+   "date": "2025-08-23",
+   "tickers": [
+    "AVXL",
+    "HUMA"
+   ],
+   "action": "short",
+   "note": "Lists Anavex and Humacyte in his short book.",
+   "url": "https://x.com/MartinShkreli/status/1959299347633381750"
+  },
+  {
+   "date": "2025-08-22",
+   "tickers": [
+    "EQ"
+   ],
+   "action": "long",
+   "note": "Buys some Equillium as a cheap bet on the same mechanism as Abivax.",
+   "url": "https://x.com/MartinShkreli/status/1958906812503101654"
+  },
+  {
+   "date": "2025-08-16",
+   "tickers": [
+    "PGEN"
+   ],
+   "action": "close",
+   "note": "Sells Precigen after a +33% day.",
+   "url": "https://www.youtube.com/watch?v=dhU7BFANDMA"
+  },
+  {
+   "date": "2025-08-03",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "long",
+   "note": "Abivax bought around $56 average, his biggest long.",
+   "url": "https://x.com/MartinShkreli/status/1952131841227460751"
+  },
+  {
+   "date": "2025-07-29",
+   "tickers": [
+    "ATYR"
+   ],
+   "action": "short",
+   "note": "Announces aTyr short, predicts an 80% drop in 4 to 6 weeks.",
+   "url": "https://x.com/MartinShkreli/status/1950200402059670003"
+  },
+  {
+   "date": "2025-07-24",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "long",
+   "note": "Says he bought Abivax after the INmune win.",
+   "url": "https://x.com/MartinShkreli/status/1948490438668648647"
+  },
+  {
+   "date": "2025-06-30",
+   "tickers": [
+    "INMB"
+   ],
+   "action": "result",
+   "note": "INmune readout: placebo beats drug. Short pays.",
+   "url": "https://x.com/MartinShkreli/status/1939548605007749261"
+  },
+  {
+   "date": "2025-06-17",
+   "tickers": [
+    "INMB"
+   ],
+   "action": "short",
+   "note": "Says INmune is very likely to fail within days.",
+   "url": "https://x.com/MartinShkreli/status/1935054648471416933"
+  },
+  {
+   "date": "2025-05-06",
+   "tickers": [
+    "SRPT"
+   ],
+   "action": "long",
+   "note": "Says he likes Sarepta, trading like a generics company.",
+   "url": "https://x.com/MartinShkreli/status/1919859860482429360"
+  },
+  {
+   "date": "2025-04-22",
+   "tickers": [
+    "INMB"
+   ],
+   "action": "short",
+   "note": "Streams on INmune Bio as one of the shadiest companies in biotech; the court filing says he built the short in April.",
+   "url": "https://x.com/MartinShkreli/status/1914750304933040274"
+  },
+  {
+   "date": "2025-04-02",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "short",
+   "note": "Starts the $30K Schwab challenge and begins building a Capricor short on day one (per court filing).",
+   "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+  }
+ ],
+ "courtNamed": [
+  {
+   "period": "2026",
+   "ticker": "DHR",
+   "company": "Danaher"
+  },
+  {
+   "period": "2025",
+   "ticker": "ADMA",
+   "company": "ADMA Biologics"
+  },
+  {
+   "period": "2025",
+   "ticker": "BAX",
+   "company": "Baxter International"
+  },
+  {
+   "period": "2025",
+   "ticker": "BIIB",
+   "company": "Biogen"
+  },
+  {
+   "period": "2025",
+   "ticker": "COR",
+   "company": "Cencora"
+  },
+  {
+   "period": "2025",
+   "ticker": "CRDF",
+   "company": "Cardiff Oncology"
+  },
+  {
+   "period": "2025",
+   "ticker": "CRL",
+   "company": "Charles River Laboratories"
+  },
+  {
+   "period": "2025",
+   "ticker": "DAWN",
+   "company": "Day One Biopharmaceuticals"
+  },
+  {
+   "period": "2025",
+   "ticker": "GALT",
+   "company": "Galectin Therapeutics"
+  },
+  {
+   "period": "2025",
+   "ticker": "GILD",
+   "company": "Gilead Sciences"
+  },
+  {
+   "period": "2025",
+   "ticker": "IVVD",
+   "company": "Invivyd"
+  },
+  {
+   "period": "2025",
+   "ticker": "KZIA",
+   "company": "Kazia Therapeutics"
+  },
+  {
+   "period": "2025",
+   "ticker": "MRK",
+   "company": "Merck & Co."
+  },
+  {
+   "period": "2025",
+   "ticker": "NKTR",
+   "company": "Nektar Therapeutics"
+  },
+  {
+   "period": "2025",
+   "ticker": "NVO",
+   "company": "Novo Nordisk"
+  },
+  {
+   "period": "2025",
+   "ticker": "RCKT",
+   "company": "Rocket Pharmaceuticals"
+  },
+  {
+   "period": "2025",
+   "ticker": "RXRX",
+   "company": "Recursion Pharmaceuticals"
+  },
+  {
+   "period": "2025",
+   "ticker": "SLS",
+   "company": "SELLAS Life Sciences"
+  },
+  {
+   "period": "2025",
+   "ticker": "THTX",
+   "company": "Theratechnologies"
+  }
+ ],
+ "challengeReturn": {
+  "label": "$10M challenge, % since Jul 1, 2026, from his own stream titles",
+  "source": "https://www.youtube.com/@realmartinshkreli/streams",
+  "points": [
+   {
+    "date": "2026-08-04",
+    "pct": 4
+   },
+   {
+    "date": "2026-08-05",
+    "pct": -2
+   },
+   {
+    "date": "2026-08-06",
+    "pct": -1
+   },
+   {
+    "date": "2026-08-07",
+    "pct": -1
+   },
+   {
+    "date": "2026-08-10",
+    "pct": 15
+   },
+   {
+    "date": "2026-08-11",
+    "pct": 17
+   },
+   {
+    "date": "2026-08-12",
+    "pct": 5
+   },
+   {
+    "date": "2026-08-13",
+    "pct": 5
+   },
+   {
+    "date": "2026-08-14",
+    "pct": 6
+   },
+   {
+    "date": "2026-08-17",
+    "pct": 10
+   },
+   {
+    "date": "2026-08-21",
+    "pct": 5
+   },
+   {
+    "date": "2026-08-24",
+    "pct": 3
+   },
+   {
+    "date": "2026-08-25",
+    "pct": 5
+   },
+   {
+    "date": "2026-08-26",
+    "pct": 6
+   },
+   {
+    "date": "2026-09-01",
+    "pct": -2
+   },
+   {
+    "date": "2026-09-02",
+    "pct": -1
+   },
+   {
+    "date": "2026-09-03",
+    "pct": -2
+   },
+   {
+    "date": "2026-09-17",
+    "pct": 19
+   },
+   {
+    "date": "2026-09-22",
+    "pct": 26
+   },
+   {
+    "date": "2026-09-23",
+    "pct": 23
+   },
+   {
+    "date": "2026-09-24",
+    "pct": 31
+   },
+   {
+    "date": "2026-09-25",
+    "pct": 37
+   },
+   {
+    "date": "2026-09-28",
+    "pct": 5
+   },
+   {
+    "date": "2026-09-29",
+    "pct": -17
+   },
+   {
+    "date": "2026-09-30",
+    "pct": -14
+   },
+   {
+    "date": "2026-10-01",
+    "pct": -23
+   },
+   {
+    "date": "2026-10-02",
+    "pct": -22
+   },
+   {
+    "date": "2026-10-05",
+    "pct": -21
+   },
+   {
+    "date": "2026-10-06",
+    "pct": -22
+   },
+   {
+    "date": "2026-10-07",
+    "pct": -24
+   },
+   {
+    "date": "2026-10-08",
+    "pct": -23
+   },
+   {
+    "date": "2026-10-09",
+    "pct": -22
+   },
+   {
+    "date": "2026-10-12",
+    "pct": -21
+   }
+  ]
+ }
+}
