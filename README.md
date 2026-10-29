@@ -9,7 +9,8 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | `index.html` | Homepage: publications, ongoing research, experience, teaching |
 | `student-match.html` | Student Opportunities: three questions, then a list of funding, tools, and help sorted by deadline. See `STUDENT-MATCH.md` |
 | `biotech-catalysts.html` | Biotech Catalysts 2027: binary PDUFA and Phase 3 watchlist, linked quietly from the footer |
-| `shkreli-tracker.html` | Shkreli tracker: his stated biotech longs and shorts from 2025 on, with an activity log. Shares page tabs with the catalysts page |
+| `other-tracker.html` | Other tracker: stated biotech longs and shorts for outside investors (Martin Shkreli from 2025, Adam May from 2024), switchable at the top of the page (`#shkreli`, `#adam-may`). Shares page tabs with the catalysts page |
+| `data/adam-may-positions.json` | Data for the Adam May view of the Other tracker; same format, plus a `pitches` list |
 | `data/shkreli-positions.json` | Data for the Shkreli tracker. To update: add a dated entry to `events`, change the position's `status` / `lastSeen`, and bump `updated` |
 | `data/eligibility-checks.json` | Hand-checked eligibility, amounts, and deadlines for the main funding entries, with sources and dates |
 | `student-benefits.html` | Resource library: the full list of research computing, funding, and K-State resources |

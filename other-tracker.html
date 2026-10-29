@@ -162,6 +162,27 @@
   footer li{margin:4px 0;word-break:break-word}
   .disc{margin-top:14px;font-size:13px}
   .err{background:var(--red-bg);color:var(--red);border-radius:10px;padding:14px 16px;margin-top:20px;font-size:15px}
+
+  /* Person switch */
+  .who{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 0}
+  .who .lbl{font-family:"Archivo",sans-serif;font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+  .who button{font-family:"Archivo",sans-serif;font-size:14px;font-weight:700;padding:9px 16px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:var(--shadow)}
+  .who button[aria-pressed="true"]{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+  .who button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .who button small{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;opacity:.8}
+  [hidden]{display:none!important}
+
+  /* Pitches */
+  .pitches{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:880px){.pitches{grid-template-columns:1fr}}
+  .pitch{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
+  .pitch .tk{font-family:"Archivo",sans-serif;font-weight:800;font-size:24px}
+  .pitch .co{color:var(--muted);font-size:14px}
+  .pitch .px{font-family:"IBM Plex Mono",monospace;font-size:13px;margin-top:4px}
+  .pitch .px b{font-weight:600}
+  .pitch .nt{font-size:14px;line-height:1.45}
+  .pitch .dt{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);margin-top:auto}
+  .badge.unclear{background:var(--surface2);color:var(--muted)}
 </style>
 </head>
 <body>
@@ -173,56 +194,46 @@
   <a href="other-tracker.html" aria-current="page">Other tracker</a>
 </nav>
 
+<div class="who" role="group" aria-label="Whose positions" id="who"></div>
+
 <header>
   <div class="dateline">
-    <span class="mono">Position tracker · biotech &amp; pharma · Jan 2025 onward</span>
+    <span class="mono" id="dateline"></span>
     <span class="mono" id="updated">Last updated</span>
   </div>
-  <h1>What Martin Shkreli says he is long and short in biotech</h1>
-  <p class="lede">Built from his own posts on X, his livestreams, and the October 2026 FTC contempt filing. A position counts only when he says he holds it. Calls he makes without claiming a position, and claims that appear only in a clip-channel title, are kept but labelled separately.</p>
-  <div class="caveat"><b>Read this first</b>
-    Everything here is self-reported or alleged. None of it is broker-verified, and the court filing alleges he trades in accounts he does not show. Stream quotes come from auto-captions, which garble names (“Mona” is Moderna, “Capper” is Capricor). On Oct 21, 2026, after the FTC motion, he said he did not want the FTC to think he owns Moderna, so expect fewer explicit position statements from here on. Tech, quantum, and non-biotech healthcare (HIMS, DOCS, UNH) are left out. Research record only, not investment advice.</div>
+  <h1 id="h1"></h1>
+  <p class="lede" id="lede"></p>
+  <div class="caveat"><b>Read this first</b><span id="caveat"></span></div>
   <div class="statrow" id="stats"></div>
 </header>
 
 <h2>His book right now</h2>
-<p class="sub">Positions he last described as open in the $10M challenge that began Jun 25, 2026. The date is the last time he said it; anything not restated in 45+ days is flagged, because he does not announce every exit.</p>
+<p class="sub" id="boardSub"></p>
 <div class="board" id="board"></div>
 <p class="calls" id="calls"></p>
 
-<h2>His self-reported return</h2>
-<p class="sub">The $10M challenge, in % since Jul 1, 2026, as he puts it in his own stream titles. This is the whole portfolio, tech included, not the biotech book alone.</p>
-<div class="chartcard">
-  <svg id="pnl" viewBox="0 0 820 300" width="100%" role="img" aria-label="Self-reported challenge return, August to October 2026"></svg>
-  <p class="chartnote" id="pnlnote"></p>
-</div>
+<section id="pitchSec" hidden>
+  <h2>His formal pitches</h2>
+  <p class="sub">The only names he has written up as full public pitches, each posted as a thread with a long research document. Prices are as he gave them on the day.</p>
+  <div class="pitches" id="pitches"></div>
+</section>
+
+<section id="pnlSec" hidden>
+  <h2>His self-reported return</h2>
+  <p class="sub">The $10M challenge, in % since Jul 1, 2026, as he puts it in his own stream titles. This is the whole portfolio, tech included, not the biotech book alone.</p>
+  <div class="chartcard">
+    <svg id="pnl" viewBox="0 0 820 300" width="100%" role="img" aria-label="Self-reported challenge return, August to October 2026"></svg>
+    <p class="chartnote" id="pnlnote"></p>
+  </div>
+</section>
 
 <h2>The big binary bets</h2>
-<p class="sub">His headline shorts into a single readout or FDA event, and how each one landed.</p>
+<p class="sub">Headline positions into a single readout or event, and how each one landed.</p>
 <div class="score" id="score"></div>
 
-<h2>Every position, 2025 onward</h2>
-<p class="sub">Tap a row for the evidence and links. “His own words” means he said he holds or held it; “Call only” means he recommended it without claiming a position.</p>
-<div class="controls" id="controls">
-  <div class="group" data-key="period"><span class="lbl">Period</span>
-    <button class="btn" data-v="all" aria-pressed="true">All</button>
-    <button class="btn" data-v="2026" aria-pressed="false">2026 challenge</button>
-    <button class="btn" data-v="2025" aria-pressed="false">2025</button></div>
-  <div class="group" data-key="side"><span class="lbl">Side</span>
-    <button class="btn" data-v="all" aria-pressed="true">All</button>
-    <button class="btn" data-v="long" aria-pressed="false">Long</button>
-    <button class="btn" data-v="short" aria-pressed="false">Short</button></div>
-  <div class="group" data-key="evidence"><span class="lbl">Evidence</span>
-    <button class="btn" data-v="all" aria-pressed="true">All</button>
-    <button class="btn" data-v="stated" aria-pressed="false">His own words</button>
-    <button class="btn" data-v="call" aria-pressed="false">Call only</button>
-    <button class="btn" data-v="title" aria-pressed="false">Clip title / unclear</button></div>
-  <div class="group" data-key="status"><span class="lbl">Status</span>
-    <button class="btn" data-v="all" aria-pressed="true">All</button>
-    <button class="btn" data-v="open" aria-pressed="false">Open</button>
-    <button class="btn" data-v="closed" aria-pressed="false">Closed</button></div>
-  <input type="search" id="q" placeholder="Search ticker or name" aria-label="Search ticker or company" />
-</div>
+<h2>Every position</h2>
+<p class="sub" id="listSub"></p>
+<div class="controls" id="controls"></div>
 <p class="resultcount" id="count"></p>
 <div class="list">
   <div class="listhead"><span>Ticker</span><span>Company</span><span>Side</span><span>Status</span><span>Latest</span><span>First · last seen</span></div>
@@ -234,26 +245,20 @@
 <div class="log" id="log"></div>
 <button class="btn more" id="moreBtn" type="button">Show all</button>
 
-<h2>Named in the court filing, direction not stated</h2>
-<p class="sub">The FTC / New York memorandum lists these among drug stocks he traded on stream, without saying long or short. Kept here so a later statement can be matched.</p>
-<div id="court"></div>
+<section id="courtSec" hidden>
+  <h2>Named in the court filing, direction not stated</h2>
+  <p class="sub">The FTC / New York memorandum lists these among drug stocks he traded on stream, without saying long or short. Kept here so a later statement can be matched.</p>
+  <div id="court"></div>
+</section>
 
 <h2>Keeping it current</h2>
-<p class="sub">The page reads everything from <span class="mono">data/shkreli-positions.json</span>. Add a dated event, update the position’s status and last-seen date, and bump <span class="mono">updated</span>.</p>
-<div class="routine">
-  <div class="step"><span class="when">Daily or weekly</span><p>Search X for <span class="mono">from:MartinShkreli has:cashtags</span> and scan for “I’m short”, “I’m long”, “bought”, “covered”.</p></div>
-  <div class="step"><span class="when">Each stream</span><p>His stream titles carry the running return; clips on The Shkreli Pill with “positions” in the title usually include him reading out his book.</p></div>
-  <div class="step"><span class="when">On any binary</span><p>When a name in the board reports data or gets an FDA decision, log the result as an event and move it to the scorecard if it was a headline bet.</p></div>
-</div>
+<p class="sub" id="dataSub"></p>
+<div class="routine" id="routine"></div>
 
 <footer>
   <h3 style="margin-bottom:8px">Sources</h3>
-  <ul>
-    <li>His posts: <a href="https://x.com/MartinShkreli">x.com/MartinShkreli</a> (each event and row links to the specific post)</li>
-    <li>His livestreams: <a href="https://www.youtube.com/@realmartinshkreli/streams">youtube.com/@realmartinshkreli/streams</a> · clip channel: <a href="https://www.youtube.com/@TheShkreliPill/videos">youtube.com/@TheShkreliPill</a></li>
-    <li>Court filing: <a href="https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf">FTC et al. v. Shkreli, memorandum in support of contempt motion (2026)</a> · <a href="https://www.ftc.gov/news-events/news/press-releases/2026/10/ftc-states-ask-federal-court-hold-martin-shkreli-contempt-allegedly-violating-lifetime">FTC press release</a></li>
-  </ul>
-  <p class="disc">Court-filing items are the plaintiffs’ allegations, not findings. Positions and returns are his own claims. This page is a hand-maintained research record; it does not update itself, and it is not investment advice.</p>
+  <ul id="sources"></ul>
+  <p class="disc" id="disc"></p>
 </footer>
 
 </div>
@@ -266,61 +271,163 @@
   function fmt(iso, withYear){ var p = iso.split("-"); return MON[+p[1]-1] + " " + (+p[2]) + (withYear === false ? "" : ", " + p[0]); }
   function daysSince(iso){ var d = new Date(iso + "T00:00:00"), n = new Date(); n.setHours(0,0,0,0); return Math.round((n - d) / 86400000); }
   function safeUrl(u){ return /^https:\/\//.test(u) ? u : "#"; }
-  var STATUS = {open:"Open", closed:"Closed", carried:"Carried to 2026", unknown:"Unknown", none:"No position"};
-  var EVID = {stated:"His own words", call:"Call only", title:"Clip title only", unclear:"Unclear speaker"};
+  function link(href, text){ return '<a href="' + esc(safeUrl(href)) + '">' + esc(text) + '</a>'; }
+  var STATUS = {open:"Open", closed:"Closed", carried:"Carried forward", unknown:"Unknown", none:"No position"};
 
-  fetch("data/shkreli-positions.json?v=1").then(function(r){
-    if(!r.ok) throw new Error(r.status);
-    return r.json();
-  }).then(render).catch(function(){
-    document.getElementById("board").insertAdjacentHTML("beforebegin",
-      '<div class="err">The data file could not be loaded. If you opened this page from disk, serve the folder instead (python3 -m http.server).</div>');
+  var PEOPLE = {
+    "shkreli": {
+      name: "Martin Shkreli", handle: "@MartinShkreli", data: "data/shkreli-positions.json?v=1",
+      dateline: "Position tracker · biotech &amp; pharma · Jan 2025 onward",
+      h1: "What Martin Shkreli says he is long and short in biotech",
+      lede: "Built from his own posts on X, his livestreams, and the October 2026 FTC contempt filing. A position counts only when he says he holds it. Calls he makes without claiming a position, and claims that appear only in a clip-channel title, are kept but labelled separately.",
+      caveat: "Everything here is self-reported or alleged. None of it is broker-verified, and the court filing alleges he trades in accounts he does not show. Stream quotes come from auto-captions, which garble names (“Mona” is Moderna, “Capper” is Capricor). On Oct 21, 2026, after the FTC motion, he said he did not want the FTC to think he owns Moderna, so expect fewer explicit position statements from here on. Tech, quantum, and non-biotech healthcare (HIMS, DOCS, UNH) are left out. Research record only, not investment advice.",
+      boardSub: "Positions he last described as open in the $10M challenge that began Jun 25, 2026. The date is the last time he said it; anything not restated in 45+ days is flagged, because he does not announce every exit.",
+      boardPeriod: "2026",
+      listSub: "Tap a row for the evidence and links. “His own words” means he said he holds or held it; “Call only” means he recommended it without claiming a position.",
+      periodLabels: {"2026":"2026 challenge", "2025":"2025"},
+      evidence: [["stated","His own words",["stated"]],["call","Call only",["call"]],["title","Clip title / unclear",["title","unclear"]]],
+      evidenceLabel: {stated:"His own words", call:"Call only", title:"Clip title only", unclear:"Unclear speaker"},
+      sections: {pnl:true, court:true, pitches:false},
+      stats: function(D, openS, openL){
+        var won = D.scorecard.filter(function(s){ return s.outcome==="won"; }).length, lost = D.scorecard.filter(function(s){ return s.outcome==="lost"; }).length;
+        var pend = D.scorecard.filter(function(s){ return s.outcome==="pending"; }).length;
+        var pts = D.challengeReturn.points, last = pts[pts.length-1];
+        return [[openS.length, "Open shorts he has stated in the 2026 challenge"],[openL.length, "Open longs he has stated in the 2026 challenge"],
+                [won + " / " + lost, "Headline binary shorts since 2025, won / lost (" + pend + " still pending)"],
+                [(last.pct > 0 ? "+" : "") + last.pct + "%", "Self-reported challenge return as of " + fmt(last.date, false) + ", from his stream title"]];
+      },
+      dataSub: 'The page reads this view from <span class="mono">data/shkreli-positions.json</span>. Add a dated event, update the position’s status and last-seen date, and bump <span class="mono">updated</span>.',
+      routine: [["Daily or weekly", 'Search X for <span class="mono">from:MartinShkreli has:cashtags</span> and scan for “I’m short”, “I’m long”, “bought”, “covered”.'],
+                ["Each stream", "His stream titles carry the running return; clips on The Shkreli Pill with “positions” in the title usually include him reading out his book."],
+                ["On any binary", "When a name in the board reports data or gets an FDA decision, log the result as an event and move it to the scorecard if it was a headline bet."]],
+      sources: [["His posts", "https://x.com/MartinShkreli", "x.com/MartinShkreli"],
+                ["His livestreams", "https://www.youtube.com/@realmartinshkreli/streams", "youtube.com/@realmartinshkreli/streams"],
+                ["Clip channel", "https://www.youtube.com/@TheShkreliPill/videos", "youtube.com/@TheShkreliPill"],
+                ["Court filing", "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf", "FTC et al. v. Shkreli, memorandum in support of contempt motion (2026)"],
+                ["FTC", "https://www.ftc.gov/news-events/news/press-releases/2026/10/ftc-states-ask-federal-court-hold-martin-shkreli-contempt-allegedly-violating-lifetime", "FTC press release"]],
+      disc: "Court-filing items are the plaintiffs’ allegations, not findings. Positions and returns are his own claims. This page is a hand-maintained research record; it does not update itself, and it is not investment advice."
+    },
+    "adam-may": {
+      name: "Adam May", handle: "@A_May_MD", data: "data/adam-may-positions.json?v=1",
+      dateline: "Position tracker · biotech &amp; pharma · 2024 onward",
+      h1: "What Adam May says he is long and short in biotech",
+      lede: "Built from his own posts on X, plus his guest pitch and podcast disclosures. He is a physician who invests in small- and mid-cap biotech and says he often posts about companies he holds. A position counts only when he says he holds it or formally pitches it; bullish or bearish commentary on its own is not counted.",
+      caveat: "Self-reported and not broker-verified, and he does not post every trade. X search surfaces only part of his very large post history, so trades mentioned only in replies may be missing, especially before 2025. HIMS, where he says he made about $1.5M trading both sides in 2025, is left out as telehealth, not biotech. Research record only, not investment advice.",
+      boardSub: "Positions he last described as open, including his formal pitches. The date is the last time he said it; anything not restated in 45+ days is flagged, because he does not announce every exit.",
+      boardPeriod: "2026",
+      listSub: "Tap a row for the evidence and links. “His own words” means he said he holds or held it; “Formal pitch” is one of his written-up pitches; “Call only” means a recommendation without a stated position.",
+      periodLabels: {"2026":"2026", "2025":"2025", "2024":"2024"},
+      evidence: [["stated","His own words",["stated"]],["pitch","Formal pitch",["pitch"]],["call","Call only",["call"]],["unclear","Unclear",["unclear","title"]]],
+      evidenceLabel: {stated:"His own words", pitch:"Formal pitch", call:"Call only", title:"Clip title only", unclear:"Unclear"},
+      sections: {pnl:false, court:false, pitches:true},
+      stats: function(D, openS, openL){
+        var won = D.scorecard.filter(function(s){ return s.outcome==="won"; }).length, pend = D.scorecard.filter(function(s){ return s.outcome==="pending"; }).length;
+        return [[openL.length, "Open longs he has stated or pitched"],[openS.length, "Open shorts he has stated"],
+                [D.pitches.length, "Formal pitches since 2025 (NKTR, ABVX, ZURA)"],
+                [won + " of " + D.scorecard.length, "Binary bets into a readout that paid off (" + pend + " still pending)"]];
+      },
+      dataSub: 'The page reads this view from <span class="mono">data/adam-may-positions.json</span>. Add a dated event, update the position’s status and last-seen date, and bump <span class="mono">updated</span>.',
+      routine: [["Daily or weekly", 'Search X for <span class="mono">from:A_May_MD (long OR short OR bought OR sold OR added OR covered)</span>; most trades show up in replies.'],
+                ["On a pitch", "His pitch threads start with a numbered outline and a research document. Log the date and the price he quotes."],
+                ["On any binary", "ZURA's HS data (he expects mid-November 2026) is the next one. Log the result as an event and update the scorecard."]],
+      sources: [["His posts", "https://x.com/A_May_MD", "x.com/A_May_MD"],
+                ["Guest pitch", "https://www.specialsituationinvestments.com/2025/02/guest-pitch-nektar-therapeutics-nktr/", "Special Situation Investments, Nektar (Feb 2025)"],
+                ["Podcast", "https://www.yetanothervalueblog.com/p/adam-may-on-abvxs-blowout-data-and", "Yet Another Value Podcast, ABVX (Jun 2026)"]],
+      disc: "Positions and results are his own claims as posted. This page is a hand-maintained research record; it does not update itself, and it is not investment advice."
+    }
+  };
+
+  var cache = {}, current = null, resizeTimer = null;
+  document.getElementById("who").innerHTML = '<span class="lbl">Tracking</span>' + Object.keys(PEOPLE).map(function(k){
+    return '<button type="button" data-who="' + k + '" aria-pressed="false">' + esc(PEOPLE[k].name) + '<small>' + esc(PEOPLE[k].handle) + '</small></button>';
+  }).join("");
+  document.querySelectorAll("#who button").forEach(function(b){
+    b.addEventListener("click", function(){ location.hash = b.getAttribute("data-who"); });
   });
+  window.addEventListener("hashchange", route);
+  window.addEventListener("resize", function(){ clearTimeout(resizeTimer); resizeTimer = setTimeout(function(){ if(current && current.cfg.sections.pnl) drawPnl(current.D.challengeReturn); }, 150); });
+  route();
 
-  function render(D){
+  function route(){
+    var key = (location.hash || "").replace("#", "");
+    if(!PEOPLE[key]) key = "shkreli";
+    document.querySelectorAll("#who button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-who") === key ? "true" : "false"); });
+    var cfg = PEOPLE[key];
+    if(cache[key]) return render(cfg, cache[key]);
+    fetch(cfg.data).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(D){ cache[key] = D; render(cfg, D); })
+      .catch(function(){
+        document.getElementById("board").innerHTML = '<div class="err">The data file could not be loaded. If you opened this page from disk, serve the folder instead (python3 -m http.server).</div>';
+      });
+  }
+
+  function render(cfg, D){
+    current = {cfg: cfg, D: D};
     var P = D.positions;
+    document.getElementById("dateline").innerHTML = cfg.dateline;
     document.getElementById("updated").textContent = "Last updated: " + fmt(D.updated);
-
-    /* Stats */
-    var openS = P.filter(function(p){ return p.period==="2026" && p.evidence==="stated" && p.status==="open" && p.side==="short"; });
-    var openL = P.filter(function(p){ return p.period==="2026" && p.evidence==="stated" && p.status==="open" && p.side==="long"; });
-    var won = D.scorecard.filter(function(s){ return s.outcome==="won"; }).length;
-    var lost = D.scorecard.filter(function(s){ return s.outcome==="lost"; }).length;
-    var pts = D.challengeReturn.points, last = pts[pts.length-1];
-    document.getElementById("stats").innerHTML =
-      stat(openS.length, "Open shorts he has stated in the 2026 challenge") +
-      stat(openL.length, "Open longs he has stated in the 2026 challenge") +
-      stat(won + " / " + lost, "Headline binary shorts since 2025, won / lost (" + D.scorecard.filter(function(s){return s.outcome==="pending";}).length + " still pending)") +
-      stat((last.pct > 0 ? "+" : "") + last.pct + "%", "Self-reported challenge return as of " + fmt(last.date, false) + ", from his stream title");
-    function stat(n, l){ return '<div class="stat"><div class="n">' + esc(n) + '</div><div class="l">' + esc(l) + '</div></div>'; }
+    document.getElementById("h1").textContent = cfg.h1;
+    document.getElementById("lede").textContent = cfg.lede;
+    document.getElementById("caveat").textContent = cfg.caveat;
+    document.getElementById("boardSub").textContent = cfg.boardSub;
+    document.getElementById("listSub").textContent = cfg.listSub;
+    document.getElementById("dataSub").innerHTML = cfg.dataSub;
+    document.getElementById("disc").textContent = cfg.disc;
+    document.getElementById("pnlSec").hidden = !cfg.sections.pnl;
+    document.getElementById("courtSec").hidden = !cfg.sections.court;
+    document.getElementById("pitchSec").hidden = !cfg.sections.pitches;
 
     /* Board */
+    var holds = function(p){ return p.period === cfg.boardPeriod && (p.evidence === "stated" || p.evidence === "pitch") && p.status === "open"; };
+    var openS = P.filter(function(p){ return holds(p) && p.side === "short"; });
+    var openL = P.filter(function(p){ return holds(p) && p.side === "long"; });
+    document.getElementById("stats").innerHTML = cfg.stats(D, openS, openL).map(function(s){
+      return '<div class="stat"><div class="n">' + esc(s[0]) + '</div><div class="l">' + esc(s[1]) + '</div></div>';
+    }).join("");
     function col(list, cls, title){
       list = list.slice().sort(function(a,b){ return a.lastSeen < b.lastSeen ? 1 : -1; });
       return '<div class="col ' + cls + '"><div class="col-h"><h3>' + title + '</h3><span class="count">' + list.length + ' names</span></div>' +
-        list.map(function(p){
+        (list.length ? list.map(function(p){
           var ds = daysSince(p.lastSeen);
           return '<div class="pos"><span class="tk">$' + esc(p.ticker) + '</span><span class="nm">' + esc(p.company) + ' <span>· ' + esc(p.statusNote) + '</span></span>' +
             '<span class="meta">Last stated ' + fmt(p.lastSeen, false) + ' · ' + (ds >= 45 ? '<span class="stale">' + ds + ' days ago, may be stale</span>' : ds + ' days ago') + '</span></div>';
-        }).join("") + '</div>';
+        }).join("") : '<div class="empty">None stated.</div>') + '</div>';
     }
     document.getElementById("board").innerHTML = col(openS, "short", "Short") + col(openL, "long", "Long");
-    var calls = P.filter(function(p){ return p.period==="2026" && (p.evidence==="call" || p.evidence==="title") && p.status!=="closed"; });
+    var calls = P.filter(function(p){ return p.period === cfg.boardPeriod && (p.evidence === "call" || p.evidence === "title") && p.status !== "closed"; });
     document.getElementById("calls").innerHTML = calls.length ? "<b>Called or hinted, not claimed:</b> " + calls.map(function(p){
-      return '<span class="chip ' + (p.side==="short" ? "s" : "l") + '" title="' + esc(EVID[p.evidence] + ": " + p.statusNote) + '">' + (p.side==="short" ? "short " : "long ") + "$" + esc(p.ticker) + '</span>';
+      return '<span class="chip ' + (p.side === "short" ? "s" : "l") + '" title="' + esc(cfg.evidenceLabel[p.evidence] + ": " + p.statusNote) + '">' + (p.side === "short" ? "short " : "long ") + "$" + esc(p.ticker) + '</span>';
     }).join("") : "";
 
-    drawPnl(D.challengeReturn);
-    var rt; window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(function(){ drawPnl(D.challengeReturn); }, 150); });
+    /* Pitches */
+    if(cfg.sections.pitches){
+      document.getElementById("pitches").innerHTML = (D.pitches || []).map(function(x){
+        return '<div class="pitch"><span class="tk">$' + esc(x.ticker) + '</span><span class="co">' + esc(x.company) + '</span>' +
+          '<span class="px">Pitched at <b>' + esc(x.price) + '</b></span><span class="nt">' + esc(x.note) + '</span>' +
+          '<span class="dt">' + fmt(x.date) + ' · ' + link(x.url, "thread") + '</span></div>';
+      }).join("");
+    }
+    if(cfg.sections.pnl) drawPnl(D.challengeReturn);
 
     /* Scorecard */
     document.getElementById("score").innerHTML = D.scorecard.map(function(s){
       return '<div class="sc"><div class="top"><span class="tk">$' + esc(s.ticker) + '</span><span class="badge ' + esc(s.outcome) + '">' + esc(s.outcome) + '</span></div>' +
         '<div class="bet">' + esc(s.bet) + '</div><div class="nt">' + esc(s.note) + '</div>' +
-        '<div class="dt">' + fmt(s.date) + ' · <a href="' + esc(safeUrl(s.url)) + '">source</a></div></div>';
+        '<div class="dt">' + fmt(s.date) + ' · ' + link(s.url, "source") + '</div></div>';
     }).join("");
 
     /* Filterable list */
+    var periods = Object.keys(cfg.periodLabels).sort().reverse();
+    var groups = [["period","Period",[["all","All"]].concat(periods.map(function(k){ return [k, cfg.periodLabels[k]]; }))],
+                  ["side","Side",[["all","All"],["long","Long"],["short","Short"]]],
+                  ["evidence","Evidence",[["all","All"]].concat(cfg.evidence.map(function(e){ return [e[0], e[1]]; }))],
+                  ["status","Status",[["all","All"],["open","Open"],["closed","Closed"]]]];
+    document.getElementById("controls").innerHTML = groups.map(function(g){
+      return '<div class="group" data-key="' + g[0] + '"><span class="lbl">' + g[1] + '</span>' + g[2].map(function(o, i){
+        return '<button class="btn" type="button" data-v="' + esc(o[0]) + '" aria-pressed="' + (i === 0 ? "true" : "false") + '">' + esc(o[1]) + '</button>';
+      }).join("") + '</div>';
+    }).join("") + '<input type="search" id="q" placeholder="Search ticker or name" aria-label="Search ticker or company" />';
+    var evGroups = {}; cfg.evidence.forEach(function(e){ evGroups[e[0]] = e[2]; });
     var F = {period:"all", side:"all", evidence:"all", status:"all", q:""};
     var order = {open:0, carried:1, unknown:2, none:3, closed:4};
     var sorted = P.slice().sort(function(a,b){
@@ -331,8 +438,7 @@
     function match(p){
       if(F.period !== "all" && p.period !== F.period) return false;
       if(F.side !== "all" && p.side !== F.side) return false;
-      if(F.evidence === "title" && !(p.evidence === "title" || p.evidence === "unclear")) return false;
-      if(F.evidence !== "all" && F.evidence !== "title" && p.evidence !== F.evidence) return false;
+      if(F.evidence !== "all" && evGroups[F.evidence].indexOf(p.evidence) === -1) return false;
       if(F.status === "open" && !(p.status === "open" || p.status === "carried")) return false;
       if(F.status === "closed" && p.status !== "closed") return false;
       if(F.q && (p.ticker + " " + p.company).toLowerCase().indexOf(F.q) === -1) return false;
@@ -342,16 +448,16 @@
       var list = sorted.filter(match);
       document.getElementById("count").textContent = list.length + " of " + P.length + " positions";
       document.getElementById("rows").innerHTML = list.length ? list.map(function(p){
+        var cross = p.firstSeen.slice(0,4) !== p.lastSeen.slice(0,4);
         return '<details class="row"><summary>' +
           '<span class="tk">$' + esc(p.ticker) + '</span>' +
-          '<span class="co">' + esc(p.company) + '<small>' + esc(p.period === "2026" ? "2026 challenge" : "2025") + ' · ' + esc(EVID[p.evidence]) + ' · ' + esc(p.confidence) + ' confidence</small></span>' +
+          '<span class="co">' + esc(p.company) + '<small>' + esc(cfg.periodLabels[p.period] || p.period) + ' · ' + esc(cfg.evidenceLabel[p.evidence] || p.evidence) + ' · ' + esc(p.confidence) + ' confidence</small></span>' +
           '<span class="sd"><span class="badge ' + esc(p.side) + '">' + esc(p.side) + '</span></span>' +
           '<span class="stt"><span class="badge ' + esc(p.status) + '">' + esc(STATUS[p.status]) + '</span></span>' +
           '<span class="note">' + esc(p.statusNote) + '</span>' +
-          '<span class="dates">' + (p.firstSeen.slice(0,4) !== p.lastSeen.slice(0,4) ? fmt(p.firstSeen) : fmt(p.firstSeen, false)) + ' · ' + fmt(p.lastSeen, p.firstSeen.slice(0,4) !== p.lastSeen.slice(0,4)) + '</span>' +
+          '<span class="dates">' + fmt(p.firstSeen, cross) + ' · ' + fmt(p.lastSeen, cross) + '</span>' +
           '</summary><div class="body"><p class="ev">Evidence</p><p>' + esc(p.summary) + '</p><p>' +
-          p.sources.map(function(s){ return '<a href="' + esc(safeUrl(s.url)) + '">' + esc(s.label) + '</a>'; }).join("") +
-          '</p></div></details>';
+          p.sources.map(function(s){ return link(s.url, s.label); }).join("") + '</p></div></details>';
       }).join("") : '<div class="empty">Nothing matches these filters.</div>';
     }
     document.querySelectorAll("#controls .group").forEach(function(g){
@@ -369,31 +475,35 @@
     drawRows();
 
     /* Log */
-    var showAll = false, LIMIT = 15;
+    var showAll = false, LIMIT = 15, btn = document.getElementById("moreBtn");
     function drawLog(){
       var ev = showAll ? D.events : D.events.slice(0, LIMIT);
       document.getElementById("log").innerHTML = ev.map(function(e){
-        return '<div class="ev"><span class="d">' + fmt(e.date) + '</span><div class="t">' + esc(e.note) +
-          ' <a href="' + esc(safeUrl(e.url)) + '">source</a>' +
+        return '<div class="ev"><span class="d">' + fmt(e.date) + '</span><div class="t">' + esc(e.note) + ' ' + link(e.url, "source") +
           (e.tickers.length ? '<div class="tags">' + e.tickers.map(function(t){ return '<span class="chip">$' + esc(t) + '</span>'; }).join("") + '</div>' : '') +
           '</div></div>';
       }).join("");
-      var btn = document.getElementById("moreBtn");
       btn.style.display = D.events.length > LIMIT ? "" : "none";
       btn.textContent = showAll ? "Show fewer" : "Show all " + D.events.length + " entries";
     }
-    document.getElementById("moreBtn").addEventListener("click", function(){ showAll = !showAll; drawLog(); });
+    btn.onclick = function(){ showAll = !showAll; drawLog(); };
     drawLog();
 
     /* Court list */
-    var byP = {"2026":[], "2025":[]};
-    D.courtNamed.forEach(function(c){ (byP[c.period] = byP[c.period] || []).push(c); });
-    document.getElementById("court").innerHTML = ["2026","2025"].map(function(k){
-      if(!byP[k].length) return "";
-      return '<p><b>' + (k === "2026" ? "2026 challenge" : "2025 challenge") + ':</b> ' + byP[k].map(function(c){
-        return '<span class="chip" title="' + esc(c.company) + '">$' + esc(c.ticker) + '</span>';
-      }).join("") + '</p>';
+    if(cfg.sections.court){
+      var byP = {};
+      (D.courtNamed || []).forEach(function(c){ (byP[c.period] = byP[c.period] || []).push(c); });
+      document.getElementById("court").innerHTML = Object.keys(byP).sort().reverse().map(function(k){
+        return '<p><b>' + esc(k) + ' challenge:</b> ' + byP[k].map(function(c){ return '<span class="chip" title="' + esc(c.company) + '">$' + esc(c.ticker) + '</span>'; }).join("") + '</p>';
+      }).join("");
+    }
+
+    /* Routine and sources */
+    document.getElementById("routine").innerHTML = cfg.routine.map(function(r){
+      return '<div class="step"><span class="when">' + esc(r[0]) + '</span><p>' + r[1] + '</p></div>';
     }).join("");
+    document.getElementById("sources").innerHTML = cfg.sources.map(function(s){ return '<li>' + esc(s[0]) + ': ' + link(s[1], s[2]) + '</li>'; }).join("") +
+      '<li>Each row and log entry links to the specific post, clip, or document it rests on.</li>';
   }
 
   function drawPnl(R){
@@ -421,11 +531,11 @@
     var kod = pts.filter(function(p){ return p.date === "2026-09-29"; })[0];
     s += '<text x="'+(X(peak.date)-6)+'" y="'+(Y(peak.pct)-8)+'" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="end">+'+peak.pct+'% '+fmt(peak.date,false)+'</text>';
     if(kod) s += '<text x="'+(X(kod.date)-10)+'" y="'+(Y(kod.pct)+4)+'" font-size="11.5" font-weight="600" fill="var(--red)" text-anchor="end">KOD squeeze</text>';
-    document.getElementById("pnl").innerHTML = s;
+    svg.innerHTML = s;
     var last = pts[pts.length-1];
     document.getElementById("pnlnote").innerHTML = "Peak +" + peak.pct + "% on " + fmt(peak.date) + "; " + (last.pct>0?"+":"") + last.pct + "% by " + fmt(last.date) +
       ", the last stream title with a figure. The Sep 28 to Oct 1 drop lines up with the Kodiak squeeze and his Moderna short squeezing at the same time. July titles use a different format and are left out. Source: " +
-      '<a href="' + esc(R.source) + '">his stream titles</a>.';
+      link(R.source, "his stream titles") + ".";
   }
 })();
 </script>
