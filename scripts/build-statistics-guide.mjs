@@ -243,8 +243,8 @@ const head = (title, description, prefix, interactive=false) => `<head>
 <link rel="stylesheet" href="${prefix}assets/research-notes.css?v=3">
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
 </head>`;
-const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Statistics</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
-const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Statistics concepts</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
+const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
+const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
 
 for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
@@ -256,8 +256,8 @@ ${head(concept.title, concept.summary, '../', true)}
 <div class="wrap">
 ${nav('../')}
 <header class="guide-header">
-<div class="dateline"><span>Statistics · ${escape(concept.group)}</span><span>31 October 2026</span></div>
-<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<div class="dateline"><span>Signal &amp; Chance · ${escape(concept.group)}</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All concepts in Signal &amp; Chance</a></p>
 <h1>${escape(concept.title)}</h1>
 <p class="lede">${concept.intro}</p>
 </header>
@@ -269,7 +269,7 @@ ${concept.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>\n
 <section id="related"><h2>Related concepts</h2><ul class="related-links">${concept.related.map(slug => `<li><a href="${slug}.html">${escape(bySlug.get(slug).title)}</a></li>`).join('')}</ul></section>
 <section id="sources"><h2>Sources and further reading</h2><ul class="sources">${concept.sources.map(key => `<li><a href="${sources[key][1]}">${escape(sources[key][0])}</a></li>`).join('')}</ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
 </article>
-<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+<p><a href="../statistics.html">← Back to Signal &amp; Chance</a></p>
 </main>
 ${footer('../')}
 </div>
@@ -282,15 +282,15 @@ ${footer('../')}
 const groups = ['Start with the trial', 'Estimate the effect', 'Check what can mislead', 'Follow outcomes over time', 'Design and interpret the decision'];
 const hub = `<!doctype html>
 <html lang="en">
-${head('Statistics for reading drug trials', 'A linked guide to clinical-trial statistics: response rates, confidence intervals, p-values, power, survival, Bayesian prediction, trial design, and safety.', '')}
+${head('Signal & Chance: clinical-trial statistics', 'Interactive clinical-trial statistics: response rates, confidence intervals, p-values, power, survival, Bayesian prediction, trial design, and safety.', '')}
 <body>
 <a class="skip" href="#main">Skip to concepts</a>
 <div class="wrap">
 ${nav('')}
 <header class="guide-header">
-<div class="dateline"><span>Kinley Tenzin · Statistics</span><span>A guide to drug-trial evidence</span></div>
-<h1>Statistics for reading drug trials.</h1>
-<p class="lede">Understand what a drug company’s results actually measure, how uncertain they are, and which assumptions support the conclusions. Each concept opens an explanation with an interactive graphic: change the inputs, inspect the result, then read why it happens.</p>
+<div class="dateline"><span>Kinley Tenzin · Signal &amp; Chance</span><span>A guide to drug-trial evidence</span></div>
+<h1>Signal &amp; Chance</h1>
+<p class="lede">Statistics for reading drug-trial evidence. Each lesson pairs a plain-language explanation with a graphic you can change, so you can see how data, assumptions, and chance shape a result.</p>
 </header>
 <main id="main" class="guide-directory" tabindex="-1">
 <p class="guide-intro">Start with the trial’s question and design, then examine the effect, uncertainty, and sources of bias. The examples apply across drug development; oncology terms are explained where they appear.</p>
