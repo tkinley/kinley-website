@@ -10,6 +10,7 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | `statistics.html` | Plain-text linked guide to 16 core concepts for interpreting drug-trial results, plus the Iovance worked example |
 | `statistics/*.html` | Complete explanations with hypothetical examples, interpretation limits, related concepts, and primary sources; no concept tabs |
 | `scripts/build-statistics-guide.mjs` | Source content and authoring helper for the guide; run `node scripts/build-statistics-guide.mjs` after editing it. The generated HTML is tracked and needs no production build |
+| `assets/statistics-labs.mjs`, `assets/statistics-lab-models.mjs` | Seventeen interactive teaching examples: one per concept plus the Iovance predictor. Default graphics are rendered into the HTML; controls update locally in the browser. Mathematical models have separate tests |
 | `biotech.html` | Biotech hub: clinical case studies and the existing catalyst and investor trackers |
 | `statistics/iovance-data-first.html` | Readable Iovance article: current data, selection concerns, Wilson uncertainty, prediction, and validation |
 | `notebooks/Iovance_Data_First_Companion.ipynb` | Executed 21-cell companion, newly reconstructed from the roadmap and primary source; not the original chat attachment |

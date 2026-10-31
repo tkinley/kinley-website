@@ -1,7 +1,8 @@
 // Authoring helper only. Generated HTML is served directly by GitHub Pages.
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { renderLab } from '../assets/statistics-labs.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../', import.meta.url)));
 const sources = {
@@ -229,7 +230,7 @@ const concepts = [
 
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const bySlug = new Map(concepts.map(c => [c.slug, c]));
-const head = (title, description, prefix) => `<head>
+const head = (title, description, prefix, interactive=false) => `<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
@@ -239,7 +240,8 @@ const head = (title, description, prefix) => `<head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=2">
+<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=3">
+${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
 </head>`;
 const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Statistics</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
 const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Statistics concepts</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
@@ -248,7 +250,7 @@ for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
   const html = `<!doctype html>
 <html lang="en">
-${head(concept.title, concept.summary, '../')}
+${head(concept.title, concept.summary, '../', true)}
 <body>
 <a class="skip" href="#main">Skip to explanation</a>
 <div class="wrap">
@@ -261,6 +263,7 @@ ${nav('../')}
 </header>
 <main id="main" class="concept-body" tabindex="-1">
 <p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+${renderLab(concept.slug)}
 <article aria-label="${escape(concept.title)}">
 ${concept.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>\n${s.body}</section>`).join('\n')}
 <section id="related"><h2>Related concepts</h2><ul class="related-links">${concept.related.map(slug => `<li><a href="${slug}.html">${escape(bySlug.get(slug).title)}</a></li>`).join('')}</ul></section>
@@ -287,7 +290,7 @@ ${nav('')}
 <header class="guide-header">
 <div class="dateline"><span>Kinley Tenzin · Statistics</span><span>A guide to drug-trial evidence</span></div>
 <h1>Statistics for reading drug trials.</h1>
-<p class="lede">Understand what a drug company’s results actually measure, how uncertain they are, and which assumptions support the conclusions. Each concept below opens its own explanation, with a worked example and common interpretation mistakes.</p>
+<p class="lede">Understand what a drug company’s results actually measure, how uncertain they are, and which assumptions support the conclusions. Each concept opens an explanation with an interactive graphic: change the inputs, inspect the result, then read why it happens.</p>
 </header>
 <main id="main" class="guide-directory" tabindex="-1">
 <p class="guide-intro">Start with the trial’s question and design, then examine the effect, uncertainty, and sources of bias. The examples apply across drug development; oncology terms are explained where they appear.</p>
@@ -300,4 +303,15 @@ ${footer('')}
 </html>
 `;
 await writeFile(path.join(root, 'statistics.html'), hub, 'utf8');
-console.log(`Built the Statistics guide and ${concepts.length} complete concept pages.`);
+// Update only the delimited exercise in the hand-written company article.
+const iovancePath=path.join(root,'statistics','iovance-data-first.html');
+let iovance=await readFile(iovancePath,'utf8');
+const exercise=`<!-- statistics-lab:start -->\n${renderLab('iovance')}\n<!-- statistics-lab:end -->`;
+if(iovance.includes('<!-- statistics-lab:start -->')) iovance=iovance.replace(/<!-- statistics-lab:start -->[\s\S]*?<!-- statistics-lab:end -->/,exercise);
+else {
+  const anchor=/<\/section>\r?\n\s*<section id="validation">/;
+  if(!anchor.test(iovance))throw new Error('The Iovance prediction-section anchor is missing.');
+  iovance=iovance.replace(anchor,`${exercise}\n    </section>\n    <section id="validation">`);
+}
+await writeFile(iovancePath,iovance,'utf8');
+console.log(`Built the Statistics guide, ${concepts.length} interactive concept pages, and the Iovance exercise.`);
