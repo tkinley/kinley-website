@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Superiority, noninferiority, and equivalence · Kinley Tenzin</title>
+<meta name="description" content="Understand why a failed superiority test does not prove similarity, and how a justified margin changes the question.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Design and interpret the decision</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Superiority, noninferiority, and equivalence</h1>
+<p class="lede">Some trials aim to show a treatment is better. Others ask whether it avoids losing more than a justified amount of efficacy, perhaps in exchange for another advantage. These need different hypotheses.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Superiority, noninferiority, and equivalence">
+<section id="questions"><h2>Three distinct questions</h2>
+<p><strong>Superiority</strong> asks whether a treatment improves the endpoint relative to control. <strong>Noninferiority</strong> asks whether a possible loss is smaller than a prespecified margin. <strong>Equivalence</strong> asks whether the difference lies within both a lower and an upper margin.</p><p>Failure to show superiority is not evidence of equivalence or noninferiority. An imprecise trial can be compatible with substantial benefit and substantial harm at once.</p></section>
+<section id="example"><h2>A margin needs a direction and a scale</h2>
+<div class="example"><h3>Example: response-rate difference</h3><p>Let Δ = p<sub>new</sub> − p<sub>control</sub>, so higher is better. Suppose the justified noninferiority margin is −10 percentage points. An estimated difference of −2 points with a matching 95% interval of −7 to +3 clears that margin because the lower limit is above −10.</p><p>An interval of −13 to +3 would not clear it. Both intervals include zero, so neither establishes superiority using the corresponding two-sided interval criterion.</p></div><p>The numerical example illustrates a conventional one-sided 2.5% test matched to a two-sided 95% interval. The actual significance level, test, endpoint scale, and multiplicity plan must be prespecified.</p></section>
+<section id="margin"><h2>A margin is not a convenience setting</h2>
+<p>The margin needs clinical and statistical justification, including credible evidence about the active control’s effect and how much of that benefit must be preserved. A very wide margin can make noninferiority easier to claim while allowing a clinically important loss.</p><p><strong>Assay sensitivity</strong> is the ability of the trial to distinguish effective from ineffective treatment. If poor adherence, weak outcome ascertainment, or an unsuitable population makes both arms look similar, a noninferiority conclusion can be misleading. The assumption that the control retains its historical effect also matters.</p></section>
+<section id="analyses"><h2>Analysis populations and equivalence</h2>
+<p>Intention-to-treat and per-protocol analyses can be affected differently by nonadherence and exclusions. Neither should be assumed universally conservative in noninferiority trials; concordance and sensitivity need interpretation.</p><p>Equivalence requires both bounds to fall within justified margins, using the intervals and error levels matched to the testing procedure. Switching from a failed superiority test to an unplanned similarity claim changes the question after seeing the answer.</p></section>
+<section id="read"><h2>Read the advantage as well as the efficacy margin</h2>
+<p>A drug that is noninferior on one endpoint may still differ in safety, dosing burden, quality of life, or other outcomes. Those advantages need their own evidence and, where applicable, a multiplicity plan. Noninferiority is not a statement that the products are identical.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="missing-data.html">Analysis populations, missing data, and sensitivity</a></li><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/non-inferiority-clinical-trials">FDA: Non-Inferiority Clinical Trials, November 2016</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

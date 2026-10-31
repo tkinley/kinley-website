@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Sample size, power, and detectable effects · Kinley Tenzin</title>
+<meta name="description" content="See how effect assumptions, variability, event counts, alpha, and dropout shape a trial’s ability to detect benefit.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Estimate the effect</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Sample size, power, and detectable effects</h1>
+<p class="lede">Power is the chance that a planned test rejects its null hypothesis when a specified alternative is true. It is a design calculation conditional on assumed effects and variability.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Sample size, power, and detectable effects">
+<section id="power"><h2>Power requires an alternative</h2>
+<p>A trial can have 80% power to detect a particular effect at a chosen α. That does not imply an 80% chance the treatment works or that the trial will succeed. If the real effect is smaller, the actual power is lower; if outcome variability is larger, the test also has less precision.</p><p>Inputs include the endpoint and analysis method, control outcome, target effect, allocation ratio, significance level, desired power, and expected missingness. Multiplicity, clustering, interim monitoring, and covariate adjustment can change the calculation.</p></section>
+<section id="example"><h2>An approximate two-arm example</h2>
+<div class="example"><h3>Example: 50% versus 30% response</h3><p>For independent equal-sized arms, a two-sided α = 0.05 and 80% power, a simple normal approximation gives about 93 evaluable patients per arm to detect a response difference of 20 percentage points. This is an illustration, not a proposed clinical design.</p></div><div class="formula">n per arm ≈ [z<sub>1−α/2</sub>√(2p̄(1−p̄)) + z<sub>1−β</sub>√(p<sub>A</sub>(1−p<sub>A</sub>) + p<sub>C</sub>(1−p<sub>C</sub>))]² / (p<sub>A</sub>−p<sub>C</sub>)²</div><p>Here p̄ is the average assumed response probability. Inflating 93 by 1/(1−0.10) gives about 104 enrolled per arm for 10% nonevaluability, after rounding. Enrollment inflation does not solve bias from missing outcomes.</p></section>
+<section id="information"><h2>Information is not always a patient count</h2>
+<p>For a survival endpoint, the number and timing of observed events often drive power more directly than enrollment alone. Accrual speed, follow-up, censoring, and the assumed hazard pattern determine how many events become available.</p><p>For an independent mean, SE decreases approximately as 1/√n. Halving SE therefore requires about four times the sample size, all else equal. Detecting a smaller effect can demand substantially more information.</p></section>
+<section id="assumptions"><h2>Optimistic design assumptions can mislead</h2>
+<p>Planning with an exaggerated effect from a small or selected early cohort can yield an underpowered later trial. Use realistic assumptions and examine a range of plausible effects and control outcomes. A target effect should be clinically meaningful, not merely convenient for making a trial smaller.</p><p>After observing a result, “observed power” calculated by plugging in the observed effect mostly repackages that result. The effect estimate and interval are more useful for understanding what the study learned.</p></section>
+<section id="read"><h2>Questions for a trial-size announcement</h2>
+<ul><li>Which effect and control outcome were assumed?</li><li>Is the target an enrolled-patient count or an event count?</li><li>What power and alpha were used, including multiplicity and interim looks?</li><li>How were missing data and follow-up modeled?</li><li>Was a re-estimation rule specified before examining treatment differences?</li></ul></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="p-values.html">Hypothesis tests, p-values, and significance</a></li><li><a href="survival-analysis.html">Survival analysis, censoring, and hazard ratios</a></li><li><a href="interim-and-adaptive.html">Interim analyses and adaptive designs</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry">FDA: Adaptive Design Clinical Trials for Drugs and Biologics, December 2019</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

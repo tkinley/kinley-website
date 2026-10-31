@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Survival analysis, censoring, and hazard ratios · Kinley Tenzin</title>
+<meta name="description" content="Read Kaplan–Meier curves, median survival, hazard ratios, log-rank tests, and restricted mean survival time.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Follow outcomes over time</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Survival analysis, censoring, and hazard ratios</h1>
+<p class="lede">Time-to-event analysis uses both whether an event occurred and when it occurred. It also handles patients whose event time is not fully observed, through explicit censoring assumptions.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Survival analysis, censoring, and hazard ratios">
+<section id="censoring"><h2>What censoring says</h2>
+<p>For OS, a patient alive at the last known follow-up is right-censored: the event time is later than the observed follow-up time. Censoring is not an event and does not mean that the patient will never experience one. For other endpoints, such as PFS, the protocol defines both events and censoring rules.</p><p>Common methods require censoring to be noninformative under the relevant model or conditional assumptions. Losing patients because they are deteriorating can violate that assumption. Administrative censoring at a common data cutoff is different from unexplained loss to follow-up.</p></section>
+<section id="km"><h2>Kaplan–Meier updates survival at observed event times</h2>
+<p>At each event time, multiply the previous survival estimate by (1 − events / number at risk immediately before that time). Censoring reduces the later risk set without causing a downward step at the censoring time.</p><div class="table-scroll"><table><caption>A hypothetical five-patient example</caption><thead><tr><th scope="col">Time</th><th scope="col">What happens</th><th scope="col">Estimated survival</th></tr></thead><tbody><tr><th scope="row">Month 2</th><td>1 event among 5 at risk</td><td>1 × (4/5) = 0.80</td></tr><tr><th scope="row">Month 3</th><td>1 patient censored</td><td>Remains 0.80; later risk set becomes 3</td></tr><tr><th scope="row">Month 4</th><td>1 event among 3 at risk</td><td>0.80 × (2/3) ≈ 0.533</td></tr></tbody></table></div><p>Read the numbers at risk and confidence intervals under the curve. A dramatic late separation based on very few remaining patients is less precise than the line alone may suggest.</p></section>
+<section id="median"><h2>Median survival and landmark survival</h2>
+<p>The KM median is the first time the estimated survival curve reaches 50% or below. “Median not reached” means the estimate has not crossed that level by the analyzed follow-up; it does not establish an arbitrarily long survival benefit.</p><p>A landmark survival estimate, such as S(12 months), summarizes the curve at a prespecified time. It needs an uncertainty interval and adequate follow-up. Comparing medians alone ignores other parts of the distribution.</p></section>
+<section id="hazard"><h2>A hazard ratio is not a risk ratio</h2>
+<p>A hazard is an instantaneous event rate among those still event-free. Under a proportional-hazards model, HR = 0.70 represents a treatment hazard 30% lower relative to control over time. It does not mean 30% longer survival or that 30% fewer patients have an event at every time point.</p><p>If hazards cross or treatment effects change with time, a constant HR can be a poor summary. A Cox model estimate depends on the data and model; examine curves and proportional-hazards assumptions. A log-rank test assesses differences between survival distributions and has greatest efficiency under proportional-hazards alternatives.</p></section>
+<section id="rmst"><h2>Restricted mean survival time offers a time-scale summary</h2>
+<p>RMST is the area under the survival curve up to a chosen horizon τ. An RMST difference of two months through 24 months means two additional average event-free or survival months within that window, depending on the endpoint. It is not an unrestricted lifetime gain.</p><p>The endpoint, horizon, censoring rules, follow-up maturity, effect measure, and prespecified analysis should be read together.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="endpoints-and-estimands.html">Endpoints and estimands</a></li><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li><li><a href="missing-data.html">Analysis populations, missing data, and sensitivity</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics">FDA: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

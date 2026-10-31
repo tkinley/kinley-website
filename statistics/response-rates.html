@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Response rates and binomial probability · Kinley Tenzin</title>
+<meta name="description" content="Separate the observed proportion from the unknown probability, and inspect who enters the denominator.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Start with the trial</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Response rates and binomial probability</h1>
+<p class="lede">A response rate is a count divided by a denominator. The arithmetic is simple; the clinical definition, analysis population, and uncertainty determine what that number means.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Response rates and binomial probability">
+<section id="proportion"><h2>Observed rate versus true probability</h2>
+<p>If x of n patients meet a response definition, the observed proportion is <strong>p̂ = x/n</strong>. The unknown response probability in a defined population is p. A sample proportion estimates p under a model; it does not reveal it exactly.</p><div class="example"><h3>Example: 18 responses</h3><p>Drug A produces 18 responses among 40 treated patients: 18/40 = 45%. If a report excludes ten patients without an evaluable scan and reports 18/30 = 60%, the higher rate comes from a different denominator. The exclusion might be prespecified, but its consequences still need explanation.</p></div><p>Confirmed and unconfirmed responses also differ. Confirmation rules, minimum response duration, assessor, and assessment schedule should be stated.</p></section>
+<section id="binomial"><h2>What a binomial model assumes</h2>
+<p>For n independent patients with the same response probability p, the responder count X follows a binomial distribution. Its expected value is np and its variance is np(1−p).</p><div class="formula">P(X = k) = C(n, k) p<sup>k</sup>(1−p)<sup>n−k</sup></div><p>C(n, k) counts the ways k responses can occur among n patients. The model allows random variation even when p stays fixed. It does not handle an unknown p merely by inserting a point estimate and calling it certain.</p></section>
+<section id="prediction"><h2>A count probability is a conditional calculation</h2>
+<div class="example"><h3>Example: ten future patients</h3><p>Assume p = 0.30 for ten independent patients. The expected count is 3, but P(X ≥ 4) is approximately 35.0%. An expected value is an average across repetitions, not a guarantee of three responses.</p></div><p>Changing p changes the distribution. Uncertainty about p can be modeled explicitly with a Bayesian predictive model; differences in future eligibility or care need additional assumptions. Neither a binomial tail probability nor an ORR is a probability of regulatory approval.</p></section>
+<section id="read"><h2>Questions before comparing two rates</h2>
+<ul><li>Are the response definitions, confirmation rules, and follow-up comparable?</li><li>Are all randomized patients, all treated patients, or only evaluable patients included?</li><li>Were missing outcomes excluded or handled through a prespecified rule?</li><li>Was the population chosen before looking at outcomes?</li><li>What is the confidence interval, and is the comparison randomized?</li></ul><p>A response rate in one arm describes that arm. Establishing an incremental treatment effect requires a defensible comparison.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="bayesian-prediction.html">Bayesian updating and future prediction</a></li><li><a href="subgroups-and-bias.html">Subgroups, enrichment, and selection bias</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html">SciPy reference: binomial distribution</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics">FDA: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

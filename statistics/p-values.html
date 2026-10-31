@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Hypothesis tests, p-values, and significance · Kinley Tenzin</title>
+<meta name="description" content="Understand the null hypothesis, Type I error, test choice, and why p &lt; 0.05 does not establish clinical value.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Estimate the effect</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Hypothesis tests, p-values, and significance</h1>
+<p class="lede">A hypothesis test assesses how compatible the observed data are with a specified statistical model. It is one part of evaluating evidence, alongside the design, effect size, uncertainty, and complete analysis plan.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Hypothesis tests, p-values, and significance">
+<section id="null"><h2>Start with the null hypothesis</h2>
+<p>A null hypothesis might state that the two treatment strategies have the same mean outcome, or that a hazard ratio equals 1. An alternative specifies the departure being tested. A two-sided test considers effects in either direction; a one-sided test targets a direction specified in advance.</p><p>A p-value is the probability, under the null model and its assumptions, of a result at least as extreme as the observed result according to the chosen test. “Extreme” must be defined by that test. The number is not the probability that the null hypothesis is true.</p></section>
+<section id="example"><h2>Read a p-value without reversing the conditional</h2>
+<div class="example"><h3>Example: reported p = 0.03</h3><p>Under the specified null model, the test would produce results at least this extreme about 3% of the time. This does not mean there is a 3% chance the drug has no effect, a 97% chance it works, or a 97% chance it will be approved.</p></div><p>The interpretation also depends on whether the analysis was prespecified, whether all relevant tests were reported, and whether multiplicity or interim analyses changed the threshold.</p></section>
+<section id="alpha"><h2>Alpha is a property of the testing procedure</h2>
+<p>The significance level α limits the long-run probability of rejecting a true null hypothesis under the design’s assumptions. A prespecified α = 0.05 is not a 5% probability that any particular positive finding is false. That probability would require additional modeling and assumptions about the hypotheses being tested.</p><p>Type II error β is the probability of failing to reject under a specified alternative; power is 1−β. A nonsignificant result can reflect little effect, limited information, or both. It does not establish equivalence.</p></section>
+<section id="tests"><h2>Match the test to the endpoint and design</h2>
+<p>A t-test or regression contrast can compare continuous outcomes; chi-square or Fisher’s exact methods can compare binary outcomes; log-rank tests compare time-to-event distributions; model-based tests may account for prespecified covariates or repeated measures. Pairing, clustering, censoring, distributional assumptions, and sample size affect the choice.</p><p>The log-rank p-value and a Cox hazard ratio are related summaries but answer different questions. Under nonproportional hazards, a single hazard ratio may be difficult to interpret even when the test detects a difference.</p></section>
+<section id="read"><h2>Read beyond the threshold</h2>
+<p>p = 0.049 and p = 0.051 are close values. A sharp pass/fail boundary should not erase the effect estimate, interval, prespecified decision rule, or study limitations. A large p-value is not affirmative evidence that two therapies are equally effective.</p><p>Ask which null was tested, which analysis population was used, how the threshold was chosen, and whether the result was primary, multiplicity-adjusted, or exploratory.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li><li><a href="sample-size-and-power.html">Sample size, power, and detectable effects</a></li><li><a href="multiple-testing.html">Multiple testing and false discoveries</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf">American Statistical Association: interpreting p-values (PDF)</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

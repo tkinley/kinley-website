@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Multiple testing and false discoveries · Kinley Tenzin</title>
+<meta name="description" content="Understand family-wise error, Bonferroni and Holm adjustments, testing hierarchies, and false discovery rate.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Check what can mislead</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Multiple testing and false discoveries</h1>
+<p class="lede">Testing more endpoints, doses, subgroups, or analysis times creates more opportunities for a chance finding. A persuasive result needs an account of the full set of opportunities to claim success.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Multiple testing and false discoveries">
+<section id="problem"><h2>Why many tests change the picture</h2>
+<p>If twenty independent tests all have true null hypotheses and each uses α = 0.05, the probability of at least one rejection is <strong>1 − 0.95²⁰ ≈ 64.2%</strong>. This is an illustrative independence calculation. Real endpoints are often correlated, so that exact number does not generally apply, but the multiplicity problem remains.</p><p>A testing family groups hypotheses for which a joint error criterion is controlled. Endpoint ordering, dose comparisons, subgroup tests, and interim looks can contribute to the testing strategy.</p></section>
+<section id="fwer"><h2>Control the chance of any false positive in a family</h2>
+<p><strong>Family-wise error rate (FWER)</strong> is the probability of at least one false rejection in the defined family. Bonferroni compares each of m p-values with α/m and controls FWER without requiring independence. With twenty tests and α = 0.05, the threshold is 0.0025 per test.</p><p><strong>Holm’s method</strong> orders p-values and uses successive thresholds α/m, α/(m−1), and so on, stopping when a comparison fails. It also controls FWER under general dependence and can reject more hypotheses than simple Bonferroni.</p><p>A prespecified fixed-sequence hierarchy can pass alpha through an ordered set of hypotheses. Its validity depends on following its rules; a favorable secondary endpoint does not automatically support a confirmatory claim after a failed gate.</p></section>
+<section id="fdr"><h2>FDR controls a different quantity</h2>
+<p><strong>False discovery rate (FDR)</strong> is the expected fraction of false rejections among all rejections, with fraction zero when none are rejected. The Benjamini–Hochberg procedure orders m p-values and finds the largest rank k satisfying p<sub>(k)</sub> ≤ (k/m)q, then rejects through that rank.</p><p>The usual guarantee applies under independence and certain positive-dependence conditions, not every dependency structure. FDR methods are useful in exploratory settings such as biomarker screens. They are not interchangeable with FWER control for confirmatory claims.</p><div class="example"><h3>Example: q = 0.05</h3><p>This controls an average false-discovery proportion under the method’s assumptions. It does not guarantee that exactly 5% of the discoveries in this dataset are false, or give each reported biomarker a 5% probability of being false.</p></div></section>
+<section id="read"><h2>Interpret the testing plan before the smallest p-value</h2>
+<p>Look for the prespecified family, primary endpoint structure, alpha allocation, interim monitoring, and any testing hierarchy. Distinguish adjusted p-values from nominal p-values. If multiple co-primary endpoints must all succeed, that design has a different error structure from claiming success if any one succeeds.</p><p>Unreported searches make a favorable result hard to evaluate. An exploratory finding can be valuable as a hypothesis while still needing prospective confirmation.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="p-values.html">Hypothesis tests, p-values, and significance</a></li><li><a href="subgroups-and-bias.html">Subgroups, enrichment, and selection bias</a></li><li><a href="interim-and-adaptive.html">Interim analyses and adaptive designs</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/multiple-endpoints-clinical-trials">FDA: Multiple Endpoints in Clinical Trials, October 2022</a></li><li><a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini and Hochberg (1995): the false discovery rate procedure</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

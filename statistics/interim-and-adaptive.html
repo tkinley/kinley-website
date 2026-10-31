@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Interim analyses and adaptive designs · Kinley Tenzin</title>
+<meta name="description" content="Understand alpha spending, early stopping, futility, sample-size re-estimation, and planned adaptations.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Design and interpret the decision</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Interim analyses and adaptive designs</h1>
+<p class="lede">Learning during a trial can improve decisions, but repeatedly looking at accumulating results changes the statistical procedure. A valid design plans how interim information may affect the trial.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Interim analyses and adaptive designs">
+<section id="looks"><h2>Repeated significance testing creates extra opportunities</h2>
+<p>Testing at the usual final threshold after every look can increase false positives. The interim results are correlated, so treating those looks as independent tests is generally incorrect, but ignoring them is also incorrect.</p><p>A group-sequential design uses prespecified boundaries for interim and final analyses. An alpha-spending approach allocates the error budget across information times. Early efficacy boundaries are often more demanding than the final boundary, depending on the chosen design.</p></section>
+<section id="stopping"><h2>Efficacy, futility, and safety are different decisions</h2>
+<p>An efficacy rule stops for sufficiently strong evidence of benefit under the design. A futility rule stops when continued success appears unlikely according to a specified criterion. A safety stop responds to concerning risk and may not be based on the efficacy testing boundary.</p><div class="example"><h3>Example: three planned looks</h3><p>A trial plans analyses at 50%, 75%, and 100% of its target information. A nominal p = 0.03 at the first look might not cross its prespecified efficacy boundary, even though it is below 0.05. The actual boundaries come from the design, not this example.</p></div><p>Stopping for futility does not prove the treatment effect is exactly zero. A trial stopped early for a favorable effect can also have an upward-biased naive effect estimate; estimation and intervals should reflect the stopping design where appropriate.</p></section>
+<section id="adapt"><h2>Adaptation should be planned and evaluated</h2>
+<p>Adaptive designs can change features such as sample size, allocation, or which doses continue, according to prespecified rules using accumulating data. Blinded sample-size re-estimation based on nuisance quantities differs from changing sample size after seeing the treatment difference.</p><p>Choosing the best dose or population and then analyzing it as if no selection occurred can distort error rates and effect estimates. Simulations can evaluate operating characteristics across scenarios: false positives, power, bias, expected sample size, and stopping probabilities.</p></section>
+<section id="governance"><h2>Who sees the interim data matters</h2>
+<p>An independent data monitoring committee may review unblinded information under a defined charter. Preserving trial integrity limits the ways knowledge of interim results could influence enrollment, treatment, or assessment. A company’s public update does not necessarily describe all committee analyses.</p><p>Bayesian predictive probabilities can inform an adaptive decision rule, but the rule’s behavior still needs evaluation. “Bayesian” does not mean that repeated looks, selection, or operational bias disappear.</p></section>
+<section id="read"><h2>Questions for an interim announcement</h2>
+<ul><li>Was the look planned, and what fraction of information was available?</li><li>What boundary or predictive criterion applied?</li><li>Was stopping for benefit, futility, safety, or another reason?</li><li>Which adaptations were allowed, and who saw unblinded results?</li><li>Are reported estimates and intervals appropriate after selection or stopping?</li></ul></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="multiple-testing.html">Multiple testing and false discoveries</a></li><li><a href="sample-size-and-power.html">Sample size, power, and detectable effects</a></li><li><a href="bayesian-prediction.html">Bayesian updating and future prediction</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry">FDA: Adaptive Design Clinical Trials for Drugs and Biologics, December 2019</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/multiple-endpoints-clinical-trials">FDA: Multiple Endpoints in Clinical Trials, October 2022</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

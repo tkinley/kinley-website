@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Data types, averages, and variability · Kinley Tenzin</title>
+<meta name="description" content="Understand binary, continuous, and time-to-event data; distinguish standard deviation from standard error.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Start with the trial</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Data types, averages, and variability</h1>
+<p class="lede">The same word, “improvement,” can refer to a responder count, a change in a laboratory value, or a delay in disease progression. These are different kinds of data and need different summaries.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Data types, averages, and variability">
+<section id="types"><h2>Match the summary to the data</h2>
+<p><strong>Binary data</strong> record outcomes such as response or no response. <strong>Continuous data</strong> measure quantities such as blood pressure or symptom score. <strong>Ordinal data</strong> have ordered categories whose distances need not be equal. <strong>Counts</strong> record numbers of events. <strong>Time-to-event data</strong> record how long until an event, often with incomplete follow-up.</p><p>A binomial model describes a fixed number of independent binary observations with a common probability. A normal model can approximate some continuous summaries. A Poisson model describes counts under restrictive rate assumptions; excess variability may call for another model. Choosing a distribution is an assumption to assess, not a property guaranteed by the endpoint’s name.</p></section>
+<section id="averages"><h2>Mean, median, and spread answer different questions</h2>
+<p>The <strong>mean</strong> is the sum divided by the number observed. The <strong>median</strong> is the middle value. A few extreme values can move the mean more than the median. The standard deviation (SD) describes variation among individual observations; the interquartile range describes the middle half.</p><div class="example"><h3>Example: uneven drug exposure</h3><p>Five exposure values are 1, 2, 2, 3, and 12 units. Their mean is 4, while the median is 2. Reporting only the mean hides the long upper tail. Neither summary establishes which exposure is effective or safe.</p></div><p>A percentage change, an absolute change, and a change from baseline adjusted for baseline covariates also answer different questions. Check the units and the analysis model.</p></section>
+<section id="se"><h2>Standard error measures uncertainty in an estimate</h2>
+<p>For independent observations with common finite variance, the estimated standard error of a sample mean is <strong>SE = SD / √n</strong>. It describes how much the estimated mean would vary across repeated samples. It does not describe how much individual patients vary.</p><div class="table-scroll"><table><caption>Same patient variability, different precision</caption><thead><tr><th scope="col">Sample size</th><th scope="col">SD of individual outcomes</th><th scope="col">SE of the mean</th></tr></thead><tbody><tr><th scope="row">25</th><td>10 units</td><td>2 units</td></tr><tr><th scope="row">100</th><td>10 units</td><td>1 unit</td></tr></tbody></table></div><p>Four times as many observations halves this SE under these assumptions. Correlated observations, such as repeated visits from the same patient, cannot simply be counted as independent patients.</p></section>
+<section id="models"><h2>Adjusted means and repeated measurements</h2>
+<p>Regression can estimate a treatment contrast while accounting for prespecified baseline variables. An adjusted mean is model-based and can differ from the raw average. A mixed model for repeated measures accounts for correlations across visits and requires assumptions about the outcome and missingness.</p><p>Ask whether error bars show SD, SE, or a confidence interval; whether the analysis uses individuals or repeated measurements; and whether the displayed summary matches the primary analysis. A narrow SE bar is not evidence that every patient had a similar outcome.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="response-rates.html">Response rates and binomial probability</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

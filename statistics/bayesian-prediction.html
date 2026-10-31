@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Bayesian updating and future prediction · Kinley Tenzin</title>
+<meta name="description" content="Connect prior, likelihood, posterior, credible intervals, and beta-binomial predictions without treating assumptions as facts.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Follow outcomes over time</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Bayesian updating and future prediction</h1>
+<p class="lede">Bayesian analysis represents uncertainty about unknown quantities with probability distributions. Updating is explicit about the data model and the information supplied before seeing the current data.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Bayesian updating and future prediction">
+<section id="update"><h2>Prior × likelihood gives the posterior</h2>
+<p>The <strong>prior</strong> represents information or assumptions about a parameter before the current data. The <strong>likelihood</strong> describes how those data would arise at different parameter values. The <strong>posterior</strong> combines them and is normalized to integrate to one.</p><div class="formula">posterior(p | data) ∝ likelihood(data | p) × prior(p)</div><p>A 95% posterior credible interval contains 95% of the posterior probability under that model. Its meaning differs from the repeated-sampling interpretation of a confidence interval. Neither interval automatically represents uncertainty from an unmodeled selection process.</p></section>
+<section id="beta"><h2>A binary-response example</h2>
+<div class="example"><h3>Example: 12 responses among 20 patients</h3><p>Use a Beta(1,1) prior for p and an independent binomial likelihood. The posterior is Beta(13,9): add twelve responses to the first parameter and eight nonresponses to the second. The posterior mean is 13/22 ≈ 59.1%, compared with the observed proportion of 60%.</p></div><p>For a Beta(a,b) distribution, the mean is a/(a+b). Its concentration affects how strongly the prior influences updating. Calling a prior “weak” should be justified in the specific setting; a uniform prior on p is not uniform after every transformation.</p></section>
+<section id="predict"><h2>Prediction includes future sampling variability</h2>
+<p>To predict m future patients, average Binomial(m,p) predictions over the posterior for p. A beta posterior produces a beta-binomial predictive distribution.</p><div class="formula">P(X<sub>future</sub> = k | data) = ∫ P(X<sub>future</sub> = k | p) π(p | data) dp</div><p>For the example’s Beta(13,9) posterior and m = 30, the expected count is 30 × 13/22 ≈ 17.7 responders. A fixed-p binomial prediction at p̂ = 0.60 has expected count 18 and ignores uncertainty about p. Their predictive spreads differ even when their means are similar.</p><p>A predictive probability of meeting a future responder threshold is conditional on the endpoint, future population, prior, and model. It is not automatically a probability of trial success, regulatory approval, or a market return.</p></section>
+<section id="sensitivity"><h2>Check the prior and the data-generating assumptions</h2>
+<p>Repeat the analysis with defensible alternative priors and report what changes. External data need a comparability argument before they are borrowed: different eligibility, measurement, background care, or follow-up can make historical information misleading.</p><p>A model fit to a retrospectively selected subgroup will not remove selection optimism merely because it is Bayesian. Calibration studies or simulations should evaluate a planned decision rule’s behavior across relevant scenarios.</p></section>
+<section id="read"><h2>What to ask about a Bayesian result</h2>
+<ul><li>What is the prior, and where did its information come from?</li><li>What likelihood and population assumptions were made?</li><li>Is the reported probability about a parameter, a future outcome, or a decision rule?</li><li>How sensitive is it to the prior and historical borrowing?</li></ul><p>The linked FDA Bayesian document is a <strong>January 2026 draft</strong>, as checked on 31 October 2026; it is identified as a draft in the sources.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="response-rates.html">Response rates and binomial probability</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="interim-and-adaptive.html">Interim analyses and adaptive designs</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-bayesian-methodology-clinical-trials-drug-and-biological-products">FDA: Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products, January 2026 draft</a></li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.betabinom.html">SciPy reference: beta-binomial distribution</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

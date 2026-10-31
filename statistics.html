@@ -4,64 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Statistics · Kinley Tenzin</title>
-<meta name="description" content="Statistical notes, readable case studies, and reproducible notebooks: start with the data, inspect assumptions, then model uncertainty.">
+<title>Statistics for reading drug trials · Kinley Tenzin</title>
+<meta name="description" content="A linked guide to clinical-trial statistics: response rates, confidence intervals, p-values, power, survival, Bayesian prediction, trial design, and safety.">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/research-notes.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/research-notes.css?v=2">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to concepts</a>
 <div class="wrap">
-<nav class="pagetabs" aria-label="Pages">
-  <a class="home" href="index.html">Home</a>
-  <a href="statistics.html" aria-current="page">Statistics</a>
-  <a href="biotech.html">Biotech</a>
-</nav>
-<header>
-  <div class="dateline"><span>Kinley Tenzin · Notes</span><span>Statistics</span></div>
-  <h1>Start with the data.</h1>
-  <p class="lede">Notes on what a model assumes, what the data can tell us, and what remains uncertain. Read the explanation here, then explore the calculations in a notebook.</p>
+<nav class="textnav" aria-label="Pages"><a href="index.html">Home</a><a href="statistics.html" aria-current="location">Statistics</a><a href="biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Kinley Tenzin · Statistics</span><span>A guide to drug-trial evidence</span></div>
+<h1>Statistics for reading drug trials.</h1>
+<p class="lede">Understand what a drug company’s results actually measure, how uncertain they are, and which assumptions support the conclusions. Each concept below opens its own explanation, with a worked example and common interpretation mistakes.</p>
 </header>
-<main id="main" tabindex="-1">
-  <div class="grid">
-    <section class="card feature" aria-labelledby="iovance-title">
-      <div>
-        <span class="tag">Clinical data · Case study</span>
-        <h2 id="iovance-title"><a href="statistics/iovance-data-first.html">Iovance: a data-first statistical roadmap</a></h2>
-        <p>Thirteen responses among 22 patients is a starting point. Work through the broader dataset, retrospective subgroup selection, Wilson confidence intervals, and conditional predictions for new patients.</p>
-        <div class="actions"><a class="button primary" href="statistics/iovance-data-first.html">Read the article</a><a class="button" href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download notebook (.ipynb)</a></div>
-        <p class="kicker">31 October 2026 · Python companion included</p>
-      </div>
-      <div>
-        <h3>The order matters</h3>
-        <ol>
-          <li>Understand the observed data.</li>
-          <li>Inspect the selection process and assumptions.</li>
-          <li>Quantify sampling uncertainty.</li>
-          <li>Model future outcomes conditionally.</li>
-          <li>Validate in independent patients.</li>
-        </ol>
-        <p class="muted">Biological context and the existing research trackers are collected in <a href="biotech.html">Biotech</a>.</p>
-      </div>
-    </section>
-    <section class="card" aria-labelledby="kalman-title">
-      <span class="kicker">Interactive sketch · On the homepage</span>
-      <h2 id="kalman-title"><a href="index.html#kalman-sketch">A little signal in the noise</a></h2>
-      <p>A Kalman filter follows a simulated signal. Change the noise assumption and watch the estimate and its uncertainty respond.</p>
-      <a href="index.html#kalman-sketch">Explore the Kalman sketch →</a>
-    </section>
-    <section class="card" aria-labelledby="fdr-title">
-      <span class="kicker">Interactive sketch · On the homepage</span>
-      <h2 id="fdr-title"><a href="index.html#fdr-sketch">How easily p-values fool us</a></h2>
-      <p>Compare a simple p &lt; 0.05 rule with Benjamini–Hochberg false discovery rate control across 100 simulated tests.</p>
-      <a href="index.html#fdr-sketch">Explore the FDR sketch →</a>
-    </section>
-  </div>
+<main id="main" class="guide-directory" tabindex="-1">
+<p class="guide-intro">Start with the trial’s question and design, then examine the effect, uncertainty, and sources of bias. The examples apply across drug development; oncology terms are explained where they appear.</p>
+<section aria-labelledby="group-1"><h2 id="group-1">1. Start with the trial</h2><dl class="concept-list"><div><dt><a href="statistics/trial-design.html">Trial design, controls, and randomization</a></dt><dd>Why the comparison group, randomization, blinding, and trial phase change what a result can establish.</dd></div>
+<div><dt><a href="statistics/endpoints-and-estimands.html">Endpoints and estimands</a></dt><dd>Define what was measured, in which patients, over what time, and how treatment changes were handled.</dd></div>
+<div><dt><a href="statistics/data-and-variability.html">Data types, averages, and variability</a></dt><dd>Understand binary, continuous, and time-to-event data; distinguish standard deviation from standard error.</dd></div>
+<div><dt><a href="statistics/response-rates.html">Response rates and binomial probability</a></dt><dd>Separate the observed proportion from the unknown probability, and inspect who enters the denominator.</dd></div></dl></section>
+<section aria-labelledby="group-2"><h2 id="group-2">2. Estimate the effect</h2><dl class="concept-list"><div><dt><a href="statistics/confidence-intervals.html">Confidence intervals and the Wilson interval</a></dt><dd>Read uncertainty around an effect estimate, and distinguish confidence, credible, and prediction intervals.</dd></div>
+<div><dt><a href="statistics/effect-sizes.html">Effect sizes: absolute and relative benefit</a></dt><dd>Compare risk differences, risk ratios, odds ratios, mean differences, and clinically meaningful effects.</dd></div>
+<div><dt><a href="statistics/p-values.html">Hypothesis tests, p-values, and significance</a></dt><dd>Understand the null hypothesis, Type I error, test choice, and why p &lt; 0.05 does not establish clinical value.</dd></div>
+<div><dt><a href="statistics/sample-size-and-power.html">Sample size, power, and detectable effects</a></dt><dd>See how effect assumptions, variability, event counts, alpha, and dropout shape a trial’s ability to detect benefit.</dd></div></dl></section>
+<section aria-labelledby="group-3"><h2 id="group-3">3. Check what can mislead</h2><dl class="concept-list"><div><dt><a href="statistics/multiple-testing.html">Multiple testing and false discoveries</a></dt><dd>Understand family-wise error, Bonferroni and Holm adjustments, testing hierarchies, and false discovery rate.</dd></div>
+<div><dt><a href="statistics/subgroups-and-bias.html">Subgroups, enrichment, and selection bias</a></dt><dd>Separate a biological hypothesis from a validated predictive biomarker, and understand post-selection optimism.</dd></div>
+<div><dt><a href="statistics/missing-data.html">Analysis populations, missing data, and sensitivity</a></dt><dd>Understand intention-to-treat, evaluable populations, missingness assumptions, imputation, and tipping-point analyses.</dd></div></dl></section>
+<section aria-labelledby="group-4"><h2 id="group-4">4. Follow outcomes over time</h2><dl class="concept-list"><div><dt><a href="statistics/survival-analysis.html">Survival analysis, censoring, and hazard ratios</a></dt><dd>Read Kaplan–Meier curves, median survival, hazard ratios, log-rank tests, and restricted mean survival time.</dd></div>
+<div><dt><a href="statistics/bayesian-prediction.html">Bayesian updating and future prediction</a></dt><dd>Connect prior, likelihood, posterior, credible intervals, and beta-binomial predictions without treating assumptions as facts.</dd></div></dl></section>
+<section aria-labelledby="group-5"><h2 id="group-5">5. Design and interpret the decision</h2><dl class="concept-list"><div><dt><a href="statistics/noninferiority.html">Superiority, noninferiority, and equivalence</a></dt><dd>Understand why a failed superiority test does not prove similarity, and how a justified margin changes the question.</dd></div>
+<div><dt><a href="statistics/interim-and-adaptive.html">Interim analyses and adaptive designs</a></dt><dd>Understand alpha spending, early stopping, futility, sample-size re-estimation, and planned adaptations.</dd></div>
+<div><dt><a href="statistics/safety-and-benefit-risk.html">Safety statistics and benefit–risk</a></dt><dd>Read adverse-event denominators, exposure time, uncertainty around rare events, and benefit alongside harm.</dd></div></dl></section>
+<section class="worked-case" aria-labelledby="worked-case-title"><h2 id="worked-case-title">A worked company example</h2><p><a href="statistics/iovance-data-first.html">Iovance: a data-first statistical roadmap</a> applies these ideas to a reported clinical dataset: current observations, subgroup selection, Wilson uncertainty, future prediction, and independent validation.</p><p><a href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed Iovance companion notebook (.ipynb)</a>.</p><p>Clinical case studies and the existing research trackers are collected in <a href="biotech.html">Biotech</a>.</p></section>
 </main>
-<footer><span>© 2026 Kinley Tenzin</span><a href="index.html">Academic homepage</a><a href="biotech.html">Biotech</a></footer>
+<footer><span>© 2026 Kinley Tenzin</span><a href="statistics.html">Statistics concepts</a><a href="biotech.html">Biotech</a></footer>
 </div>
 </body>
 </html>

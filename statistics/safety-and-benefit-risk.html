@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Safety statistics and benefit–risk · Kinley Tenzin</title>
+<meta name="description" content="Read adverse-event denominators, exposure time, uncertainty around rare events, and benefit alongside harm.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Design and interpret the decision</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Safety statistics and benefit–risk</h1>
+<p class="lede">Safety assessment asks which harms occurred, how often, how severe they were, and how they compare with expected outcomes without the treatment. A small study with few events provides limited information about uncommon risks.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Safety statistics and benefit–risk">
+<section id="events"><h2>Separate occurrence, severity, seriousness, and causality</h2>
+<p>An adverse event is an unfavorable occurrence during the study; its occurrence does not by itself establish that the drug caused it. A treatment-emergent event starts or worsens in the defined observation window. An investigator’s relatedness assessment is a separate judgment.</p><p><strong>Severe</strong> describes intensity. <strong>Serious</strong> refers to specified consequences such as death, a life-threatening event, or hospitalization; the terms are not interchangeable. Read the grading system, collection period, attribution rules, and event definitions.</p></section>
+<section id="denominators"><h2>Count people and account for exposure</h2>
+<div class="example"><h3>Example: ten affected patients</h3><p>If 10 of 100 patients experience at least one specified event, the patient incidence is 10%, even if those patients have 25 total episodes. A report of 25 events answers a different question from the number of affected patients.</p></div><p>Compare arms using consistent definitions and observation windows. Longer treatment or follow-up creates more opportunity to observe harm. An exposure-adjusted event rate, such as events per 100 person-years, accounts for time at risk but is not a probability. Recurrent events, time-varying risk, and competing events can make a simple rate insufficient.</p></section>
+<section id="zero"><h2>Zero observed events does not establish zero risk</h2>
+<p>Under an independent binomial model with complete comparable follow-up, the probability of observing zero events is (1−p)<sup>n</sup>. Setting this probability to 0.05 gives the one-sided 95% upper confidence bound:</p><div class="formula">p<sub>upper</sub> = 1 − 0.05<sup>1/n</sup> ≈ 3/n</div><div class="example"><h3>Example: no events among 100 patients</h3><p>The exact upper bound is about 2.95%; the “rule of three” approximation gives 3%. No events in this sample is therefore compatible with a risk near 3% under that model. It says nothing by itself about risks appearing after the study’s follow-up window.</p></div><p>This is a one-sided bound for one defined event, not a general certificate of safety.</p></section>
+<section id="comparison"><h2>Rare harms need context and further evidence</h2>
+<p>A safety comparison can be imprecise even when efficacy is well powered. Small samples, many event categories, incomplete follow-up, and selective eligibility all limit interpretation. A nominally significant imbalance deserves clinical evaluation, but a nonsignificant imbalance does not prove comparable safety.</p><p>Look for deaths, serious events, discontinuations, dose reductions, clinically important laboratory findings, and the reasons behind them. Broader exposure and longer observation can reveal risks absent in early development.</p></section>
+<section id="balance"><h2>Benefit–risk is more than a single score</h2>
+<p>Consider absolute benefit and absolute harm over relevant time horizons, their uncertainty, reversibility, severity, treatment burden, and available alternatives. Numbers needed to treat and harm can help only when endpoint definitions, comparable populations, follow-up, and uncertainty are clear.</p><p>A p-value or response probability alone cannot settle the clinical tradeoff. Different patient groups can reasonably value the same benefits and harms differently.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="trial-design.html">Trial design, controls, and randomization</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e2a-clinical-safety-data-management-definitions-and-standards-expedited-reporting">ICH E2A: clinical safety definitions (FDA)</a></li><li><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm">NIST: confidence intervals for a proportion</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

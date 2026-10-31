@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Endpoints and estimands · Kinley Tenzin</title>
+<meta name="description" content="Define what was measured, in which patients, over what time, and how treatment changes were handled.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Start with the trial</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Endpoints and estimands</h1>
+<p class="lede">An endpoint is the outcome being measured. An estimand is the precise treatment-effect question. A clear question comes before choosing the statistical test.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Endpoints and estimands">
+<section id="endpoint"><h2>An endpoint needs a definition and a clock</h2>
+<p>An endpoint specifies a measurement and how it is evaluated: response at a set visit, change in a symptom score by week 24, or time from randomization to an event. Primary endpoints address the main trial objective. Secondary endpoints add other planned information. Exploratory endpoints generate hypotheses.</p><div class="table-scroll"><table><caption>Common oncology endpoints</caption><thead><tr><th scope="col">Endpoint</th><th scope="col">What it measures</th><th scope="col">Important distinction</th></tr></thead><tbody><tr><th scope="row">Objective response rate (ORR)</th><td>Proportion with a protocol-defined complete or partial response</td><td>Tumor response does not by itself establish longer survival.</td></tr><tr><th scope="row">Duration of response (DOR)</th><td>Time from response to progression or death, as defined in the protocol</td><td>Usually conditions on having responded; it describes a selected subset.</td></tr><tr><th scope="row">Progression-free survival (PFS)</th><td>Time to progression or death</td><td>Scan schedule and progression assessment can influence results.</td></tr><tr><th scope="row">Overall survival (OS)</th><td>Time to death from any cause</td><td>Follow-up, crossover, and subsequent therapy affect interpretation.</td></tr><tr><th scope="row">Patient-reported outcome (PRO)</th><td>Symptoms, functioning, or quality of life reported by patients</td><td>The instrument, meaningful change, and missing reports matter.</td></tr></tbody></table></div></section>
+<section id="estimand"><h2>Specify the treatment-effect question</h2>
+<p>Describe the population, treatment strategies, outcome, summary measure, and handling of <strong>intercurrent events</strong>: events after treatment starts that affect the outcome’s meaning or availability. Examples include stopping treatment, starting rescue medication, or death.</p><p>A treatment-policy question asks about outcomes under assignment to a strategy, including certain later treatment changes. A hypothetical question asks what might have happened under a specified alternative scenario, such as no rescue medication. These questions can need different data and assumptions. Death is not simply an ordinary missing symptom score.</p><p>Other strategies include a composite outcome that incorporates the event, a while-on-treatment question, or a principal-stratum question about a subgroup defined by potential events. They target different effects rather than interchangeable ways to improve a result.</p></section>
+<section id="example"><h2>One endpoint can answer different questions</h2>
+<div class="example"><h3>Example: a symptom trial</h3><p>A company measures symptom change at week 24. Some patients stop Drug A and receive rescue treatment. “What is the effect of assignment to A with rescue available?” differs from “What would A do if no one used rescue?” A treatment-policy analysis and a hypothetical analysis need not give the same answer.</p></div><p>The estimator is the procedure used to estimate the effect; the estimate is its numerical result. Neither should silently replace the question defined by the estimand.</p></section>
+<section id="surrogate"><h2>An earlier measurement may be a surrogate</h2>
+<p>A surrogate endpoint is used to stand in for a clinical outcome of interest in a particular setting. An association between a biomarker and prognosis does not by itself show that changing the biomarker with treatment changes clinical benefit. The strength of the relationship can depend on disease, therapy, and context.</p><p>Read the exact endpoint wording, data cutoff, treatment-change rules, and clinical interpretation together. A headline saying “met the endpoint” is incomplete without them.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="trial-design.html">Trial design, controls, and randomization</a></li><li><a href="survival-analysis.html">Survival analysis, censoring, and hazard ratios</a></li><li><a href="missing-data.html">Analysis populations, missing data, and sensitivity</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics">FDA: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a></li><li><a href="https://www.fda.gov/media/148473/download">ICH E9(R1): estimands and sensitivity analysis, May 2021 (FDA, PDF)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>

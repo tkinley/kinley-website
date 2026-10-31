@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Subgroups, enrichment, and selection bias · Kinley Tenzin</title>
+<meta name="description" content="Separate a biological hypothesis from a validated predictive biomarker, and understand post-selection optimism.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to explanation</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Statistics</a><a href="../biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Statistics · Check what can mislead</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All statistics concepts</a></p>
+<h1>Subgroups, enrichment, and selection bias</h1>
+<p class="lede">A treatment may work differently across patients, but finding a high response rate in a subgroup is only the beginning. The definition, search process, comparison, and independent evidence determine how much to trust it.</p>
+</header>
+<main id="main" class="concept-body" tabindex="-1">
+<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<article aria-label="Subgroups, enrichment, and selection bias">
+<section id="selection"><h2>A correct description can be an optimistic forecast</h2>
+<p>The observed rate in a chosen subgroup can accurately describe those patients. Bias becomes a concern when a subgroup selected for looking good is used to estimate future performance without accounting for the selection process. Searching many biomarker cutoffs, combinations, or exclusions can favor an unusually positive result.</p><div class="example"><h3>Example: the best of eight groups</h3><p>Imagine eight small groups with identical true treatment-response probabilities. Random variation gives them different observed rates. Selecting the highest one after seeing outcomes makes the selected estimate optimistic on average. The exact bias depends on how the search was conducted.</p></div><p>A confidence interval calculated as though the selected subgroup were fixed in advance generally does not correct this selection.</p></section>
+<section id="biomarker"><h2>Prognostic is different from predictive</h2>
+<p>A <strong>prognostic</strong> biomarker is associated with outcomes regardless of which treatment is assigned. A <strong>predictive</strong> biomarker identifies differences in treatment effect. Better outcomes in biomarker-positive patients on a single treatment may reflect prognosis rather than a greater incremental benefit from that treatment.</p><p>A randomized treatment-by-biomarker interaction analysis can address effect modification on the specified scale. “Significant in subgroup A” and “not significant in subgroup B” is not itself a significant difference between subgroup effects.</p></section>
+<section id="enrichment"><h2>Enrichment changes who the evidence applies to</h2>
+<p>Enrichment deliberately selects patients to make a trial more informative, for example by reducing measurement variability, increasing baseline event risk, or targeting people more likely to benefit. A rule with biological rationale can improve a future design, but its performance should be evaluated prospectively.</p><p>Restricting eligibility also narrows the population to which the result directly applies. A stronger effect in a smaller selected population does not imply the same effect in all patients, or that the fraction meeting the criteria is known precisely.</p></section>
+<section id="other-bias"><h2>Other biases survive large samples</h2>
+<p>Confounding arises when treatment or group membership is associated with other causes of outcomes. Attrition can favor one treatment if missingness depends on outcomes. Measurement bias can enter through unblinded assessment. Publication and reporting bias can make the available evidence look more favorable than the full record.</p><p>Randomization, blinding, complete follow-up, prespecification, and transparent reporting address different problems; no one method fixes all of them.</p></section>
+<section id="validation"><h2>What would strengthen the finding?</h2>
+<ul><li>A subgroup rule and analysis plan fixed before new outcomes are examined.</li><li>A justified interaction analysis when claiming differential treatment effect.</li><li>Independent data with comparable treatment and assessment.</li><li>Reporting of the full subgroup search, uncertainty, and missing data.</li></ul><p>The <a href="iovance-data-first.html">Iovance case study</a> works through the distinction between an observed subgroup rate and a future prediction.</p></section>
+<section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="multiple-testing.html">Multiple testing and false discoveries</a></li><li><a href="trial-design.html">Trial design, controls, and randomization</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li></ul></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/media/121320/download">FDA: Enrichment Strategies for Clinical Trials, March 2019 (PDF)</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+</article>
+<p><a href="../statistics.html">← Back to the statistics guide</a></p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics concepts</a><a href="../biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>
