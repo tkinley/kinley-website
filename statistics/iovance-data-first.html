@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Iovance: a data-first statistical roadmap · Kinley Tenzin</title>
+<meta name="description" content="Begin with Iovance's reported clinical data and subgroup selection, then work through Wilson uncertainty, binomial prediction, and a beta-binomial companion notebook.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/statistics/iovance-data-first.html">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/research-notes.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">Skip to article</a>
+<div class="wrap">
+<nav class="pagetabs" aria-label="Pages">
+  <a class="home" href="../index.html">Home</a>
+  <a href="../statistics.html" aria-current="location">Statistics</a>
+  <a href="../biotech.html">Biotech</a>
+  <a href="../biotech-catalysts.html">2027 catalysts</a>
+  <a href="../other-tracker.html">Other tracker</a>
+</nav>
+<header>
+  <div class="dateline"><span>Statistics · Clinical data case study</span><span>Kinley Tenzin · 31 October 2026</span></div>
+  <h1>Iovance: a data-first statistical roadmap</h1>
+  <p class="lede">Before predicting a future trial, understand the patients already observed. Thirteen responses among 22 patients tells us something useful—but the route to those 22 patients matters.</p>
+  <div class="actions"><a class="button primary" href="../notebooks/Iovance_Data_First_Companion.ipynb" download>Download companion notebook (.ipynb)</a><a class="button" href="../biotech.html">Biotech context</a></div>
+  <p class="muted">A new, executable companion to this article, reconstructed from the data-first roadmap and checked against the primary release. It is not the original notebook from the earlier discussion.</p>
+  <ol class="roadmap" aria-label="Statistical roadmap"><li>Data</li><li>Selection &amp; assumptions</li><li>Uncertainty</li><li>Prediction</li><li>Validation</li></ol>
+</header>
+<main id="main" class="article-layout" tabindex="-1">
+  <aside class="toc" aria-label="Article contents"><span class="kicker">In this article</span><ol><li><a href="#data">Current data</a></li><li><a href="#selection">Selection &amp; assumptions</a></li><li><a href="#wilson">Wilson uncertainty</a></li><li><a href="#prediction">Future outcomes</a></li><li><a href="#validation">Validation</a></li><li><a href="#sources">Sources &amp; notebook</a></li></ol></aside>
+  <article aria-label="Iovance statistical roadmap">
+    <section id="data">
+      <h2>1. Start with the current data</h2>
+      <p>Iovance’s <a href="https://ir.iovance.com/news-releases/news-release-details/iovance-reports-updated-iov-lun-202-results-and-adds-precision">29 October 2026 release</a> reports the following IOV-LUN-202 results at the <strong>14 October 2026 cutoff</strong>. These are aggregate observations, not patient-level data.</p>
+      <div class="table-scroll"><table><caption>Reported response counts and rates</caption><thead><tr><th scope="col">Population</th><th scope="col">Responses / patients</th><th scope="col">Observed rate</th></tr></thead><tbody>
+        <tr><th scope="row">Broader non-squamous mNSCLC population</th><td>17 / 69</td><td>24.6%</td></tr>
+        <tr><th scope="row">KRAS wild-type</th><td>13 / 30</td><td>43.3%</td></tr>
+        <tr><th scope="row">KRAS-mutant</th><td>4 / 35</td><td>11.4%</td></tr>
+        <tr><th scope="row">KRAS wild-type + HER2 wild-type</th><td>13 / 25</td><td>52.0%</td></tr>
+        <tr><th scope="row">KRAS wild-type + HER2 wild-type + current/former smoker</th><td>13 / 22</td><td>59.1%</td></tr>
+      </tbody></table></div>
+      <p class="muted">The 30 KRAS wild-type and 35 KRAS-mutant patients account for 65 of 69 patients; four were KRAS-unassessed. The wild-type rows are nested populations and must not be added together.</p>
+      <div class="callout"><strong>Response confirmation matters.</strong><p>The release includes two unconfirmed partial responses overall, one in each KRAS group. The enriched subgroup’s 13 responses include one awaiting confirmation. Treat 13/22 as the reported count at this cutoff; the notebook also examines 12/22 as a confirmed-response sensitivity analysis.</p></div>
+      <p>The observed sample proportion is <strong>p̂ = 13/22 = 0.5909</strong>. This describes the selected sample. The true response probability, <em>p</em>, in a defined future population remains unknown.</p>
+    </section>
+    <section id="selection">
+      <h2>2. Inspect selection before fitting a model</h2>
+      <p><strong>13/22 is not inherently a biased description of those 22 patients.</strong> The concern is what happens when a subgroup found after examining outcomes is used to estimate performance in new patients. Searching across candidate subgroups can favor unusually high observed rates: a form of selection optimism.</p>
+      <p>Here the reported denominator narrows from 30 to 25 to 22 while the numerator stays at 13. That pattern motivates a prospective hypothesis. It does not, by itself, separate biological enrichment from sampling variation and selection. The aggregate release does not reveal the full search process, so these calculations cannot estimate or correct its bias.</p>
+      <p>The companion illustrates the mechanism with a seeded simulation: eight independent, hypothetical groups have the same true response probability; selecting the highest observed rate makes that group look better on average. It is a teaching example, not a reconstruction of Iovance’s analysis.</p>
+      <h3>The assumptions to carry forward</h3>
+      <ul><li>A binary response outcome, assessed consistently over a comparable follow-up period.</li><li>Independent patients with a common response probability within the modeled population.</li><li>A future cohort comparable in eligibility, treatment, assessment, and clinical characteristics.</li><li>A subgroup definition fixed before evaluating the new cohort.</li></ul>
+      <p>A single-arm response proportion also cannot establish a treatment effect relative to a control. Our calculations describe response rates and conditional predictions.</p>
+    </section>
+    <section id="wilson">
+      <h2>3. Quantify sampling uncertainty with Wilson</h2>
+      <p>A 95% Wilson interval gives an interval estimate for a binomial response probability. It answers a different question from a range of future responder counts.</p>
+      <div class="result"><span class="value">38.7%–76.7%</span>95% Wilson interval for 13 responses in 22 patients, under the usual binomial assumptions.</div>
+      <p>The confidence procedure has approximately 95% coverage over repeated samples when its assumptions apply. It does not assign a 95% probability to this fixed interval containing <em>p</em>, and it does not make every value inside equally likely.</p>
+      <p><strong>Wilson does not adjust for the retrospective search.</strong> Its nominal coverage is not guaranteed after selecting a favorable subgroup. A wide interval captures ordinary sampling uncertainty; selection, outcome confirmation, and differences between cohorts remain additional concerns.</p>
+      <figure class="figure"><img src="../assets/iovance/wilson-intervals.svg" width="960" height="400" alt="Broader population: 24.6%, Wilson interval 16.0 to 36.0%; KRAS wild-type: 43.3%, 27.4 to 60.8%; enriched subgroup: 59.1%, 38.7 to 76.7%."><figcaption>Dots show observed rates; lines show 95% Wilson intervals calculated for this article. These overlapping populations are not independent comparisons, and these are not selection-adjusted intervals.</figcaption></figure>
+      <details><summary>The formula and Python calculation</summary><p>For p̂ = x/n and z = Φ⁻¹(0.975), calculate a center and half-width, then take center ± half-width.</p><pre><code>from math import sqrt
+from statistics import NormalDist
+
+def wilson(x, n, confidence=0.95):
+    z = NormalDist().inv_cdf((1 + confidence) / 2)
+    p_hat = x / n
+    denominator = 1 + z*z/n
+    center = (p_hat + z*z/(2*n)) / denominator
+    half = z * sqrt(p_hat*(1-p_hat)/n + z*z/(4*n*n)) / denominator
+    return center - half, center + half
+
+wilson(13, 22)  # approximately (0.3873, 0.7674)</code></pre></details>
+      <p>For a two-sided 95% interval, 5% remains in the tails: 2.5% in each. That gives 0.025 and 0.975. Wilson uses the normal quantile z ≈ 1.96; a future count prediction uses quantiles of a count distribution instead.</p>
+    </section>
+    <section id="prediction">
+      <h2>4. Only then model future outcomes</h2>
+      <p>Take <strong>50 new patients</strong> as an illustration, not as a claim about a planned trial’s size. The predictions below assume comparability to the enriched subgroup and do not correct for retrospective selection.</p>
+      <h3>A fixed-p binomial scenario</h3>
+      <p>If we assume p = 13/22, then X ~ Binomial(50, 13/22). The expected count is 50 × 13/22 ≈ <strong>29.5 responders</strong>. A central quantile interval is <strong>23–36</strong>. This includes future sampling variation while treating the assumed probability as known.</p>
+      <h3>A beta-binomial predictive model</h3>
+      <p>A Bayesian alternative starts with an explicit prior. With a uniform Beta(1, 1) prior and a binomial likelihood, the posterior is Beta(14, 10). Averaging future binomial predictions over this posterior gives a beta-binomial distribution: expected count <strong>29.2</strong>, with a central 95% predictive interval of <strong>17–40</strong>.</p>
+      <p>This accounts for uncertainty about <em>p</em> within that model, as well as random variation among future patients. The prior and likelihood matter; it does not automatically account for subgroup selection or clinical differences. The notebook compares other priors.</p>
+      <figure class="figure"><img src="../assets/iovance/predictive-counts.svg" width="960" height="460" alt="For 50 hypothetical future patients, the binomial distribution at p equals 13/22 is narrower than the beta-binomial predictive distribution with a Beta(14,10) posterior."><figcaption>Two conditional distributions for future responder counts. The wider beta-binomial distribution reflects uncertainty about p under the chosen prior and likelihood. Neither is a probability of regulatory approval.</figcaption></figure>
+      <div class="table-scroll"><table><caption>Sensitivity to assumptions · 50 hypothetical future patients</caption><thead><tr><th scope="col">Model or scenario</th><th scope="col">Expected responders</th><th scope="col">Central 95% count interval</th></tr></thead><tbody>
+        <tr><th scope="row">Binomial, p = Wilson lower endpoint ≈ 0.387</th><td>19.4</td><td>13–26</td></tr>
+        <tr><th scope="row">Binomial, p = 13/22 ≈ 0.591</th><td>29.5</td><td>23–36</td></tr>
+        <tr><th scope="row">Binomial, p = Wilson upper endpoint ≈ 0.767</th><td>38.4</td><td>32–44</td></tr>
+        <tr><th scope="row">Beta-binomial, Beta(14, 10) posterior</th><td>29.2</td><td>17–40</td></tr>
+      </tbody></table></div>
+      <p class="muted">The endpoint scenarios are separate “what if” assumptions. Their combined endpoints are not a calibrated 95% prediction interval. Count intervals use the 0.025 and 0.975 quantiles; discreteness means their probability coverage can exceed 95%.</p>
+      <div class="callout"><strong>A confidence interval is not a predictive distribution.</strong><p>Wilson supplies an interval estimate for p. A beta-binomial model requires a prior and a likelihood; it does not take a Wilson interval as its input.</p></div>
+    </section>
+    <section id="validation">
+      <h2>5. Test the hypothesis in new patients</h2>
+      <p>Freeze the subgroup definition, outcome criteria, follow-up, analysis population, and statistical analysis plan before looking at the new outcomes. Then compare the new observations with predictions that were made in advance.</p>
+      <p>Independent prospective evidence can test whether the response signal reproduces. Larger samples reduce ordinary sampling uncertainty, but do not repair a selected estimate simply by being larger. Response durability, safety, and the trial design also matter for clinical interpretation.</p>
+      <p>The useful roadmap is <strong>observed data → selection and assumptions → uncertainty → conditional prediction → independent validation</strong>.</p>
+    </section>
+    <section id="sources">
+      <h2>Sources and reproducibility</h2>
+      <ul class="sources"><li><a href="https://ir.iovance.com/news-releases/news-release-details/iovance-reports-updated-iov-lun-202-results-and-adds-precision">Iovance primary release, 29 October 2026</a>. Source of the counts, subgroup definition, response confirmation status, and data cutoff. This is a dated case study, not a live clinical update.</li><li><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm">NIST: confidence intervals for proportions</a>. Wilson score interval method.</li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.betabinom.html">SciPy: beta-binomial distribution</a>. Reference for the probability mass function used in the companion’s standard-library implementation.</li></ul>
+      <p>The companion contains the aggregate data, seeded selection simulation, Wilson calculations, prediction intervals, prior sensitivity, and checks. It requires Python 3.9+ and Matplotlib. Run the cells in order in Jupyter; the mathematical calculations use Python’s standard library.</p>
+      <div class="actions"><a class="button primary" href="../notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed notebook</a><a class="button" href="../statistics.html">More statistics notes</a></div>
+      <p class="muted">Educational analysis of aggregate results; not a patient-specific treatment recommendation or a valuation model.</p>
+    </section>
+  </article>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../statistics.html">Statistics</a><a href="../biotech.html">Biotech</a><a href="../index.html">Academic homepage</a></footer>
+</div>
+</body>
+</html>

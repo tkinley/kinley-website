@@ -7,6 +7,12 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | Path | What it is |
 |---|---|
 | `index.html` | Homepage: publications, ongoing research, experience, teaching |
+| `statistics.html` | Statistics hub: Iovance data-first case study and links to the existing Kalman/FDR sketches |
+| `biotech.html` | Biotech hub: clinical case studies and the existing catalyst and investor trackers |
+| `statistics/iovance-data-first.html` | Readable Iovance article: current data, selection concerns, Wilson uncertainty, prediction, and validation |
+| `notebooks/Iovance_Data_First_Companion.ipynb` | Executed 21-cell companion, newly reconstructed from the roadmap and primary source; not the original chat attachment |
+| `scripts/build-iovance-notebook.py` | Rebuilds and executes the companion and exports its figures to `assets/iovance/` (requires nbformat, nbclient, ipykernel, matplotlib) |
+| `assets/research-notes.css` | Shared Statistics/Biotech styling, matching the existing tracker pages |
 | `student-match.html` | Student Opportunities: three questions, then a list of funding, tools, and help sorted by deadline. See `STUDENT-MATCH.md` |
 | `biotech-catalysts.html` | Biotech Catalysts 2027: binary PDUFA and Phase 3 watchlist, linked quietly from the footer |
 | `other-tracker.html` | Other tracker: stated biotech longs and shorts for outside investors (Martin Shkreli from 2025, Adam May from 2024), switchable at the top of the page (`#shkreli`, `#adam-may`). Shares page tabs with the catalysts page |

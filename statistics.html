@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Statistics · Kinley Tenzin</title>
+<meta name="description" content="Statistical notes, readable case studies, and reproducible notebooks: start with the data, inspect assumptions, then model uncertainty.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/research-notes.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<nav class="pagetabs" aria-label="Pages">
+  <a class="home" href="index.html">Home</a>
+  <a href="statistics.html" aria-current="page">Statistics</a>
+  <a href="biotech.html">Biotech</a>
+  <a href="biotech-catalysts.html">2027 catalysts</a>
+  <a href="other-tracker.html">Other tracker</a>
+</nav>
+<header>
+  <div class="dateline"><span>Kinley Tenzin · Notes</span><span>Statistics</span></div>
+  <h1>Start with the data.</h1>
+  <p class="lede">Notes on what a model assumes, what the data can tell us, and what remains uncertain. Read the explanation here, then explore the calculations in a notebook.</p>
+</header>
+<main id="main" tabindex="-1">
+  <div class="grid">
+    <section class="card feature" aria-labelledby="iovance-title">
+      <div>
+        <span class="tag">Clinical data · Case study</span>
+        <h2 id="iovance-title"><a href="statistics/iovance-data-first.html">Iovance: a data-first statistical roadmap</a></h2>
+        <p>Thirteen responses among 22 patients is a starting point. Work through the broader dataset, retrospective subgroup selection, Wilson confidence intervals, and conditional predictions for new patients.</p>
+        <div class="actions"><a class="button primary" href="statistics/iovance-data-first.html">Read the article</a><a class="button" href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download notebook (.ipynb)</a></div>
+        <p class="kicker">31 October 2026 · Python companion included</p>
+      </div>
+      <div>
+        <h3>The order matters</h3>
+        <ol>
+          <li>Understand the observed data.</li>
+          <li>Inspect the selection process and assumptions.</li>
+          <li>Quantify sampling uncertainty.</li>
+          <li>Model future outcomes conditionally.</li>
+          <li>Validate in independent patients.</li>
+        </ol>
+        <p class="muted">Biological context and the existing research trackers are collected in <a href="biotech.html">Biotech</a>.</p>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="kalman-title">
+      <span class="kicker">Interactive sketch · On the homepage</span>
+      <h2 id="kalman-title"><a href="index.html#kalman-sketch">A little signal in the noise</a></h2>
+      <p>A Kalman filter follows a simulated signal. Change the noise assumption and watch the estimate and its uncertainty respond.</p>
+      <a href="index.html#kalman-sketch">Explore the Kalman sketch →</a>
+    </section>
+    <section class="card" aria-labelledby="fdr-title">
+      <span class="kicker">Interactive sketch · On the homepage</span>
+      <h2 id="fdr-title"><a href="index.html#fdr-sketch">How easily p-values fool us</a></h2>
+      <p>Compare a simple p &lt; 0.05 rule with Benjamini–Hochberg false discovery rate control across 100 simulated tests.</p>
+      <a href="index.html#fdr-sketch">Explore the FDR sketch →</a>
+    </section>
+  </div>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="index.html">Academic homepage</a><a href="biotech.html">Biotech</a></footer>
+</div>
+</body>
+</html>
