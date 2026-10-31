@@ -1,11 +1,13 @@
 import {writeFile,mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-import {BASE,SHARES,CASH,REFERENCE_PRICE,PART_LABELS,clone,value,adverseSafety,optimistic,reversePeak,singleCoreValue,bridge} from '../assets/iova-valuation-model.mjs';
+import {BASE,SHARES,CASH,REFERENCE_PRICE,PART_LABELS,clone,value,adverseSafety,optimistic,reversePeak,singleCoreValue,bridge,program} from '../assets/iova-valuation-model.mjs';
 import {money,renderBreakdown,renderExplorer} from '../assets/iova-valuation.mjs';
+import {renderValuationEquations} from './valuation-equations.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const central=value(),safety=value(adverseSafety()),bull=value(optimistic());
+const equations=renderValuationEquations({equity:central.equity,shares:SHARES,coreLoss:-central.parts.labelRisk,lung:program(BASE.pipe.lung),peak:reversePeak()});
 const down=adverseSafety();down.weights={bear:1,base:0,bull:0};
 const friendly=optimistic();friendly.marginShift=.05;
 const lungZero=clone(BASE);lungZero.pipe.lung.pos=0;lungZero.pipe.lung.dev={2027:15};
@@ -42,16 +44,16 @@ const html=`<!doctype html>
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/research-notes.css?v=4"><link rel="stylesheet" href="../assets/valuation.css?v=1">
+<link rel="stylesheet" href="../assets/research-notes.css?v=4"><link rel="stylesheet" href="../assets/valuation.css?v=2">
 <script type="module" src="../assets/iova-valuation.mjs?v=2"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the case</a>
 <div class="wrap">
-<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html" aria-current="location">Alea</a><a href="../statistics.html#my-valuations">My valuations</a></nav>
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html" aria-current="location">My valuations</a><a href="../biotech.html">Biotech</a></nav>
 <header class="valuation-header">
 <div class="dateline"><span>Kinley Tenzin · My valuations · Case 01</span><span>Opinion as of 30 October 2026, evening</span></div>
-<p class="breadcrumb"><a href="../statistics.html#my-valuations">← My valuations in Alea</a></p>
+<p class="breadcrumb"><a href="../valuations.html">← My valuations in Alea</a></p>
 <h1><span class="ticker">$IOVA · Iovance Biotherapeutics</span>Why I value Iovance at $5.83</h1>
 <p class="lede">I think most of Iovance’s value still comes from melanoma. The lung data made me more cautious, but the bigger question for me is how much the melanoma business can earn. With the assumptions below, I get <strong>${money(central.perShare)} per diluted share</strong>. Here is why.</p>
 <p class="opinion-label">By Kinley Tenzin · My opinion, based on 30 October 2026 assumptions · Published 31 October 2026</p>
@@ -85,7 +87,11 @@ ${table('The reported numbers and why I care',['What was reported','Why it matte
 <div class="formula">Equity = core DCF − expected label loss + pipeline rNPVs + next-generation option − corporate costs + net cash<br>Value per share = equity ÷ diluted shares</div>
 <p>For each experimental program, I take the value of profits if it succeeds, multiply by my assumed chance of success, and subtract development spending. I charge the scheduled development costs in full here. That is a simplification: I have not modeled every possible stopping point along the way.</p>
 <p>I use a 10% discount rate as my required return. I already account for clinical and regulatory failure through the success probabilities, so I do not add another large discount-rate penalty for the same risk.</p>
+${equations.discount}
+${equations.core}
+${equations.pipeline}
 <p>301 is especially important to me because it affects two parts of the value. Success could add frontline melanoma sales. Failure could also put the existing accelerated approval at risk. I use a 50% chance of success, a 20% chance of withdrawal if it fails, and a 70% loss of core value if withdrawal happens. That gives an expected deduction of 50% × 20% × 70% = <strong>7% of core value</strong>. These are my assumptions; they are not probabilities supplied by the FDA.</p>
+${equations.label}
 <p>I value cash flows from 2027 through 2045, discounted to roughly the end of 2026. I allow $40M a year for corporate costs and 21% cash tax on positive profits from 2033. I add no takeover premium and no value for cash flows after 2045.</p>
 </section>
 <section id="assumptions"><h2>Why I chose these assumptions</h2>
@@ -114,6 +120,7 @@ ${table('Pipeline assumptions: probabilities are my judgments',['Program','Succe
 <p>This breakdown is why I focus so much on melanoma. The approved business is the largest part of my estimate. The pipeline adds value, while corporate spending and the risk to the existing label bring it down.</p>
 <figure><figcaption class="kicker">Dollars per diluted share · negative components extend left</figcaption>${renderBreakdown(central.parts)}</figure>
 ${partsTable}
+${equations.equity}
 <p class="model-note">Totals use unrounded values. Displayed components can differ from the total by a cent because of rounding.</p>
 </section>
 ${renderExplorer()}
@@ -141,6 +148,7 @@ ${table('One input at a time around the central case',['Input','Lower setting','
 </section>
 <section id="reverse"><h2>Why $8.48 is harder for me to justify</h2>
 <p>I also work backward from the price. I keep the pipeline and base margins the same, then ask how large the melanoma business would need to become for me to get $8.48 per share.</p>
+${equations.reverse}
 <div class="result"><span class="value">About $${(reversePeak()/1000).toFixed(2)}B in annual core revenue</span>That is the peak sales level I need in this calculation to reach $8.48 per share.</div>
 <p>For this test, sales start at $575M in 2027, rise steadily to the peak in 2031, stay there through 2035, and decline 10% a year afterward. A $1B peak gives me ${money(singleCoreValue(1000))} per share. This uses one sales path rather than the three weighted paths in my main estimate.</p>
 <p>That is why I do not think “it can reach $1B in sales” settles the valuation. I still need to know the margins, how long sales last, the pipeline contribution, and how many shares there will be. Under the adverse-safety assumptions, reaching $8.48 would require about $${(reversePeak(REFERENCE_PRICE,adverseSafety())/1000).toFixed(2)}B in peak core sales.</p>
@@ -151,7 +159,7 @@ ${table('One input at a time around the central case',['Input','Lower setting','
 <p>I would not put much weight on the second decimal in $5.83. Sales, margins, trial outcomes, and dilution can each change the result. I use the number to make my assumptions clear and to see which ones matter most.</p>
 <p>In 200,000 simulations with independent program outcomes, I get a median of <strong>$5.69</strong> and a 10th–90th percentile range of <strong>$2.17–$9.50</strong>. About 17% of the simulated values are above $8.48. That percentage depends on the distributions I chose; I would not read it as a 17% chance of the stock going up.</p>
 <p>I also tested whether the programs might succeed or fail together. Using a shared latent-normal factor of 0.5 widens the range to $1.92–$9.78, with a $5.66 median and about 18% above $8.48. That 0.5 is a simulation setting, not a measured correlation between approvals.</p>
-<details><summary>How the simulation is constructed</summary><p>Seed 11; 200,000 draws. Core value uses a lognormal revenue multiplier (log standard deviation 0.32) scaled to preserve the expected core PV, plus a normal margin shift with 5 percentage points standard deviation. Program success is binary, with probabilities from the model. Conditional peak sales are lognormal, with log standard deviation 0.5 for frontline and 0.6 for other programs. The same frontline event drives the label-withdrawal branch. Development spending, net cash, corporate costs, and the next-generation option remain fixed. The model omits many real-world dependencies and financing paths.</p></details>
+<details><summary>How the simulation is constructed</summary><p>Seed 11; 200,000 draws. Core value uses a lognormal revenue multiplier (log standard deviation 0.32) scaled to preserve the expected core PV, plus a normal margin shift with 5 percentage points standard deviation. Program success is binary, with probabilities from the model. Conditional peak sales are lognormal, with log standard deviation 0.5 for frontline and 0.6 for other programs. The same frontline event drives the label-withdrawal branch. Development spending, net cash, corporate costs, and the next-generation option remain fixed. The model omits many real-world dependencies and financing paths.</p>${equations.simulation}</details>
 <p>There are also parts I have simplified. I use revenue times margin as a rough measure of cash flow, rather than a full forecast of capital spending and working capital. Taxes, restricted cash, and future financing need more work. I hold the share count at 475M and stop the cash flows in 2045. I would revisit those choices before treating this as a fresh valuation at a later date.</p>
 </section>
 <section id="watch"><h2>What would change my mind?</h2>
@@ -168,13 +176,39 @@ ${table('One input at a time around the central case',['Input','Lower setting','
 <p class="model-note">To run the model, use Python 3.10+ and NumPy: <code>python iova_rnpv_model.py</code>. The calculator on this page uses the same valuation assumptions. The simulations run in Python.</p>
 <ul class="sources"><li><a href="${source.quarter}">Iovance Form 10-Q, quarter ended 30 June 2026</a> — revenue, cash composition, and capital structure.</li><li><a href="${source.guidance}">Iovance guidance update, 29 September 2026, SEC Exhibit 99.1</a>.</li><li><a href="${source.lung}">Iovance IOV-LUN-202 update, 29 October 2026</a>.</li><li><a href="${source.label}">FDA Amtagvi approval letter, 16 February 2024</a> — confirmatory obligations and withdrawal provisions.</li><li><a href="${source.competitor}">Replimune corporate update, 14 August 2026</a> — TUDRIQEV approval.</li></ul>
 <p>The sources above are where I start. The sales paths, launch dates, margins, success probabilities, and valuation are my own assumptions and opinion.</p>
-<p><a href="../statistics.html#my-valuations">← Back to My valuations</a> · <a href="../statistics/iovance-data-first.html">Read the clinical-data case →</a></p>
+<p><a href="../valuations.html">← Back to My valuations</a> · <a href="../statistics/iovance-data-first.html">Read the clinical-data case →</a></p>
 </section>
 </article>
 </main>
-<footer><span>© 2026 Kinley Tenzin</span><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><span>Personal analysis as of 30 October 2026.</span></footer>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html">My valuations</a><span>Personal analysis as of 30 October 2026.</span></footer>
 </div>
 </body></html>
 `;
 await writeFile(path.join(root,'valuations','iova.html'),html);
+const hub=`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>My valuations · Alea · Kinley Tenzin</title>
+<meta name="description" content="My company valuations and the reasoning behind them. Start with Iovance: why I get $5.83 per share, the equations, and what would change my mind.">
+<meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/research-notes.css?v=4"><link rel="stylesheet" href="assets/valuation.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">Skip to my valuation cases</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="valuations.html" aria-current="page">My valuations</a><a href="biotech.html">Biotech</a></nav>
+<header class="guide-header"><div class="dateline"><span>Kinley Tenzin · Alea</span><span>My opinions and assumptions</span></div><h1>My valuations</h1><p class="lede">What I think a company is worth, and why. In each case, I explain how I get the number, what I am assuming, and what would change my mind.</p></header>
+<main id="main" class="valuation-index" tabindex="-1">
+<p class="kicker">1 company case</p>
+<a class="lesson-card valuation-case" href="valuations/iova.html"><div><span class="lesson-kind">Case 01 · $IOVA · 30 October 2026</span><h2>Why I value Iovance at $5.83</h2><p>Why I think melanoma carries most of the value, why I lowered my lung assumptions, and what would change my mind. Includes the equations and a model you can change.</p><span class="lesson-open">Read my case <span aria-hidden="true">→</span></span></div><div class="valuation-case-estimate"><span>My estimate</span><strong>${money(central.perShare)}</strong><small>per diluted share<br>Based on 30 October 2026 assumptions</small></div></a>
+<p class="model-note">These are my dated opinions. Each case includes the sources, assumptions, and model behind it.</p>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="biotech.html">Biotech</a></footer>
+</div>
+</body></html>
+`;
+await writeFile(path.join(root,'valuations.html'),hub);
 console.log(`Built IOVA opinion case: ${money(central.perShare)}/share; $${central.equity.toFixed(2)}M equity.`);

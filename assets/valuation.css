@@ -2,3 +2,17 @@
 @media(max-width:860px){.valuation-layout{grid-template-columns:1fr;gap:20px}}
 @media(max-width:560px){.valuation-metrics{grid-template-columns:1fr}.valuation-metrics>div{padding:16px 20px}.valuation-metrics dd{font-size:30px}.valuation-explorer .lab-controls{grid-template-columns:1fr}.value-part{grid-template-columns:minmax(100px,1.4fr) minmax(55px,1fr) 62px;gap:8px;font-size:12px}.value-part strong{font-size:11px}.valuation-explorer{padding:18px}.explorer-result strong{font-size:30px}}
 @media print{.valuation-metrics,.value-breakdown{break-inside:avoid}.valuation-explorer details{display:none}}
+.valuation-equation{margin:24px 0;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;min-width:0}
+.valuation-equation figcaption{font:600 14px/1.5 "Archivo",sans-serif;color:var(--teal);margin-bottom:14px}
+.valuation-equation p{font-size:14px;line-height:1.65;color:var(--muted);margin:14px 0 0}
+.equation-scroll{overflow-x:auto;overflow-y:hidden;padding:8px 2px 14px;max-width:100%;outline-offset:2px}
+.equation-scroll math{font-family:"Cambria Math","STIX Two Math",math,serif;font-size:clamp(17px,2.2vw,21px);color:var(--ink);margin:0 auto;min-width:max-content}
+.equation-scroll:focus-visible{outline:2px solid var(--teal)}
+.valuation-index{max-width:1040px;margin-top:24px}
+.valuation-case{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:32px;padding:30px;text-decoration:none}
+.valuation-case h2{margin:14px 0;font-size:clamp(25px,3vw,34px);color:var(--ink)}
+.valuation-case-estimate{display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line);padding-left:30px;font:13px/1.5 "Archivo",sans-serif;color:var(--muted)}
+.valuation-case-estimate strong{font:700 46px/1.3 "Archivo",sans-serif;color:var(--teal);margin:8px 0}
+.valuation-case-estimate small{font-size:12px;line-height:1.7}
+@media(max-width:560px){.valuation-equation{padding:15px 13px}.valuation-case{grid-template-columns:1fr;gap:22px;padding:22px}.valuation-case-estimate{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.valuation-case-estimate strong{font-size:36px}}
+@media print{.valuation-equation{break-inside:avoid}.equation-scroll{overflow:visible}.equation-scroll math{font-size:13pt}}

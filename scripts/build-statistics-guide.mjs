@@ -244,8 +244,8 @@ const head = (title, description, prefix, interactive=false, dashboard=false) =>
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
 ${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=2"></script>`:''}
 </head>`;
-const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
-const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
+const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}valuations.html">My valuations</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
+const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}valuations.html">My valuations</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
 
 for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
