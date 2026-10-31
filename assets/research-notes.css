@@ -22,6 +22,51 @@
 .example p:last-child{margin-bottom:10px}
 .related-links{padding-left:22px}
 .worked-case{border-bottom:1px solid var(--line-strong);padding-bottom:20px}
+.dashboard-page .guide-header{padding-bottom:6px}
+.dashboard-page .guide-header .lede{max-width:800px;font-size:19px}
+.dashboard{max-width:none;margin-top:18px}
+.dashboard [hidden]{display:none!important}
+.library-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px 28px;margin-bottom:24px}
+.library-toolbar h2{font-size:23px;margin:0 0 5px}
+.library-count{font:12px/1.5 "IBM Plex Mono",ui-monospace,monospace;color:var(--muted);margin:0}
+.library-search{width:min(340px,100%);margin-left:auto}
+.library-search label{display:block;font:500 12px/1.5 "Archivo",sans-serif;color:var(--muted);margin-bottom:6px}
+.library-search-row{display:flex;gap:8px;align-items:center}
+.library-search input{width:100%;min-width:0;min-height:43px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--ink);font:16px/1.4 Georgia,serif}
+.library-search button{border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--teal);padding:11px 12px;font:500 13px/1.4 "Archivo",sans-serif;cursor:pointer}
+.folder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 22px}
+.folder-card{display:flex;flex-direction:column;color:var(--ink);text-decoration:none;transition:transform .15s ease}
+.folder-card:hover{opacity:1;transform:translateY(-3px)}
+.folder-tab{display:block;width:82px;height:17px;border:1px solid var(--line-strong);border-bottom:0;border-radius:9px 9px 0 0;background:var(--teal-bg);margin-left:0;position:relative;z-index:1}
+.folder-body{position:relative;display:flex;flex:1;flex-direction:column;min-height:176px;padding:18px 21px;border:1px solid var(--line-strong);border-radius:0 14px 14px 14px;background:var(--surface);box-shadow:var(--shadow)}
+.folder-body::before{content:"";position:absolute;left:0;top:-1px;width:80px;height:2px;background:var(--surface)}
+.folder-tone-1 .folder-tab{background:var(--surface2)}
+.folder-tone-2 .folder-tab{background:var(--amber-bg)}
+.folder-meta{display:flex;justify-content:space-between;gap:10px;width:100%;color:var(--muted);font:11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.02em}
+.folder-name{display:block;font:700 21px/1.2 "Archivo",system-ui,sans-serif;letter-spacing:-.015em;margin:12px 0 9px;max-width:300px}
+.folder-summary{display:block;color:var(--muted);font-size:15px;line-height:1.45;margin-bottom:16px}
+.folder-open{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;color:var(--teal);font:600 12px/1.5 "Archivo",sans-serif}
+.folder-card:hover .folder-body,.lesson-card:hover{border-color:var(--teal)}
+.folder-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font:14px/1.5 "Archivo",sans-serif;color:var(--muted);margin-bottom:10px}
+.folder-breadcrumb button{color:var(--teal);background:transparent;border:0;padding:10px 0;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.dashboard-status{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 18px}
+.dashboard-status:empty{display:none}
+.folder-section{margin:38px 0}
+.folder-section-head{margin-bottom:20px}
+.folder-section-head h2,.search-results h2{font-size:28px;margin:0 0 8px}
+.folder-section-head p{font-size:16px;color:var(--muted);margin:0}
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px}
+.lesson-card{display:flex;flex-direction:column;min-width:0;min-height:228px;padding:23px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);text-decoration:none;box-shadow:var(--shadow)}
+.lesson-card:hover{opacity:1}
+.lesson-kind{font:11px/1.5 "IBM Plex Mono",monospace;color:var(--teal);letter-spacing:.03em;text-transform:uppercase}
+.lesson-card h3{font-size:21px;line-height:1.25;margin:14px 0 10px}
+.lesson-card p{font-size:15px;line-height:1.5;color:var(--muted);margin:0 0 22px}
+.lesson-open{display:flex;justify-content:space-between;gap:14px;color:var(--teal);font:600 13px/1.5 "Archivo",sans-serif;margin-top:auto}
+.folder-note{font-size:14px;color:var(--muted);margin:24px 0}
+.search-results h2{margin-top:24px;margin-bottom:18px}
+@media(max-width:900px){.folder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.folder-grid{grid-template-columns:1fr;gap:20px}.folder-body{min-height:166px}.library-search{width:100%;margin-left:0}.folder-section-head h2{font-size:25px}.lesson-card{min-height:206px}.dashboard-page .guide-header .lede{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.folder-card{transition:none}.folder-card:hover{transform:none}}
 .learning-lab{--lab-blue:#245a8a;--lab-amber:#9a6206;border-block:1px solid var(--line-strong);padding:24px 0;margin:26px 0 42px;min-width:0}
 .learning-lab h2{font-size:clamp(22px,3vw,29px);margin:6px 0 12px;max-width:760px}
 .learning-lab .kicker{margin:0 0 8px;color:var(--teal)}

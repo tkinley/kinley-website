@@ -230,7 +230,7 @@ const concepts = [
 
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const bySlug = new Map(concepts.map(c => [c.slug, c]));
-const head = (title, description, prefix, interactive=false) => `<head>
+const head = (title, description, prefix, interactive=false, dashboard=false) => `<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
@@ -240,8 +240,9 @@ const head = (title, description, prefix, interactive=false) => `<head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=3">
+<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=4">
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
+${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=1"></script>`:''}
 </head>`;
 const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
 const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
@@ -280,22 +281,42 @@ ${footer('../')}
 }
 
 const groups = ['Start with the trial', 'Estimate the effect', 'Check what can mislead', 'Follow outcomes over time', 'Design and interpret the decision'];
+const folderSummaries = [
+  'Design, endpoints, data, and response rates.',
+  'Intervals, effect sizes, p-values, and power.',
+  'Multiplicity, subgroup selection, and missing data.',
+  'Survival curves and Bayesian prediction.',
+  'Noninferiority, interim looks, and safety.',
+];
+const folders=groups.map((group,i)=>({id:`group-${i+1}`,name:group,summary:folderSummaries[i],concepts:concepts.filter(c=>c.group===group)}));
+folders.push({id:'case-studies',name:'Company case studies',summary:'Apply the concepts to Iovance’s clinical data.',concepts:[{slug:'iovance-data-first',title:'Iovance: a data-first statistical roadmap',summary:'Work through the observations, subgroup selection, Wilson uncertainty, and conditional predictions.',caseStudy:true}]});
+const lessonCard=(concept,folder)=>`<a class="lesson-card" data-lesson data-search="${escape(`${concept.title} ${concept.summary} ${folder.name}`)}" href="statistics/${concept.slug}.html"><span class="lesson-kind">${concept.caseStudy?'Worked company case':'Interactive lesson'}</span><h3>${escape(concept.title)}</h3><p>${escape(concept.summary)}</p><span class="lesson-open">${concept.caseStudy?'Open case study':'Open lesson'} <span aria-hidden="true">↗</span></span></a>`;
+const folderSection=folder=>{
+  const headingId=folder.id==='case-studies'?'worked-case-title':`${folder.id}-title`;
+  return `<section class="folder-section" id="${folder.id}" data-folder-section data-folder-name="${escape(folder.name)}" aria-labelledby="${headingId}"><div class="folder-section-head"><h2 id="${headingId}" tabindex="-1">${escape(folder.name)}</h2><p>${escape(folder.summary)}</p></div><div class="lesson-grid">${folder.concepts.map(c=>lessonCard(c,folder)).join('\n')}</div>${folder.id==='case-studies'?'<p class="folder-note"><a href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed Iovance companion notebook (.ipynb)</a> · <a href="biotech.html">More biotech research</a></p>':''}</section>`;
+};
 const hub = `<!doctype html>
 <html lang="en">
-${head('Signal & Chance: clinical-trial statistics', 'Interactive clinical-trial statistics: response rates, confidence intervals, p-values, power, survival, Bayesian prediction, trial design, and safety.', '')}
-<body>
-<a class="skip" href="#main">Skip to concepts</a>
+${head('Signal & Chance: clinical-trial statistics', 'Browse topic folders with interactive clinical-trial statistics lessons and worked company case studies.', '', false, true)}
+<body class="dashboard-page">
+<a class="skip" href="#main">Skip to the learning folders</a>
 <div class="wrap">
 ${nav('')}
 <header class="guide-header">
 <div class="dateline"><span>Kinley Tenzin · Signal &amp; Chance</span><span>A guide to drug-trial evidence</span></div>
 <h1>Signal &amp; Chance</h1>
-<p class="lede">Statistics for reading drug-trial evidence. Each lesson pairs a plain-language explanation with a graphic you can change, so you can see how data, assumptions, and chance shape a result.</p>
+<p class="lede">A visual library for reading drug-trial evidence. Open a folder, choose a lesson, and learn by changing the example.</p>
 </header>
-<main id="main" class="guide-directory" tabindex="-1">
-<p class="guide-intro">Start with the trial’s question and design, then examine the effect, uncertainty, and sources of bias. The examples apply across drug development; oncology terms are explained where they appear.</p>
-${groups.map((group, i) => `<section aria-labelledby="group-${i+1}"><h2 id="group-${i+1}">${i+1}. ${escape(group)}</h2><dl class="concept-list">${concepts.filter(c => c.group === group).map(c => `<div><dt><a href="statistics/${c.slug}.html">${escape(c.title)}</a></dt><dd>${escape(c.summary)}</dd></div>`).join('\n')}</dl></section>`).join('\n')}
-<section class="worked-case" aria-labelledby="worked-case-title"><h2 id="worked-case-title">A worked company example</h2><p><a href="statistics/iovance-data-first.html">Iovance: a data-first statistical roadmap</a> applies these ideas to a reported clinical dataset: current observations, subgroup selection, Wilson uncertainty, future prediction, and independent validation.</p><p><a href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed Iovance companion notebook (.ipynb)</a>.</p><p>Clinical case studies and the existing research trackers are collected in <a href="biotech.html">Biotech</a>.</p></section>
+<main id="main" class="dashboard" data-learning-dashboard tabindex="-1">
+<div class="library-toolbar"><div><h2 data-library-heading tabindex="-1">Learning folders</h2><p class="library-count">16 interactive lessons · 1 worked company case</p></div><div class="library-search" data-search-controls hidden><label for="lesson-search">Find a lesson</label><div class="library-search-row"><input type="search" id="lesson-search" placeholder="Try Wilson, survival, or p-values" autocomplete="off"><button type="button" data-clear-search hidden>Clear</button></div></div></div>
+<nav class="folder-breadcrumb" aria-label="Folder path" data-folder-breadcrumb hidden><button type="button" data-all-folders>← All folders</button><span aria-hidden="true">/</span><span data-current-folder aria-current="page"></span></nav>
+<p class="dashboard-status" data-dashboard-status role="status" aria-live="polite"></p>
+<div class="folder-grid" data-folder-grid aria-label="Topic folders">
+${folders.map((folder,i)=>`<a class="folder-card folder-tone-${i%3}" data-open-folder="${folder.id}" href="#${folder.id}"><span class="folder-tab" aria-hidden="true"></span><span class="folder-body"><span class="folder-meta"><span>${String(i+1).padStart(2,'0')}</span><span>${folder.concepts.length} ${folder.id==='case-studies'?'case study':'lessons'}</span></span><span class="folder-name">${escape(folder.name)}</span><span class="folder-summary">${escape(folder.summary)}</span><span class="folder-open">Open folder <span aria-hidden="true">→</span></span></span></a>`).join('\n')}
+</div>
+${folders.map(folderSection).join('\n')}
+<section class="search-results" data-search-results aria-labelledby="search-results-title" hidden><h2 id="search-results-title">Search results</h2><div class="lesson-grid" data-search-grid></div><p data-no-results hidden>No lessons match that search. Try a topic such as “response”, “power”, or “survival”.</p></section>
+<noscript><p class="folder-note">The folders link to the lesson grids below. Every lesson is available without search.</p></noscript>
 </main>
 ${footer('')}
 </div>
