@@ -3,6 +3,16 @@
 .textnav{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;padding:24px 0 8px;font:500 14px/1.5 "Archivo",system-ui,sans-serif}
 .textnav a{color:var(--muted);text-decoration:none}
 .textnav a:hover,.textnav a[aria-current]{color:var(--teal);text-decoration:underline;text-underline-offset:5px}
+.lesson-equations{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--line-strong);min-width:0}
+.lesson-equations figcaption{font:600 14px/1.5 "Archivo",sans-serif;color:var(--teal);margin-bottom:16px}
+.lesson-equations p{font-size:14px;line-height:1.7;color:var(--muted);margin:16px 0 0}
+.lesson-equation-scroll{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:10px 2px 16px;outline-offset:2px}
+.lesson-equation-scroll math{font-family:"Cambria Math","STIX Two Math",math,serif;font-size:clamp(16px,2vw,20px);min-width:max-content;margin:0 auto;color:var(--ink)}
+.lesson-equation-scroll:focus-visible{outline:2px solid var(--teal)}
+.lab-checkbox{grid-column:1/-1}.lab-checkbox label{justify-content:flex-start!important;align-items:center!important;gap:10px!important;cursor:pointer;min-height:40px}
+.lab-checkbox input{width:18px;height:18px;accent-color:var(--teal);flex-shrink:0}
+.lab-fill-amber{fill:var(--lab-amber)}
+@media print{.lesson-equations{break-inside:avoid}.lesson-equation-scroll{overflow:visible}}
 .guide-header h1{max-width:950px}
 .guide-header .lede{max-width:850px}
 .guide-directory,.concept-body{max-width:850px}

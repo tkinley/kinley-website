@@ -23,6 +23,12 @@ export function wilson(x, n, confidence = 0.95) {
   const center = (p + z*z/(2*n))/d, half = z*Math.sqrt(p*(1-p)/n + z*z/(4*n*n))/d;
   return [clamp(center-half, 0, 1), clamp(center+half, 0, 1)];
 }
+export function wald(x, n, confidence = 0.95) {
+  if (!(n > 0 && x >= 0 && x <= n && confidence > 0 && confidence < 1)) throw new RangeError('Invalid binomial observations.');
+  const p=x/n,z=normalQuantile((1+confidence)/2),half=z*Math.sqrt(p*(1-p)/n);
+  // Leave the raw limits visible: overshoot is the point of the comparison.
+  return [p-half,p+half];
+}
 export function logGamma(z) {
   const c = [676.5203681218851, -1259.1392167224028, 771.3234287776531, -176.6150291621406, 12.507343278686905, -0.13857109526572012, 9.984369578019572e-6, 1.5056327351493116e-7];
   if (z < 0.5) return Math.log(Math.PI) - Math.log(Math.sin(Math.PI*z)) - logGamma(1-z);

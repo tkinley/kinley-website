@@ -240,12 +240,12 @@ const head = (title, description, prefix, interactive=false, dashboard=false) =>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=4">
-${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
+<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=5">
+${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=2"></script>`:''}
 ${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=2"></script>`:''}
 </head>`;
-const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}valuations.html">My valuations</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
-const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}valuations.html">My valuations</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
+const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}valuations.html">Investment theses</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
+const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}valuations.html">Investment theses</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
 
 for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
@@ -290,7 +290,7 @@ const folderSummaries = [
 ];
 const folders=groups.map((group,i)=>({id:`group-${i+1}`,name:group,summary:folderSummaries[i],concepts:concepts.filter(c=>c.group===group)}));
 folders.push({id:'case-studies',name:'Company case studies',summary:'Apply the concepts to Iovance’s clinical data.',concepts:[{slug:'iovance-data-first',title:'Iovance: a data-first statistical roadmap',summary:'Work through the observations, subgroup selection, Wilson uncertainty, and conditional predictions.',caseStudy:true}]});
-folders.push({id:'my-valuations',name:'My valuations',summary:'What I think a company is worth, and why.',concepts:[{href:'valuations/iova.html',title:'$IOVA: why I get $5.83',summary:'Why I am cautious, how I think about melanoma and the lung data, and what would change my mind.',valuation:true}]});
+folders.push({id:'my-valuations',name:'Investment theses',summary:'What I think a company is worth, and why.',concepts:[{href:'valuations/iova.html',title:'$IOVA: why I get $5.83',summary:'Why I am cautious, how I think about melanoma and the lung data, and what would change my mind.',valuation:true}]});
 const folderCount=folder=>`${folder.concepts.length} ${folder.id==='case-studies'?'case study':folder.id==='my-valuations'?'opinion case':'lessons'}`;
 const lessonCard=(concept,folder)=>`<a class="lesson-card" data-lesson data-search="${escape(`${concept.title} ${concept.summary} ${folder.name}`)}" href="${concept.href||`statistics/${concept.slug}.html`}"><span class="lesson-kind">${concept.valuation?'Kinley Tenzin · Personal opinion':concept.caseStudy?'Worked company case':'Interactive lesson'}</span><h3>${escape(concept.title)}</h3><p>${escape(concept.summary)}</p><span class="lesson-open">${concept.valuation?'Read my case':concept.caseStudy?'Open case study':'Open lesson'} <span aria-hidden="true">↗</span></span></a>`;
 const folderSection=folder=>{

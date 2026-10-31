@@ -50,10 +50,10 @@ const html=`<!doctype html>
 <body>
 <a class="skip" href="#main">Skip to the case</a>
 <div class="wrap">
-<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html" aria-current="location">My valuations</a><a href="../biotech.html">Biotech</a></nav>
+<nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html" aria-current="location">Investment theses</a><a href="../biotech.html">Biotech</a></nav>
 <header class="valuation-header">
-<div class="dateline"><span>Kinley Tenzin · My valuations · Case 01</span><span>Opinion as of 30 October 2026, evening</span></div>
-<p class="breadcrumb"><a href="../valuations.html">← My valuations in Alea</a></p>
+<div class="dateline"><span>Kinley Tenzin · Investment theses · Case 01</span><span>Opinion as of 30 October 2026, evening</span></div>
+<p class="breadcrumb"><a href="../valuations.html">← Investment theses in Alea</a></p>
 <h1><span class="ticker">$IOVA · Iovance Biotherapeutics</span>Why I value Iovance at $5.83</h1>
 <p class="lede">I think most of Iovance’s value still comes from melanoma. The lung data made me more cautious, but the bigger question for me is how much the melanoma business can earn. With the assumptions below, I get <strong>${money(central.perShare)} per diluted share</strong>. Here is why.</p>
 <p class="opinion-label">By Kinley Tenzin · My opinion, based on 30 October 2026 assumptions · Published 31 October 2026</p>
@@ -176,11 +176,11 @@ ${equations.reverse}
 <p class="model-note">To run the model, use Python 3.10+ and NumPy: <code>python iova_rnpv_model.py</code>. The calculator on this page uses the same valuation assumptions. The simulations run in Python.</p>
 <ul class="sources"><li><a href="${source.quarter}">Iovance Form 10-Q, quarter ended 30 June 2026</a> — revenue, cash composition, and capital structure.</li><li><a href="${source.guidance}">Iovance guidance update, 29 September 2026, SEC Exhibit 99.1</a>.</li><li><a href="${source.lung}">Iovance IOV-LUN-202 update, 29 October 2026</a>.</li><li><a href="${source.label}">FDA Amtagvi approval letter, 16 February 2024</a> — confirmatory obligations and withdrawal provisions.</li><li><a href="${source.competitor}">Replimune corporate update, 14 August 2026</a> — TUDRIQEV approval.</li></ul>
 <p>The sources above are where I start. The sales paths, launch dates, margins, success probabilities, and valuation are my own assumptions and opinion.</p>
-<p><a href="../valuations.html">← Back to My valuations</a> · <a href="../statistics/iovance-data-first.html">Read the clinical-data case →</a></p>
+<p><a href="../valuations.html">← Back to Investment theses</a> · <a href="../statistics/iovance-data-first.html">Read the clinical-data case →</a></p>
 </section>
 </article>
 </main>
-<footer><span>© 2026 Kinley Tenzin</span><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html">My valuations</a><span>Personal analysis as of 30 October 2026.</span></footer>
+<footer><span>© 2026 Kinley Tenzin</span><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html">Investment theses</a><span>Personal analysis as of 30 October 2026.</span></footer>
 </div>
 </body></html>
 `;
@@ -189,7 +189,7 @@ const hub=`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
-<title>My valuations · Alea · Kinley Tenzin</title>
+<title>Investment theses · Alea · Kinley Tenzin</title>
 <meta name="description" content="My company valuations and the reasoning behind them. Start with Iovance: why I get $5.83 per share, the equations, and what would change my mind.">
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,8 +199,8 @@ const hub=`<!doctype html>
 <body>
 <a class="skip" href="#main">Skip to my valuation cases</a>
 <div class="wrap">
-<nav class="textnav" aria-label="Pages"><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="valuations.html" aria-current="page">My valuations</a><a href="biotech.html">Biotech</a></nav>
-<header class="guide-header"><div class="dateline"><span>Kinley Tenzin · Alea</span><span>My opinions and assumptions</span></div><h1>My valuations</h1><p class="lede">What I think a company is worth, and why. In each case, I explain how I get the number, what I am assuming, and what would change my mind.</p></header>
+<nav class="textnav" aria-label="Pages"><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="valuations.html" aria-current="page">Investment theses</a><a href="biotech.html">Biotech</a></nav>
+<header class="guide-header"><div class="dateline"><span>Kinley Tenzin · Alea</span><span>My opinions and assumptions</span></div><h1>Investment theses</h1><p class="lede">What I think a company is worth, and why. In each case, I explain how I get the number, what I am assuming, and what would change my mind.</p></header>
 <main id="main" class="valuation-index" tabindex="-1">
 <p class="kicker">1 company case</p>
 <a class="lesson-card valuation-case" href="valuations/iova.html"><div><span class="lesson-kind">Case 01 · $IOVA · 30 October 2026</span><h2>Why I value Iovance at $5.83</h2><p>Why I think melanoma carries most of the value, why I lowered my lung assumptions, and what would change my mind. Includes the equations and a model you can change.</p><span class="lesson-open">Read my case <span aria-hidden="true">→</span></span></div><div class="valuation-case-estimate"><span>My estimate</span><strong>${money(central.perShare)}</strong><small>per diluted share<br>Based on 30 October 2026 assumptions</small></div></a>

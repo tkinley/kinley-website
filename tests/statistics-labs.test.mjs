@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  normalCDF, normalQuantile, wilson, binomialPMF, betaBinomialPMF, countInterval,
+  normalCDF, normalQuantile, wilson, wald, binomialPMF, betaBinomialPMF, countInterval,
   betaCDF, betaQuantile, trialBalance, endpointRates, power, familyError,
   selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks, zeroEventBound,
 } from '../assets/statistics-lab-models.mjs';
@@ -20,6 +20,24 @@ test('Wilson matches the established count example and stays within bounds at ex
   assert.equal(wilson(0,20)[0],0);
   close(wilson(20,20)[1],1);
   assert.ok(wilson(120,200)[1]-wilson(120,200)[0]<wilson(12,20)[1]-wilson(12,20)[0]);
+});
+test('raw Wald bounds expose overshoot and collapse at boundary observations',()=>{
+  const low=wald(1,20),high=wald(19,20);
+  close(low[0],-0.0455168294,2e-7);close(low[1],0.1455168294,2e-7);
+  close(high[0],1-low[1]);close(high[1],1-low[0]);
+  assert.deepEqual(wald(0,20),[0,0]);assert.deepEqual(wald(20,20),[1,1]);
+  assert.throws(()=>wald(2,1),RangeError);
+});
+test('optional Wald comparison expands the axis without altering the Wilson results',()=>{
+  const original=calculateLab('confidence-intervals',{n:20,rate:5,showWald:false});
+  const comparison=calculateLab('confidence-intervals',{n:20,rate:5,showWald:true});
+  assert.deepEqual(comparison.chart.rows.slice(0,2),original.chart.rows);
+  assert.equal(comparison.chart.rows.length,3);
+  assert.ok(comparison.chart.min<0);assert.ok(comparison.chart.rows[2].lo<0);
+  assert.match(comparison.summary,/beyond the possible 0–100% range/);
+  assert.match(renderChart(comparison.chart,285,comparison.summary),/lab-dashed/);
+  const boundary=calculateLab('confidence-intervals',{n:20,rate:100,showWald:true});
+  assert.match(boundary.summary,/collapses to a point/);
 });
 test('binomial probabilities include degenerate cases and reproduce the teaching tail',()=>{
   const pmf=binomialPMF(10,0.3);
@@ -106,7 +124,7 @@ test('all seventeen lessons have static graphics and finite results at control l
     const initial=defaultValues(slug);
     assert.ok(renderLab(slug).includes('role="img"'),slug);
     for(const c of config.controls){
-      const candidates=c.type==='select'?c.options.map(o=>o[0]):[c.min,c.max];
+      const candidates=c.type==='select'?c.options.map(o=>o[0]):c.type==='checkbox'?[false,true]:[c.min,c.max];
       for(const value of candidates){
         const state=calculateLab(slug,{...initial,[c.key]:value});
         const graphic=renderChart(state.chart,285,state.summary);

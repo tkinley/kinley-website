@@ -1,9 +1,10 @@
 import {
-  clamp, normalCDF, normalQuantile, wilson, binomialPMF, betaBinomialPMF,
+  clamp, normalCDF, normalQuantile, wilson, wald, binomialPMF, betaBinomialPMF,
   countInterval, betaDensity, betaQuantile, trialBalance, endpointRates, power,
   familyError, selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks,
   zeroEventBound,
-} from './statistics-lab-models.mjs?v=1';
+} from './statistics-lab-models.mjs?v=2';
+import {renderLessonEquations} from './statistics-equations.mjs?v=1';
 
 const pct = (p, digits=1) => {
   const unit=10**(-digits);
@@ -16,6 +17,7 @@ const prob = p => p < 0.0001 ? '< 0.0001' : p.toFixed(4);
 const esc = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const range = (key, label, value, min, max, step=1, format='number', maxFrom) => ({key,label,value,min,max,step,format,maxFrom,type:'range'});
 const select = (key, label, value, options) => ({key,label,value,options,type:'select'});
+const checkbox = (key,label,value=false) => ({key,label,value,type:'checkbox'});
 const bars = (labels, values) => ({type:'bars',rows:labels.map((name,i)=>({name,value:values[i],color:i===0?'teal':'blue'}))});
 const line = (name, data, color='teal', extra={}) => ({name,data,color,...extra});
 const points = (n, fn) => Array.from({length:n},(_,i)=>fn(i));
@@ -55,9 +57,22 @@ export const labs = {
   'confidence-intervals': {
     title:'Watch a Wilson interval change',
     question:'Keep the observed rate similar while increasing the sample size. Then explore rates near zero or one.',
-    controls:[range('n','Observed patients',100,20,400,10),range('rate','Observed response rate',60,0,100,5,'percent')],
-    lesson:'Counts are rounded from the selected percentage. Both spans are 95% Wilson intervals under a binomial model. They describe sampling uncertainty and do not adjust for retrospective subgroup selection.',
-    compute:v=>{const x=Math.round(v.n*v.rate/100),baseX=Math.round(20*v.rate/100),ci=wilson(x,v.n),base=wilson(baseX,20);return {chart:{type:'intervals',min:0,max:100,axis:'Response probability (%)',rows:[{name:`20-patient comparison (${baseX}/20)`,lo:base[0]*100,hi:base[1]*100,value:baseX/20*100,color:'blue'},{name:`Selected sample (${x}/${v.n})`,lo:ci[0]*100,hi:ci[1]*100,value:x/v.n*100,color:'teal'}]},summary:`${x}/${v.n} responses = ${pct(x/v.n)}. Wilson 95% interval: ${pct(ci[0])}–${pct(ci[1])}; width ${fixed((ci[1]-ci[0])*100)} percentage points. This is an interval for a parameter, not future responder counts.`};},
+    controls:[range('n','Observed patients',100,20,400,10),range('rate','Observed response rate',60,0,100,5,'percent'),checkbox('showWald','Compare the naive Wald interval')],
+    lesson:'Counts are rounded from the selected percentage. Wilson spans describe sampling uncertainty under a binomial model. The optional dashed amber span shows the raw Wald limits on the same axis, including any overshoot beyond 0–100%. These intervals do not adjust for retrospective subgroup selection.',
+    compute:v=>{
+      const x=Math.round(v.n*v.rate/100),baseX=Math.round(20*v.rate/100),ci=wilson(x,v.n),base=wilson(baseX,20);
+      const chart={type:'intervals',min:0,max:100,axis:'Response probability (%)',rows:[{name:`20-patient Wilson (${baseX}/20)`,lo:base[0]*100,hi:base[1]*100,value:baseX/20*100,color:'blue'},{name:`Selected Wilson (${x}/${v.n})`,lo:ci[0]*100,hi:ci[1]*100,value:x/v.n*100,color:'teal'}]};
+      let summary=`${x}/${v.n} responses = ${pct(x/v.n)}. Wilson 95% interval: ${pct(ci[0])}–${pct(ci[1])}; width ${fixed((ci[1]-ci[0])*100)} percentage points.`;
+      if(v.showWald){
+        const naive=wald(x,v.n);
+        chart.min=Math.min(0,Math.floor(naive[0]*20)*5);
+        chart.max=Math.max(100,Math.ceil(naive[1]*20)*5);
+        chart.references=[{x:0,color:'muted'},{x:100,color:'muted'}];
+        chart.rows.push({name:`Naive Wald (${x}/${v.n})`,lo:naive[0]*100,hi:naive[1]*100,value:x/v.n*100,color:'amber',dash:true});
+        summary+=` Naive Wald: ${(naive[0]*100).toFixed(1)}%–${(naive[1]*100).toFixed(1)}%. ${naive[0]<0||naive[1]>1?'Its raw limits extend beyond the possible 0–100% range.':x===0||x===v.n?'It collapses to a point at this boundary.':'Compare its width and position with Wilson on the same axis.'}`;
+      }
+      return {chart,summary:summary+' These are intervals for a parameter, not future responder counts.'};
+    },
   },
   'effect-sizes': {
     title:'Compare absolute benefit, relative benefit, and odds',
@@ -152,6 +167,7 @@ function normalize(config, values) {
   const result={...values};
   for(const c of config.controls){
     if(c.type==='range') result[c.key]=clamp(Number(result[c.key]),c.min,c.maxFrom?Number(result[c.maxFrom]):c.max);
+    else if(c.type==='checkbox')result[c.key]=result[c.key]===true;
     else if(!c.options.some(o=>o[0]===String(result[c.key]))) result[c.key]=c.value;
   }
   return result;
@@ -184,7 +200,7 @@ export function renderChart(chart, width=720, summary='') {
       marks+=svgText(left,y,row.name);
       marks+=svgText(narrow?left:w-right,narrow?y+18:y,numberSpan(row,chart.axis==='Future responder count'),narrow?'start':'end');
       const yy=y+(narrow?39:27);
-      marks+=`<g class="lab-stroke-${row.color}"><line x1="${x(row.lo)}" x2="${x(row.hi)}" y1="${yy}" y2="${yy}" stroke-width="4"/><line x1="${x(row.lo)}" x2="${x(row.lo)}" y1="${yy-6}" y2="${yy+6}"/><line x1="${x(row.hi)}" x2="${x(row.hi)}" y1="${yy-6}" y2="${yy+6}"/></g><circle class="lab-fill-${row.color}" cx="${x(row.value)}" cy="${yy}" r="5"/>`;
+      marks+=`<g class="lab-stroke-${row.color}${row.dash?' lab-dashed':''}"><line x1="${x(row.lo)}" x2="${x(row.hi)}" y1="${yy}" y2="${yy}" stroke-width="4"/><line x1="${x(row.lo)}" x2="${x(row.lo)}" y1="${yy-6}" y2="${yy+6}"/><line x1="${x(row.hi)}" x2="${x(row.hi)}" y1="${yy-6}" y2="${yy+6}"/></g><circle class="lab-fill-${row.color}" cx="${x(row.value)}" cy="${yy}" r="5"/>`;
     });
     const ticks=w<450?3:4;
     for(let i=0;i<=ticks;i++){const raw=chart.min+(chart.max-chart.min)*i/ticks,v=Number(raw.toFixed(chart.axis==='Future responder count'?0:1));marks+=svgText(x(v),h-19,v,i===0?'start':i===ticks?'end':'middle');}
@@ -216,11 +232,17 @@ export function renderChart(chart, width=720, summary='') {
   return `<p class="lab-axis-caption">${esc(chart.ylabel)}</p><svg class="lab-svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(summary)}"><title>${esc(chart.ylabel)} versus ${esc(chart.xlabel)}</title>${marks}</svg><p class="lab-axis-caption">${esc(chart.xlabel)}</p><ul class="lab-legend">${legend.map(s=>`<li><span class="lab-swatch lab-stroke-${s.color}${s.dash?' lab-dashed':''}" aria-hidden="true"></span>${esc(s.name)}</li>`).join('')}${chart.series.some(s=>s.kind==='stems')?'<li><span class="lab-swatch lab-stroke-blue" aria-hidden="true"></span>At or above threshold</li>':''}</ul>`;
 }
 
+function renderControl(c,values){
+  if(c.type==='checkbox')return `<div class="lab-control lab-checkbox"><label for="lab-${c.key}"><input id="lab-${c.key}" data-lab-key="${c.key}" type="checkbox"${values[c.key]?' checked':''} disabled> ${esc(c.label)}</label></div>`;
+  const label=`<label for="lab-${c.key}">${esc(c.label)}${c.type==='range'?` <output for="lab-${c.key}" data-lab-value="${c.key}">${esc(formatControl(c,values[c.key]))}</output>`:''}</label>`;
+  const input=c.type==='select'?`<select id="lab-${c.key}" data-lab-key="${c.key}" disabled>${c.options.map(([value,label])=>`<option value="${value}"${value===c.value?' selected':''}>${esc(label)}</option>`).join('')}</select>`:`<input id="lab-${c.key}" data-lab-key="${c.key}" type="range" min="${c.min}" max="${c.maxFrom?values[c.maxFrom]:c.max}" step="${c.step}" value="${values[c.key]}" disabled>`;
+  return `<div class="lab-control">${label}${input}</div>`;
+}
 export function renderLab(slug) {
   const config=labs[slug];
   if(!config)throw new Error(`Missing learning example: ${slug}`);
   const values=defaultValues(slug),state=calculateLab(slug,values);
-  return `<section class="learning-lab" data-statistics-lab="${slug}" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">${esc(config.title)}</h2><p>${esc(config.question)}</p><div class="lab-controls">${config.controls.map(c=>`<div class="lab-control"><label for="lab-${c.key}">${esc(c.label)}${c.type==='range'?` <output for="lab-${c.key}" data-lab-value="${c.key}">${esc(formatControl(c,values[c.key]))}</output>`:''}</label>${c.type==='select'?`<select id="lab-${c.key}" data-lab-key="${c.key}" disabled>${c.options.map(([value,label])=>`<option value="${value}"${value===c.value?' selected':''}>${esc(label)}</option>`).join('')}</select>`:`<input id="lab-${c.key}" data-lab-key="${c.key}" type="range" min="${c.min}" max="${c.maxFrom?values[c.maxFrom]:c.max}" step="${c.step}" value="${values[c.key]}" disabled>`}</div>`).join('')}</div><figure class="lab-figure"><div class="lab-plot">${renderChart(state.chart,720,state.summary)}</div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">${esc(state.summary)}</figcaption></figure><p class="lab-lesson">${esc(config.lesson)}</p><button class="lab-reset" type="button" disabled>Reset example</button><noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>`;
+  return `<section class="learning-lab" data-statistics-lab="${slug}" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">${esc(config.title)}</h2><p>${esc(config.question)}</p><div class="lab-controls">${config.controls.map(c=>renderControl(c,values)).join('')}</div><figure class="lab-figure"><div class="lab-plot">${renderChart(state.chart,720,state.summary)}</div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">${esc(state.summary)}</figcaption></figure><p class="lab-lesson">${esc(config.lesson)}</p><button class="lab-reset" type="button" disabled>Reset example</button>${renderLessonEquations(slug)}<noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>`;
 }
 function mountLab(root) {
   const slug=root.dataset.statisticsLab,config=labs[slug];
@@ -232,7 +254,7 @@ function mountLab(root) {
     for(const c of config.controls){
       const input=root.querySelector(`[data-lab-key="${c.key}"]`);
       if(c.maxFrom)input.max=values[c.maxFrom];
-      input.value=values[c.key];
+      if(c.type==='checkbox')input.checked=values[c.key];else input.value=values[c.key];
       const output=root.querySelector(`[data-lab-value="${c.key}"]`);
       if(output)output.textContent=formatControl(c,values[c.key]);
     }
@@ -240,7 +262,7 @@ function mountLab(root) {
     plot.innerHTML=renderChart(state.chart,plot.clientWidth||720,state.summary);
     if(summary.textContent!==state.summary)summary.textContent=state.summary;
   }
-  for(const input of controls){input.disabled=false;input.addEventListener('input',()=>{values[input.dataset.labKey]=input.type==='range'?Number(input.value):input.value;draw();});}
+  for(const input of controls){input.disabled=false;input.addEventListener('input',()=>{values[input.dataset.labKey]=input.type==='checkbox'?input.checked:input.type==='range'?Number(input.value):input.value;draw();});}
   const reset=root.querySelector('.lab-reset');reset.disabled=false;reset.addEventListener('click',()=>{values=defaultValues(slug);draw();});
   if(typeof ResizeObserver!=='undefined')new ResizeObserver(draw).observe(plot);
   else window.addEventListener('resize',draw);
