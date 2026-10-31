@@ -244,8 +244,8 @@ const head = (title, description, prefix, interactive=false, dashboard=false) =>
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
 ${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=1"></script>`:''}
 </head>`;
-const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
-const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Signal &amp; Chance</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
+const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
+const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
 
 for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
@@ -257,8 +257,8 @@ ${head(concept.title, concept.summary, '../', true)}
 <div class="wrap">
 ${nav('../')}
 <header class="guide-header">
-<div class="dateline"><span>Signal &amp; Chance · ${escape(concept.group)}</span><span>31 October 2026</span></div>
-<p class="breadcrumb"><a href="../statistics.html">← All concepts in Signal &amp; Chance</a></p>
+<div class="dateline"><span>Alea · ${escape(concept.group)}</span><span>31 October 2026</span></div>
+<p class="breadcrumb"><a href="../statistics.html">← All concepts in Alea</a></p>
 <h1>${escape(concept.title)}</h1>
 <p class="lede">${concept.intro}</p>
 </header>
@@ -270,7 +270,7 @@ ${concept.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>\n
 <section id="related"><h2>Related concepts</h2><ul class="related-links">${concept.related.map(slug => `<li><a href="${slug}.html">${escape(bySlug.get(slug).title)}</a></li>`).join('')}</ul></section>
 <section id="sources"><h2>Sources and further reading</h2><ul class="sources">${concept.sources.map(key => `<li><a href="${sources[key][1]}">${escape(sources[key][0])}</a></li>`).join('')}</ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
 </article>
-<p><a href="../statistics.html">← Back to Signal &amp; Chance</a></p>
+<p><a href="../statistics.html">← Back to Alea</a></p>
 </main>
 ${footer('../')}
 </div>
@@ -297,14 +297,14 @@ const folderSection=folder=>{
 };
 const hub = `<!doctype html>
 <html lang="en">
-${head('Signal & Chance: clinical-trial statistics', 'Browse topic folders with interactive clinical-trial statistics lessons and worked company case studies.', '', false, true)}
+${head('Alea: clinical-trial statistics', 'Browse topic folders with interactive clinical-trial statistics lessons and worked company case studies.', '', false, true)}
 <body class="dashboard-page">
 <a class="skip" href="#main">Skip to the learning folders</a>
 <div class="wrap">
 ${nav('')}
 <header class="guide-header">
-<div class="dateline"><span>Kinley Tenzin · Signal &amp; Chance</span><span>A guide to drug-trial evidence</span></div>
-<h1>Signal &amp; Chance</h1>
+<div class="dateline"><span>Kinley Tenzin · Alea</span><span>A guide to drug-trial evidence</span></div>
+<h1>Alea</h1>
 <p class="lede">A visual library for reading drug-trial evidence. Open a folder, choose a lesson, and learn by changing the example.</p>
 </header>
 <main id="main" class="dashboard" data-learning-dashboard tabindex="-1">

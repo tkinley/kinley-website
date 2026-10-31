@@ -7,7 +7,7 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | Path | What it is |
 |---|---|
 | `index.html` | Homepage: publications, ongoing research, experience, teaching |
-| `statistics.html` | Signal & Chance: a folder-style dashboard for 16 interactive concepts and the Iovance case, with searchable lesson cards. Existing lesson URLs and group anchors are retained |
+| `statistics.html` | Alea: a folder-style dashboard for 16 interactive concepts and the Iovance case, with searchable lesson cards. Existing lesson URLs and group anchors are retained |
 | `assets/statistics-dashboard.mjs` | Local folder navigation, browser-back support, and lesson search. Without JavaScript, folder links lead to the fully available lesson grids below |
 | `statistics/*.html` | Complete explanations with hypothetical examples, interpretation limits, related concepts, and primary sources; no concept tabs |
 | `scripts/build-statistics-guide.mjs` | Source content and authoring helper for the guide; run `node scripts/build-statistics-guide.mjs` after editing it. The generated HTML is tracked and needs no production build |
