@@ -43,7 +43,8 @@ if(dashboard){
       section.hidden=false;
       current.textContent=section.dataset.folderName;
       const count=section.querySelectorAll('[data-lesson]').length;
-      const label=activeFolder==='case-studies'?(count===1?'case study':'case studies'):(count===1?'lesson':'lessons');
+      const kind=section.dataset.entryKind||'lesson';
+      const label=count===1?kind:kind==='case study'?'case studies':`${kind}s`;
       status.textContent=`${count} ${label} in this folder.`;
       if(focus)section.querySelector('h2').focus({preventScroll:true});
     }else{

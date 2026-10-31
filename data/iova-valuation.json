@@ -1,0 +1,147 @@
+{
+  "author": "Kinley Tenzin",
+  "asOf": "2026-10-30",
+  "version": "v2 web edition",
+  "currency": "USD",
+  "units": "Millions except per-share values and probabilities",
+  "referencePrice": 8.48,
+  "referencePriceNote": "Dated input from the author’s notes; not a live or independently sourced closing quote.",
+  "discountRate": 0.1,
+  "dilutedShares": 475,
+  "assumedNetCash": 240,
+  "assumptions": {
+    "weights": {
+      "bear": 0.4,
+      "base": 0.45,
+      "bull": 0.15
+    },
+    "erosion": {
+      "bear": 0.12,
+      "base": 0.1,
+      "bull": 0.08
+    },
+    "base2027": 575,
+    "pWithdraw": 0.2,
+    "nextgen": 100,
+    "pipe": {
+      "frontline": {
+        "pos": 0.5,
+        "launch": 2029,
+        "peak": 700,
+        "margin": 0.45,
+        "dev": {
+          "2027": 70,
+          "2028": 70,
+          "2029": 30
+        }
+      },
+      "lung": {
+        "pos": 0.3,
+        "launch": 2030,
+        "peak": 350,
+        "margin": 0.4,
+        "dev": {
+          "2027": 40,
+          "2028": 40,
+          "2029": 25
+        }
+      },
+      "sarcoma": {
+        "pos": 0.2,
+        "launch": 2029,
+        "peak": 250,
+        "margin": 0.4,
+        "dev": {
+          "2027": 20,
+          "2028": 20,
+          "2029": 10
+        }
+      },
+      "endometrial": {
+        "pos": 0.15,
+        "launch": 2029,
+        "peak": 150,
+        "margin": 0.4,
+        "dev": {
+          "2027": 10,
+          "2028": 10
+        }
+      }
+    }
+  },
+  "central": {
+    "equity": 2770.74268517773,
+    "perShare": 5.8331424951110105,
+    "parts": {
+      "core": 2365.875282829946,
+      "labelRisk": -165.6112697980962,
+      "frontline": 477.25596841308334,
+      "lung": 50.37007416920832,
+      "sarcoma": 35.90002023000585,
+      "endometrial": 17.880697591476054,
+      "nextgen": 100,
+      "oneTime": 0,
+      "corporate": -350.9280882578932,
+      "cash": 240
+    },
+    "corePVs": {
+      "bear": 1299.1308128186524,
+      "base": 2707.6825039954815,
+      "bull": 4185.105539363455
+    }
+  },
+  "bridge": [
+    {
+      "label": "Earlier model (v1)",
+      "perShare": 7.133430078132878,
+      "change": 0
+    },
+    {
+      "label": "Lung: lower probability and sales; later launch",
+      "perShare": 6.638833957996018,
+      "change": -0.49459612013686005
+    },
+    {
+      "label": "Competition: more weight on the bear core path",
+      "perShare": 6.203235290588373,
+      "change": -0.4355986674076444
+    },
+    {
+      "label": "Competition: faster post-peak erosion",
+      "perShare": 6.099512467030551,
+      "change": -0.10372282355782225
+    },
+    {
+      "label": "2027 base core revenue: $600M → $575M",
+      "perShare": 6.093093531059663,
+      "change": -0.006418935970888384
+    },
+    {
+      "label": "Conditional label withdrawal: 15% → 20%",
+      "perShare": 6.005929704850139,
+      "change": -0.08716382620952334
+    },
+    {
+      "label": "Lower other-pipeline probabilities and option value",
+      "perShare": 5.8331424951110105,
+      "change": -0.17278720973912876
+    }
+  ],
+  "scenarios": {
+    "adverseSafety": 5.027207332912558,
+    "combinedDownside": 3.0430626186915517,
+    "optimistic": 7.753111600320557,
+    "optimisticRate8MarginsPlus5": 9.570193204481603
+  },
+  "reverseDCF": {
+    "price": 8.48,
+    "peakCoreRevenue": 1497.3527140442716
+  },
+  "sources": {
+    "quarter": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926091716/iova-20260630x10q.htm",
+    "guidance": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926111583/tm2626507d1_ex99-1.htm",
+    "lung": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926120261/tm2628468d1_ex99-1.htm",
+    "label": "https://www.fda.gov/media/176418/download",
+    "competitor": "https://replimune.gcs-web.com/news-releases/news-release-details/replimune-reports-fiscal-first-quarter-2027-financial-results"
+  }
+}

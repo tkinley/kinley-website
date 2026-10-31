@@ -242,7 +242,7 @@ const head = (title, description, prefix, interactive=false, dashboard=false) =>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${prefix}assets/research-notes.css?v=4">
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=1"></script>`:''}
-${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=1"></script>`:''}
+${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=2"></script>`:''}
 </head>`;
 const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
 const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
@@ -290,32 +290,34 @@ const folderSummaries = [
 ];
 const folders=groups.map((group,i)=>({id:`group-${i+1}`,name:group,summary:folderSummaries[i],concepts:concepts.filter(c=>c.group===group)}));
 folders.push({id:'case-studies',name:'Company case studies',summary:'Apply the concepts to Iovance’s clinical data.',concepts:[{slug:'iovance-data-first',title:'Iovance: a data-first statistical roadmap',summary:'Work through the observations, subgroup selection, Wilson uncertainty, and conditional predictions.',caseStudy:true}]});
-const lessonCard=(concept,folder)=>`<a class="lesson-card" data-lesson data-search="${escape(`${concept.title} ${concept.summary} ${folder.name}`)}" href="statistics/${concept.slug}.html"><span class="lesson-kind">${concept.caseStudy?'Worked company case':'Interactive lesson'}</span><h3>${escape(concept.title)}</h3><p>${escape(concept.summary)}</p><span class="lesson-open">${concept.caseStudy?'Open case study':'Open lesson'} <span aria-hidden="true">↗</span></span></a>`;
+folders.push({id:'my-valuations',name:'My valuations',summary:'My company opinions, with the assumptions open to inspection.',concepts:[{href:'valuations/iova.html',title:'$IOVA: my valuation case',summary:'My $5.83 central valuation, what the price requires, and an interactive model to test a different view.',valuation:true}]});
+const folderCount=folder=>`${folder.concepts.length} ${folder.id==='case-studies'?'case study':folder.id==='my-valuations'?'opinion case':'lessons'}`;
+const lessonCard=(concept,folder)=>`<a class="lesson-card" data-lesson data-search="${escape(`${concept.title} ${concept.summary} ${folder.name}`)}" href="${concept.href||`statistics/${concept.slug}.html`}"><span class="lesson-kind">${concept.valuation?'Kinley Tenzin · Personal opinion':concept.caseStudy?'Worked company case':'Interactive lesson'}</span><h3>${escape(concept.title)}</h3><p>${escape(concept.summary)}</p><span class="lesson-open">${concept.valuation?'Read my case':concept.caseStudy?'Open case study':'Open lesson'} <span aria-hidden="true">↗</span></span></a>`;
 const folderSection=folder=>{
   const headingId=folder.id==='case-studies'?'worked-case-title':`${folder.id}-title`;
-  return `<section class="folder-section" id="${folder.id}" data-folder-section data-folder-name="${escape(folder.name)}" aria-labelledby="${headingId}"><div class="folder-section-head"><h2 id="${headingId}" tabindex="-1">${escape(folder.name)}</h2><p>${escape(folder.summary)}</p></div><div class="lesson-grid">${folder.concepts.map(c=>lessonCard(c,folder)).join('\n')}</div>${folder.id==='case-studies'?'<p class="folder-note"><a href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed Iovance companion notebook (.ipynb)</a> · <a href="biotech.html">More biotech research</a></p>':''}</section>`;
+  return `<section class="folder-section" id="${folder.id}" data-folder-section data-folder-name="${escape(folder.name)}" data-entry-kind="${folder.id==='my-valuations'?'opinion case':folder.id==='case-studies'?'case study':'lesson'}" aria-labelledby="${headingId}"><div class="folder-section-head"><h2 id="${headingId}" tabindex="-1">${escape(folder.name)}</h2><p>${escape(folder.summary)}</p></div><div class="lesson-grid">${folder.concepts.map(c=>lessonCard(c,folder)).join('\n')}</div>${folder.id==='case-studies'?'<p class="folder-note"><a href="notebooks/Iovance_Data_First_Companion.ipynb" download>Download the executed Iovance companion notebook (.ipynb)</a> · <a href="biotech.html">More biotech research</a></p>':''}</section>`;
 };
 const hub = `<!doctype html>
 <html lang="en">
-${head('Alea: clinical-trial statistics', 'Browse topic folders with interactive clinical-trial statistics lessons and worked company case studies.', '', false, true)}
+${head('Alea: evidence, statistics, and valuations', 'Browse interactive clinical-trial statistics, worked data cases, and Kinley Tenzin’s personal company valuations.', '', false, true)}
 <body class="dashboard-page">
 <a class="skip" href="#main">Skip to the learning folders</a>
 <div class="wrap">
 ${nav('')}
 <header class="guide-header">
-<div class="dateline"><span>Kinley Tenzin · Alea</span><span>A guide to drug-trial evidence</span></div>
+<div class="dateline"><span>Kinley Tenzin · Alea</span><span>Evidence, uncertainty, and value</span></div>
 <h1>Alea</h1>
-<p class="lede">A visual library for reading drug-trial evidence. Open a folder, choose a lesson, and learn by changing the example.</p>
+<p class="lede">A visual library for reading drug-trial evidence and thinking about value. Open a learning folder, or explore my company valuations and the assumptions behind them.</p>
 </header>
 <main id="main" class="dashboard" data-learning-dashboard tabindex="-1">
-<div class="library-toolbar"><div><h2 data-library-heading tabindex="-1">Learning folders</h2><p class="library-count">16 interactive lessons · 1 worked company case</p></div><div class="library-search" data-search-controls hidden><label for="lesson-search">Find a lesson</label><div class="library-search-row"><input type="search" id="lesson-search" placeholder="Try Wilson, survival, or p-values" autocomplete="off"><button type="button" data-clear-search hidden>Clear</button></div></div></div>
+<div class="library-toolbar"><div><h2 data-library-heading tabindex="-1">Explore the folders</h2><p class="library-count">16 interactive lessons · 1 data case · 1 personal valuation</p></div><div class="library-search" data-search-controls hidden><label for="lesson-search">Find a topic or company</label><div class="library-search-row"><input type="search" id="lesson-search" placeholder="Try Wilson, survival, or IOVA" autocomplete="off"><button type="button" data-clear-search hidden>Clear</button></div></div></div>
 <nav class="folder-breadcrumb" aria-label="Folder path" data-folder-breadcrumb hidden><button type="button" data-all-folders>← All folders</button><span aria-hidden="true">/</span><span data-current-folder aria-current="page"></span></nav>
 <p class="dashboard-status" data-dashboard-status role="status" aria-live="polite"></p>
 <div class="folder-grid" data-folder-grid aria-label="Topic folders">
-${folders.map((folder,i)=>`<a class="folder-card folder-tone-${i%3}" data-open-folder="${folder.id}" href="#${folder.id}"><span class="folder-tab" aria-hidden="true"></span><span class="folder-body"><span class="folder-meta"><span>${String(i+1).padStart(2,'0')}</span><span>${folder.concepts.length} ${folder.id==='case-studies'?'case study':'lessons'}</span></span><span class="folder-name">${escape(folder.name)}</span><span class="folder-summary">${escape(folder.summary)}</span><span class="folder-open">Open folder <span aria-hidden="true">→</span></span></span></a>`).join('\n')}
+${folders.map((folder,i)=>`<a class="folder-card folder-tone-${i%3}" data-open-folder="${folder.id}" href="#${folder.id}"><span class="folder-tab" aria-hidden="true"></span><span class="folder-body"><span class="folder-meta"><span>${String(i+1).padStart(2,'0')}</span><span>${folderCount(folder)}</span></span><span class="folder-name">${escape(folder.name)}</span><span class="folder-summary">${escape(folder.summary)}</span><span class="folder-open">Open folder <span aria-hidden="true">→</span></span></span></a>`).join('\n')}
 </div>
 ${folders.map(folderSection).join('\n')}
-<section class="search-results" data-search-results aria-labelledby="search-results-title" hidden><h2 id="search-results-title">Search results</h2><div class="lesson-grid" data-search-grid></div><p data-no-results hidden>No lessons match that search. Try a topic such as “response”, “power”, or “survival”.</p></section>
+<section class="search-results" data-search-results aria-labelledby="search-results-title" hidden><h2 id="search-results-title">Search results</h2><div class="lesson-grid" data-search-grid></div><p data-no-results hidden>No entries match that search. Try a topic or company such as “response”, “power”, or “IOVA”.</p></section>
 <noscript><p class="folder-note">The folders link to the lesson grids below. Every lesson is available without search.</p></noscript>
 </main>
 ${footer('')}
