@@ -106,6 +106,10 @@ h1 span{color:var(--teal)}
 .back:hover svg{transform:translateX(-2px)}
 .answer-chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
 .chip{flex-shrink:0;padding:4px 11px;border-radius:999px;background:#e3efe6;color:#20533f;font-size:12px;font-weight:500;white-space:nowrap}
+button.chip{border:0}
+button.chip:hover{background:#d2e6d8}
+button.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.question{scroll-margin-top:84px}
 .list-count{margin-left:auto;flex-shrink:0;font:12px var(--mono);color:var(--muted)}
 .button.primary{background:var(--grad);border-color:transparent;color:#fff}
 

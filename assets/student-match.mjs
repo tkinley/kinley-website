@@ -173,7 +173,25 @@ function summarize(answers, shown, out) {
   const lead = bits.length ? `${bits.join(' · ')}: ` : 'Everything: ';
   $('answer-summary').textContent = `${lead}${shown} to look at${out ? `, ${out} ruled out` : ''}.`;
   const chips = $('answer-chips');
-  chips.replaceChildren(...(bits.length ? bits : ['Everything']).flatMap((b) => b.split(', ')).map((b) => make('span', 'chip', b)));
+  const chipData = [];
+  if (answers.level) chipData.push([answers.level, 'level']);
+  if (answers.citizen === 'yes') chipData.push(['citizen or PR', 'citizen']);
+  if (answers.citizen === 'no') chipData.push(['not citizen or PR', 'citizen']);
+  for (const n of answers.needs) chipData.push([NEEDS.find((x) => x.id === n).label, 'needs']);
+  if (answers.kstate) chipData.push(['K-State only', 'kstate']);
+  if (!chipData.length) chipData.push(['Everything', '']);
+  chips.replaceChildren(...chipData.map(([text, target]) => {
+    const chip = make('button', 'chip', text);
+    chip.type = 'button';
+    if (target === 'kstate') {
+      chip.title = 'Turn off K-State only';
+      chip.addEventListener('click', () => { $('kstate-only').checked = false; expanded.clear(); render(); });
+    } else {
+      if (target) chip.title = 'Change this answer';
+      chip.addEventListener('click', () => editQuestion(target));
+    }
+    return chip;
+  }));
   $('list-count').textContent = `${shown} ${shown === 1 ? 'result' : 'results'}${out ? ` · ${out} ruled out` : ''}`;
   $('ks-note').hidden = !answers.kstate;
   updateCounts(shown);
@@ -297,6 +315,22 @@ function showList() {
 function showAsk() {
   if (history.state?.view === 'list') history.back();
   else { history.replaceState(null, '', urlFor(hashFor(readAnswers(), 'ask'))); setView('ask'); }
+}
+
+// Tapping an answer chip on the list goes back to the questions and lands
+// on that chip's question, with the other answers kept.
+function editQuestion(target) {
+  showAsk();
+  if (!target) return;
+  const section = $(`q-${target}`);
+  if (!section) return;
+  let tries = 0;
+  const go = () => {
+    if ($('ask').hidden && tries++ < 12) { setTimeout(go, 50); return; }
+    section.scrollIntoView({ block: 'start' });
+    section.querySelector('input')?.focus({ preventScroll: true });
+  };
+  setTimeout(go, 50);
 }
 
 function syncFromLocation() {
