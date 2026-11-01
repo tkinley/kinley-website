@@ -10,11 +10,12 @@ export const LEVELS = [
 ];
 
 export const NEEDS = [
-  { id: 'money', label: 'Money', hint: 'Fellowships, scholarships, grants, awards' },
-  { id: 'travel', label: 'Travel', hint: 'Conferences and research trips' },
+  // The ids stay short and stable because they live in bookmarked links (#needs=money).
+  { id: 'money', label: 'Scholarships & fellowships', hint: 'Plus research grants and prizes' },
+  { id: 'travel', label: 'Travel funding', hint: 'Conferences and research trips' },
   { id: 'research', label: 'Research tools', hint: 'Compute, databases, lab software' },
   { id: 'software', label: 'Software & AI', hint: 'Free apps, credits, AI tools' },
-  { id: 'everyday', label: 'Everyday help', hint: 'Food, health, transit, emergencies' },
+  { id: 'everyday', label: 'Everyday help', hint: 'Food, health, transit, emergency aid' },
 ];
 
 export const GROUPS = [

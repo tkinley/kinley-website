@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash, needsOf } from './student-match-engine.mjs?v=13';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash, needsOf } from './student-match-engine.mjs?v=14';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -18,7 +18,9 @@ for (const need of NEEDS) {
   input.type = 'checkbox';
   input.name = 'needs';
   input.value = need.id;
-  const text = make('span', '', need.label);
+  // Each need says what it covers, so nobody has to guess where research grants or emergency aid live.
+  const text = make('span', '');
+  text.append(make('b', '', need.label), make('small', '', need.hint));
   label.append(input, text);
   $('need-options').append(label);
 }

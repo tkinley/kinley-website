@@ -64,6 +64,16 @@ h1 span{color:var(--teal)}
 .option input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
 .option input:focus-visible+span{outline:3px solid var(--cyan);outline-offset:3px}
 .needs .option input:checked+span::before{content:'';width:6px;height:10px;margin:-3px 2px 0 -2px;border:solid #bfe7d3;border-width:0 2px 2px 0;transform:rotate(45deg)}
+/* Needs are two-line tiles: the name, then what it covers. A ring on the right says "pick any". */
+.options.needs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.needs .option{display:flex}
+.needs .option>span{flex:1;position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;min-height:66px;padding:11px 48px 11px 18px;border-radius:18px;text-align:left}
+.needs .option>span b{font-weight:500;line-height:1.25}
+.needs .option>span small{font-size:12.5px;font-weight:400;line-height:1.35;color:var(--muted)}
+.needs .option>span::after{content:'';position:absolute;right:16px;top:50%;width:18px;height:18px;margin-top:-10px;border:1.5px solid #263c3340;border-radius:50%;transition:border-color .15s}
+.needs .option input:checked+span small{color:#cfe2d7}
+.needs .option input:checked+span::after{border-color:#bfe7d3}
+.needs .option input:checked+span::before{position:absolute;right:23px;top:50%;margin:-8px 0 0}
 
 .answers-tools{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:-6px}
 .ks-note{margin-right:auto;font-size:12px;color:var(--teal)}
@@ -211,6 +221,9 @@ footer>div a{text-decoration:none}
 
 @media(max-width:900px){
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* Answers swipe sideways instead of wrapping, so the pinned bar stays one line on tablets. */
+  .answer-chips{flex:1 1 auto;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:2px 28px 2px 0;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent)}
+  .answer-chips::-webkit-scrollbar{display:none}
 }
 @media(max-width:620px){
   main{padding:0 16px}
@@ -229,6 +242,8 @@ footer>div a{text-decoration:none}
   .question legend{font-size:18px;margin-bottom:14px}
   .options{padding-left:0}
   .option>span{min-height:44px;padding:0 18px;font-size:15px}
+  .options.needs{grid-template-columns:1fr}
+  .needs .option>span{min-height:60px;padding:10px 48px 10px 18px}
   .answers-foot{position:sticky;bottom:0;z-index:5;margin:0 -16px;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 64%,#f5f2eb00)}
   .presets{justify-content:flex-start}
   .presets-label{flex-basis:100%}
