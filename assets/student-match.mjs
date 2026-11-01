@@ -325,7 +325,7 @@ function jumpToSelection(target, needId) {
   if (target === 'needs' && needId) {
     node = [...document.querySelectorAll('#groups .card')].find((el) => {
       const item = items.find((x) => x.id === el.dataset.id);
-      return item && needsOf(item).has(needId);
+      return item && needsOf(item).includes(needId);
     }) || null;
   }
   if (!node) node = document.querySelector('#groups .card') || $('results-title');
