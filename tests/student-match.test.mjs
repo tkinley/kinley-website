@@ -134,8 +134,8 @@ test('Open anytime holds only checked rolling programs; unchecked benefits are l
   assert.ok(g.anytime.length && g.anytime.every((r) => r.item.check && r.deadline.kind === 'rolling'));
   assert.ok(g.benefits.every((r) => !r.item.check && r.item.category !== 'scholarships'));
   const where = (id) => Object.values(g).flat().find((r) => r.item.id === id);
-  for (const id of ['chatgpt-plus', 'google-ai-pro', 'staley-school-food-security-scholars', 'graduate-leadership-development']) assert.equal(where(id).group, 'dates', id);
-  assert.equal(deadlineText(where('chatgpt-plus')), 'My notes: Deadline Oct 31. Not checked yet.');
+  for (const id of ['google-ai-pro', 'staley-school-food-security-scholars', 'graduate-leadership-development']) assert.equal(where(id).group, 'dates', id);
+  assert.equal(deadlineText(where('google-ai-pro')), 'My notes: Deadline Dec 31. Not checked yet.');
   assert.equal(where('cats-cupboard').group, 'benefits');
 });
 

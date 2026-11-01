@@ -9,16 +9,17 @@
   "verification_note": "Null means unknown. Workbook fit scores and personal tracking notes are excluded. Only explicitly reviewed official information receives a check date or verified deadline. Never roll recurring dates into a new cycle.",
   "opportunities": [
     {
-      "id": "microsoft-365",
-      "title": "Microsoft 365",
-      "description": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.",
-      "category": "ai-software",
+      "id": "libraries-interlibrary-loan",
+      "title": "Libraries + Interlibrary Loan",
+      "description": "Never pay for a paper first. Check the library, then ILL.",
+      "category": "research",
       "categories": [
+        "research",
         "ai-software",
         "campus-benefits"
       ],
       "benefit_type": "Free",
-      "official_url": "https://www.k-state.edu/news/it/articles/2025/01/microsoft-365-free-for-students-faculty-and-staff.html",
+      "official_url": "https://lib.k-state.edu/services-support/interlibrary-loan/",
       "eligibility_rules": {
         "known": [
           {
@@ -26,7 +27,7 @@
             "operator": "equals",
             "value": "yes",
             "label": "Current K-State enrollment",
-            "source_text": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled."
+            "source_text": "Never pay for a paper first. Check the library, then ILL."
           }
         ],
         "unknown": [
@@ -44,9 +45,10 @@
       },
       "last_verified": null,
       "tags": [
+        "Research",
         "Free Software"
       ],
-      "notes": "Webmail → App Launcher → Install Microsoft 365 apps → Organizational account.",
+      "notes": "Set Scholar to K-State, install LibKey Nomad. Most ILL articles arrive as PDFs, often within a day.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -54,6 +56,51 @@
       "source": {
         "file": "student-benefits.html",
         "card_number": 1,
+        "categories": [
+          "kstate",
+          "research"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
+      "id": "microsoft-365",
+      "title": "Microsoft 365",
+      "description": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://www.k-state.edu/news/it/articles/2025/01/microsoft-365-free-for-students-faculty-and-staff.html",
+      "eligibility_rules": {
+        "known": [],
+        "unknown": [
+          "Complete current eligibility and access terms have not been verified"
+        ],
+        "complete": false
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": null,
+      "tags": [],
+      "notes": "Webmail → App Launcher → Install Microsoft 365 apps → Organizational account.",
+      "availability": {
+        "state": "verification_needed",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 2,
         "categories": [
           "kstate"
         ],
@@ -100,7 +147,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 2,
+        "card_number": 3,
         "categories": [
           "ai",
           "deadline"
@@ -108,54 +155,6 @@
         "labels": [
           "Free 12 mo",
           "Deadline Dec 31"
-        ]
-      }
-    },
-    {
-      "id": "chatgpt-plus",
-      "title": "ChatGPT Plus",
-      "description": "4 free months, then $20/mo unless you cancel.",
-      "category": "ai-software",
-      "categories": [
-        "ai-software"
-      ],
-      "benefit_type": "Free 4 mo · Deadline Oct 31",
-      "official_url": "https://chatgpt.com/students/2026",
-      "eligibility_rules": {
-        "known": [],
-        "unknown": [
-          "Complete current eligibility and access terms have not been verified"
-        ],
-        "complete": false
-      },
-      "academic_levels": null,
-      "student_status_restrictions": null,
-      "deadline": {
-        "date": null,
-        "verified": false,
-        "reported_date": null,
-        "source_text": "Deadline Oct 31"
-      },
-      "last_verified": null,
-      "tags": [
-        "AI Tools",
-        "Free Software"
-      ],
-      "notes": "Verified on OpenAI's own help page. Full-time or part-time at eligible US degree-granting institutions, SheerID verification, payment method required. Claim by Oct 31, 2026. Cancelling forfeits remaining free months. Store-billed subscriptions not supported.",
-      "availability": {
-        "state": "verification_needed",
-        "reported_end": null
-      },
-      "source": {
-        "file": "student-benefits.html",
-        "card_number": 3,
-        "categories": [
-          "ai",
-          "deadline"
-        ],
-        "labels": [
-          "Free 4 mo",
-          "Deadline Oct 31"
         ]
       }
     },
@@ -765,7 +764,7 @@
         "research",
         "financial-support"
       ],
-      "benefit_type": "Deadline Oct 19",
+      "benefit_type": "Next cycle Oct 2027",
       "official_url": "https://www.nsfgrfp.org/",
       "eligibility_rules": {
         "known": [],
@@ -782,7 +781,7 @@
         "date": null,
         "verified": false,
         "reported_date": "2026-10-19",
-        "source_text": "Deadline Oct 19 · US citizen / national / permanent resident. Life Sciences deadline reported Oct 19, 2026."
+        "source_text": "Next cycle Oct 2027 · US citizen / national / permanent resident. 2026 Life Sciences deadline Oct 19, 2026 has passed. 2027 field dates not yet published, diary for Oct 2027."
       },
       "last_verified": null,
       "tags": [
@@ -792,7 +791,7 @@
         "biology",
         "bioinformatics"
       ],
-      "notes": "US citizen / national / permanent resident. Life Sciences deadline reported Oct 19, 2026.",
+      "notes": "US citizen / national / permanent resident. 2026 Life Sciences deadline Oct 19, 2026 has passed. 2027 field dates not yet published, diary for Oct 2027.",
       "availability": {
         "state": "verification_needed",
         "reported_end": "2026-10-19"
@@ -806,7 +805,7 @@
           "deadline"
         ],
         "labels": [
-          "Deadline Oct 19"
+          "Next cycle Oct 2027"
         ]
       }
     },
@@ -832,7 +831,7 @@
               "PhD"
             ],
             "label": "Academic stage described in the directory",
-            "source_text": "DOE SCGSR — 3 to 12 months thesis research at a DOE lab. Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET."
+            "source_text": "DOE SCGSR — 3 to 12 months thesis research at a DOE lab. Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET."
           }
         ],
         "unknown": [
@@ -849,7 +848,7 @@
         "date": null,
         "verified": false,
         "reported_date": null,
-        "source_text": "Deadline Nov 4 · Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET."
+        "source_text": "Deadline Nov 4 · Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET."
       },
       "last_verified": null,
       "tags": [
@@ -858,7 +857,7 @@
         "Travel",
         "Financial Support"
       ],
-      "notes": "Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 5pm ET.",
+      "notes": "Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -1469,7 +1468,7 @@
       "tags": [
         "Financial Support"
       ],
-      "notes": "Free File: AGI up to $89k for guided software. VITA Manhattan 2026 schedule unconfirmed.",
+      "notes": "Free File: AGI up to $89k for guided software. 2026 filing window closed Oct 15, 2026; check back in Jan for the next season. VITA Manhattan 2026 schedule unconfirmed.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -1652,7 +1651,7 @@
       },
       "last_verified": null,
       "tags": [],
-      "notes": "$5.99 to $6.99/mo reported. SheerID, re-verify yearly. Do not pay for Hulu separately if you take this.",
+      "notes": "$6.99/mo. SheerID, re-verify yearly. Do not pay for Hulu separately if you take this.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -1671,7 +1670,7 @@
     {
       "id": "apple-music-tv",
       "title": "Apple Music + TV+",
-      "description": "$5.99/mo, TV+ included.",
+      "description": "$6.99/mo, TV+ included.",
       "category": "campus-benefits",
       "categories": [
         "campus-benefits"
@@ -1695,7 +1694,7 @@
       },
       "last_verified": null,
       "tags": [],
-      "notes": "Up to 48 months total. UNiDAYS / SheerID verification.",
+      "notes": "Up to 48 months total. UNiDAYS / SheerID verification. Price rose from $5.99 in July 2026.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -2515,7 +2514,7 @@
         "date": null,
         "verified": false,
         "reported_date": null,
-        "source_text": "Mar 15 / Oct 1 · No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members."
+        "source_text": "Mar 15 / Oct 1 · No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members. Oct 1, 2026 cycle passed; next deadline Mar 15, 2027."
       },
       "last_verified": null,
       "tags": [
@@ -2524,7 +2523,7 @@
         "Travel",
         "Financial Support"
       ],
-      "notes": "No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members.",
+      "notes": "No US citizenship requirement, international students are eligible. Two cycles per year; higher caps if you or your advisor are Sigma Xi members. Oct 1, 2026 cycle passed; next deadline Mar 15, 2027.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -3428,7 +3427,7 @@
     {
       "id": "fems-asm-makela-cassell-award",
       "title": "FEMS-ASM Makela-Cassell Award",
-      "description": "Up to 4,000 euros + free registration for ASM Microbe.",
+      "description": "Up to 4,000 euros + free registration for FEMS MICRO Ljubljana 2027.",
       "category": "scholarships",
       "categories": [
         "scholarships",
@@ -3436,8 +3435,8 @@
         "travel",
         "financial-support"
       ],
-      "benefit_type": "Free to apply · See ASM page",
-      "official_url": "https://asm.org/",
+      "benefit_type": "Free to apply · Dec 15",
+      "official_url": "https://www.femsmicro.org/grants-and-awards",
       "eligibility_rules": {
         "known": [],
         "unknown": [
@@ -3452,18 +3451,16 @@
         "date": null,
         "verified": false,
         "reported_date": null,
-        "source_text": "See ASM page"
+        "source_text": "Dec 15 · For 1 current ASM member to attend FEMS MICRO, not the other direction this cycle. Current PhD student or PhD within 5 years, first author of an accepted abstract, unpublished abstract, CV, 500-word statement, and 2 nomination letters on letterhead from the department chair and PI. Apply via the FEMS MICRO abstract route by Dec 15, 2026, 11:59pm CET. Do not register until award notification."
       },
       "last_verified": null,
       "tags": [
         "Research",
         "Scholarships",
         "Travel",
-        "Financial Support",
-        "biology",
-        "bioinformatics"
+        "Financial Support"
       ],
-      "notes": "For 1 FEMS Full Member Society member to attend ASM Microbe in even years. Limited for US students unless they hold FEMS membership.",
+      "notes": "For 1 current ASM member to attend FEMS MICRO, not the other direction this cycle. Current PhD student or PhD within 5 years, first author of an accepted abstract, unpublished abstract, CV, 500-word statement, and 2 nomination letters on letterhead from the department chair and PI. Apply via the FEMS MICRO abstract route by Dec 15, 2026, 11:59pm CET. Do not register until award notification.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
@@ -3476,7 +3473,7 @@
         ],
         "labels": [
           "Free to apply",
-          "See ASM page"
+          "Dec 15"
         ]
       }
     },
