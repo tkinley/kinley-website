@@ -1,4 +1,4 @@
-import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash } from './student-match-engine.mjs?v=13';
+import { NEEDS, GROUPS, KIND_LABELS, mergeChecks, groupResults, deadlineText, formatDate, localToday, toHash, fromHash, needsOf } from './student-match-engine.mjs?v=13';
 
 const $ = (id) => document.getElementById(id);
 const make = (tag, className, text) => {
@@ -177,18 +177,18 @@ function summarize(answers, shown, out) {
   if (answers.level) chipData.push([answers.level, 'level']);
   if (answers.citizen === 'yes') chipData.push(['citizen or PR', 'citizen']);
   if (answers.citizen === 'no') chipData.push(['not citizen or PR', 'citizen']);
-  for (const n of answers.needs) chipData.push([NEEDS.find((x) => x.id === n).label, 'needs']);
+  for (const n of answers.needs) chipData.push([NEEDS.find((x) => x.id === n).label, 'needs', n]);
   if (answers.kstate) chipData.push(['K-State only', 'kstate']);
   if (!chipData.length) chipData.push(['Everything', '']);
-  chips.replaceChildren(...chipData.map(([text, target]) => {
+  chips.replaceChildren(...chipData.map(([text, target, needId]) => {
     const chip = make('button', 'chip', text);
     chip.type = 'button';
     if (target === 'kstate') {
       chip.title = 'Turn off K-State only';
       chip.addEventListener('click', () => { $('kstate-only').checked = false; expanded.clear(); render(); });
     } else {
-      if (target) chip.title = 'Change this answer';
-      chip.addEventListener('click', () => editQuestion(target));
+      chip.title = 'Jump to these results';
+      chip.addEventListener('click', () => jumpToSelection(target, needId));
     }
     return chip;
   }));
@@ -317,20 +317,21 @@ function showAsk() {
   else { history.replaceState(null, '', urlFor(hashFor(readAnswers(), 'ask'))); setView('ask'); }
 }
 
-// Tapping an answer chip on the list goes back to the questions and lands
-// on that chip's question, with the other answers kept.
-function editQuestion(target) {
-  showAsk();
-  if (!target) return;
-  const section = $(`q-${target}`);
-  if (!section) return;
-  let tries = 0;
-  const go = () => {
-    if ($('ask').hidden && tries++ < 12) { setTimeout(go, 50); return; }
-    section.scrollIntoView({ block: 'start' });
-    section.querySelector('input')?.focus({ preventScroll: true });
-  };
-  setTimeout(go, 50);
+// Tapping an answer chip stays on the list and scrolls down to where that
+// selection shows up: a need chip lands on its first matching result, and
+// the level or citizenship chips land on the top of the list.
+function jumpToSelection(target, needId) {
+  let node = null;
+  if (target === 'needs' && needId) {
+    node = [...document.querySelectorAll('#groups .card')].find((el) => {
+      const item = items.find((x) => x.id === el.dataset.id);
+      return item && needsOf(item).has(needId);
+    }) || null;
+  }
+  if (!node) node = document.querySelector('#groups .card') || $('results-title');
+  if (!node) return;
+  node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (node.classList.contains('card')) restart(node, 'flash');
 }
 
 function syncFromLocation() {
