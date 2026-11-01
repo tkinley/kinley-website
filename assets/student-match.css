@@ -233,7 +233,11 @@ footer>div a{text-decoration:none}
   .presets{justify-content:flex-start}
   .presets-label{flex-basis:100%}
   .ask-foot{text-align:left}
-  .list-bar{top:57px;margin:0 -16px;padding:8px 16px;gap:8px}
+  .list-bar{top:57px;margin:0 -16px;padding:8px 16px;gap:8px;flex-wrap:wrap}
+  /* One swipeable row of answers under the back button, so six answers don't stack into a tall bar. */
+  .answer-chips{order:3;flex:1 0 100%;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;padding:2px 28px 2px 16px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent)}
+  .answer-chips::-webkit-scrollbar{display:none}
+  .chip{padding:6px 12px;font-size:13px}
   .back span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .back{padding:6px 10px}
   .list-count{font-size:11px}

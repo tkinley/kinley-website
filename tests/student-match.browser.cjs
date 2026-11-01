@@ -186,6 +186,44 @@ const pass = (name) => console.log(`PASS ${name}`);
     await phone.close();
     pass('phone: Show results sits on the first screen, even on a slow load');
 
+    // Every need picked: each need chip must land on that need's first result in
+    // the full sorted list (opening a folded group if needed), below the sticky bar.
+    const allNeeds = 'level=phd&needs=money,travel,research,software,everyday';
+    for (const [width, height] of [[1440, 1000], [390, 844]]) {
+      await page.setViewportSize({ width, height });
+      await page.goto('about:blank');
+      await page.goto(`${page_url}#list&${allNeeds}`);
+      await page.waitForSelector('#list .card');
+      const expected = await page.evaluate(async () => {
+        const e = await import('./assets/student-match-engine.mjs?v=13');
+        const get = (p) => fetch(p).then((r) => r.json());
+        const [catalogue, checks] = await Promise.all([get('data/student-opportunities.json'), get('data/eligibility-checks.json')]);
+        const groups = e.groupResults(e.mergeChecks(catalogue.opportunities, checks), { level: 'PhD', citizen: '', needs: ['money', 'travel', 'research', 'software', 'everyday'], kstate: false }, e.localToday(), '');
+        const order = e.GROUPS.flatMap(({ id }) => groups[id]);
+        return Object.fromEntries(e.NEEDS.map((n) => [n.label, order.find((r) => e.needsOf(r.item).includes(n.id))?.item.id]));
+      });
+      const barHeight = await page.locator('.list-bar').evaluate((n) => n.offsetHeight);
+      if (width < 620) assert.ok(barHeight <= 120, `phone answer bar stays compact with six answers (${barHeight}px)`);
+      for (const [label, id] of Object.entries(expected)) {
+        await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+        await page.locator('#answer-chips .chip', { hasText: label }).click();
+        await page.waitForFunction((x) => document.querySelector('#groups .card.flash')?.dataset.id === x, id);
+        const landed = () => page.evaluate(() => {
+          const card = document.querySelector('#groups .card.flash').getBoundingClientRect();
+          const bar = document.querySelector('.list-bar').getBoundingClientRect();
+          return card.top >= bar.bottom && card.top < bar.bottom + 40;
+        });
+        await page.waitForFunction(() => {
+          const card = document.querySelector('#groups .card.flash').getBoundingClientRect();
+          const bar = document.querySelector('.list-bar').getBoundingClientRect();
+          return card.top >= bar.bottom && card.top < bar.bottom + 40;
+        }, null, { timeout: 4000 }).catch(() => {});
+        await page.waitForTimeout(400);
+        assert.ok(await landed(), `${label} at ${width}px lands just below the answer bar`);
+      }
+    }
+    pass('all needs picked: each need chip lands on its own first result, unfolding a group if needed, never under the bar');
+
     for (const [width, height] of [[1440, 1000], [768, 1000], [390, 844], [320, 700]]) {
       await page.setViewportSize({ width, height });
       for (const view of ['', 'list&']) {

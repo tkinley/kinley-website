@@ -320,18 +320,43 @@ function showAsk() {
 // Tapping an answer chip stays on the list and scrolls down to where that
 // selection shows up: a need chip lands on its first matching result, and
 // the level or citizenship chips land on the top of the list.
+//
+// The first match is found in the full sorted list, not among the cards on
+// screen: groups only show a preview, so with several needs picked the first
+// software or travel result is often folded away. If it is, its group opens.
+function firstMatch(needId) {
+  const groups = groupResults(items, readAnswers(), localToday(), $('search').value);
+  for (const { id } of GROUPS) {
+    const index = (groups[id] || []).findIndex((r) => needsOf(r.item).includes(needId));
+    if (index >= 0) return { group: id, index, itemId: groups[id][index].item.id };
+  }
+  return null;
+}
+
+function scrollBelowBar(node) {
+  // Land the card just under the sticky answer bar, whatever its height.
+  const bar = document.querySelector('.list-bar');
+  const stuck = bar ? (parseFloat(getComputedStyle(bar).top) || 0) + bar.offsetHeight : 0;
+  const top = node.getBoundingClientRect().top + window.scrollY - stuck - 14;
+  const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
+}
+
 function jumpToSelection(target, needId) {
   let node = null;
   if (target === 'needs' && needId) {
-    node = [...document.querySelectorAll('#groups .card')].find((el) => {
-      const item = items.find((x) => x.id === el.dataset.id);
-      return item && needsOf(item).includes(needId);
-    }) || null;
+    const hit = firstMatch(needId);
+    if (!hit) { scrollBelowBar($('results-title')); return; }
+    if (hit.index >= PREVIEW && !expanded.has(hit.group) && !$('search').value.trim()) {
+      expanded.add(hit.group);
+      render();
+    }
+    node = [...document.querySelectorAll(`#group-${hit.group} .card`)].find((el) => el.dataset.id === hit.itemId) || null;
   }
   if (!node) node = document.querySelector('#groups .card') || $('results-title');
   if (!node) return;
   for (const el of document.querySelectorAll('#groups .card.flash')) el.classList.remove('flash');
-  node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollBelowBar(node);
   // The ring stays on until the list is rebuilt, so the card the chip
   // jumped to stays marked.
   if (node.classList.contains('card')) restart(node, 'flash');
