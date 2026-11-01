@@ -110,7 +110,7 @@ button.chip{border:0}
 button.chip:hover{background:#d2e6d8}
 button.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .card,#results-title{scroll-margin-top:136px}
-.card.flash{animation:chipflash .5s ease-out forwards}
+.card.flash{box-shadow:0 0 0 3px var(--teal),0 0 18px rgba(36,99,84,.45);animation:chipflash .5s ease-out}
 @keyframes chipflash{from{box-shadow:0 0 0 0 rgba(36,99,84,0)}to{box-shadow:0 0 0 3px var(--teal),0 0 18px rgba(36,99,84,.45)}}
 .list-count{margin-left:auto;flex-shrink:0;font:12px var(--mono);color:var(--muted)}
 .button.primary{background:var(--grad);border-color:transparent;color:#fff}
