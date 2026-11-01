@@ -91,7 +91,7 @@ footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line-soft);fo
 <div class="controls">
 <div class="searchrow">
 <input id="q" class="search" type="search" placeholder="Search: e.g. HPC, Figma, travel, food..." aria-label="Search notes" />
-<button class="btn" id="topBtn" type="button">Top 11 only</button>
+<button class="btn" id="topBtn" type="button">Top 12 only</button>
 <button class="btn" id="expandBtn" type="button">Expand all</button>
 <button class="btn" id="collapseBtn" type="button">Collapse all</button>
 </div>
@@ -108,6 +108,8 @@ footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line-soft);fo
 </div>
 <p class="count" id="count"></p>
 <div class="grid" id="grid">
+
+<article class="card" data-cat="kstate research" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Libraries + Interlibrary Loan</h3><p>Never pay for a paper first. Check the library, then ILL.</p><div class="details"><p>Set Scholar to K-State, install LibKey Nomad. Most ILL articles arrive as PDFs, often within a day.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://lib.k-state.edu/services-support/interlibrary-loan/">Open</a></div></article>
 
 <article class="card" data-cat="kstate" data-top="1"><span class="tag kstate">K-State</span><span class="tag free">Free</span><h3>Microsoft 365</h3><p>Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.</p><div class="details"><p>Webmail &rarr; App Launcher &rarr; Install Microsoft 365 apps &rarr; Organizational account.</p></div><div class="actions"><button class="mini" type="button" data-toggle>Details</button><a class="mini primary" href="https://www.k-state.edu/news/it/articles/2025/01/microsoft-365-free-for-students-faculty-and-staff.html">Open</a></div></article>
 
@@ -390,7 +392,7 @@ chips.addEventListener('click', e=>{
 q.addEventListener('input', ()=>{ query=q.value.trim().toLowerCase(); apply(); });
 topBtn.addEventListener('click', ()=>{
   topOnly=!topOnly;
-  topBtn.textContent = topOnly ? 'Show all' : 'Top 11 only';
+  topBtn.textContent = topOnly ? 'Show all' : 'Top 12 only';
   topBtn.style.background = topOnly ? '#263c33' : '';
   topBtn.style.color = topOnly ? '#fff' : '';
   apply();
