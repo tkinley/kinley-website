@@ -330,10 +330,11 @@ function jumpToSelection(target, needId) {
   }
   if (!node) node = document.querySelector('#groups .card') || $('results-title');
   if (!node) return;
+  for (const el of document.querySelectorAll('#groups .card.flash')) el.classList.remove('flash');
   node.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // Flash on arrival, not on tap, so the ring is still there when the
-  // scroll lands.
-  if (node.classList.contains('card')) setTimeout(() => restart(node, 'flash'), 500);
+  // The ring stays on until the list is rebuilt, so the card the chip
+  // jumped to stays marked.
+  if (node.classList.contains('card')) restart(node, 'flash');
 }
 
 function syncFromLocation() {
