@@ -331,7 +331,9 @@ function jumpToSelection(target, needId) {
   if (!node) node = document.querySelector('#groups .card') || $('results-title');
   if (!node) return;
   node.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  if (node.classList.contains('card')) restart(node, 'flash');
+  // Flash on arrival, not on tap, so the ring is still there when the
+  // scroll lands.
+  if (node.classList.contains('card')) setTimeout(() => restart(node, 'flash'), 500);
 }
 
 function syncFromLocation() {
