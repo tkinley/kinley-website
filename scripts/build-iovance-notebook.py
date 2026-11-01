@@ -27,9 +27,8 @@ markdown(f"""
 
 **Companion notebook · 31 October 2026**
 
-This is a new companion to the [web article](https://tkinley.github.io/kinley-website/statistics/iovance-data-first.html),
-reconstructed from the earlier data-first discussion and checked against the [primary release]({SOURCE}).
-It is not the original notebook from that discussion. Source release: 29 October 2026;
+This notebook reproduces the numbers in the [web article](https://tkinley.github.io/kinley-website/statistics/iovance-data-first.html)
+from the [primary release]({SOURCE}). Source release: 29 October 2026;
 data cutoff: 14 October 2026. This is a dated educational case study using aggregate counts,
 not a live clinical update or a patient-level reanalysis.
 

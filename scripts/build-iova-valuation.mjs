@@ -31,7 +31,7 @@ const revisionNotes=[
   ['I allowed more risk to the existing label','If 301 fails, I use a 20% conditional chance of withdrawal rather than 15%. I think it is worth allowing for a less favorable regulatory outcome, although the FDA has not assigned either probability.'],
   ['I gave the other programs less value','I lowered sarcoma success to 20%, endometrial success to 15%, and the next-generation option to $100M. I want each program to earn more value with its own evidence.']
 ];
-const snapshot={author:'Kinley Tenzin',asOf:'2026-10-30',version:'v2 web edition',currency:'USD',units:'Millions except per-share values and probabilities',referencePrice:REFERENCE_PRICE,referencePriceNote:'Dated input from the author’s notes; not a live or independently sourced closing quote.',discountRate:.10,dilutedShares:SHARES,assumedNetCash:CASH,assumptions:BASE,central,bridge:bridgeRows.map(({label,perShare,change})=>({label,perShare,change})),scenarios:{adverseSafety:safety.perShare,combinedDownside:value(down).perShare,optimistic:bull.perShare,optimisticRate8MarginsPlus5:value(friendly,.08).perShare},reverseDCF:{price:REFERENCE_PRICE,peakCoreRevenue:reversePeak()},sources:source};
+const snapshot={author:'Kinley Tenzin',asOf:'2026-10-30',version:'v2 web edition',currency:'USD',units:'Millions except per-share values and probabilities',referencePrice:REFERENCE_PRICE,referencePriceNote:'IOVA closing price on 30 October 2026.',discountRate:.10,dilutedShares:SHARES,assumedNetCash:CASH,assumptions:BASE,central,bridge:bridgeRows.map(({label,perShare,change})=>({label,perShare,change})),scenarios:{adverseSafety:safety.perShare,combinedDownside:value(down).perShare,optimistic:bull.perShare,optimisticRate8MarginsPlus5:value(friendly,.08).perShare},reverseDCF:{price:REFERENCE_PRICE,peakCoreRevenue:reversePeak()},sources:source};
 await mkdir(path.join(root,'valuations'),{recursive:true});
 await writeFile(path.join(root,'data','iova-valuation.json'),JSON.stringify(snapshot,null,2)+'\n');
 const toc=[['view','Why I think this'],['facts','What I start from'],['method','How I work it out'],['assumptions','Why these assumptions'],['parts','Where the value comes from'],['explore','Try your assumptions'],['revision','Why I lowered my estimate'],['scenarios','Where I could be wrong'],['reverse','Why $8.48 is harder to justify'],['uncertainty','How uncertain I am'],['watch','What would change my mind'],['downloads','Sources and model']];
@@ -41,18 +41,19 @@ const html=`<!doctype html>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>$IOVA: why I value it at $5.83 · Alea · Kinley Tenzin</title>
 <meta name="description" content="Why I get $5.83 per share for Iovance: my view on melanoma sales, the lung data, competition, and what would change my mind. By Kinley Tenzin, based on 30 October 2026 assumptions.">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Kinley Tenzin"><meta property="og:title" content="$IOVA: why I value Iovance at $5.83"><meta property="og:description" content="A sum-of-the-parts rNPV: melanoma carries most of the value, lung adds little, and here is what would change my mind. Model and assumptions included."><meta property="og:url" content="https://tkinley.github.io/kinley-website/valuations/iova.html"><link rel="canonical" href="https://tkinley.github.io/kinley-website/valuations/iova.html"><meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/iova-valuation.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Why I value Iovance at $5.83 per share"><meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/research-notes.css?v=4"><link rel="stylesheet" href="../assets/valuation.css?v=2">
-<script type="module" src="../assets/iova-valuation.mjs?v=2"></script>
+<script type="module" src="../assets/iova-valuation.mjs?v=3"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the case</a>
 <div class="wrap">
 <nav class="textnav" aria-label="Pages"><a href="../index.html">Home</a><a href="../statistics.html">Alea</a><a href="../valuations.html" aria-current="location">Investment theses</a><a href="../biotech.html">Biotech</a></nav>
 <header class="valuation-header">
-<div class="dateline"><span>Kinley Tenzin · Investment theses · Case 01</span><span>Opinion as of 30 October 2026, evening</span></div>
+<div class="dateline"><span>Kinley Tenzin · Investment theses · Case 01</span><span>Opinion as of 30 October 2026</span></div>
 <p class="breadcrumb"><a href="../valuations.html">← Investment theses in Alea</a></p>
 <h1><span class="ticker">$IOVA · Iovance Biotherapeutics</span>Why I value Iovance at $5.83</h1>
 <p class="lede">I think most of Iovance’s value still comes from melanoma. The lung data made me more cautious, but the bigger question for me is how much the melanoma business can earn. With the assumptions below, I get <strong>${money(central.perShare)} per diluted share</strong>. Here is why.</p>
@@ -67,7 +68,7 @@ const html=`<!doctype html>
 <p>The part I give the most value to is the approved melanoma business: Amtagvi and Proleukin. Together, they contribute ${money(central.parts.core/SHARES)} per share before I deduct ${money(Math.abs(central.parts.labelRisk)/SHARES)} for risk to the existing label. Lung cancer adds only ${money(central.parts.lung/SHARES)} in my model.</p>
 <p>That is why I keep coming back to melanoma. How many patients can Iovance treat? What margin can it make? How much demand could competing treatments take? And what happens if TILVANCE-301 disappoints? Those questions move my valuation much more than a small change in the lung assumptions.</p>
 <p>At the $8.48 price I used in my notes, I think I would already be paying for a better outcome than my base assumptions support. I can get to that price, but I need stronger sales, higher margins, better pipeline results, or a lower required return. I want to be clear about which of those I am assuming before calling the shares undervalued.</p>
-<p class="model-note">This is my opinion as of 30 October 2026, not investment advice. All amounts are U.S. dollars. I use $8.48 from my notes as a comparison; it is not a live quote or an independently verified closing price.</p>
+<p class="model-note">This is my opinion as of 30 October 2026, not investment advice. All amounts are U.S. dollars. I compare against $8.48, IOVA’s closing price on 30 October 2026.</p>
 </section>
 <section id="facts"><h2>What I am starting from</h2>
 <p>These are the reported numbers I use. The right-hand column is how I interpret them.</p>
@@ -125,8 +126,8 @@ ${equations.equity}
 </section>
 ${renderExplorer()}
 <section id="revision"><h2>Why I moved from $7.13 to $5.83</h2>
-<p>I lowered several assumptions in the evening update. Here is what I changed, why I changed it, and how much each change took off the valuation.</p>
-<ol class="bridge-steps">${bridgeRows.map((row,i)=>`<li><strong>${money(row.perShare)}</strong> — ${revisionNotes[i][0]}<p>${revisionNotes[i][1]}</p>${i?`<span>${money(row.change)} per share from this change.</span>`:''}</li>`).join('')}</ol>
+<p>I lowered several assumptions from my first pass. Here is what I changed, why I changed it, and how much each change took off the valuation.</p>
+<ol class="bridge-steps">${bridgeRows.map((row,i)=>`<li><strong>${money(row.perShare)}</strong> · ${revisionNotes[i][0]}<p>${revisionNotes[i][1]}</p>${i?`<span>${money(row.change)} per share from this change.</span>`:''}</li>`).join('')}</ol>
 <p>Most of the reduction came from giving lung less value and being more cautious about melanoma sales. I have kept the changes separate so it is possible to disagree with one of them without rejecting the whole calculation.</p>
 </section>
 <section id="scenarios"><h2>Where I could be wrong</h2>
@@ -138,7 +139,7 @@ ${table('Alternative assumption sets, not statistical confidence bounds',['Scena
 ['Optimistic operating case',money(bull.perShare),'Core weights 25/50/25; 301 probability 60%; conditional withdrawal 15%; lung 45% / $600M peak / 2029; other pipeline and option restored to v1.'],
 ['Optimistic, 8% rate, margins +5 points',money(value(friendly,.08).perShare),'Same optimistic case with a lower discount rate and higher core margins.']
 ])}
-<p>The adverse-safety case is hypothetical. I use it to see what the financial damage could look like if lung is wound down and the problems affect other parts of the business. I am not assuming undisclosed deaths or wrongdoing. A missing safety table would not establish either.</p>
+<p>The adverse-safety case is hypothetical. I use it to see what the financial damage could look like if lung is wound down and the problems affect other parts of the business. The 29 October release did not include a safety table, so this case is a stress test, not a claim about what happened in the trial.</p>
 <p>If I give that case a 10% weight, I get ${money(.9*central.perShare+.1*safety.perShare)}. I chose the 10% for the exercise. I would need actual safety disclosures to make a better judgment, including which patients were treated, their regimens, and what caused the events.</p>
 ${table('One input at a time around the central case',['Input','Lower setting','Higher setting'],[
 ['Discount rate','8% → '+money(value(BASE,.08).perShare),'12% → '+money(value(BASE,.12).perShare)],
@@ -171,10 +172,10 @@ ${equations.reverse}
 <p>I am open to changing the $5.83. What I want is a reason to change a particular assumption. If the evidence improves, the valuation should improve with it.</p>
 </section>
 <section id="downloads"><h2>Sources and reproducible model</h2>
-<p>I have included the model so you can change the assumptions and see where you disagree with me. This is the evening version of my 30 October 2026 valuation. The separate <a href="../statistics/iovance-data-first.html#sources">clinical-data case</a> includes the executed companion notebook.</p>
+<p>I have included the model so you can change the assumptions and see where you disagree with me. This is my 30 October 2026 valuation. The separate <a href="../statistics/iovance-data-first.html#sources">clinical-data case</a> includes the executed companion notebook.</p>
 <div class="actions"><a class="button primary" href="../models/iova_rnpv_model.py" download>Download valuation model (.py)</a><a class="button" href="../data/iova-valuation.json" download>Download assumptions and results (.json)</a></div>
 <p class="model-note">To run the model, use Python 3.10+ and NumPy: <code>python iova_rnpv_model.py</code>. The calculator on this page uses the same valuation assumptions. The simulations run in Python.</p>
-<ul class="sources"><li><a href="${source.quarter}">Iovance Form 10-Q, quarter ended 30 June 2026</a> — revenue, cash composition, and capital structure.</li><li><a href="${source.guidance}">Iovance guidance update, 29 September 2026, SEC Exhibit 99.1</a>.</li><li><a href="${source.lung}">Iovance IOV-LUN-202 update, 29 October 2026</a>.</li><li><a href="${source.label}">FDA Amtagvi approval letter, 16 February 2024</a> — confirmatory obligations and withdrawal provisions.</li><li><a href="${source.competitor}">Replimune corporate update, 14 August 2026</a> — TUDRIQEV approval.</li></ul>
+<ul class="sources"><li><a href="${source.quarter}">Iovance Form 10-Q, quarter ended 30 June 2026</a>: revenue, cash composition, and capital structure.</li><li><a href="${source.guidance}">Iovance guidance update, 29 September 2026, SEC Exhibit 99.1</a>.</li><li><a href="${source.lung}">Iovance IOV-LUN-202 update, 29 October 2026</a>.</li><li><a href="${source.label}">FDA Amtagvi approval letter, 16 February 2024</a>: confirmatory obligations and withdrawal provisions.</li><li><a href="${source.competitor}">Replimune corporate update, 14 August 2026</a>: TUDRIQEV approval.</li></ul>
 <p>The sources above are where I start. The sales paths, launch dates, margins, success probabilities, and valuation are my own assumptions and opinion.</p>
 <p><a href="../valuations.html">← Back to Investment theses</a> · <a href="../statistics/iovance-data-first.html">Read the clinical-data case →</a></p>
 </section>
@@ -191,6 +192,7 @@ const hub=`<!doctype html>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
 <title>Investment theses · Alea · Kinley Tenzin</title>
 <meta name="description" content="My company valuations and the reasoning behind them. Start with Iovance: why I get $5.83 per share, the equations, and what would change my mind.">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Kinley Tenzin"><meta property="og:title" content="Investment theses · Kinley Tenzin"><meta property="og:description" content="What I think a company is worth, and why. Start with Iovance: why I get $5.83 per share."><meta property="og:url" content="https://tkinley.github.io/kinley-website/valuations.html"><link rel="canonical" href="https://tkinley.github.io/kinley-website/valuations.html"><meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/iova-valuation.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Why I value Iovance at $5.83 per share"><meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">

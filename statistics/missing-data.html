@@ -6,12 +6,23 @@
 <meta name="color-scheme" content="light dark">
 <title>Analysis populations, missing data, and sensitivity · Kinley Tenzin</title>
 <meta name="description" content="Understand intention-to-treat, evaluable populations, missingness assumptions, imputation, and tipping-point analyses.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/statistics/missing-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="Analysis populations, missing data, and sensitivity · Alea">
+<meta property="og:description" content="Understand intention-to-treat, evaluable populations, missingness assumptions, imputation, and tipping-point analyses.">
+<meta property="og:url" content="https://tkinley.github.io/kinley-website/statistics/missing-data.html">
+<meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/alea.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alea: interactive lessons for reading drug-trial statistics">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/research-notes.css?v=5">
-<script type="module" src="../assets/statistics-labs.mjs?v=2"></script>
+<script type="module" src="../assets/statistics-labs.mjs?v=3"></script>
 
 </head>
 <body>
@@ -25,7 +36,7 @@
 <p class="lede">Who gets analyzed, and how absent outcomes are handled, can change a result. Missing data are a scientific problem about what was not observed, rather than simply an empty-cell problem.</p>
 </header>
 <main id="main" class="concept-body" tabindex="-1">
-<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<p class="example-note">Examples on this page use invented numbers.</p>
 <section class="learning-lab" data-statistics-lab="missing-data" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">Explore assumptions about missing outcomes</h2><p>Start with a 50% response rate among observed patients. Change how many outcomes are missing and the response rate assumed for them.</p><div class="lab-controls"><div class="lab-control"><label for="lab-missing">Missing outcomes out of 100 patients <output for="lab-missing" data-lab-value="missing">20</output></label><input id="lab-missing" data-lab-key="missing" type="range" min="0" max="60" step="10" value="20" disabled></div><div class="lab-control"><label for="lab-assumed">Assumed response among missing patients <output for="lab-assumed" data-lab-value="assumed">0%</output></label><input id="lab-assumed" data-lab-key="assumed" type="range" min="0" max="100" step="10" value="0" disabled></div></div><figure class="lab-figure"><div class="lab-plot"><div class="lab-bars" role="img" aria-label="80 observed assessments and 20 missing outcomes. Observed-case rate: 50.0%. Under an assumed 0% response rate for missing patients, full-cohort response is 40.0%. The assumption can change the apparent result."><div class="lab-bar-row"><div class="lab-bar-label"><span>Observed assessments only</span><strong>50.0%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-teal" style="width:50%"></div></div></div><div class="lab-bar-row"><div class="lab-bar-label"><span>All 100: with assumed missing outcomes</span><strong>40.0%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-blue" style="width:40%"></div></div></div><div class="lab-bar-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div></div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">80 observed assessments and 20 missing outcomes. Observed-case rate: 50.0%. Under an assumed 0% response rate for missing patients, full-cohort response is 40.0%. The assumption can change the apparent result.</figcaption></figure><p class="lab-lesson">The full-cohort value is a sensitivity scenario, not an estimate justified by the observed data alone. All missing patients share the selected assumed response rate. No claim about MAR, MNAR, or a particular imputation method is established here.</p><button class="lab-reset" type="button" disabled>Reset example</button><figure class="lesson-equations"><figcaption>Equations behind this example</figcaption><div class="lesson-equation-scroll" role="region" aria-label="Full cohort response rate under a chosen missing response assumption" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Full cohort response rate under a chosen missing response assumption"><mi>p</mi><mo>(</mo><mi>q</mi><mo>)</mo><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mtext>obs</mtext></msub><mo>+</mo><mi>q</mi><mi>m</mi></mrow><mrow><msub><mi>n</mi><mtext>obs</mtext></msub><mo>+</mo><mi>m</mi></mrow></mfrac></math></div><p>xobs responses are documented among nobs assessed patients, m outcomes are missing, and q is the assumed response rate among those missing. Moving q is a sensitivity exercise. It does not identify what the missing patients’ outcomes actually were.</p></figure><noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>
 <article aria-label="Analysis populations, missing data, and sensitivity">
 <section id="populations"><h2>Keep the analysis population explicit</h2>
@@ -39,7 +50,7 @@
 <section id="read"><h2>Treatment changes are not all missing data</h2>
 <p>Stopping treatment, using rescue therapy, and death can affect which outcome is meaningful even when data are collected. They are intercurrent events handled within the estimand. Missingness refers to the absence of information needed to estimate that target.</p><p>Read the randomized count, analyzed count, reasons for exclusion, follow-up completeness by arm, outcome collection after discontinuation, primary assumptions, and sensitivity analyses together.</p></section>
 <section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="endpoints-and-estimands.html">Endpoints and estimands</a></li><li><a href="trial-design.html">Trial design, controls, and randomization</a></li><li><a href="subgroups-and-bias.html">Subgroups, enrichment, and selection bias</a></li></ul></section>
-<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/media/148473/download">ICH E9(R1): estimands and sensitivity analysis, May 2021 (FDA, PDF)</a></li><li><a href="https://www.ema.europa.eu/en/scientific-guidelines/missing-data-confirmatory-clinical-trials">EMA: missing data in confirmatory clinical trials</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/media/148473/download">ICH E9(R1): estimands and sensitivity analysis, May 2021 (FDA, PDF)</a></li><li><a href="https://www.ema.europa.eu/en/scientific-guidelines/missing-data-confirmatory-clinical-trials">EMA: missing data in confirmatory clinical trials</a></li></ul></section>
 </article>
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>

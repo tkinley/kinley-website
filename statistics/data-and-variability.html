@@ -6,12 +6,23 @@
 <meta name="color-scheme" content="light dark">
 <title>Data types, averages, and variability · Kinley Tenzin</title>
 <meta name="description" content="Understand binary, continuous, and time-to-event data; distinguish standard deviation from standard error.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/statistics/data-and-variability.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="Data types, averages, and variability · Alea">
+<meta property="og:description" content="Understand binary, continuous, and time-to-event data; distinguish standard deviation from standard error.">
+<meta property="og:url" content="https://tkinley.github.io/kinley-website/statistics/data-and-variability.html">
+<meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/alea.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alea: interactive lessons for reading drug-trial statistics">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/research-notes.css?v=5">
-<script type="module" src="../assets/statistics-labs.mjs?v=2"></script>
+<script type="module" src="../assets/statistics-labs.mjs?v=3"></script>
 
 </head>
 <body>
@@ -25,7 +36,7 @@
 <p class="lede">The same word, “improvement,” can refer to a responder count, a change in a laboratory value, or a delay in disease progression. These are different kinds of data and need different summaries.</p>
 </header>
 <main id="main" class="concept-body" tabindex="-1">
-<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<p class="example-note">Examples on this page use invented numbers.</p>
 <section class="learning-lab" data-statistics-lab="data-and-variability" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">Separate patient variability from estimate precision</h2><p>Increase the sample size while holding individual variability fixed, then change the variability itself.</p><div class="lab-controls"><div class="lab-control"><label for="lab-n">Independent patients <output for="lab-n" data-lab-value="n">25</output></label><input id="lab-n" data-lab-key="n" type="range" min="10" max="400" step="5" value="25" disabled></div><div class="lab-control"><label for="lab-sd">Individual standard deviation <output for="lab-sd" data-lab-value="sd">10 units</output></label><input id="lab-sd" data-lab-key="sd" type="range" min="5" max="30" step="1" value="10" disabled></div></div><figure class="lab-figure"><div class="lab-plot"><svg class="lab-svg" width="720" height="200" viewBox="0 0 720 200" role="img" aria-label="Individual SD: 10 units. Standard error of the mean: 2.00 units. Approximate 95% interval: 46.1–53.9 units. More patients narrow the interval without reducing individual SD."><title>Outcome (units)</title><text x="22" y="22" text-anchor="start">Individual spread: mean ± SD</text><text x="698" y="22" text-anchor="end">40.0–60.0</text><g class="lab-stroke-blue"><line x1="292.40000000000003" x2="427.59999999999997" y1="49" y2="49" stroke-width="4"/><line x1="292.40000000000003" x2="292.40000000000003" y1="43" y2="55"/><line x1="427.59999999999997" x2="427.59999999999997" y1="43" y2="55"/></g><circle class="lab-fill-blue" cx="360" cy="49" r="5"/><text x="22" y="87" text-anchor="start">Mean: approximate 95% interval</text><text x="698" y="87" text-anchor="end">46.1–53.9</text><g class="lab-stroke-teal"><line x1="333.50079999999997" x2="386.49920000000003" y1="114" y2="114" stroke-width="4"/><line x1="333.50079999999997" x2="333.50079999999997" y1="108" y2="120"/><line x1="386.49920000000003" x2="386.49920000000003" y1="108" y2="120"/></g><circle class="lab-fill-teal" cx="360" cy="114" r="5"/><text x="22" y="181" text-anchor="start">0</text><text x="191" y="181" text-anchor="middle">25</text><text x="360" y="181" text-anchor="middle">50</text><text x="529" y="181" text-anchor="middle">75</text><text x="698" y="181" text-anchor="end">100</text></svg><p class="lab-axis-caption">Outcome (units)</p></div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">Individual SD: 10 units. Standard error of the mean: 2.00 units. Approximate 95% interval: 46.1–53.9 units. More patients narrow the interval without reducing individual SD.</figcaption></figure><p class="lab-lesson">The mean is fixed at 50 units. The first span is mean ± one SD, not a 95% interval for individuals. The second is a normal-approximation 95% interval for the mean, using the chosen SD and independent-observation assumption.</p><button class="lab-reset" type="button" disabled>Reset example</button><figure class="lesson-equations"><figcaption>Equations behind this example</figcaption><div class="lesson-equation-scroll" role="region" aria-label="Standard error of the mean is standard deviation divided by the square root of n" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Standard error of the mean is standard deviation divided by the square root of n"><mtext>SE</mtext><mo>=</mo><mfrac><mrow><mtext>SD</mtext></mrow><mrow><msqrt><mi>n</mi></msqrt></mrow></mfrac></math></div><div class="lesson-equation-scroll" role="region" aria-label="Approximate normal 95 percent interval for the mean" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Approximate normal 95 percent interval for the mean"><mover><mi>y</mi><mo>¯</mo></mover><mo>±</mo><mn>1.96</mn><mo>×</mo><mtext>SE</mtext></math></div><p>n is the number of independent patients. SD describes the spread of individual outcomes; SE describes the precision of the mean. The interval is a normal approximation, as used in the example. Small samples with an estimated SD may need a t-based method.</p></figure><noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>
 <article aria-label="Data types, averages, and variability">
 <section id="types"><h2>Match the summary to the data</h2>
@@ -37,7 +48,7 @@
 <section id="models"><h2>Adjusted means and repeated measurements</h2>
 <p>Regression can estimate a treatment contrast while accounting for prespecified baseline variables. An adjusted mean is model-based and can differ from the raw average. A mixed model for repeated measures accounts for correlations across visits and requires assumptions about the outcome and missingness.</p><p>Ask whether error bars show SD, SE, or a confidence interval; whether the analysis uses individuals or repeated measurements; and whether the displayed summary matches the primary analysis. A narrow SE bar is not evidence that every patient had a similar outcome.</p></section>
 <section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="response-rates.html">Response rates and binomial probability</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li><li><a href="effect-sizes.html">Effect sizes: absolute and relative benefit</a></li></ul></section>
-<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul></section>
 </article>
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>

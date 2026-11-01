@@ -4,7 +4,7 @@ import {
   familyError, selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks,
   zeroEventBound,
 } from './statistics-lab-models.mjs?v=2';
-import {renderLessonEquations} from './statistics-equations.mjs?v=1';
+import {renderLessonEquations} from './statistics-equations.mjs?v=2';
 
 const pct = (p, digits=1) => {
   const unit=10**(-digits);
@@ -26,11 +26,11 @@ export const labs = {
   'trial-design': {
     title:'Explore how assignment changes baseline balance',
     question:'Compare random allocation with a deliberately biased rule that gives lower-risk patients to Drug A.',
-    controls:[range('n','Patients per arm',50,10,200,10),select('method','Assignment rule','random',[['random','Random allocation'],['biased','Lower-risk patients assigned to A']]),range('seed','Random draw',7,1,20)],
+    controls:[range('n','Patients per arm',50,10,200,10),select('method','Assignment rule','random',[['random','Random allocation'],['biased','Lower-risk patients assigned to A']]),range('seed','Random draw',8,1,20)],
     lesson:'The constructed population is 40% high-risk. Randomization balances in expectation; a particular draw can still be imbalanced. These bars show baseline risk, not treatment benefit.',
     compute:v=>{
       const rates=trialBalance(v.n,v.method,v.seed);
-      return {chart:bars(['Drug A: high-risk at baseline','Control: high-risk at baseline'],rates),summary:`High-risk patients: ${pct(rates[0])} on A versus ${pct(rates[1])} on control. Baseline difference: ${fixed((rates[0]-rates[1])*100)} percentage points. ${v.method==='random'?'Change the draw to see random imbalance.':'The imbalance was introduced by the assignment rule.'}`};
+      return {chart:bars(['Drug A: high-risk at baseline','Control: high-risk at baseline'],rates),summary:`High-risk patients: ${pct(rates[0])} on A versus ${pct(rates[1])} on control. Baseline difference: ${fixed((rates[0]-rates[1])*100)} percentage points. ${v.method==='random'?'Change the draw to see how much chance alone moves this.':'The imbalance was introduced by the assignment rule.'}`};
     },
   },
   'endpoints-and-estimands': {
@@ -155,8 +155,8 @@ export const labs = {
     title:'Explore conditional predictions for new patients',
     question:'Change the hypothetical future cohort size or the fixed-p assumption. Compare the resulting responder-count intervals.',
     controls:[range('n','Hypothetical future patients',50,10,200,10),select('p','Fixed-p assumption','observed',[['observed','13/22: reported subgroup rate'],['0.4','40%: illustrative assumption'],['0.5','50%: illustrative assumption'],['0.7','70%: illustrative assumption']])],
-    lesson:'The beta-binomial model keeps the reported 13/22 data and Beta(1,1) prior, giving a Beta(14,10) posterior. Changing the fixed-p choice does not change those observations. Neither prediction corrects retrospective selection or differences between cohorts.',
-    compute:v=>{const p=v.p==='observed'?13/22:Number(v.p),fixedPMF=binomialPMF(v.n,p),bayesPMF=betaBinomialPMF(v.n,14,10),a=countInterval(fixedPMF),b=countInterval(bayesPMF);return {chart:{type:'intervals',min:0,max:v.n,axis:'Future responder count',rows:[{name:'Fixed-p binomial',lo:a[0],hi:a[1],value:v.n*p,color:'teal'},{name:'Beta-binomial: Beta(14,10)',lo:b[0],hi:b[1],value:v.n*14/24,color:'blue'}]},summary:`Among ${v.n} hypothetical new patients: binomial expected count ${fixed(v.n*p)}, central 95% count interval ${a[0]}–${a[1]}; beta-binomial expected count ${fixed(v.n*14/24)}, interval ${b[0]}–${b[1]}. These are conditional count predictions, not a probability of approval.`};},
+    lesson:'The beta-binomial model keeps the reported 13/22 data and Beta(1,1) prior, giving a Beta(14,10) posterior. Changing the fixed-p choice does not change those observations, and neither prediction corrects for how the subgroup was found.',
+    compute:v=>{const p=v.p==='observed'?13/22:Number(v.p),fixedPMF=binomialPMF(v.n,p),bayesPMF=betaBinomialPMF(v.n,14,10),a=countInterval(fixedPMF),b=countInterval(bayesPMF);return {chart:{type:'intervals',min:0,max:v.n,axis:'Future responder count',rows:[{name:'Fixed-p binomial',lo:a[0],hi:a[1],value:v.n*p,color:'teal'},{name:'Beta-binomial: Beta(14,10)',lo:b[0],hi:b[1],value:v.n*14/24,color:'blue'}]},summary:`Among ${v.n} hypothetical new patients: binomial expected count ${fixed(v.n*p)}, central 95% count interval ${a[0]}–${a[1]}; beta-binomial expected count ${fixed(v.n*14/24)}, interval ${b[0]}–${b[1]}.`};},
   },
 };
 
@@ -186,6 +186,15 @@ function formatControl(c,v) {
   return c.format==='decimal'?Number(v).toFixed(1):String(v);
 }
 const svgText = (x,y,value,anchor='start') => `<text x="${x}" y="${y}" text-anchor="${anchor}">${esc(value)}</text>`;
+// Round the top of a value axis up so gridlines land on round numbers (0, 10, 20%... rather than 8, 15, 23%).
+const niceAxis = (min,max) => {
+  const span=max-min,step4=span/4,unit=10**Math.floor(Math.log10(step4)),lead=step4/unit;
+  if([1,2,2.5,5,10].some(m=>Math.abs(lead-m)<1e-9))return {max,step:step4,steps:4};
+  const base=10**Math.floor(Math.log10(span/5));
+  const step=[1,2,5,10].map(m=>m*base).find(s=>Math.ceil(span/s-1e-9)<=5);
+  const steps=Math.ceil(span/step-1e-9);
+  return {max:min+steps*step,step,steps};
+};
 const fmtTick = (v,type) => type==='probability'?`${Math.round(v*100)}%`:Number(v.toFixed(2)).toString();
 const numberSpan = (row,integer=false) => `${fixed(row.lo,integer?0:1)}–${fixed(row.hi,integer?0:1)}`;
 export function renderChart(chart, width=720, summary='') {
@@ -208,9 +217,10 @@ export function renderChart(chart, width=720, summary='') {
   }
   const h=275,left=48,right=18,top=18,bottom=44,iw=w-left-right,ih=h-top-bottom;
   const x=v=>left+(v-chart.min)/(chart.max-chart.min)*iw;
-  const y=v=>top+(chart.ymax-v)/(chart.ymax-chart.ymin)*ih;
+  const axis=niceAxis(chart.ymin,chart.ymax),ymax=axis.max;
+  const y=v=>top+(ymax-v)/(ymax-chart.ymin)*ih;
   let marks='';
-  for(let i=0;i<=4;i++){const value=chart.ymin+(chart.ymax-chart.ymin)*i/4,yy=y(value);marks+=`<line class="lab-gridline" x1="${left}" x2="${w-right}" y1="${yy}" y2="${yy}"/>`+svgText(left-8,yy+4,fmtTick(value,chart.yformat),'end');}
+  for(let i=0;i<=axis.steps;i++){const value=chart.ymin+axis.step*i,yy=y(value);marks+=`<line class="lab-gridline" x1="${left}" x2="${w-right}" y1="${yy}" y2="${yy}"/>`+svgText(left-8,yy+4,fmtTick(value,chart.yformat),'end');}
   const xTicks=chart.xlabel==='Planned analysis number'?Array.from({length:Math.round(chart.max-0.5)},(_,i)=>i+1):chart.xlabel==='Patients per arm'?[20,100,200,300,400]:chart.xlabel==='Patients observed'?[0,250,500,750,1000]:chart.shade!==undefined?[-4,-2,0,2,4]:[...new Set(points(4,i=>Number((chart.min+(chart.max-chart.min)*i/3).toFixed(chart.integerX?0:1))))];
   xTicks.forEach((value,i)=>{marks+=svgText(x(value),h-20,value,i===0?'start':i===xTicks.length-1?'end':'middle');});
   if(chart.shade!==undefined){

@@ -85,7 +85,7 @@ const entries={
   },
   iovance:{
     equations:[eq('Observed response rate for the selected Iovance subgroup',`${phat}<mo>=</mo>${frac(n(13),n(22))}<mo>≈</mo><mn>0.591</mn>`),eq('Conditional posterior under the uniform beta prior',`<mi>p</mi><mo>∣</mo><mtext>data</mtext><mo>∼</mo><mi mathvariant="normal">Beta</mi><mo>(</mo><mn>14</mn><mo>,</mo><mn>10</mn><mo>)</mo>`),eq('Conditional expected responders in m future patients',`<mi mathvariant="normal">E</mi><mo>[</mo><mi>K</mi><mo>∣</mo><mtext>data</mtext><mo>]</mo><mo>=</mo><mi>m</mi><mo>×</mo>${frac(n(14),n(24))}`)],
-    note:'The posterior follows from the reported 13/22 and a Beta(1,1) prior under a binomial likelihood. With the observed rate chosen, the fixed-p mean is m × 13/22; other fixed-p choices use m × p. The beta-binomial prediction includes uncertainty in p. Neither construction corrects retrospective subgroup selection or establishes a probability of approval.'
+    note:'The posterior follows from the reported 13/22 and a Beta(1,1) prior under a binomial likelihood. With the observed rate chosen, the fixed-p mean is m × 13/22; other fixed-p choices use m × p. The beta-binomial prediction includes uncertainty in p.'
   }
 };
 

@@ -6,12 +6,23 @@
 <meta name="color-scheme" content="light dark">
 <title>Endpoints and estimands · Kinley Tenzin</title>
 <meta name="description" content="Define what was measured, in which patients, over what time, and how treatment changes were handled.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/statistics/endpoints-and-estimands.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="Endpoints and estimands · Alea">
+<meta property="og:description" content="Define what was measured, in which patients, over what time, and how treatment changes were handled.">
+<meta property="og:url" content="https://tkinley.github.io/kinley-website/statistics/endpoints-and-estimands.html">
+<meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/alea.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alea: interactive lessons for reading drug-trial statistics">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/research-notes.css?v=5">
-<script type="module" src="../assets/statistics-labs.mjs?v=2"></script>
+<script type="module" src="../assets/statistics-labs.mjs?v=3"></script>
 
 </head>
 <body>
@@ -25,7 +36,7 @@
 <p class="lede">An endpoint is the outcome being measured. An estimand is the precise treatment-effect question. A clear question comes before choosing the statistical test.</p>
 </header>
 <main id="main" class="concept-body" tabindex="-1">
-<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<p class="example-note">Examples on this page use invented numbers.</p>
 <section class="learning-lab" data-statistics-lab="endpoints-and-estimands" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">See three endpoints in the same patients</h2><p>Move the cutoff date. Responses can accumulate while progression-free and overall survival decline.</p><div class="lab-controls"><div class="lab-control"><label for="lab-month">Data cutoff <output for="lab-month" data-lab-value="month">6 months</output></label><input id="lab-month" data-lab-key="month" type="range" min="3" max="24" step="1" value="6" disabled></div></div><figure class="lab-figure"><div class="lab-plot"><div class="lab-bars" role="img" aria-label="At month 6: 5/12 have responded, 11/12 remain progression-free, and 12/12 are alive. The endpoint changes which outcome is counted."><div class="lab-bar-row"><div class="lab-bar-label"><span>Response documented by cutoff (ORR)</span><strong>41.7%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-teal" style="width:41.66666666666667%"></div></div></div><div class="lab-bar-row"><div class="lab-bar-label"><span>No progression or death at cutoff</span><strong>91.7%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-blue" style="width:91.66666666666666%"></div></div></div><div class="lab-bar-row"><div class="lab-bar-label"><span>Alive at cutoff</span><strong>100.0%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-blue" style="width:100%"></div></div></div><div class="lab-bar-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div></div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">At month 6: 5/12 have responded, 11/12 remain progression-free, and 12/12 are alive. The endpoint changes which outcome is counted.</figcaption></figure><p class="lab-lesson">Twelve hypothetical patients are fully observed through each cutoff, with no censoring. ORR counts anyone who has responded by then, even if they later progress. These are distinct measurements; changing how rescue treatment is handled would require a separate estimand.</p><button class="lab-reset" type="button" disabled>Reset example</button><figure class="lesson-equations"><figcaption>Equations behind this example</figcaption><div class="lesson-equation-scroll" role="region" aria-label="A mean treatment effect at a fixed time compares expected outcomes under two defined strategies" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="A mean treatment effect at a fixed time compares expected outcomes under two defined strategies"><mi>Δ</mi><mo>=</mo><mi mathvariant="normal">E</mi><mo>[</mo><msup><mi>Y</mi><mi>A</mi></msup><mo>(</mo><mi>t</mi><mo>)</mo><mo>]</mo><mo>−</mo><mi mathvariant="normal">E</mi><mo>[</mo><msup><mi>Y</mi><mi>B</mi></msup><mo>(</mo><mi>t</mi><mo>)</mo><mo>]</mo></math></div><p>This is one possible estimand: the difference in mean outcome at time t in a defined population under strategies A and B. The outcome and strategies must specify how events such as rescue treatment or death are handled. Other endpoints may require a different summary measure.</p></figure><noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>
 <article aria-label="Endpoints and estimands">
 <section id="endpoint"><h2>An endpoint needs a definition and a clock</h2>
@@ -37,7 +48,7 @@
 <section id="surrogate"><h2>An earlier measurement may be a surrogate</h2>
 <p>A surrogate endpoint is used to stand in for a clinical outcome of interest in a particular setting. An association between a biomarker and prognosis does not by itself show that changing the biomarker with treatment changes clinical benefit. The strength of the relationship can depend on disease, therapy, and context.</p><p>Read the exact endpoint wording, data cutoff, treatment-change rules, and clinical interpretation together. A headline saying “met the endpoint” is incomplete without them.</p></section>
 <section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="trial-design.html">Trial design, controls, and randomization</a></li><li><a href="survival-analysis.html">Survival analysis, censoring, and hazard ratios</a></li><li><a href="missing-data.html">Analysis populations, missing data, and sensitivity</a></li></ul></section>
-<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics">FDA: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a></li><li><a href="https://www.fda.gov/media/148473/download">ICH E9(R1): estimands and sensitivity analysis, May 2021 (FDA, PDF)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics">FDA: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a></li><li><a href="https://www.fda.gov/media/148473/download">ICH E9(R1): estimands and sensitivity analysis, May 2021 (FDA, PDF)</a></li></ul></section>
 </article>
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>

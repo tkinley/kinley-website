@@ -14,7 +14,7 @@ Source for [tkinley.github.io/kinley-website](https://tkinley.github.io/kinley-w
 | `assets/statistics-labs.mjs`, `assets/statistics-lab-models.mjs` | Seventeen interactive teaching examples: one per concept plus the Iovance predictor. Default graphics are rendered into the HTML; controls update locally in the browser. Mathematical models have separate tests |
 | `biotech.html` | Biotech hub: clinical case studies and the existing catalyst and investor trackers |
 | `statistics/iovance-data-first.html` | Readable Iovance article: current data, selection concerns, Wilson uncertainty, prediction, and validation |
-| `notebooks/Iovance_Data_First_Companion.ipynb` | Executed 21-cell companion, newly reconstructed from the roadmap and primary source; not the original chat attachment |
+| `notebooks/Iovance_Data_First_Companion.ipynb` | Executed 21-cell companion that reproduces the article’s numbers from the primary source |
 | `scripts/build-iovance-notebook.py` | Rebuilds and executes the companion and exports its figures to `assets/iovance/` (requires nbformat, nbclient, ipykernel, matplotlib) |
 | `assets/research-notes.css` | Shared Statistics/Biotech styling, matching the existing tracker pages |
 | `student-match.html` | Student Opportunities: three questions, then a list of funding, tools, and help sorted by deadline. See `STUDENT-MATCH.md` |
