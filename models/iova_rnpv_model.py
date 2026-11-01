@@ -1,5 +1,5 @@
 """
-IOVA: Kinley Tenzin's personal valuation case, 30 October 2026 (evening).
+IOVA: Kinley Tenzin's personal valuation case, 30 October 2026.
 Web edition of the supplied v2 model. All financial amounts are USD millions;
 shares are millions. Requires Python 3.10+ and NumPy (tested with NumPy 1.24.2).
 Run: python iova_rnpv_model.py

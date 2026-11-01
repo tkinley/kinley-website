@@ -102,7 +102,7 @@ const concepts = [
         ['Odds ratio', '(0.40/0.60) / (0.25/0.75)', '2.00'],
         ['Number needed to treat for one additional response', '1 / 0.15', 'About 7, using this point estimate and follow-up'],
       ])}<p>An odds ratio of 2 does not mean the response probability doubled: the risk ratio here is 1.6. Odds and risks become closer when events are rare. Describe whether the event is beneficial or harmful before interpreting a ratio above or below 1.</p>`),
-      section('precision', 'An observed benefit needs an uncertainty interval', `<p>For this example, a simple unadjusted large-sample interval for the risk difference is approximately 2.2–27.8 percentage points. This calculation is illustrative; score-based or other methods may be preferable depending on sample size and design.</p><div class="formula">SE(RD) ≈ √[p̂<sub>A</sub>(1−p̂<sub>A</sub>)/n<sub>A</sub> + p̂<sub>C</sub>(1−p̂<sub>C</sub>)/n<sub>C</sub>]</div><p>The point estimate of NNT hides this uncertainty and depends on baseline risk, outcome definition, and time horizon. If the risk-difference interval includes zero, the corresponding NNT uncertainty is especially awkward and should not be reduced to a single neat range.</p>`),
+      section('precision', 'An observed benefit needs an uncertainty interval', `<p>For this example, a simple unadjusted large-sample interval for the risk difference is approximately 2.2–27.8 percentage points. This calculation is illustrative; score-based or other methods may be preferable depending on sample size and design.</p><div class="formula">SE(RD) ≈ √[p̂<sub>A</sub>(1−p̂<sub>A</sub>)/n<sub>A</sub> + p̂<sub>B</sub>(1−p̂<sub>B</sub>)/n<sub>B</sub>]</div><p>The point estimate of NNT hides this uncertainty and depends on baseline risk, outcome definition, and time horizon. If the risk-difference interval includes zero, the corresponding NNT uncertainty is especially awkward and should not be reduced to a single neat range.</p>`),
       section('continuous', 'Continuous outcomes need units', `<p>A mean difference of −5 mmHg is an absolute blood-pressure contrast. A standardized mean difference divides by a standard deviation and is unitless, which can help compare scales but is less directly clinical. A percent change depends on the baseline; it is not interchangeable with an absolute change.</p><p>A prespecified regression model may adjust for baseline measurements or other prognostic variables. Distinguish the adjusted treatment contrast from raw group means. Statistical adjustment cannot guarantee that two unrelated studies become comparable.</p>`),
       section('meaningful', 'Clinical importance is a separate question', `<p>A small effect can be precisely estimated in a very large trial. A potentially meaningful effect can be imprecise in a small trial. Judge the magnitude, interval, symptom or survival consequences, treatment burden, and safety together.</p><p>When reading a company release, identify the measure, direction, units, reference group, follow-up, and confidence interval. A relative percentage without the absolute outcomes omits information needed to judge its practical size.</p>`),
     ], related: ['confidence-intervals', 'survival-analysis', 'safety-and-benefit-risk'], sources: ['e9', 'asa'],
@@ -125,7 +125,7 @@ const concepts = [
     intro: 'Power is the chance that a planned test rejects its null hypothesis when a specified alternative is true. It is a design calculation conditional on assumed effects and variability.',
     sections: [
       section('power', 'Power requires an alternative', `<p>A trial can have 80% power to detect a particular effect at a chosen α. That does not imply an 80% chance the treatment works or that the trial will succeed. If the real effect is smaller, the actual power is lower; if outcome variability is larger, the test also has less precision.</p><p>Inputs include the endpoint and analysis method, control outcome, target effect, allocation ratio, significance level, desired power, and expected missingness. Multiplicity, clustering, interim monitoring, and covariate adjustment can change the calculation.</p>`),
-      section('example', 'An approximate two-arm example', `<div class="example"><h3>Example: 50% versus 30% response</h3><p>For independent equal-sized arms, a two-sided α = 0.05 and 80% power, a simple normal approximation gives about 93 evaluable patients per arm to detect a response difference of 20 percentage points. This is an illustration, not a proposed clinical design.</p></div><div class="formula">n per arm ≈ [z<sub>1−α/2</sub>√(2p̄(1−p̄)) + z<sub>1−β</sub>√(p<sub>A</sub>(1−p<sub>A</sub>) + p<sub>C</sub>(1−p<sub>C</sub>))]² / (p<sub>A</sub>−p<sub>C</sub>)²</div><p>Here p̄ is the average assumed response probability. Inflating 93 by 1/(1−0.10) gives about 104 enrolled per arm for 10% nonevaluability, after rounding. Enrollment inflation does not solve bias from missing outcomes.</p>`),
+      section('example', 'An approximate two-arm example', `<div class="example"><h3>Example: 50% versus 30% response</h3><p>For independent equal-sized arms, a two-sided α = 0.05 and 80% power, a simple normal approximation gives about 93 evaluable patients per arm to detect a response difference of 20 percentage points. This is an illustration, not a proposed clinical design.</p></div><div class="formula">n per arm ≈ [z<sub>1−α/2</sub>√(2p̄(1−p̄)) + z<sub>1−β</sub>√(p<sub>A</sub>(1−p<sub>A</sub>) + p<sub>B</sub>(1−p<sub>B</sub>))]² / (p<sub>A</sub>−p<sub>B</sub>)²</div><p>Here p̄ is the average assumed response probability. Inflating 93 by 1/(1−0.10) gives about 104 enrolled per arm for 10% nonevaluability, after rounding. Enrollment inflation does not solve bias from missing outcomes.</p>`),
       section('information', 'Information is not always a patient count', `<p>For a survival endpoint, the number and timing of observed events often drive power more directly than enrollment alone. Accrual speed, follow-up, censoring, and the assumed hazard pattern determine how many events become available.</p><p>For an independent mean, SE decreases approximately as 1/√n. Halving SE therefore requires about four times the sample size, all else equal. Detecting a smaller effect can demand substantially more information.</p>`),
       section('assumptions', 'Optimistic design assumptions can mislead', `<p>Planning with an exaggerated effect from a small or selected early cohort can yield an underpowered later trial. Use realistic assumptions and examine a range of plausible effects and control outcomes. A target effect should be clinically meaningful, not merely convenient for making a trial smaller.</p><p>After observing a result, “observed power” calculated by plugging in the observed effect mostly repackages that result. The effect estimate and interval are more useful for understanding what the study learned.</p>`),
       section('read', 'Questions for a trial-size announcement', `<ul><li>Which effect and control outcome were assumed?</li><li>Is the target an enrolled-patient count or an event count?</li><li>What power and alpha were used, including multiplicity and interim looks?</li><li>How were missing data and follow-up modeled?</li><li>Was a re-estimation rule specified before examining treatment differences?</li></ul>`),
@@ -175,7 +175,7 @@ const concepts = [
       section('beta', 'A binary-response example', `<div class="example"><h3>Example: 12 responses among 20 patients</h3><p>Use a Beta(1,1) prior for p and an independent binomial likelihood. The posterior is Beta(13,9): add twelve responses to the first parameter and eight nonresponses to the second. The posterior mean is 13/22 ≈ 59.1%, compared with the observed proportion of 60%.</p></div><p>For a Beta(a,b) distribution, the mean is a/(a+b). Its concentration affects how strongly the prior influences updating. Calling a prior “weak” should be justified in the specific setting; a uniform prior on p is not uniform after every transformation.</p>`),
       section('predict', 'Prediction includes future sampling variability', `<p>To predict m future patients, average Binomial(m,p) predictions over the posterior for p. A beta posterior produces a beta-binomial predictive distribution.</p><div class="formula">P(X<sub>future</sub> = k | data) = ∫ P(X<sub>future</sub> = k | p) π(p | data) dp</div><p>For the example’s Beta(13,9) posterior and m = 30, the expected count is 30 × 13/22 ≈ 17.7 responders. A fixed-p binomial prediction at p̂ = 0.60 has expected count 18 and ignores uncertainty about p. Their predictive spreads differ even when their means are similar.</p><p>A predictive probability of meeting a future responder threshold is conditional on the endpoint, future population, prior, and model. It is not automatically a probability of trial success, regulatory approval, or a market return.</p>`),
       section('sensitivity', 'Check the prior and the data-generating assumptions', `<p>Repeat the analysis with defensible alternative priors and report what changes. External data need a comparability argument before they are borrowed: different eligibility, measurement, background care, or follow-up can make historical information misleading.</p><p>A model fit to a retrospectively selected subgroup will not remove selection optimism merely because it is Bayesian. Calibration studies or simulations should evaluate a planned decision rule’s behavior across relevant scenarios.</p>`),
-      section('read', 'What to ask about a Bayesian result', `<ul><li>What is the prior, and where did its information come from?</li><li>What likelihood and population assumptions were made?</li><li>Is the reported probability about a parameter, a future outcome, or a decision rule?</li><li>How sensitive is it to the prior and historical borrowing?</li></ul><p>The linked FDA Bayesian document is a <strong>January 2026 draft</strong>, as checked on 31 October 2026; it is identified as a draft in the sources.</p>`),
+      section('read', 'What to ask about a Bayesian result', `<ul><li>What is the prior, and where did its information come from?</li><li>What likelihood and population assumptions were made?</li><li>Is the reported probability about a parameter, a future outcome, or a decision rule?</li><li>How sensitive is it to the prior and historical borrowing?</li></ul>`),
     ], related: ['response-rates', 'confidence-intervals', 'interim-and-adaptive'], sources: ['bayes', 'beta'],
   },
   {
@@ -196,7 +196,7 @@ const concepts = [
     intro: 'Some trials aim to show a treatment is better. Others ask whether it avoids losing more than a justified amount of efficacy, perhaps in exchange for another advantage. These need different hypotheses.',
     sections: [
       section('questions', 'Three distinct questions', `<p><strong>Superiority</strong> asks whether a treatment improves the endpoint relative to control. <strong>Noninferiority</strong> asks whether a possible loss is smaller than a prespecified margin. <strong>Equivalence</strong> asks whether the difference lies within both a lower and an upper margin.</p><p>Failure to show superiority is not evidence of equivalence or noninferiority. An imprecise trial can be compatible with substantial benefit and substantial harm at once.</p>`),
-      section('example', 'A margin needs a direction and a scale', `<div class="example"><h3>Example: response-rate difference</h3><p>Let Δ = p<sub>new</sub> − p<sub>control</sub>, so higher is better. Suppose the justified noninferiority margin is −10 percentage points. An estimated difference of −2 points with a matching 95% interval of −7 to +3 clears that margin because the lower limit is above −10.</p><p>An interval of −13 to +3 would not clear it. Both intervals include zero, so neither establishes superiority using the corresponding two-sided interval criterion.</p></div><p>The numerical example illustrates a conventional one-sided 2.5% test matched to a two-sided 95% interval. The actual significance level, test, endpoint scale, and multiplicity plan must be prespecified.</p>`),
+      section('example', 'A margin needs a direction and a scale', `<div class="example"><h3>Example: response-rate difference</h3><p>Let δ = p<sub>new</sub> − p<sub>control</sub>, so higher is better. Suppose the justified noninferiority margin is Δ = 10 percentage points, so the lower limit must stay above −10. An estimated difference of −2 points with a matching 95% interval of −7 to +3 clears that margin because the lower limit is above −10.</p><p>An interval of −13 to +3 would not clear it. Both intervals include zero, so neither establishes superiority using the corresponding two-sided interval criterion.</p></div><p>The numerical example illustrates a conventional one-sided 2.5% test matched to a two-sided 95% interval. The actual significance level, test, endpoint scale, and multiplicity plan must be prespecified.</p>`),
       section('margin', 'A margin is not a convenience setting', `<p>The margin needs clinical and statistical justification, including credible evidence about the active control’s effect and how much of that benefit must be preserved. A very wide margin can make noninferiority easier to claim while allowing a clinically important loss.</p><p><strong>Assay sensitivity</strong> is the ability of the trial to distinguish effective from ineffective treatment. If poor adherence, weak outcome ascertainment, or an unsuitable population makes both arms look similar, a noninferiority conclusion can be misleading. The assumption that the control retains its historical effect also matters.</p>`),
       section('analyses', 'Analysis populations and equivalence', `<p>Intention-to-treat and per-protocol analyses can be affected differently by nonadherence and exclusions. Neither should be assumed universally conservative in noninferiority trials; concordance and sensitivity need interpretation.</p><p>Equivalence requires both bounds to fall within justified margins, using the intervals and error levels matched to the testing procedure. Switching from a failed superiority test to an unplanned similarity claim changes the question after seeing the answer.</p>`),
       section('read', 'Read the advantage as well as the efficacy margin', `<p>A drug that is noninferior on one endpoint may still differ in safety, dosing burden, quality of life, or other outcomes. Those advantages need their own evidence and, where applicable, a multiplicity plan. Noninferiority is not a statement that the products are identical.</p>`),
@@ -230,18 +230,30 @@ const concepts = [
 
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const bySlug = new Map(concepts.map(c => [c.slug, c]));
-const head = (title, description, prefix, interactive=false, dashboard=false) => `<head>
+const site = 'https://tkinley.github.io/kinley-website/';
+const head = (title, description, prefix, interactive=false, dashboard=false, social={}) => `<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>${escape(title)} · Kinley Tenzin</title>
 <meta name="description" content="${escape(description)}">
+<link rel="canonical" href="${site}${social.path}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="${escape(social.title || `${title} · Alea`)}">
+<meta property="og:description" content="${escape(social.description || description)}">
+<meta property="og:url" content="${site}${social.path}">
+<meta property="og:image" content="${site}images/og/alea.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alea: interactive lessons for reading drug-trial statistics">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${prefix}assets/research-notes.css?v=5">
-${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=2"></script>`:''}
+${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=3"></script>`:''}
 ${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=2"></script>`:''}
 </head>`;
 const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}valuations.html">Investment theses</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
@@ -251,7 +263,7 @@ for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
   const html = `<!doctype html>
 <html lang="en">
-${head(concept.title, concept.summary, '../', true)}
+${head(concept.title, concept.summary, '../', true, false, {path:`statistics/${concept.slug}.html`})}
 <body>
 <a class="skip" href="#main">Skip to explanation</a>
 <div class="wrap">
@@ -263,12 +275,12 @@ ${nav('../')}
 <p class="lede">${concept.intro}</p>
 </header>
 <main id="main" class="concept-body" tabindex="-1">
-<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<p class="example-note">Examples on this page use invented numbers.</p>
 ${renderLab(concept.slug)}
 <article aria-label="${escape(concept.title)}">
 ${concept.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>\n${s.body}</section>`).join('\n')}
 <section id="related"><h2>Related concepts</h2><ul class="related-links">${concept.related.map(slug => `<li><a href="${slug}.html">${escape(bySlug.get(slug).title)}</a></li>`).join('')}</ul></section>
-<section id="sources"><h2>Sources and further reading</h2><ul class="sources">${concept.sources.map(key => `<li><a href="${sources[key][1]}">${escape(sources[key][0])}</a></li>`).join('')}</ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources">${concept.sources.map(key => `<li><a href="${sources[key][1]}">${escape(sources[key][0])}</a></li>`).join('')}</ul></section>
 </article>
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>
@@ -299,7 +311,7 @@ const folderSection=folder=>{
 };
 const hub = `<!doctype html>
 <html lang="en">
-${head('Alea: evidence, statistics, and valuations', 'Browse interactive clinical-trial statistics, worked data cases, and Kinley Tenzin’s personal company valuations.', '', false, true)}
+${head('Alea: evidence, statistics, and valuations', 'Browse interactive clinical-trial statistics, worked data cases, and Kinley Tenzin’s personal company valuations.', '', false, true, {path:'statistics.html', title:'Alea: interactive lessons for reading drug-trial statistics', description:'16 interactive lessons on p-values, multiplicity, subgroups, survival curves, and Bayesian prediction, plus a worked Iovance case and my own company valuation.'})}
 <body class="dashboard-page">
 <a class="skip" href="#main">Skip to the learning folders</a>
 <div class="wrap">
@@ -307,7 +319,7 @@ ${nav('')}
 <header class="guide-header">
 <div class="dateline"><span>Kinley Tenzin · Alea</span><span>Evidence, uncertainty, and value</span></div>
 <h1>Alea</h1>
-<p class="lede">A visual library for reading drug-trial evidence and thinking about value. Open a learning folder, or explore my company valuations and the assumptions behind them.</p>
+<p class="lede">Interactive lessons for reading drug-trial results, plus my own company valuations. I built it because press releases are where small denominators, hand-picked subgroups, and p-values get stretched the furthest. Every lesson has an example you can change and the equations behind it. I study bacterial genomes, not clinical trials, so if you spot a mistake, <a href="index.html#contact">tell me</a>.</p>
 </header>
 <main id="main" class="dashboard" data-learning-dashboard tabindex="-1">
 <div class="library-toolbar"><div><h2 data-library-heading tabindex="-1">Explore the folders</h2><p class="library-count">16 interactive lessons · 1 data case · 1 personal valuation</p></div><div class="library-search" data-search-controls hidden><label for="lesson-search">Find a topic or company</label><div class="library-search-row"><input type="search" id="lesson-search" placeholder="Try Wilson, survival, or IOVA" autocomplete="off"><button type="button" data-clear-search hidden>Clear</button></div></div></div>

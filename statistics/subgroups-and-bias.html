@@ -6,12 +6,23 @@
 <meta name="color-scheme" content="light dark">
 <title>Subgroups, enrichment, and selection bias · Kinley Tenzin</title>
 <meta name="description" content="Separate a biological hypothesis from a validated predictive biomarker, and understand post-selection optimism.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/statistics/subgroups-and-bias.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="Subgroups, enrichment, and selection bias · Alea">
+<meta property="og:description" content="Separate a biological hypothesis from a validated predictive biomarker, and understand post-selection optimism.">
+<meta property="og:url" content="https://tkinley.github.io/kinley-website/statistics/subgroups-and-bias.html">
+<meta property="og:image" content="https://tkinley.github.io/kinley-website/images/og/alea.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alea: interactive lessons for reading drug-trial statistics">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/research-notes.css?v=5">
-<script type="module" src="../assets/statistics-labs.mjs?v=2"></script>
+<script type="module" src="../assets/statistics-labs.mjs?v=3"></script>
 
 </head>
 <body>
@@ -25,7 +36,7 @@
 <p class="lede">A treatment may work differently across patients, but finding a high response rate in a subgroup is only the beginning. The definition, search process, comparison, and independent evidence determine how much to trust it.</p>
 </header>
 <main id="main" class="concept-body" tabindex="-1">
-<p class="example-note">Numerical examples on this page are hypothetical unless a worked case study is explicitly linked.</p>
+<p class="example-note">Examples on this page use invented numbers.</p>
 <section class="learning-lab" data-statistics-lab="subgroups-and-bias" aria-labelledby="lab-title"><p class="kicker">Learn by changing the example</p><h2 id="lab-title">Select the best-looking subgroup</h2><p>All hypothetical groups have true response probability 30%. Compare a group chosen in advance with the group selected for the highest observed rate.</p><div class="lab-controls"><div class="lab-control"><label for="lab-groups">Candidate groups searched <output for="lab-groups" data-lab-value="groups">8</output></label><input id="lab-groups" data-lab-key="groups" type="range" min="1" max="20" step="1" value="8" disabled></div><div class="lab-control"><label for="lab-n">Patients in each group <output for="lab-n" data-lab-value="n">22</output></label><input id="lab-n" data-lab-key="n" type="range" min="10" max="100" step="2" value="22" disabled></div></div><figure class="lab-figure"><div class="lab-plot"><div class="lab-bars" role="img" aria-label="Across 600 simulated searches: prespecified group 30.4%; selected best group 44.1%. Average selection gap: 13.7 percentage points. A higher selected rate need not reflect a different true probability."><div class="lab-bar-row"><div class="lab-bar-label"><span>Mean rate: group fixed in advance</span><strong>30.4%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-teal" style="width:30.44696969696969%"></div></div></div><div class="lab-bar-row"><div class="lab-bar-label"><span>Mean rate: best observed group</span><strong>44.1%</strong></div><div class="lab-bar-track" aria-hidden="true"><div class="lab-bar-fill lab-blue" style="width:44.1060606060607%"></div></div></div><div class="lab-bar-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div></div><figcaption class="lab-summary" aria-live="polite" aria-atomic="true">Across 600 simulated searches: prespecified group 30.4%; selected best group 44.1%. Average selection gap: 13.7 percentage points. A higher selected rate need not reflect a different true probability.</figcaption></figure><p class="lab-lesson">The bars average 600 seeded simulations of independent groups. This invented search illustrates selection optimism; it does not estimate bias in any real company’s analysis. Both groups have the same true underlying p = 30%.</p><button class="lab-reset" type="button" disabled>Reset example</button><figure class="lesson-equations"><figcaption>Equations behind this example</figcaption><div class="lesson-equation-scroll" role="region" aria-label="Selecting the largest observed subgroup rate raises its expected value" tabindex="0"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Selecting the largest observed subgroup rate raises its expected value"><mi mathvariant="normal">E</mi><mo>[</mo><munder><mo>max</mo><mi>g</mi></munder><msub><mi>p̂</mi><mtext>g</mtext></msub><mo>]</mo><mo>≥</mo><mi mathvariant="normal">E</mi><mo>[</mo><msub><mi>p̂</mi><mtext>1</mtext></msub><mo>]</mo></math></div><p>In this simulation, every candidate group has the same true response probability, 0.30. Selecting the largest observed rate favors groups that happened to look good. The inequality describes that selection; it does not supply a correction or show that a real subgroup has no biological effect.</p></figure><noscript><p>The default graphic is shown. Enable JavaScript to change the controls.</p></noscript></section>
 <article aria-label="Subgroups, enrichment, and selection bias">
 <section id="selection"><h2>A correct description can be an optimistic forecast</h2>
@@ -39,7 +50,7 @@
 <section id="validation"><h2>What would strengthen the finding?</h2>
 <ul><li>A subgroup rule and analysis plan fixed before new outcomes are examined.</li><li>A justified interaction analysis when claiming differential treatment effect.</li><li>Independent data with comparable treatment and assessment.</li><li>Reporting of the full subgroup search, uncertainty, and missing data.</li></ul><p>The <a href="iovance-data-first.html">Iovance case study</a> works through the distinction between an observed subgroup rate and a future prediction.</p></section>
 <section id="related"><h2>Related concepts</h2><ul class="related-links"><li><a href="multiple-testing.html">Multiple testing and false discoveries</a></li><li><a href="trial-design.html">Trial design, controls, and randomization</a></li><li><a href="confidence-intervals.html">Confidence intervals and the Wilson interval</a></li></ul></section>
-<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/media/121320/download">FDA: Enrichment Strategies for Clinical Trials, March 2019 (PDF)</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul><p class="muted">An educational explanation for reading drug-trial results. Interpretation of a particular study depends on its protocol, analysis plan, complete data, and clinical context.</p></section>
+<section id="sources"><h2>Sources and further reading</h2><ul class="sources"><li><a href="https://www.fda.gov/media/121320/download">FDA: Enrichment Strategies for Clinical Trials, March 2019 (PDF)</a></li><li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9-statistical-principles-clinical-trials">ICH E9: Statistical Principles for Clinical Trials (FDA)</a></li></ul></section>
 </article>
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>

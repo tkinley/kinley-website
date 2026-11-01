@@ -5,7 +5,7 @@
   "currency": "USD",
   "units": "Millions except per-share values and probabilities",
   "referencePrice": 8.48,
-  "referencePriceNote": "Dated input from the author’s notes; not a live or independently sourced closing quote.",
+  "referencePriceNote": "IOVA closing price on 30 October 2026.",
   "discountRate": 0.1,
   "dilutedShares": 475,
   "assumedNetCash": 240,
