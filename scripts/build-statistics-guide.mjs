@@ -320,6 +320,7 @@ ${nav('')}
 <div class="dateline"><span>Kinley Tenzin · Alea</span><span>Evidence, uncertainty, and value</span></div>
 <h1>Alea</h1>
 <p class="lede">Interactive lessons for reading drug-trial results, plus my own company valuations. I built it because press releases are where small denominators, hand-picked subgroups, and p-values get stretched the furthest. Every lesson has an example you can change and the equations behind it. I study bacterial genomes, not clinical trials, so if you spot a mistake, <a href="index.html#contact">tell me</a>.</p>
+<p class="folder-note">My biotech research journal: <a href="https://tkinley.github.io/ratnakirti/">Ratnakirti Capital <span aria-hidden="true">↗</span></a>.</p>
 </header>
 <main id="main" class="dashboard" data-learning-dashboard tabindex="-1">
 <div class="library-toolbar"><div><h2 data-library-heading tabindex="-1">Explore the folders</h2><p class="library-count">16 interactive lessons · 1 data case · 1 personal valuation</p></div><div class="library-search" data-search-controls hidden><label for="lesson-search">Find a topic or company</label><div class="library-search-row"><input type="search" id="lesson-search" placeholder="Try Wilson, survival, or IOVA" autocomplete="off"><button type="button" data-clear-search hidden>Clear</button></div></div></div>
