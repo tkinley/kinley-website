@@ -32,7 +32,7 @@ PX = {"28 Oct": 14.81, "29 Oct": 9.56, "30 Oct": 8.48}
 # ---------------- FIXED ASSUMPTIONS ----------------
 R, TAX, TAX_START = 0.10, 0.21, 2033
 NET_CASH, SH_DIL, CORP_COST = 240.0, 475.0, 40.0
-LOSS_IF_WITSAFETYRAWN = 0.70
+LOSS_IF_WITHDRAWN = 0.70
 YEARS = list(range(2027, 2046))
 FRONT, NSCLC, SARC, ENDO = ("Frontline melanoma (TILVANCE-301)", "2L NSCLC",
                             "Sarcoma (SARATOGA)", "Endometrial")
@@ -108,7 +108,7 @@ def value(a, r=R, detail=False):
     paths = core_paths(a)
     cp = {k: pv(paths[k], margins(k, a.get("margin_shift", 0.0)), r) for k in paths}
     core = sum(a["weights"][k] * cp[k] for k in cp) * a.get("core_mult", 1.0)
-    hc = (1 - a["pipe"][FRONT]["pos"]) * a["p_withdraw"] * LOSS_IF_WITSAFETYRAWN
+    hc = (1 - a["pipe"][FRONT]["pos"]) * a["p_withdraw"] * LOSS_IF_WITHDRAWN
     parts = {CORE_KEY: core, HC_KEY: -hc * core}
     parts.update({k: program(v, r)[0] for k, v in a["pipe"].items()})
     parts["Next-gen option"] = a["nextgen"]
@@ -209,12 +209,12 @@ OPTIMISTIC["pipe"][FRONT]["pos"] = .60
 OPTIMISTIC["pipe"][NSCLC] = dict(pos=.45, launch=2029, peak=600, margin=.40, dev={2027: 40, 2028: 40, 2029: 20})
 OPTIMISTIC["pipe"][SARC]["pos"], OPTIMISTIC["pipe"][ENDO]["pos"], OPTIMISTIC["nextgen"] = .25, .20, 150.0
 
-v_hd = value(SAFETY)
+v_safety = value(SAFETY)
 print("\n=== Scenarios ($/diluted share) ===")
 print(f"v2 central assumptions:                         ${ps(eq2):.2f}")
-print(f"Hypothetical adverse safety (wind-down, platform, costs): ${ps(v_hd):.2f}  (cost {ps(v_hd - eq2):+.2f})")
+print(f"Hypothetical adverse safety (wind-down, platform, costs): ${ps(v_safety):.2f}  (cost {ps(v_safety - eq2):+.2f})")
 for p in (0.05, 0.10, 0.20):
-    print(f"  probability-weighted at P={p:.0%}:                   ${ps((1 - p) * eq2 + p * v_hd):.2f}")
+    print(f"  probability-weighted at P={p:.0%}:                   ${ps((1 - p) * eq2 + p * v_safety):.2f}")
 print(f"Combined downside (bear core + adverse safety):  ${ps(value(DOWNSIDE)):.2f}")
 print(f"Optimistic assumptions (25/50/25 core, 301 PoS 60%, lung 45%):  ${ps(value(OPTIMISTIC)):.2f}")
 for k in ("28 Oct", "29 Oct", "30 Oct"):
@@ -230,7 +230,7 @@ b = copy.deepcopy(V2); b["pipe"][NSCLC]["pos"] = 0.0; b["pipe"][NSCLC]["dev"] = 
 print(f"Lung worth zero (wind-down): ${ps(value(b)):.2f}")
 
 
-# ---------------- Reverse DCF at the new price ----------------
+# ---------------- Reverse DCF at dated comparison prices ----------------
 def core_single(P, a):
     pts = {2027: float(a["base_2027"])}
     for i, y in enumerate(range(2028, 2032), 1):
@@ -241,7 +241,7 @@ def core_single(P, a):
 def value_single(P, a, r=R):
     e, prts, _ = value(a, r=r, detail=True)
     rest = e - prts[CORE_KEY] - prts[HC_KEY]
-    hc = (1 - a["pipe"][FRONT]["pos"]) * a["p_withdraw"] * LOSS_IF_WITSAFETYRAWN
+    hc = (1 - a["pipe"][FRONT]["pos"]) * a["p_withdraw"] * LOSS_IF_WITHDRAWN
     mar = margins("base", a.get("margin_shift", 0.0))
     return pv(core_single(P, a), mar, r) * a.get("core_mult", 1.0) * (1 - hc) + rest
 
@@ -256,9 +256,9 @@ def solve_peak(px, a):
 
 print("\n=== Reverse DCF: core peak (2031) the price requires, v2 pipeline ===")
 for label, px, a_ in [("v2 itself", ps(eq2), V2), ("$8.48 (30 Oct)", PX["30 Oct"], V2),
-                      ("$9.56 (29 Oct)", PX["29 Oct"], V2), ("$8.48 under adverse safety", PX["30 Oct"], SAFETY)]:
+                      ("$9.56 (29 Oct)", PX["29 Oct"], V2), ("$14.81 earlier, v2 fixed", 14.81, V2), ("$8.48 under adverse safety", PX["30 Oct"], SAFETY)]:
     P = solve_peak(px, a_)
-    print(f"{label:32s} px ${px:5.2f}: peak ${P:5.0f}M (~{0.84 * P / 0.575:4.0f} infusions/yr)")
+    print(f"{label:32s} px ${px:5.2f}: peak ${P:5.0f}M (~{0.84 * P / 0.575:4.0f} dose-equivalents/yr; assumed 84% mix and $575k/unit)")
 print(f"Test of 'overvalued even at $1B sales': single path peaking at $1.0B -> ${ps(value_single(1000, V2)):.2f}/sh")
 V2_FRIENDLY = copy.deepcopy(V2); V2_FRIENDLY["margin_shift"] = 0.05
 print(f"  same $1.0B peak at 8% and margins +5 pts -> ${ps(value_single(1000, V2_FRIENDLY, r=0.08)):.2f}/sh")
@@ -286,7 +286,7 @@ def mc(a, rho, n=200_000, seed=11):
         z = np.sqrt(rho) * common + np.sqrt(1 - rho) * rng.normal(size=n)
         succ[k] = z < nd.inv_cdf(min(max(p["pos"], 1e-9), 1 - 1e-9))
     withdraw = (~succ[FRONT]) & (rng.random(n) < a["p_withdraw"])
-    tot = np.where(withdraw, core * (1 - LOSS_IF_WITSAFETYRAWN), core)
+    tot = np.where(withdraw, core * (1 - LOSS_IF_WITHDRAWN), core)
     for k, p in a["pipe"].items():
         _, cu, d = program({**p, "peak": 1.0})
         s = 0.5 if k == FRONT else 0.6

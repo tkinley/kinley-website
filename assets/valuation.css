@@ -16,3 +16,8 @@
 .valuation-case-estimate small{font-size:12px;line-height:1.7}
 @media(max-width:560px){.valuation-equation{padding:15px 13px}.valuation-case{grid-template-columns:1fr;gap:22px;padding:22px}.valuation-case-estimate{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.valuation-case-estimate strong{font-size:36px}}
 @media print{.valuation-equation{break-inside:avoid}.equation-scroll{overflow:visible}.equation-scroll math{font-size:13pt}}
+
+.joint301-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:20px 0}.joint301-results>div{padding:12px 0;border-top:1px solid var(--line)}.joint301-results dt{font-size:13px}.joint301-results dd{margin:5px 0;font-weight:600}.joint301-explorer .actions{display:flex;flex-wrap:wrap;gap:12px}.joint301-explorer button{border:1px solid var(--line-strong);border-radius:6px;background:var(--surface2);color:var(--ink);padding:10px 14px;font:500 13px/1.5 "Archivo",sans-serif;cursor:pointer}.joint301-explorer [data-invalid]{border-color:var(--amber);color:var(--amber)}
+@media(max-width:560px){.joint301-results{grid-template-columns:1fr}.joint301-explorer .lab-controls,[data-patient-bridge] .lab-controls{grid-template-columns:1fr}}
+
+.learning-lab .lab-control input[type=number]{display:block;box-sizing:border-box;width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink);font:16px/1.4 "IBM Plex Mono",monospace}.learning-lab .table-scroll table{min-width:560px}

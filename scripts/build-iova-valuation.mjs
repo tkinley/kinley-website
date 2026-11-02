@@ -2,6 +2,7 @@ import {writeFile,mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {BASE,SHARES,CASH,REFERENCE_PRICE,PART_LABELS,clone,value,adverseSafety,optimistic,reversePeak,singleCoreValue,bridge,program} from '../assets/iova-valuation-model.mjs';
+import {applyReviewSupplement} from './iova-review-supplement.mjs';
 import {money,renderBreakdown,renderExplorer} from '../assets/iova-valuation.mjs';
 import {renderValuationEquations} from './valuation-equations.mjs';
 
@@ -34,7 +35,7 @@ const revisionNotes=[
 const snapshot={author:'Kinley Tenzin',asOf:'2026-10-30',version:'v2 web edition',currency:'USD',units:'Millions except per-share values and probabilities',referencePrice:REFERENCE_PRICE,referencePriceNote:'IOVA closing price on 30 October 2026.',discountRate:.10,dilutedShares:SHARES,assumedNetCash:CASH,assumptions:BASE,central,bridge:bridgeRows.map(({label,perShare,change})=>({label,perShare,change})),scenarios:{adverseSafety:safety.perShare,combinedDownside:value(down).perShare,optimistic:bull.perShare,optimisticRate8MarginsPlus5:value(friendly,.08).perShare},reverseDCF:{price:REFERENCE_PRICE,peakCoreRevenue:reversePeak()},sources:source};
 await mkdir(path.join(root,'valuations'),{recursive:true});
 await writeFile(path.join(root,'data','iova-valuation.json'),JSON.stringify(snapshot,null,2)+'\n');
-const toc=[['view','Why I think this'],['facts','What I start from'],['method','How I work it out'],['assumptions','Why these assumptions'],['parts','Where the value comes from'],['explore','Try your assumptions'],['revision','Why I lowered my estimate'],['scenarios','Where I could be wrong'],['reverse','Why $8.48 is harder to justify'],['uncertainty','How uncertain I am'],['watch','What would change my mind'],['downloads','Sources and model']];
+const toc=[['view','Why I think this'],['safety-context','Disclosed safety context'],['facts','What I start from'],['method','How I work it out'],['trial-design','Frontline evidence and endpoints'],['joint-301','Separate the trial outcomes'],['assumptions','Why these assumptions'],['parts','Where the value comes from'],['explore','Try your assumptions'],['revision','Why I lowered my estimate'],['scenarios','Where I could be wrong'],['reverse','Why $8.48 is harder to justify'],['patient-bridge','Sales-to-patients bridge'],['uncertainty','How uncertain I am'],['update-framework','Pre-results update rule'],['watch','What would change my mind'],['downloads','Sources and model']];
 const html=`<!doctype html>
 <html lang="en">
 <head>
@@ -45,7 +46,7 @@ const html=`<!doctype html>
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/research-notes.css?v=4"><link rel="stylesheet" href="../assets/valuation.css?v=2">
+<link rel="stylesheet" href="../assets/research-notes.css?v=4"><link rel="stylesheet" href="../assets/valuation.css?v=3">
 <script type="module" src="../assets/iova-valuation.mjs?v=3"></script>
 </head>
 <body>
@@ -75,7 +76,7 @@ const html=`<!doctype html>
 ${table('The reported numbers and why I care',['What was reported','Why it matters to me'],[
 ['Q2 2026 product revenue: $99.313M, including Amtagvi $90.721M and Proleukin $8.592M. <a href="'+source.quarter+'">June 2026 10-Q</a>.','There is already a business to value. My main question is how far sales can grow and how much profit they can produce.'],
 ['At 30 June: $303.7M in cash, equivalents, short-term investments and restricted cash, including $6.0M restricted; 452.971M basic shares and 32.731M common-stock equivalents. <a href="'+source.quarter+'">10-Q</a>.','Cash and dilution matter to what each share is worth. I use $240M net cash and 475M diluted shares as estimates that need updating.'],
-['Management raised FY2026 revenue guidance to $410–420M on 29 September. <a href="'+source.guidance+'">Company release filed with the SEC</a>.','After H1 revenue of $170.743M, this implies roughly $120–125M per quarter in H2. That gives me a number to check the next results against.'],
+['Management raised FY2026 revenue guidance to $410–420M on 29 September. <a href="'+source.guidance+'">Company release filed with the SEC</a>.','After H1 revenue of $170.743M, this implies an H2 quarterly average of roughly $120–125M. That gives me a number to check the next results against.'],
 ['IOV-LUN-202: 17/69 reported responses (15 confirmed, two unconfirmed); a retrospective enriched subgroup had 13/22. <a href="'+source.lung+'">29 October company update, SEC exhibit</a>.','The subgroup interests me, but I want to see it hold up in new patients. I use a 30% chance of success for lung; the response rate does not tell me that probability.'],
 ['The FDA approval letter provides for a confirmatory trial and possible withdrawal if benefit is not verified. <a href="'+source.label+'">FDA approval letter</a>.','A failed 301 trial could affect both the new frontline opportunity and the existing label. I account for both.'],
 ['Replimune reported accelerated approval of TUDRIQEV (RP1) with nivolumab in August 2026. <a href="'+source.competitor+'">Replimune update</a>.','I think another treatment option makes the strongest melanoma sales path less certain. How much it affects Iovance is still my judgment.']
@@ -185,7 +186,7 @@ ${equations.reverse}
 </div>
 </body></html>
 `;
-await writeFile(path.join(root,'valuations','iova.html'),html);
+await writeFile(path.join(root,'valuations','iova.html'),applyReviewSupplement(html));
 const hub=`<!doctype html>
 <html lang="en">
 <head>
@@ -196,7 +197,7 @@ const hub=`<!doctype html>
 <meta name="author" content="Kinley Tenzin"><link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/research-notes.css?v=4"><link rel="stylesheet" href="assets/valuation.css?v=2">
+<link rel="stylesheet" href="assets/research-notes.css?v=4"><link rel="stylesheet" href="assets/valuation.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to my valuation cases</a>
