@@ -147,3 +147,48 @@ export function interimLooks(looks, z) {
   return {critical,points,crossed:points.some(p=>p.y>=critical),nominalP:2*(1-normalCDF(z))};
 }
 export const zeroEventBound = n => 1-Math.pow(0.05,1/n);
+// Cox proportional-hazards model with one covariate x (for example 1 = treatment, 0 = control).
+// Records: {time, event, x}. A patient censored at an event time is still at risk at that time.
+// Tied event times use Efron's approximation; with no ties this is the exact partial likelihood.
+export function coxStats(records, beta) {
+  const eventTimes = [...new Set(records.filter(r => r.event).map(r => r.time))].sort((a, b) => a - b);
+  let loglik = 0, score = 0, info = 0;
+  const steps = [];
+  for (const time of eventTimes) {
+    const risk = records.filter(r => r.time >= time), dead = records.filter(r => r.time === time && r.event), d = dead.length;
+    const w = r => Math.exp(beta * r.x);
+    const sums = rows => rows.reduce((s, r) => { const e = w(r); s[0] += e; s[1] += r.x * e; s[2] += r.x * r.x * e; return s; }, [0, 0, 0]);
+    const [S0, S1, S2] = sums(risk), [D0, D1, D2] = sums(dead), xd = dead.reduce((s, r) => s + r.x, 0);
+    loglik += beta * xd; score += xd;
+    let probability = 1;
+    for (let k = 0; k < d; k++) {
+      const f = k / d, A = S0 - f * D0, B = S1 - f * D1, C = S2 - f * D2;
+      loglik -= Math.log(A); score -= B / A; info += C / A - (B / A) ** 2;
+      probability *= Math.exp(beta * dead[k].x) / A;
+    }
+    steps.push({ time, atRisk: risk.length, treatedAtRisk: risk.filter(r => r.x === 1).length, events: d, treatedEvents: xd, probability });
+  }
+  return { loglik, score, info, steps };
+}
+export function coxFit(records, { bound = 30, tolerance = 1e-12 } = {}) {
+  const at = b => coxStats(records, b);
+  const events = records.filter(r => r.event).length;
+  const nullStats = at(0);
+  const logrank = { observedMinusExpected: nullStats.score, variance: nullStats.info, chi2: nullStats.info > 0 ? nullStats.score ** 2 / nullStats.info : 0 };
+  logrank.p = nullStats.info > 0 ? 2 * (1 - normalCDF(Math.abs(nullStats.score) / Math.sqrt(nullStats.info))) : 1;
+  // The log partial likelihood is concave in beta. If the score keeps one sign out to ±bound,
+  // the maximum is at infinity (monotone likelihood) and no finite estimate exists.
+  if (!events || at(-bound).score <= 0) return { beta: -Infinity, hr: 0, monotone: 'low', events, logrank };
+  if (at(bound).score >= 0) return { beta: Infinity, hr: Infinity, monotone: 'high', events, logrank };
+  let lo = -bound, hi = bound, beta = 0;
+  for (let i = 0; i < 200; i++) {
+    const s = at(beta);
+    if (s.score > 0) lo = beta; else hi = beta;
+    let next = s.info > 0 ? beta + s.score / s.info : NaN;
+    if (!(next > lo && next < hi)) next = (lo + hi) / 2;   // safeguard: fall back to bisection
+    if (Math.abs(next - beta) < tolerance) { beta = next; break; }
+    beta = next;
+  }
+  const s = at(beta), se = 1 / Math.sqrt(s.info), z = normalQuantile(0.975);
+  return { beta, hr: Math.exp(beta), se, ci: [Math.exp(beta - z * se), Math.exp(beta + z * se)], loglik: s.loglik, monotone: null, events, logrank };
+}

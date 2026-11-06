@@ -2,9 +2,9 @@ import {
   clamp, normalCDF, normalQuantile, wilson, wald, binomialPMF, betaBinomialPMF,
   countInterval, betaDensity, betaQuantile, trialBalance, endpointRates, power,
   familyError, selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks,
-  zeroEventBound,
-} from './statistics-lab-models.mjs?v=2';
-import {renderLessonEquations} from './statistics-equations.mjs?v=2';
+  zeroEventBound, coxStats, coxFit,
+} from './statistics-lab-models.mjs?v=3';
+import {renderLessonEquations} from './statistics-equations.mjs?v=3';
 
 const pct = (p, digits=1) => {
   const unit=10**(-digits);
@@ -21,6 +21,21 @@ const checkbox = (key,label,value=false) => ({key,label,value,type:'checkbox'});
 const bars = (labels, values) => ({type:'bars',rows:labels.map((name,i)=>({name,value:values[i],color:i===0?'teal':'blue'}))});
 const line = (name, data, color='teal', extra={}) => ({name,data,color,...extra});
 const points = (n, fn) => Array.from({length:n},(_,i)=>fn(i));
+const signed = (v, digits=3) => `${v<0?'−':''}${Math.abs(v).toFixed(digits)}`;
+// Invented patients for the Cox lab. x = 1 is treatment, x = 0 is control.
+const coxArm = (x, events, censored) => [...events.map(time=>({time,event:true,x})),...censored.map(time=>({time,event:false,x}))];
+const COX_DATA = {
+  four: [...coxArm(0,[3],[12]),...coxArm(1,[8],[12])],
+  twelve: [...coxArm(0,[2,4,5,7,9],[12]),...coxArm(1,[6,10],[8,11,12,12])],
+  early: [...coxArm(0,[2,4,5,7,9],[12]),...coxArm(1,[1,3],[8,11,12,12])],
+  none: [...coxArm(0,[3],[12]),...coxArm(1,[],[8,12])],
+};
+const COX_NOTES = {
+  four: 'Each arm has one event; the estimate is below 1 only because of when the events happened.',
+  twelve: 'Control has 5 events among 6 patients; treatment has 2 among 6.',
+  early: 'Same 5 and 2 events as the twelve-patient set; only the two treated events moved earlier.',
+  none: 'Patient B is now censored at month 8, so every event is in the control arm.',
+};
 
 export const labs = {
   'trial-design': {
@@ -116,6 +131,22 @@ export const labs = {
     lesson:'Eight hypothetical patients: four events and four right-censored observations. A + marks censoring without a downward step. Events at a tied time are evaluated before removing censored patients. Interpretation requires appropriate censoring assumptions.',
     compute:v=>{const records=[{time:3,event:true},{time:5,event:true},{time:9,event:true},{time:12,event:true},{time:8,event:false},{time:14,event:false},{time:16,event:false},{time:v.censor,event:false}],km=kaplanMeier(records);const at12=km.curve.filter(p=>p.x<=12).at(-1).y;return {chart:{type:'line',min:0,max:18,ymin:0,ymax:1,xlabel:'Months from entry',ylabel:'Estimated event-free survival',yformat:'probability',series:[line('Kaplan–Meier estimate',km.curve),line('Censored (+)',km.censorMarks,'blue',{kind:'cross'})]},summary:`Estimated survival at month 12: ${pct(at12)}. Median: ${km.median===null?'not reached':`${km.median} months`}. The movable patient is known to be event-free only through month ${v.censor}; changing that time changes later risk sets.`};},
   },
+  'cox-regression': {
+    title:'Find the hazard ratio that best explains the event order',
+    question:'Slide the hazard ratio and watch how plausible the observed order of events becomes. Then switch datasets.',
+    controls:[select('data','Invented patients','four',[['four','Four patients: the worked example'],['twelve','Twelve patients: 5 versus 2 events'],['early','Same twelve, treated events earlier'],['none','Four patients, no treated events']]),range('hr','Hazard ratio to test (z = e^β)',0.7,0.05,2.5,0.01,'hr')],
+    lesson:'Invented patients; treatment is x = 1 and control x = 0. The curve is the partial likelihood divided by its maximum, so it peaks at 1 at the Cox estimate. Hazard ratios whose curve stays above the dashed line form an approximate 95% likelihood-ratio interval. With this few patients, every interval is wide.',
+    compute:v=>{
+      const data=COX_DATA[v.data],fit=coxFit(data),ll=b=>coxStats(data,b).loglik;
+      const top=fit.monotone?ll(fit.monotone==='low'?-60:60):fit.loglik,rel=hr=>Math.exp(ll(Math.log(hr))-top);
+      const curve=points(125,i=>{const x=0.02+i*(2.5-0.02)/124;return{x,y:rel(x)};});
+      const L=Math.exp(ll(Math.log(v.hr))),like=L<0.001?L.toExponential(2):L.toFixed(4),lr=fit.logrank;
+      const estimate=fit.monotone?{x:fit.monotone==='low'?0:2.5,y:1}:{x:Math.min(fit.hr,2.5),y:fit.hr<=2.5?1:rel(2.5)};
+      const head=`At HR = ${v.hr.toFixed(2)} (β = ${signed(Math.log(v.hr))}), the partial likelihood is ${like}, ${pct(rel(v.hr))} of its maximum.`;
+      const result=fit.monotone?`Every event is in the ${fit.monotone==='low'?'control':'treatment'} arm, so the likelihood keeps rising as the HR moves toward ${fit.monotone==='low'?'0':'larger values'}: there is no finite Cox estimate. Software reports a very large ${fit.monotone==='low'?'negative':'positive'} β with an enormous standard error.`:`Cox estimate: HR = ${fit.hr.toFixed(3)} (β̂ = ${signed(fit.beta)}), 95% Wald interval ${fit.ci[0].toFixed(2)}–${fit.ci[1].toFixed(2)}.`;
+      return {chart:{type:'line',min:0,max:2.5,xticks:[0,0.5,1,1.5,2,2.5],ymin:0,ymax:1,xlabel:'Hazard ratio, treatment versus control',ylabel:'Partial likelihood relative to its maximum',series:[line('Relative partial likelihood',curve),line(fit.monotone?'Maximum at the edge (no finite estimate)':'Cox estimate (maximum)',[estimate],'amber',{dots:true})],references:[{y:Math.exp(-(normalQuantile(0.975)**2)/2),name:'95% likelihood-ratio cutoff',color:'muted'}],markers:[{x:v.hr,y:rel(v.hr)}]},summary:`${head} ${result} Log-rank test (the score test at HR = 1): χ² = ${lr.chi2.toFixed(2)}, p = ${prob(lr.p)}. ${COX_NOTES[v.data]}`};
+    },
+  },
   'bayesian-prediction': {
     title:'Update a prior with observed responses',
     question:'Change the observed counts and prior, then compare the prior distribution with the posterior.',
@@ -182,6 +213,7 @@ function formatControl(c,v) {
   if(c.format==='percent'||c.format==='percent1') return `${Number(v).toFixed(c.format==='percent1'?1:0)}%`;
   if(c.format==='pp')return `${v} pp`;
   if(c.format==='months')return `${v} months`;
+  if(c.format==='hr')return Number(v).toFixed(2);
   if(c.format==='units')return `${v} units`;
   return c.format==='decimal'?Number(v).toFixed(1):String(v);
 }
@@ -221,7 +253,7 @@ export function renderChart(chart, width=720, summary='') {
   const y=v=>top+(ymax-v)/(ymax-chart.ymin)*ih;
   let marks='';
   for(let i=0;i<=axis.steps;i++){const value=chart.ymin+axis.step*i,yy=y(value);marks+=`<line class="lab-gridline" x1="${left}" x2="${w-right}" y1="${yy}" y2="${yy}"/>`+svgText(left-8,yy+4,fmtTick(value,chart.yformat),'end');}
-  const xTicks=chart.xlabel==='Planned analysis number'?Array.from({length:Math.round(chart.max-0.5)},(_,i)=>i+1):chart.xlabel==='Patients per arm'?[20,100,200,300,400]:chart.xlabel==='Patients observed'?[0,250,500,750,1000]:chart.shade!==undefined?[-4,-2,0,2,4]:[...new Set(points(4,i=>Number((chart.min+(chart.max-chart.min)*i/3).toFixed(chart.integerX?0:1))))];
+  const xTicks=chart.xticks?chart.xticks:chart.xlabel==='Planned analysis number'?Array.from({length:Math.round(chart.max-0.5)},(_,i)=>i+1):chart.xlabel==='Patients per arm'?[20,100,200,300,400]:chart.xlabel==='Patients observed'?[0,250,500,750,1000]:chart.shade!==undefined?[-4,-2,0,2,4]:[...new Set(points(4,i=>Number((chart.min+(chart.max-chart.min)*i/3).toFixed(chart.integerX?0:1))))];
   xTicks.forEach((value,i)=>{marks+=svgText(x(value),h-20,value,i===0?'start':i===xTicks.length-1?'end':'middle');});
   if(chart.shade!==undefined){
     for(const side of [-1,1]){const boundary=side*chart.shade,edge=side*4;const tail=points(61,i=>{const xx=boundary+(edge-boundary)*i/60;return{x:xx,y:Math.exp(-xx*xx/2)/Math.sqrt(2*Math.PI)};});marks+=`<path class="lab-tail" d="M ${x(tail[0].x)} ${y(0)} ${tail.map(p=>`L ${x(p.x)} ${y(p.y)}`).join(' ')} L ${x(tail.at(-1).x)} ${y(0)} Z"/>`;}

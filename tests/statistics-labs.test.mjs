@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   normalCDF, normalQuantile, wilson, wald, binomialPMF, betaBinomialPMF, countInterval,
   betaCDF, betaQuantile, trialBalance, endpointRates, power, familyError,
-  selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks, zeroEventBound,
+  selectedRate, kaplanMeier, missingRates, noninferiority, interimLooks, zeroEventBound, coxStats, coxFit,
 } from '../assets/statistics-lab-models.mjs';
 import {labs,defaultValues,calculateLab,renderLab,renderChart} from '../assets/statistics-labs.mjs';
 const close=(a,b,tolerance=1e-7)=>assert.ok(Math.abs(a-b)<tolerance,`${a} differs from ${b}`);
@@ -118,8 +118,8 @@ test('zero-event bound follows the exact binomial probability identity',()=>{
   close(bound,0.029513049607,1e-12);
   close((1-bound)**100,0.05,1e-12);
 });
-test('all seventeen lessons have static graphics and finite results at control limits',()=>{
-  assert.equal(Object.keys(labs).length,17);
+test('all eighteen lessons have static graphics and finite results at control limits',()=>{
+  assert.equal(Object.keys(labs).length,18);
   for(const [slug,config] of Object.entries(labs)){
     const initial=defaultValues(slug);
     assert.ok(renderLab(slug).includes('role="img"'),slug);
@@ -133,4 +133,38 @@ test('all seventeen lessons have static graphics and finite results at control l
       }
     }
   }
+});
+
+// Cox regression lab. Reference values from statsmodels 0.15 PHReg (ties='efron') and a hand-computed log-rank test.
+const coxArm=(x,events,censored)=>[...events.map(time=>({time,event:true,x})),...censored.map(time=>({time,event:false,x}))];
+const four=[...coxArm(0,[3],[12]),...coxArm(1,[8],[12])];
+const twelve=[...coxArm(0,[2,4,5,7,9],[12]),...coxArm(1,[6,10],[8,11,12,12])];
+const early=[...coxArm(0,[2,4,5,7,9],[12]),...coxArm(1,[1,3],[8,11,12,12])];
+test('Cox partial likelihood reproduces the four-patient worked example',()=>{
+  const fit=coxFit(four);
+  close(fit.beta,-Math.log(2)/2,1e-12);close(fit.hr,Math.SQRT1_2,1e-12);close(fit.se,1.4354999728,1e-9);
+  close(Math.exp(coxStats(four,Math.log(0.7)).loglik),1/3.4*0.7/2.4,1e-12);
+  const z=0.4;close(Math.exp(coxStats(four,Math.log(z)).loglik),1/(2+2*z)*z/(1+2*z),1e-12);
+});
+test('Cox fits match statsmodels, including Efron ties',()=>{
+  close(coxFit(twelve).beta,-1.5030503181,1e-9);close(coxFit(twelve).se,0.8526699724,1e-9);
+  close(coxFit(early).beta,-0.9669214327,1e-9);close(coxFit(early).se,0.8406940086,1e-9);
+  const ties=[{time:2,event:true,x:0},{time:2,event:true,x:1},{time:2,event:true,x:0},{time:5,event:true,x:1},{time:5,event:false,x:0},{time:7,event:true,x:0},{time:9,event:false,x:1},{time:9,event:true,x:1}];
+  close(coxFit(ties).beta,-0.6942962195,1e-9);close(coxFit(ties).se,0.9196126452,1e-9);
+});
+test('the log-rank statistic is the Cox score test at beta = 0 when no times are tied',()=>{
+  close(coxFit(twelve).logrank.chi2,3.664616437383864,1e-12);
+  const s=coxStats(twelve,0);close(s.score**2/s.info,coxFit(twelve).logrank.chi2,1e-12);
+});
+test('same event counts with different timing change the Cox estimate',()=>{
+  const count=(d,x)=>d.filter(r=>r.event&&r.x===x).length;
+  assert.equal(count(twelve,1),count(early,1));assert.equal(count(twelve,0),count(early,0));
+  assert.ok(coxFit(early).hr>coxFit(twelve).hr+0.1);
+});
+test('a monotone likelihood is reported without a finite estimate',()=>{
+  const none=four.map(r=>r.time===8?{...r,event:false}:r);
+  assert.equal(coxFit(none).monotone,'low');assert.equal(coxFit(none).hr,0);
+  const state=calculateLab('cox-regression',{data:'none',hr:0.7});
+  assert.match(state.summary,/no finite Cox estimate/);assert.ok(!/Infinity|NaN/.test(state.summary));
+  assert.match(calculateLab('cox-regression',{data:'four',hr:0.7}).summary,/HR = 0\.707/);
 });
