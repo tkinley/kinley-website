@@ -1,13 +1,15 @@
 """
-IOVA: Kinley Tenzin's personal valuation case, 30 October 2026.
+IOVA: Kinley Tenzin's personal valuation case. 30 October 2026 assumptions;
+cash, share count and reference price updated for the Q3 report on 5 November 2026.
 Web edition of the supplied v2 model. All financial amounts are USD millions;
 shares are millions. Requires Python 3.10+ and NumPy (tested with NumPy 1.24.2).
 Run: python iova_rnpv_model.py
 
 Assumptions express the author's opinion, not company guidance or probabilities
 estimated from clinical response rates. Annual cash flows 2027-2045; mid-year
-discounting to approximately end-2026; no terminal value. The 475M diluted shares,
-$240M net cash and $8.48 reference price are dated model inputs, not live data.
+discounting to approximately end-2026; no terminal value. The 492.3M diluted shares,
+$371.85M net cash and $7.74 reference price are dated model inputs, not live data.
+The 30 October inputs were 475M, $240M and $8.48 (models/archive/iova_rnpv_v2_2026-10-30.py).
 
 This web edition preserves v2 valuation arithmetic, renames allegation-based
 stress labels as hypothetical adverse-safety scenarios, and removes a cross-trial
@@ -27,11 +29,15 @@ import numpy as np
 
 # ---------------- DATED REFERENCE INPUTS ----------------
 SHARES_JUN26 = 452.97                 # M basic shares, 30 Jun 2026 (10-Q)
-PX = {"28 Oct": 14.81, "29 Oct": 9.56, "30 Oct": 8.48}
+SHARES_OCT26 = 462.655151             # M shares outstanding, 27 Oct 2026 (Q3 10-Q cover)
+DILUTIVE_SEP26 = 29.660828            # M options, RSUs, ESPP, as-converted preferred, 30 Sep 2026
+PX = {"28 Oct": 14.81, "29 Oct": 9.56, "30 Oct": 8.48, "5 Nov": 7.74}
 
 # ---------------- FIXED ASSUMPTIONS ----------------
 R, TAX, TAX_START = 0.10, 0.21, 2033
-NET_CASH, SH_DIL, CORP_COST = 240.0, 475.0, 40.0
+# 5 Nov 2026: $376.320M cash, equivalents and short-term investments at 30 Sep (restricted $6.018M
+# excluded; no debt) less one quarter at Q3's $4.470M operating cash use. 30 Oct v2: 240.0 and 475.0.
+NET_CASH, SH_DIL, CORP_COST = 371.85, SHARES_OCT26 + DILUTIVE_SEP26, 40.0  # 371.85 = 376.320 - 4.470
 LOSS_IF_WITHDRAWN = 0.70
 YEARS = list(range(2027, 2046))
 FRONT, NSCLC, SARC, ENDO = ("Frontline melanoma (TILVANCE-301)", "2L NSCLC",
@@ -180,7 +186,7 @@ eq2, parts2, cp2 = value(V2, detail=True)
 print("\n=== v2 sum of the parts ===")
 for k, v in parts2.items():
     print(f"{k:42s} {v:7.0f}  ${ps(v):6.2f}/sh")
-print(f"{'EQUITY':42s} {eq2:7.0f}  ${ps(eq2):6.2f}/sh (basic ${eq2 / SHARES_JUN26:.2f})")
+print(f"{'EQUITY':42s} {eq2:7.0f}  ${ps(eq2):6.2f}/sh (basic ${eq2 / SHARES_OCT26:.2f})")
 rest2 = eq2 - parts2[CORE_KEY] - parts2[HC_KEY]
 hc2 = -parts2[HC_KEY] / parts2[CORE_KEY]
 for k in cp2:
@@ -211,16 +217,16 @@ OPTIMISTIC["pipe"][SARC]["pos"], OPTIMISTIC["pipe"][ENDO]["pos"], OPTIMISTIC["ne
 
 v_safety = value(SAFETY)
 print("\n=== Scenarios ($/diluted share) ===")
-print(f"v2 central assumptions:                         ${ps(eq2):.2f}")
+print(f"Central (v2 assumptions, 5 Nov capital inputs):  ${ps(eq2):.2f}")
 print(f"Hypothetical adverse safety (wind-down, platform, costs): ${ps(v_safety):.2f}  (cost {ps(v_safety - eq2):+.2f})")
 for p in (0.05, 0.10, 0.20):
     print(f"  probability-weighted at P={p:.0%}:                   ${ps((1 - p) * eq2 + p * v_safety):.2f}")
 print(f"Combined downside (bear core + adverse safety):  ${ps(value(DOWNSIDE)):.2f}")
 print(f"Optimistic assumptions (25/50/25 core, 301 PoS 60%, lung 45%):  ${ps(value(OPTIMISTIC)):.2f}")
-for k in ("28 Oct", "29 Oct", "30 Oct"):
+for k in ("28 Oct", "29 Oct", "30 Oct", "5 Nov"):
     print(f"  price {k}: ${PX[k]:.2f}")
 
-print("\n=== Sensitivities around v2 ($/sh) ===")
+print("\n=== Sensitivities around the central case ($/sh) ===")
 for r in (0.08, 0.12):
     print(f"discount rate {r:.0%}: ${ps(value(V2, r=r)):.2f}")
 for p in (.35, .65):
@@ -255,8 +261,8 @@ def solve_peak(px, a):
 
 
 print("\n=== Reverse DCF: core peak (2031) the price requires, v2 pipeline ===")
-for label, px, a_ in [("v2 itself", ps(eq2), V2), ("$8.48 (30 Oct)", PX["30 Oct"], V2),
-                      ("$9.56 (29 Oct)", PX["29 Oct"], V2), ("$14.81 earlier, v2 fixed", 14.81, V2), ("$8.48 under adverse safety", PX["30 Oct"], SAFETY)]:
+for label, px, a_ in [("model value itself", ps(eq2), V2), ("$7.74 (5 Nov)", PX["5 Nov"], V2), ("$8.48 (30 Oct)", PX["30 Oct"], V2),
+                      ("$9.56 (29 Oct)", PX["29 Oct"], V2), ("$14.81 earlier, v2 fixed", 14.81, V2), ("$7.74 under adverse safety", PX["5 Nov"], SAFETY)]:
     P = solve_peak(px, a_)
     print(f"{label:32s} px ${px:5.2f}: peak ${P:5.0f}M (~{0.84 * P / 0.575:4.0f} dose-equivalents/yr; assumed 84% mix and $575k/unit)")
 print(f"Test of 'overvalued even at $1B sales': single path peaking at $1.0B -> ${ps(value_single(1000, V2)):.2f}/sh")
@@ -267,7 +273,7 @@ print(f"Optimistic assumptions at 8% and margins +5 pts -> ${ps(value(OPTIMISTIC
 print(f"Optimistic assumptions at 9% -> ${ps(value(OPTIMISTIC, r=0.09)):.2f}/sh; at 8% -> ${ps(value(OPTIMISTIC, r=0.08)):.2f}/sh")
 
 # ---------------- Monte Carlo on v2 ----------------
-print("\n=== Monte Carlo on v2 (200k draws) ===")
+print("\n=== Monte Carlo on the central case (200k draws) ===")
 nd = NormalDist()
 core_exp2 = parts2[CORE_KEY]
 base_core2 = cp2["base"]
@@ -298,7 +304,7 @@ def mc(a, rho, n=200_000, seed=11):
 for rho in (0.0, 0.5):
     v = mc(V2, rho)
     print(f"correlation {rho}: mean ${v.mean():.2f}, median ${np.median(v):.2f}, P10 ${np.percentile(v, 10):.2f}, "
-          f"P90 ${np.percentile(v, 90):.2f}, draws > $8.48: {(v > PX['30 Oct']).mean():.0%}")
+          f"P90 ${np.percentile(v, 90):.2f}, draws > $7.74: {(v > PX['5 Nov']).mean():.1%}")
 
 
-print("Reference price $8.48 is a dated author input, not a current quote.")
+print("Reference price $7.74 (5 Nov 2026 close) is a dated author input, not a current quote.")

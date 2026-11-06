@@ -1,16 +1,20 @@
 {
-  "asOf": "2026-11-01",
+  "asOf": "2026-11-05",
+  "methodDate": "2026-11-01",
   "version": "Joint TILVANCE-301 sensitivity appendix",
   "author": "Kinley Tenzin",
-  "archivedValuationAsOf": "2026-10-30",
+  "valuationAsOf": "2026-11-05",
+  "archivedVersions": [
+    "data/archive/iova-trial-scenarios-2026-11-01.json"
+  ],
   "currency": "USD",
   "units": "USD millions except per-share amounts and probabilities",
-  "assumptionsNote": "Illustrative joint probabilities. Not inferred from response data. All other assumptions remain from the archived v2 model.",
+  "assumptionsNote": "Illustrative joint probabilities. Not inferred from response data. All other assumptions are the central model: 30 October 2026 assumptions with the 5 November 2026 cash, share count and price.",
   "riskDistributionNote": "Equal marginals give equal expected value in this linear model. No revised Monte Carlo distributions or risk percentiles are calculated.",
   "regulatoryNote": "The ORR/frontline event is a modeled program outcome, not an automatic FDA approval. Existing-label withdrawal remains conditional, not certain.",
   "scenarios": {
     "archivedCoupling": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 0.5,
         "orrOnly": 0,
@@ -22,8 +26,8 @@
       "confirmationFailure": 0.5,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 2770.74268517773,
-      "perShare": 5.8331424951110105,
+      "equity": 2902.59268517773,
+      "perShare": 5.895792151767087,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": -165.6112697980962,
@@ -34,18 +38,18 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
+      "archivedPerShare": 5.895792151767087,
       "differencePerShare": 0
     },
     "illustrativeIndependence": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 0.25,
         "orrOnly": 0.25,
@@ -57,8 +61,8 @@
       "confirmationFailure": 0.5,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 2770.74268517773,
-      "perShare": 5.8331424951110105,
+      "equity": 2902.59268517773,
+      "perShare": 5.895792151767087,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": -165.6112697980962,
@@ -69,18 +73,18 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
+      "archivedPerShare": 5.895792151767087,
       "differencePerShare": 0
     },
     "orrOnly": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 0,
         "orrOnly": 1,
@@ -92,8 +96,8 @@
       "confirmationFailure": 1,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 3233.444225411213,
-      "perShare": 6.807251000865712,
+      "equity": 3365.294225411213,
+      "perShare": 6.835638835543897,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": -331.2225395961924,
@@ -104,18 +108,18 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
-      "differencePerShare": 0.9741085057547014
+      "archivedPerShare": 5.895792151767087,
+      "differencePerShare": 0.9398466837768096
     },
     "confirmationOnly": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 0,
         "orrOnly": 0,
@@ -127,8 +131,8 @@
       "confirmationFailure": 0,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 2308.0411449442468,
-      "perShare": 4.859033989356309,
+      "equity": 2439.8911449442467,
+      "perShare": 4.9559454679902775,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": 0,
@@ -139,18 +143,18 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
-      "differencePerShare": -0.9741085057547014
+      "archivedPerShare": 5.895792151767087,
+      "differencePerShare": -0.9398466837768096
     },
     "bothSucceed": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 1,
         "orrOnly": 0,
@@ -162,8 +166,8 @@
       "confirmationFailure": 0,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 3564.6667650074055,
-      "perShare": 7.504561610541907,
+      "equity": 3696.5167650074054,
+      "perShare": 7.508423294559378,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": 0,
@@ -174,18 +178,18 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
-      "differencePerShare": 1.6714191154308962
+      "archivedPerShare": 5.895792151767087,
+      "differencePerShare": 1.6126311427922913
     },
     "neitherSucceeds": {
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-05",
       "probabilities": {
         "both": 0,
         "orrOnly": 0,
@@ -197,8 +201,8 @@
       "confirmationFailure": 1,
       "conditionalWithdrawal": 0.2,
       "lossIfWithdrawn": 0.7,
-      "equity": 1976.818605348055,
-      "perShare": 4.161723379680115,
+      "equity": 2108.668605348055,
+      "perShare": 4.283161008974797,
       "parts": {
         "core": 2365.875282829946,
         "labelRisk": -331.2225395961924,
@@ -209,15 +213,15 @@
         "nextgen": 100,
         "oneTime": 0,
         "corporate": -350.9280882578932,
-        "cash": 240
+        "cash": 371.85
       },
       "corePVs": {
         "bear": 1299.1308128186524,
         "base": 2707.6825039954815,
         "bull": 4185.105539363455
       },
-      "archivedPerShare": 5.8331424951110105,
-      "differencePerShare": -1.6714191154308953
+      "archivedPerShare": 5.895792151767087,
+      "differencePerShare": -1.6126311427922904
     }
   }
 }

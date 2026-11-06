@@ -1,6 +1,15 @@
 // Kinley Tenzin's dated v2 assumptions; USD millions, shares in millions.
 export const YEARS=Array.from({length:19},(_,i)=>2027+i);
-export const SHARES=475, CASH=240, REFERENCE_PRICE=8.48;
+// Capital inputs by version. The 30 October inputs stay here so the archived $5.83 is reproducible.
+// 5 November: Q3 10-Q. Cash = $376.320M cash, equivalents and short-term investments at 30 Sep
+// (excludes $6.018M restricted; no debt) less one quarter of operating cash use at Q3's rate
+// ($137.385M nine-month use − $132.915M first-half use = $4.470M). Shares = 462.655151M outstanding
+// on 27 Oct + 29.660828M potentially dilutive securities at 30 Sep (all counted).
+export const CAPITAL={
+  v2:Object.freeze({asOf:'2026-10-30',shares:475,cash:240,price:8.48,basicJun:452.971}),
+  v3:Object.freeze({asOf:'2026-11-05',shares:462.655151+29.660828,cash:371.85,price:7.74,basic:462.655151,dilutive:29.660828})
+};
+export const SHARES=CAPITAL.v3.shares, CASH=CAPITAL.v3.cash, REFERENCE_PRICE=CAPITAL.v3.price;
 export const clone=value=>structuredClone(value);
 const marginPoints={bear:[[.22,.27,.31],.35],base:[[.30,.37,.42],.45],bull:[[.33,.40,.46],.50]};
 const discount=(y,r)=>1/(1+r)**(y-2027+.5);
@@ -80,9 +89,24 @@ export function reversePeak(price=REFERENCE_PRICE,a=BASE,r=.10,shares=SHARES,cas
   for(let i=0;i<100;i++){const mid=(lo+hi)/2;if(singleCoreValue(mid,a,r,shares,cash)<price)lo=mid;else hi=mid;}
   return (lo+hi)/2;
 }
-export function bridge(){
-  const a=clone(V1),rows=[{label:'Earlier model (v1)',...value(a),change:0}];
-  for(const [label,update] of updates){const prev=rows.at(-1).perShare;update(a);const v=value(a);rows.push({label,...v,change:v.perShare-prev});}
+// The 30 October judgment bridge (v1 → v2) is history, so it uses the 30 October capital inputs.
+export function bridge(shares=CAPITAL.v2.shares,cash=CAPITAL.v2.cash){
+  const a=clone(V1),rows=[{label:'Earlier model (v1)',...value(a,.10,shares,cash),change:0}];
+  for(const [label,update] of updates){const prev=rows.at(-1).perShare;update(a);const v=value(a,.10,shares,cash);rows.push({label,...v,change:v.perShare-prev});}
   return rows;
+}
+// The 5 November update changes capital inputs only. Step 2 keeps v2's implied allowance for
+// options and RSUs (475M − 452.971M June basic shares) so new issuance is separated from step 3,
+// which is a stricter counting convention, not new information.
+export function inputBridge(a=BASE){
+  const {v2,v3}=CAPITAL,allowance=v2.shares-v2.basicJun;
+  const steps=[
+    ['30 October model (v2)',v2.shares,v2.cash],
+    ['Net cash: $240M estimate → 30 September balance less one quarter of Q3-rate cash use',v2.shares,v3.cash],
+    ['Shares: add shares issued since June (at-the-market sales and vesting), same option and RSU allowance',v3.basic+allowance,v3.cash],
+    ['Shares: count every potentially dilutive security (options, RSUs, ESPP, convertible preferred)',v3.shares,v3.cash]
+  ];
+  let prev=null;
+  return steps.map(([label,shares,cash])=>{const v=value(a,.10,shares,cash);const row={label,shares,cash,perShare:v.perShare,change:prev===null?0:v.perShare-prev};prev=v.perShare;return row;});
 }
 export const PART_LABELS={core:'Core melanoma franchise',labelRisk:'Accelerated-approval risk',frontline:'Frontline melanoma',lung:'Lung cancer',sarcoma:'Sarcoma',endometrial:'Endometrial cancer',nextgen:'Next-generation option',oneTime:'One-time costs',corporate:'Corporate costs',cash:'Assumed net cash'};

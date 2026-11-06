@@ -1,14 +1,70 @@
 {
   "author": "Kinley Tenzin",
-  "asOf": "2026-10-30",
-  "version": "v2 web edition",
+  "asOf": "2026-11-05",
+  "version": "v3: 30 October assumptions with Q3 cash, shares and price",
   "currency": "USD",
   "units": "Millions except per-share values and probabilities",
-  "referencePrice": 8.48,
-  "referencePriceNote": "IOVA closing price on 30 October 2026.",
+  "referencePrice": 7.74,
+  "referencePriceNote": "IOVA closing price on 5 November 2026.",
   "discountRate": 0.1,
-  "dilutedShares": 475,
-  "assumedNetCash": 240,
+  "dilutedShares": 492.31597899999997,
+  "assumedNetCash": 371.85,
+  "capitalInputs": {
+    "method": {
+      "cash": "Cash, equivalents and short-term investments at 30 September 2026 ($376.320M; excludes $6.018M restricted; no debt) less one quarter of operating cash use at the Q3 rate ($4.470M = $137.385M nine-month use less $132.915M first-half use).",
+      "shares": "462.655151M shares outstanding on 27 October 2026 plus all 29.660828M potentially dilutive securities at 30 September 2026 (options, RSUs, ESPP, as-converted preferred)."
+    },
+    "previous": {
+      "asOf": "2026-10-30",
+      "shares": 475,
+      "cash": 240,
+      "price": 8.48,
+      "basicJun": 452.971
+    },
+    "current": {
+      "asOf": "2026-11-05",
+      "shares": 492.31597899999997,
+      "cash": 371.85,
+      "price": 7.74,
+      "basic": 462.655151,
+      "dilutive": 29.660828
+    },
+    "bridge": [
+      {
+        "label": "30 October model (v2)",
+        "shares": 475,
+        "cash": 240,
+        "perShare": 5.8331424951110105,
+        "change": 0
+      },
+      {
+        "label": "Net cash: $240M estimate → 30 September balance less one quarter of Q3-rate cash use",
+        "shares": 475,
+        "cash": 371.85,
+        "perShare": 6.110721442479432,
+        "change": 0.27757894736842115
+      },
+      {
+        "label": "Shares: add shares issued since June (at-the-market sales and vesting), same option and RSU allowance",
+        "shares": 484.684151,
+        "cash": 371.85,
+        "perShare": 5.988627189870151,
+        "change": -0.12209425260928075
+      },
+      {
+        "label": "Shares: count every potentially dilutive security (options, RSUs, ESPP, convertible preferred)",
+        "shares": 492.31597899999997,
+        "cash": 371.85,
+        "perShare": 5.895792151767087,
+        "change": -0.09283503810306382
+      }
+    ]
+  },
+  "previousValuation": {
+    "asOf": "2026-10-30",
+    "perShare": 5.8331424951110105,
+    "archive": "data/archive/iova-valuation-2026-10-30.json"
+  },
   "assumptions": {
     "weights": {
       "bear": 0.4,
@@ -70,8 +126,8 @@
     }
   },
   "central": {
-    "equity": 2770.74268517773,
-    "perShare": 5.8331424951110105,
+    "equity": 2902.59268517773,
+    "perShare": 5.895792151767087,
     "parts": {
       "core": 2365.875282829946,
       "labelRisk": -165.6112697980962,
@@ -82,7 +138,7 @@
       "nextgen": 100,
       "oneTime": 0,
       "corporate": -350.9280882578932,
-      "cash": 240
+      "cash": 371.85
     },
     "corePVs": {
       "bear": 1299.1308128186524,
@@ -127,18 +183,34 @@
       "change": -0.17278720973912876
     }
   ],
+  "bridgeNote": "The v1 to v2 judgment bridge of 30 October 2026, at the 30 October cash and share count.",
   "scenarios": {
-    "adverseSafety": 5.027207332912558,
-    "combinedDownside": 3.0430626186915517,
-    "optimistic": 7.753111600320557,
-    "optimisticRate8MarginsPlus5": 9.570193204481603
+    "adverseSafety": 5.118203736250179,
+    "combinedDownside": 3.203846332760382,
+    "optimistic": 7.748231162231411,
+    "optimisticRate8MarginsPlus5": 9.501401481280709
   },
   "reverseDCF": {
-    "price": 8.48,
-    "peakCoreRevenue": 1497.3527140442716
+    "price": 7.74,
+    "peakCoreRevenue": 1325.5389733075135
+  },
+  "simulation": {
+    "median": 5.76,
+    "p10": 2.36,
+    "p90": 9.43,
+    "above": 23,
+    "rho": {
+      "median": 5.73,
+      "p10": 2.12,
+      "p90": 9.71,
+      "above": 25
+    },
+    "note": "models/iova_rnpv_model.py, seed 11, 200,000 draws; rho is the latent-normal factor setting for the second run. Percent above the 5 November close."
   },
   "sources": {
-    "quarter": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926091716/iova-20260630x10q.htm",
+    "quarter": "https://www.sec.gov/Archives/edgar/data/1425205/000119312526448809/iova-20260930.htm",
+    "release": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926123030/tm2628901d1_ex99-1.htm",
+    "q2quarter": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926091716/iova-20260630x10q.htm",
     "guidance": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926111583/tm2626507d1_ex99-1.htm",
     "lung": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926120261/tm2628468d1_ex99-1.htm",
     "label": "https://www.fda.gov/media/176418/download",

@@ -8,9 +8,9 @@ import {COUPLED_REFERENCE,INDEPENDENT_ILLUSTRATION,joint301Value,validateJointPr
 
 const close=(a,b,tolerance=1e-9)=>assert.ok(Math.abs(a-b)<tolerance,`${a} != ${b}`);
 
-test('the coupled reference preserves every archived v2 component and input',()=>{
+test('the coupled reference preserves every central-model component and input',()=>{
   const before=JSON.stringify(BASE),reference=value(),result=joint301Value(COUPLED_REFERENCE);
-  close(result.perShare,5.8331424951110105);close(result.equity,reference.equity);
+  close(result.perShare,5.895792151767088,1e-12);close(result.equity,reference.equity);
   for(const key of Object.keys(reference.parts))close(result.parts[key],reference.parts[key]);
   assert.equal(JSON.stringify(BASE),before);
 });
@@ -62,14 +62,14 @@ test('alternate shares, cash, discount rate, and assumptions retain original com
 
 test('published scenario JSON is reproducible and labels the limitations',()=>{
   const snapshot=JSON.parse(readFileSync(new URL('../data/iova-trial-scenarios.json',import.meta.url),'utf8'));
-  assert.equal(snapshot.asOf,'2026-11-01');
+  assert.equal(snapshot.asOf,'2026-11-05');assert.equal(snapshot.methodDate,'2026-11-01');
   for(const scenario of Object.values(snapshot.scenarios))close(scenario.perShare,joint301Value(scenario.probabilities).perShare);
   assert.match(snapshot.riskDistributionNote,/No revised Monte Carlo/);
 });
 
 test('the explorer has a static reference and disables controls until enhanced',()=>{
   const html=renderJoint301Explorer();
-  assert.match(html,/\$5\.83/);assert.match(html,/aria-live="polite"/);
+  assert.match(html,/\$5\.90/);assert.match(html,/aria-live="polite"/);
   assert.equal((html.match(/data-joint-key=/g)||[]).length,4);
   assert.equal((html.match(/ disabled/g)||[]).length,6);
   assert.match(html,/not estimates from the single-arm response data/);

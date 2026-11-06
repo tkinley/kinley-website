@@ -11,7 +11,8 @@ const lines=(...rows)=>`<mtable columnalign="left" rowspacing="0.4em">${rows.map
 const card=(title,formula,explanation)=>`<figure class="valuation-equation"><figcaption>${title}</figcaption>${formula}<p>${explanation}</p></figure>`;
 const dollars=n=>`<mtext>$</mtext><mn>${n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</mn>`;
 
-export function renderValuationEquations({equity,shares,coreLoss,lung,peak}){
+export function renderValuationEquations({equity,shares,cash,price,coreLoss,lung,peak}){
+  const perShare=equity/shares,priceText=`$${price.toFixed(2)}`,priceWords=`${Math.floor(price)} dollars and ${Math.round(price%1*100)} cents`;
   return {
     discount:card('How I discount a future year',math('Discount factor for year y equals one divided by one plus r to the power y minus 2027 plus one half',`${dy}<mo>=</mo><mfrac><mn>1</mn><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mi>r</mi><mo>)</mo></mrow><mrow><mi>y</mi><mo>−</mo><mn>2027</mn><mo>+</mo><mn>0.5</mn></mrow></msup></mfrac>`),'Here, <i>r</i> is my discount rate: 0.10 in the base case. The 0.5 puts each year’s cash flow in the middle of that year. I use this factor for 2027–2045, relative to roughly the end of 2026.'),
     core:card('How I combine the three melanoma outcomes',
@@ -28,11 +29,11 @@ export function renderValuationEquations({equity,shares,coreLoss,lung,peak}){
       '<i>q</i> is my assumed chance of withdrawal if 301 fails. <i>λ</i> is the fraction of core value lost on withdrawal. This is a deduction of 7% of core value in my base case. The same 301 outcome also determines whether the frontline program succeeds.'),
     equity:card('How the pieces become a value per share',
       math('Equity equals core value minus label loss plus pipeline values plus option value minus corporate cost plus net cash minus one time costs',lines(`<mi>E</mi><mo>=</mo>${vc}<mo>−</mo><mi>L</mi><mo>+</mo>${sum('j')}${npv}`,`<mo>+</mo><mi>O</mi><mo>−</mo><mi>K</mi><mo>+</mo><mi>B</mi><mo>−</mo><mi>X</mi>`))+
-      math('Value per share equals equity value divided by diluted shares, approximately 5 dollars and 83 cents',`${share}<mo>=</mo><mfrac><mi>E</mi><mi>N</mi></mfrac><mo>≈</mo><mfrac>${dollars(equity)}<mn>${shares}</mn></mfrac><mo>≈</mo>${dollars(equity/shares)}`),
-      '<i>O</i> is the next-generation option ($100M); <i>K</i> is the present value of corporate costs; <i>B</i> is assumed net cash ($240M); and <i>X</i> is any one-time scenario cost, zero in the base case. <i>N</i> is 475M diluted shares. Equity is in $M and shares are in millions, so the division gives dollars per share.'),
+      math(`Value per share equals equity value divided by diluted shares, approximately ${Math.floor(perShare)} dollars and ${Math.round(perShare%1*100)} cents`,`${share}<mo>=</mo><mfrac><mi>E</mi><mi>N</mi></mfrac><mo>≈</mo><mfrac>${dollars(equity)}<mn>${shares.toFixed(1)}</mn></mfrac><mo>≈</mo>${dollars(perShare)}`),
+      `<i>O</i> is the next-generation option ($100M); <i>K</i> is the present value of corporate costs; <i>B</i> is assumed net cash ($${cash.toFixed(1)}M); and <i>X</i> is any one-time scenario cost, zero in the base case. <i>N</i> is ${shares.toFixed(1)}M diluted shares. Equity is in $M and shares are in millions, so the division gives dollars per share.`),
     reverse:card('The equation I solve backward',
-      math('Find peak core sales such that value per share equals 8 dollars and 48 cents',`${share}<mo>(</mo>${sub('R','peak')}<mo>)</mo><mo>=</mo><mtext>$8.48</mtext>`),
-      `I change only peak core sales in the single-path test until the value reaches $8.48. That gives about $${peak.toLocaleString('en-US',{maximumFractionDigits:0})}M of peak sales. I keep the pipeline, margins, share count, cash, and discount rate fixed for this test.`),
+      math(`Find peak core sales such that value per share equals ${priceWords}`,`${share}<mo>(</mo>${sub('R','peak')}<mo>)</mo><mo>=</mo><mtext>${priceText}</mtext>`),
+      `I change only peak core sales in the single-path test until the value reaches ${priceText}. That gives about $${peak.toLocaleString('en-US',{maximumFractionDigits:0})}M of peak sales. I keep the pipeline, margins, share count, cash, and discount rate fixed for this test.`),
     simulation:card('How a simulated outcome becomes a value',
       math('Simulated equity equals simulated core value adjusted for withdrawal plus successful program profits minus development spending plus option value minus corporate costs plus cash',lines(`${sub('E','sim')}<mo>=</mo>${sub('V','core,sim')}<mo>(</mo><mn>1</mn><mo>−</mo><mn>0.70</mn>${sub('I','withdraw')}<mo>)</mo>`,`<mo>+</mo>${sum('j')}<mo>(</mo>${sub('I','j')}${sub('P','j,sim')}<mo>−</mo>${sub('C','j')}<mo>)</mo>`,`<mo>+</mo><mi>O</mi><mo>−</mo><mi>K</mi><mo>+</mo><mi>B</mi>`))+
       math('Simulated value per share equals simulated equity divided by diluted shares',`${sub('V','sim')}<mo>=</mo><mfrac>${sub('E','sim')}<mi>N</mi></mfrac>`),

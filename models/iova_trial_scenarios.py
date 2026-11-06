@@ -1,6 +1,7 @@
-"""Joint TILVANCE-301 sensitivity appendix, 1 November 2026.
+"""Joint TILVANCE-301 sensitivity appendix, written 1 November 2026 and recalculated
+on 5 November 2026 with the Q3 cash, share count and price in iova_rnpv_model.py.
 
-Preserves the archived 30 October 2026 v2 cash flows and changes only the
+Keeps the central model cash flows and changes only the
 frontline success marginal and confirmatory-failure marginal. Four probabilities
 are assumptions, not estimates derived from clinical response data. This is an
 expected-value sensitivity; it does not calculate a revised risk distribution.
@@ -47,13 +48,15 @@ def validate_joint_probabilities(probabilities):
     return dict(probabilities)
 
 
-def joint301_value(probabilities=None, assumptions=None, rate=.1, shares=475., cash=240.):
+def joint301_value(probabilities=None, assumptions=None, rate=.1, shares=None, cash=None):
     joint = validate_joint_probabilities(COUPLED_REFERENCE if probabilities is None else probabilities)
+    model = archived_model()
+    shares = float(model["SH_DIL"]) if shares is None else shares
+    cash = float(model["NET_CASH"]) if cash is None else cash
     if not math.isfinite(rate) or rate <= -1:
         raise ValueError("Discount rate must be finite and greater than -100%.")
     if not math.isfinite(shares) or shares <= 0 or not math.isfinite(cash):
         raise ValueError("Shares must be positive and finite, and cash must be finite.")
-    model = archived_model()
     a = copy.deepcopy(model["V2"] if assumptions is None else assumptions)
     if not math.isfinite(a["p_withdraw"]) or not 0 <= a["p_withdraw"] <= 1:
         raise ValueError("Conditional withdrawal probability must be between 0 and 1.")
@@ -73,7 +76,7 @@ def joint301_value(probabilities=None, assumptions=None, rate=.1, shares=475., c
     parts["labelRisk"] = -confirmation_failure * a["p_withdraw"] * LOSS_IF_WITHDRAWN * parts["core"]
     equity = sum(parts.values())
     archived_per_share = (archived_equity - model["NET_CASH"] + cash) / shares
-    return dict(asOf="2026-11-01", probabilities=joint, frontlineSuccess=frontline_success,
+    return dict(asOf="2026-11-05", methodDate="2026-11-01", probabilities=joint, frontlineSuccess=frontline_success,
                 confirmationSuccess=confirmation_success, confirmationFailure=confirmation_failure,
                 conditionalWithdrawal=a["p_withdraw"], lossIfWithdrawn=LOSS_IF_WITHDRAWN,
                 equity=equity, perShare=equity/shares, parts=parts,
@@ -87,7 +90,7 @@ def report():
                      confirmationOnly=dict(both=0,orrOnly=0,confirmationOnly=1,neither=0),
                      bothSucceed=dict(both=1,orrOnly=0,confirmationOnly=0,neither=0),
                      neitherSucceeds=dict(both=0,orrOnly=0,confirmationOnly=0,neither=1))
-    return dict(asOf="2026-11-01", scenarios={name:joint301_value(p) for name,p in scenarios.items()},
+    return dict(asOf="2026-11-05", methodDate="2026-11-01", scenarios={name:joint301_value(p) for name,p in scenarios.items()},
                 note="Illustrative assumptions only. Expected values do not describe the full risk distribution.")
 
 
