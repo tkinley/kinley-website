@@ -31,6 +31,13 @@
 .example h3{font-size:17px}
 .example p:last-child{margin-bottom:10px}
 .related-links{padding-left:22px}
+.lesson-pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:40px 0 18px;padding-top:24px;border-top:1px solid var(--line-strong)}
+.lesson-pager a{display:flex;flex-direction:column;gap:6px;min-width:0;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);text-decoration:none}
+.lesson-pager a:hover{border-color:var(--teal);opacity:1}.lesson-pager a:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.lesson-pager span{font:500 12px/1.4 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--muted)}
+.lesson-pager strong{font:600 17px/1.3 "Archivo",system-ui,sans-serif;color:var(--teal)}
+.lesson-pager .pager-next{grid-column:2;text-align:right;align-items:flex-end}
+@media(max-width:620px){.lesson-pager{grid-template-columns:1fr}.lesson-pager .pager-next{grid-column:1;text-align:left;align-items:flex-start}.lesson-pager .pager-empty{display:none}}
 .worked-case{border-bottom:1px solid var(--line-strong);padding-bottom:20px}
 .dashboard-page .guide-header{padding-bottom:6px}
 .dashboard-page .guide-header .lede{max-width:800px;font-size:19px}

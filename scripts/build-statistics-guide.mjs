@@ -273,12 +273,24 @@ const head = (title, description, prefix, interactive=false, dashboard=false, so
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=5">
+<link rel="stylesheet" href="${prefix}assets/research-notes.css?v=6">
 ${interactive?`<script type="module" src="${prefix}assets/statistics-labs.mjs?v=4"></script>`:''}
 ${dashboard?`<script type="module" src="${prefix}assets/statistics-dashboard.mjs?v=2"></script>`:''}
 </head>`;
 const nav = prefix => `<nav class="textnav" aria-label="Pages"><a href="${prefix}index.html">Home</a><a href="${prefix}statistics.html" aria-current="location">Alea</a><a href="${prefix}valuations.html">Investment theses</a><a href="${prefix}biotech.html">Biotech</a></nav>`;
 const footer = prefix => `<footer><span>© 2026 Kinley Tenzin</span><a href="${prefix}statistics.html">Alea</a><a href="${prefix}valuations.html">Investment theses</a><a href="${prefix}biotech.html">Biotech</a></footer>`;
+
+const groups = ['Start with the trial', 'Estimate the effect', 'Check what can mislead', 'Follow outcomes over time', 'Design and interpret the decision'];
+// Lessons in the order the hub shows them, folder by folder; previous/next links follow this order.
+const ordered = groups.flatMap(group => concepts.filter(c => c.group === group));
+if (ordered.length !== concepts.length) throw new Error('Every lesson needs one of the known folders');
+const pagerLink = (target, dir, current) => target
+  ? `<a class="pager-${dir}" rel="${dir}" href="${target.slug}.html"><span>${dir === 'prev' ? '← Previous' : 'Next →'}${target.group !== current.group ? ` · ${escape(target.group)}` : ''}</span><strong>${escape(target.title)}</strong></a>`
+  : '<span class="pager-empty" aria-hidden="true"></span>';
+const pager = concept => {
+  const at = ordered.indexOf(concept);
+  return `<nav class="lesson-pager" aria-label="Previous and next lessons">${pagerLink(ordered[at - 1], 'prev', concept)}${pagerLink(ordered[at + 1], 'next', concept)}</nav>`;
+};
 
 for (const concept of concepts) {
   for (const slug of concept.related) if (!bySlug.has(slug)) throw new Error(`Unknown related concept: ${slug}`);
@@ -303,6 +315,7 @@ ${concept.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>\n
 <section id="related"><h2>Related concepts</h2><ul class="related-links">${concept.related.map(slug => `<li><a href="${slug}.html">${escape(bySlug.get(slug).title)}</a></li>`).join('')}</ul></section>
 <section id="sources"><h2>Sources and further reading</h2><ul class="sources">${concept.sources.map(key => `<li><a href="${sources[key][1]}">${escape(sources[key][0])}</a></li>`).join('')}</ul></section>
 </article>
+${pager(concept)}
 <p><a href="../statistics.html">← Back to Alea</a></p>
 </main>
 ${footer('../')}
@@ -313,7 +326,6 @@ ${footer('../')}
   await writeFile(path.join(root, 'statistics', `${concept.slug}.html`), html, 'utf8');
 }
 
-const groups = ['Start with the trial', 'Estimate the effect', 'Check what can mislead', 'Follow outcomes over time', 'Design and interpret the decision'];
 const folderSummaries = [
   'Design, endpoints, data, and response rates.',
   'Intervals, effect sizes, p-values, and power.',
