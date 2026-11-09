@@ -79,3 +79,14 @@ test('pitches are dated, priced, and sourced', () => {
     assert.ok(D.positions.some((p) => p.ticker === x.ticker && p.evidence === 'pitch'), `${x.ticker} pitch has no matching position`);
   }
 });
+
+test('scorecard explanations are plain paragraphs with https sources', () => {
+  for (const s of D.scorecard.filter((x) => x.why)) {
+    assert.ok(Array.isArray(s.why) && s.why.length && s.why.every((t) => typeof t === 'string' && t.trim()), `${s.ticker} why`);
+    assert.ok(!s.why.some((t) => t.includes('—')), `${s.ticker} why has an em dash`);
+    assert.ok(Array.isArray(s.whySources) && s.whySources.length && s.whySources.every((x) => x.label && httpsOnly(x.url)), `${s.ticker} why sources`);
+  }
+  const zura = D.scorecard.find((s) => s.ticker === 'ZURA');
+  assert.equal(zura.outcome, 'lost');
+  assert.ok(zura.why);
+});

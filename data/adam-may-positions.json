@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-11-09",
  "scope": "Biotech and pharma only, 2024 onward",
  "pitches": [
   {
@@ -23,7 +23,7 @@
    "company": "Zura Bio",
    "date": "2026-10-13",
    "price": "$4.00",
-   "note": "HS readout he expects around mid-November 2026, then SSc data.",
+   "note": "HS trial missed on Nov 9, 2026 and the stock fell more than 70%; SSc data due in H1 2027.",
    "url": "https://x.com/A_May_MD/status/2110010685455286544"
   }
  ],
@@ -60,9 +60,39 @@
    "period": "2026",
    "bet": "Pitched long at $4 into the HS readout",
    "date": "2026-10-13",
-   "outcome": "pending",
-   "note": "He expects the HS data around mid-November 2026.",
-   "url": "https://x.com/A_May_MD/status/2110010685455286544"
+   "outcome": "lost",
+   "note": "TibuSHIELD missed on Nov 9, 2026: tibulizumab barely beat placebo and Zura dropped the HS program. Shares fell more than 70% premarket.",
+   "url": "https://x.com/A_May_MD/status/2110010685455286544",
+   "whyTitle": "Why it failed",
+   "why": [
+    "What happened. TibuSHIELD randomized 247 adults with moderate-to-severe hidradenitis suppurativa to tibulizumab 300 mg, 150 mg, or placebo for 16 weeks. The primary endpoint, the percent reduction in abscess and inflammatory nodule count, was 56.0% and 58.1% on drug versus 52.5% on placebo: gaps of only 3.5 and 5.6 points. HiSCR50 was 48.0% and 52.7% versus 45.5%; HiSCR75 was 35.3% and 34.0% versus 28.1%. Zura gave no p-values and stopped the HS program.",
+    "Main reason: the placebo arm did too well. In the secukinumab phase 3 trials (SUNSHINE and SUNRISE), 34% and 31% of placebo patients reached the same 50% response at week 16; here 45.5% did. Tibulizumab’s 48–53% is in the range secukinumab reached (45% and 42% every two weeks), so the drug arms were not unusually weak; the gap was squeezed from below. Cross-trial comparisons are rough, because patients and sites differ, but Zura also pointed to the high variability of placebo responses in HS.",
+    "No dose response. The 150 mg dose did as well as or better than 300 mg on the primary endpoint and HiSCR50. That fits a plateau, but together with the small gaps it gives no evidence that the drug beat placebo.",
+    "Too small for a modest effect. With about 82 patients per arm, the best gap, 7.2 points on HiSCR50, is under one standard error (p ≈ 0.36 by my rough calculation). Showing a gap that size at this placebo rate with 80% power would need roughly 750 patients per arm.",
+    "What it does not settle. Zura’s case for the drug was that adding BAFF blockade to IL-17A blockade would beat IL-17 alone. A trial that cannot separate drug from placebo cannot say whether the BAFF part added nothing or the dose or patient mix was off. Safety did not drive the miss: Zura reported one death judged unrelated (cardiac arrest) and one IBD flare, both on 300 mg. Zura had $187.7M in cash at Sep 30, which it says lasts through at least the end of 2028, and its systemic sclerosis data are due in the first half of 2027."
+   ],
+   "whySources": [
+    {
+     "label": "Zura release, Nov 9 (reprint)",
+     "url": "https://www.stocktitan.net/news/ZURA/zura-bio-provides-clinical-update-on-phase-2-tibu-shield-study-of-8jg0nzqz9s4y.html"
+    },
+    {
+     "label": "Trial design, Jun 29",
+     "url": "https://investors.zurabio.com/news-releases/news-release-details/zura-bio-exceeds-enrollment-target-both-hidradenitis-suppurativa"
+    },
+    {
+     "label": "Reuters, Nov 9",
+     "url": "https://finance.yahoo.com/healthcare/articles/zura-bios-skin-disease-drug-124139658.html"
+    },
+    {
+     "label": "Secukinumab SUNSHINE and SUNRISE, Lancet 2023",
+     "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)00022-3/fulltext"
+    },
+    {
+     "label": "Zura Q3 2026 results",
+     "url": "https://investors.zurabio.com/news-releases/news-release-details/zura-bio-reports-third-quarter-2026-financial-results-and-recent"
+    }
+   ]
   }
  ],
  "positions": [
@@ -131,10 +161,10 @@
    "evidence": "pitch",
    "confidence": "high",
    "status": "open",
-   "statusNote": "Pitched Oct 13 at $4; HS readout he expects around mid-November",
+   "statusNote": "Pitched Oct 13 at $4. The HS trial missed on Nov 9 and the stock fell more than 70% premarket; whether he still holds is not recorded yet.",
    "firstSeen": "2026-10-13",
    "lastSeen": "2026-10-25",
-   "summary": "Oct 13: third formal pitch (after NKTR and ABVX), a full thread plus research document, with bias disclaimers. Oct 23: says the stock was the only one that mattered to him that day. Oct 24-25: added an addendum to the pitch.",
+   "summary": "Oct 13: third formal pitch (after NKTR and ABVX), a full thread plus research document, with bias disclaimers. Oct 23: says the stock was the only one that mattered to him that day. Oct 24-25: added an addendum to the pitch. Nov 9: the TibuSHIELD HS trial missed its primary endpoint and Zura stopped developing tibulizumab in HS.",
    "sources": [
     {
      "label": "X post",
@@ -147,6 +177,10 @@
     {
      "label": "X post",
      "url": "https://x.com/A_May_MD/status/2114430596931854740"
+    },
+    {
+     "label": "Zura release, Nov 9",
+     "url": "https://www.stocktitan.net/news/ZURA/zura-bio-provides-clinical-update-on-phase-2-tibu-shield-study-of-8jg0nzqz9s4y.html"
     }
    ]
   },
@@ -832,6 +866,15 @@
   }
  ],
  "events": [
+  {
+   "date": "2026-11-09",
+   "tickers": [
+    "ZURA"
+   ],
+   "action": "result",
+   "note": "RESULT: Zura’s TibuSHIELD trial in HS missed its primary endpoint (56–58% lesion reduction on drug vs 52.5% on placebo); Zura drops tibulizumab in HS. Shares fell more than 70% premarket.",
+   "url": "https://www.stocktitan.net/news/ZURA/zura-bio-provides-clinical-update-on-phase-2-tibu-shield-study-of-8jg0nzqz9s4y.html"
+  },
   {
    "date": "2026-10-25",
    "tickers": [

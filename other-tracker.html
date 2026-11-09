@@ -97,6 +97,11 @@
   .sc .bet{font-size:14px;line-height:1.4}
   .sc .nt{font-size:13px;color:var(--muted);line-height:1.45}
   .sc .dt{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);margin-top:auto}
+  .sc .why{margin-top:4px;border-top:1px solid var(--line);padding-top:8px}
+  .sc .why summary{cursor:pointer;font-family:"Archivo",sans-serif;font-weight:700;font-size:13px;color:var(--teal)}
+  .sc .why p{font-size:14px;line-height:1.6;margin:10px 0 0;max-width:78ch}
+  .sc .why .src{font-size:12.5px;color:var(--muted)}
+  .sc:has(.why[open]){grid-column:1/-1}
   .badge{font-family:"Archivo",sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
   .badge.won,.badge.long,.badge.open{background:var(--teal-bg);color:var(--teal)}
   .badge.lost,.badge.short{background:var(--red-bg);color:var(--red)}
@@ -308,7 +313,7 @@
       disc: "Court-filing items are the plaintiffs’ allegations, not findings. Positions and returns are his own claims. This page is a hand-maintained research record; it does not update itself, and it is not investment advice."
     },
     "adam-may": {
-      name: "Adam May", handle: "@A_May_MD", data: "data/adam-may-positions.json?v=1",
+      name: "Adam May", handle: "@A_May_MD", data: "data/adam-may-positions.json?v=2",
       dateline: "Position tracker · biotech &amp; pharma · 2024 onward",
       h1: "What Adam May says he is long and short in biotech",
       lede: "Built from his own posts on X, plus his guest pitch and podcast disclosures. He is a physician who invests in small- and mid-cap biotech and says he often posts about companies he holds. A position counts only when he says he holds it or formally pitches it; bullish or bearish commentary on its own is not counted.",
@@ -329,7 +334,7 @@
       dataSub: 'The page reads this view from <span class="mono">data/adam-may-positions.json</span>. Add a dated event, update the position’s status and last-seen date, and bump <span class="mono">updated</span>.',
       routine: [["Daily or weekly", 'Search X for <span class="mono">from:A_May_MD (long OR short OR bought OR sold OR added OR covered)</span>; most trades show up in replies.'],
                 ["On a pitch", "His pitch threads start with a numbered outline and a research document. Log the date and the price he quotes."],
-                ["On any binary", "ZURA's HS data (he expects mid-November 2026) is the next one. Log the result as an event and update the scorecard."]],
+                ["On any binary", "ZURA's systemic sclerosis data (due H1 2027) is the next one from his pitches. Log the result as an event and update the scorecard."]],
       sources: [["His posts", "https://x.com/A_May_MD", "x.com/A_May_MD"],
                 ["Guest pitch", "https://www.specialsituationinvestments.com/2025/02/guest-pitch-nektar-therapeutics-nktr/", "Special Situation Investments, Nektar (Feb 2025)"],
                 ["Podcast", "https://www.yetanothervalueblog.com/p/adam-may-on-abvxs-blowout-data-and", "Yet Another Value Podcast, ABVX (Jun 2026)"]],
@@ -413,6 +418,8 @@
     document.getElementById("score").innerHTML = D.scorecard.map(function(s){
       return '<div class="sc"><div class="top"><span class="tk">$' + esc(s.ticker) + '</span><span class="badge ' + esc(s.outcome) + '">' + esc(s.outcome) + '</span></div>' +
         '<div class="bet">' + esc(s.bet) + '</div><div class="nt">' + esc(s.note) + '</div>' +
+        (s.why && s.why.length ? '<details class="why"><summary>' + esc(s.whyTitle || "Why") + '</summary>' + s.why.map(function(t){ var m = /^([^.:]{3,40}[.:])\s/.exec(t); return '<p>' + (m ? '<strong>' + esc(m[1]) + '</strong> ' + esc(t.slice(m[0].length)) : esc(t)) + '</p>'; }).join("") +
+          (s.whySources ? '<p class="src">Sources: ' + s.whySources.map(function(x){ return link(x.url, x.label); }).join(" · ") + '</p>' : '') + '</details>' : '') +
         '<div class="dt">' + fmt(s.date) + ' · ' + link(s.url, "source") + '</div></div>';
     }).join("");
 
