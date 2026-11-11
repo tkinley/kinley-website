@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Scholarships, fellowships, travel funding, research tools, software, and everyday help for K-State students, sorted by deadline. Three taps, nothing to upload.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self' https://kinley-site.goatcounter.com; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self' https://kinley-site.goatcounter.com https://formspree.io; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Student Opportunities · Kinley Tenzin</title>
   <link rel="icon" href="assets/student-match-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/student-match.css?v=23">
+  <link rel="stylesheet" href="assets/student-match-subscribe.css?v=1">
   <script type="module" src="assets/student-match.mjs?v=22"></script>
+  <script type="module" src="assets/student-match-subscribe.mjs?v=1"></script>
   <script data-goatcounter="https://kinley-site.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -97,12 +99,32 @@
         </details>
       </div>
 
+      <section class="subscribe" id="subscribe" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title">Email me this list</h2>
+        <div class="sub-row">
+          <label class="visually-hidden" for="sub-email">Email address</label>
+          <input id="sub-email" type="email" autocomplete="email" placeholder="you@k-state.edu">
+          <div class="sub-freq" role="group" aria-label="How often">
+            <button type="button" class="sub-pill" data-freq="weekly">Weekly</button>
+            <button type="button" class="sub-pill is-on" data-freq="biweekly">Every 2 weeks</button>
+          </div>
+          <button type="button" class="sub-go" id="sub-go">Email me this list</button>
+        </div>
+        <p class="sub-div">Optional, for sharper picks.</p>
+        <div class="sub-q"><span class="sub-qname" id="sub-school-label">School</span><div class="sub-pills" role="group" aria-labelledby="sub-school-label" data-group="school"><button type="button" class="sub-pill" data-value="kstate">K-State</button><button type="button" class="sub-pill" data-value="other">Another university</button></div></div>
+        <div class="sub-q"><span class="sub-qname" id="sub-college-label">College</span><div class="sub-pills" role="group" aria-labelledby="sub-college-label" data-group="college"><button type="button" class="sub-pill" data-value="arts-sciences">Arts and Sciences</button><button type="button" class="sub-pill" data-value="agriculture">Agriculture</button><button type="button" class="sub-pill" data-value="engineering">Engineering</button><button type="button" class="sub-pill" data-value="business">Business</button><button type="button" class="sub-pill" data-value="education">Education</button><button type="button" class="sub-pill" data-value="health-human">Health and Human Sciences</button><button type="button" class="sub-pill" data-value="architecture">Architecture</button><button type="button" class="sub-pill" data-value="vet-med">Vet Med</button><button type="button" class="sub-pill" data-value="other">Other</button></div></div>
+        <div class="sub-q"><span class="sub-qname" id="sub-stage-label">Stage</span><div class="sub-pills" role="group" aria-labelledby="sub-stage-label" data-group="stage"><button type="button" class="sub-pill" data-value="started">Just started</button><button type="button" class="sub-pill" data-value="middle">Middle</button><button type="button" class="sub-pill" data-value="final">Final year</button></div></div>
+        <div class="sub-q"><span class="sub-qname" id="sub-background-label">Background</span><div class="sub-pills" role="group" aria-labelledby="sub-background-label" data-group="background" data-multi="true"><button type="button" class="sub-pill" data-value="first-gen">First-generation</button><button type="button" class="sub-pill" data-value="need">Financial need</button></div></div>
+        <p class="sub-fine">Your email and the answers you picked go to the email service only when you tap the button. Unsubscribe anytime.</p>
+        <p class="sub-status" id="sub-status" role="status" aria-live="polite" hidden></p>
+      </section>
+
       <section class="how" aria-labelledby="how-title">
         <h2 id="how-title">How this works</h2>
         <div class="how-grid">
           <p><b>Checked facts.</b> <span id="checked-line">The big funding entries were checked on their official pages.</span> Each card says when. Everything else comes from my resource list and may be out of date: those cards say “Not re-checked yet,” and anything in my notes is quoted as notes, not facts.</p>
           <p><b>Ruled out means a checked rule.</b> A card moves to “Not for you” only when a rule read from its official page excludes your level or citizenship. Rules that come from my own notes and haven't been checked show as a warning on the card instead, and those cards sort last.</p>
-          <p><b>Private.</b> Matching runs in your browser. No uploads or cookies: only anonymous visit counts (GoatCounter), and no IP addresses are stored. Level, needs, and the K-State toggle go in the address bar so you can bookmark the list; citizenship never does.</p>
+          <p><b>Private.</b> Matching runs in your browser. No uploads or cookies: only anonymous visit counts (GoatCounter), and no IP addresses are stored. Level, needs, and the K-State toggle go in the address bar so you can bookmark the list; citizenship never does. Subscribing is the one exception: your email and the answers you picked go to the email service, only when you tap the subscribe button.</p>
         </div>
       </section>
     </section>

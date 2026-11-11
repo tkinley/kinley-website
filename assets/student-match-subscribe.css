@@ -1,0 +1,18 @@
+/* Subscribe row for Student Opportunities. Loaded after student-match.css
+   and reuses its variables. The row is the one place on the page where an
+   answer (citizenship included) leaves the browser, and only on tap. */
+.subscribe{margin-top:26px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:16px 18px;box-shadow:var(--shadow)}
+.subscribe h2{font-size:17px;margin-bottom:10px}
+.sub-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sub-row input[type="email"]{flex:1 1 200px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.sub-freq{display:flex;gap:6px}
+.sub-pill{padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink)}
+.sub-pill.is-on{border-color:var(--teal);color:var(--teal);font-weight:600;background:var(--soft)}
+.sub-go{padding:10px 16px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600}
+.sub-go[disabled]{opacity:.6;cursor:wait}
+.sub-div{border-top:1px solid var(--line);margin:14px 0 10px;padding-top:10px;font-size:12px;color:var(--muted)}
+.sub-q{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.sub-qname{flex:0 0 84px;font-weight:600;font-size:13px}
+.sub-pills{display:flex;gap:6px;flex-wrap:wrap}
+.sub-fine{margin-top:10px;font-size:12px;color:var(--muted)}
+.sub-status{margin-top:8px;font-size:13px;color:var(--teal)}
