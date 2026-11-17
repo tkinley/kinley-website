@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Gene–source statistics · Kinley Tenzin</title>
+<meta name="description" content="Four simple, interactive lessons on probability, odds, bacterial lineage, population structure, uncertainty, and gene–source association.">
+<link rel="canonical" href="https://tkinley.github.io/kinley-website/gene-source-statistics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kinley Tenzin">
+<meta property="og:title" content="Gene–source statistics: a learning lab">
+<meta property="og:description" content="Change bacterial gene counts and see why pooled associations, within-lineage comparisons, and odds ratios can tell different stories.">
+<meta property="og:url" content="https://tkinley.github.io/kinley-website/gene-source-statistics.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/research-notes.css?v=6">
+<style>
+.genome-page .guide-header{padding-bottom:10px}
+.genome-page .guide-header .lede{max-width:850px}
+.gene-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 30px}
+.gene-stat{padding:17px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.gene-stat strong{display:block;font:800 28px/1.15 "Archivo",sans-serif;color:var(--teal)}
+.gene-stat span{font:12px/1.5 "IBM Plex Mono",monospace;color:var(--muted)}
+.gene-note{font:14px/1.6 "Source Serif 4",Georgia,serif;color:var(--muted);margin:10px 0 22px}
+.chapter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:28px 0 42px}
+.chapter-card{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);box-shadow:var(--shadow);border-radius:12px;padding:18px;min-height:148px}
+.chapter-card:hover,.chapter-card:focus-visible{border-color:var(--teal);opacity:1}
+.chapter-card .number{font:500 11px/1.5 "IBM Plex Mono",monospace;color:var(--teal)}
+.chapter-card strong{font:700 17px/1.3 "Archivo",sans-serif;margin:9px 0}
+.chapter-card small{font-size:13px;line-height:1.45;color:var(--muted)}
+.chapter{max-width:930px;margin:55px 0 64px;scroll-margin-top:20px}
+.chapter .chapter-label{font:500 12px/1.5 "IBM Plex Mono",monospace;color:var(--teal);text-transform:uppercase}
+.chapter>h2{margin:9px 0 12px}
+.chapter-intro{max-width:790px;font-size:18px}
+.chapter h3{margin:22px 0 10px}
+.gene-lab{margin:23px 0;border-block:1px solid var(--line-strong);padding:23px 0}
+.gene-lab h3{margin:0 0 9px}
+.gene-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:20px 0 24px}
+.gene-control label{display:flex;justify-content:space-between;gap:14px;align-items:baseline;font:500 13px/1.5 "Archivo",sans-serif}
+.gene-control output{font:700 14px/1.5 "IBM Plex Mono",monospace;color:var(--teal)}
+.gene-control input[type=range]{display:block;width:100%;height:36px;accent-color:var(--teal);cursor:pointer}
+.gene-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.gene-result{border:1px solid var(--line);border-radius:12px;padding:17px;background:var(--surface)}
+.gene-result .eyebrow{display:block;font:500 11px/1.5 "IBM Plex Mono",monospace;color:var(--muted);min-height:30px}
+.gene-result output,.gene-result strong{display:block;font:800 clamp(20px,2.6vw,28px)/1.15 "Archivo",sans-serif;color:var(--teal);margin-top:6px;overflow-wrap:anywhere}
+.gene-result p{font-size:13px;color:var(--muted);line-height:1.5;margin:9px 0 0}
+.gene-bar-group{margin:18px 0}
+.gene-bar-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font:500 13px/1.4 "Archivo",sans-serif;margin-bottom:7px}
+.gene-bar-head strong{font:600 13px "IBM Plex Mono",monospace}
+.gene-bar-track{height:15px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.gene-bar-fill{height:100%;width:0;background:var(--teal);transition:width .16s ease}
+.gene-bar-fill.secondary{background:#6e86a3}
+.gene-interpret{border-left:3px solid var(--teal);padding:3px 0 3px 17px;font-size:16px;margin:21px 0;line-height:1.6}
+.gene-formula{padding:14px 17px;background:var(--surface2);border-radius:9px;overflow-x:auto;font:500 14px/1.75 "IBM Plex Mono",monospace;white-space:normal}
+.gene-equations{border-top:1px solid var(--line);padding-top:11px;margin-top:20px}
+.gene-equations summary{font-family:"Archivo",sans-serif}
+.gene-equations p{font-size:14px;color:var(--muted)}
+.gene-actions button{font:600 13px/1.4 "Archivo",sans-serif;color:var(--teal);background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:9px 13px;cursor:pointer}
+.gene-actions button:hover{border-color:var(--teal)}
+.gene-table{font-size:14px}
+.gene-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.gene-term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:17px}
+.gene-term h3{font-size:16px;margin:0 0 8px}
+.gene-term p{font-size:14px;line-height:1.6;margin:0;color:var(--muted)}
+.gene-steps{padding-left:22px}
+.gene-steps li{margin-bottom:13px}
+.gene-mini-quiz{margin:24px 0}
+.gene-mini-quiz details{background:var(--surface);padding:15px 18px;border:1px solid var(--line);border-radius:10px;margin:10px 0}
+.gene-mini-quiz details p{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.gene-bottom-links{margin-top:35px;padding-top:22px;border-top:1px solid var(--line-strong)}
+.gene-caveat{font-size:13px;color:var(--muted)}
+@media(max-width:800px){.chapter-grid,.gene-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.chapter-grid,.gene-summary,.gene-controls,.gene-results,.gene-terms{grid-template-columns:1fr}.chapter-card{min-height:auto}.gene-result .eyebrow{min-height:0}.chapter{margin:40px 0 52px}.gene-stat strong{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.gene-bar-fill{transition:none}}
+@media print{.gene-controls,.gene-actions,.chapter-grid{display:none}.gene-results{grid-template-columns:repeat(3,1fr)}.chapter{break-inside:avoid}}
+</style>
+</head>
+<body class="genome-page">
+<a class="skip" href="#main">Skip to lessons</a>
+<div class="wrap">
+<nav class="textnav" aria-label="Pages"><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="gene-source-statistics.html" aria-current="page">Gene–source statistics</a><a href="valuations.html">Investment theses</a><a href="biotech.html">Biotech</a></nav>
+<header class="guide-header">
+<div class="dateline"><span>Kinley Tenzin · Statistics learning lab</span><span>Bacterial comparative genomics · 2026</span></div>
+<p class="breadcrumb"><a href="statistics.html">← Back to Alea</a></p>
+<h1>Gene–source statistics, without the jargon</h1>
+<p class="lede">Why can a gene look common in food-associated bacteria, then lose its apparent association once we compare related bacteria? Learn through four short lessons. Change the numbers, watch the answers move, and see what each statistical result can actually tell us.</p>
+<div class="gene-summary" aria-label="Study context">
+<div class="gene-stat"><strong>64</strong><span>Selected genomes</span></div>
+<div class="gene-stat"><strong>24</strong><span>Low-moisture food</span></div>
+<div class="gene-stat"><strong>40</strong><span>Other sources</span></div>
+<div class="gene-stat"><strong>10</strong><span>SNP clusters</span></div>
+</div>
+<p class="gene-note"><strong>Data note:</strong> These four numbers describe our selected <i>Salmonella Enteritidis</i> study cohort. All interactive gene counts and lineage examples below are <strong>invented for teaching</strong>, not findings about particular genes in the study.</p>
+</header>
+<main id="main">
+<nav class="chapter-grid" aria-label="The four learning chapters">
+<a class="chapter-card" href="#pooled"><span class="number">01 / COMPARE</span><strong>The lineage trap</strong><small>Why a pooled gene association can mislead</small></a>
+<a class="chapter-card" href="#odds"><span class="number">02 / MEASURE</span><strong>Probability vs odds</strong><small>Three calculations from the same counts</small></a>
+<a class="chapter-card" href="#weights"><span class="number">03 / STANDARDIZE</span><strong>How to weight lineages</strong><small>What changes when groups have different mixes</small></a>
+<a class="chapter-card" href="#limits"><span class="number">04 / INTERPRET</span><strong>What the data cannot say</strong><small>Uncertainty, sampling, and biological claims</small></a>
+</nav>
+
+<section class="chapter" id="pooled" aria-labelledby="pooled-title">
+<span class="chapter-label">01 / Compare fairly</span>
+<h2 id="pooled-title">The lineage trap</h2>
+<p class="chapter-intro">Imagine two genetic lineages. Every genome in lineage A carries the gene. No genome in lineage B carries it. We now sample different numbers of LMF and other-source genomes from each lineage. Does the gene suddenly become a food-associated gene?</p>
+<div class="gene-lab" id="lineage-lab">
+<h3>Move the source mix</h3>
+<p>Both lineages have 10 genomes. Each source group has 10 genomes overall. All gene patterns stay fixed while only the source mixture changes.</p>
+<div class="gene-controls">
+<div class="gene-control"><label for="mix"><span>LMF genomes taken from gene-positive lineage A</span><output id="mix-out" for="mix">8 of 10</output></label><input id="mix" type="range" min="1" max="9" step="1" value="8"></div>
+<div class="gene-control"><label><span>Gene in lineage A</span><output>10 / 10</output></label><div class="gene-bar-track"><div class="gene-bar-fill" style="width:100%"></div></div></div>
+</div>
+<div class="table-scroll"><table class="gene-table"><caption>Two hypothetical lineages; gene carriage is fixed within each lineage</caption><thead><tr><th>Lineage</th><th>LMF genomes</th><th>Other-source genomes</th><th>Gene present</th></tr></thead><tbody><tr><th>A</th><td id="a-lmf">8</td><td id="a-other">2</td><td>All</td></tr><tr><th>B</th><td id="b-lmf">2</td><td id="b-other">8</td><td>None</td></tr></tbody></table></div>
+<div class="gene-bar-group"><div class="gene-bar-head"><span>LMF gene prevalence</span><strong id="mix-lmf-label">80%</strong></div><div class="gene-bar-track"><div id="mix-lmf-bar" class="gene-bar-fill" style="width:80%"></div></div></div>
+<div class="gene-bar-group"><div class="gene-bar-head"><span>Other-source gene prevalence</span><strong id="mix-other-label">20%</strong></div><div class="gene-bar-track"><div id="mix-other-bar" class="gene-bar-fill secondary" style="width:20%"></div></div></div>
+<div class="gene-results">
+<div class="gene-result"><span class="eyebrow">Pooled difference</span><output id="mix-pooled">+60.0 pp</output><p>Ignore lineages and compare all genomes.</p></div>
+<div class="gene-result"><span class="eyebrow">Within-lineage difference</span><output>0.0 pp</output><p>Within A and B, the sources are identical for gene carriage.</p></div>
+<div class="gene-result"><span class="eyebrow">What changed?</span><strong>Source mix</strong><p>Not the gene status of either lineage.</p></div>
+</div>
+<p class="gene-interpret" id="mix-interpret" aria-live="polite">The gene looks 60 percentage points more common in LMF, although the within-lineage differences are both zero. The pooled signal comes entirely from source composition.</p>
+<div class="gene-actions"><button id="mix-reset" type="button">Reset example</button></div>
+<details class="gene-equations"><summary>See the equations in plain English</summary><div class="gene-formula">Pooled difference = (gene-positive LMF / all LMF) − (gene-positive Other / all Other)</div><p>Within-lineage difference: do the same calculation separately inside A and B. Here it is always 100% − 100% = 0 in A and 0% − 0% = 0 in B. Both sources are represented in both lineages at every slider setting.</p></details>
+</div>
+<p><strong>Term: Population structure.</strong> Bacteria are not all unrelated; genetic lineages can differ in gene content. If our source groups contain different proportions of those lineages, an overall association may reflect lineage composition rather than a difference within lineages.</p>
+</section>
+
+<section class="chapter" id="odds" aria-labelledby="odds-title">
+<span class="chapter-label">02 / Measure the difference</span>
+<h2 id="odds-title">Probability is not odds</h2>
+<p class="chapter-intro">Here's the shortcut: <strong>probability = YES / ALL</strong>, while <strong>odds = YES / NO</strong>. To compare two groups using an odds ratio, divide their odds.</p>
+<div class="gene-lab">
+<h3>Use the 24-versus-40 study sizes</h3>
+<p>Change how many genomes carry an imaginary gene. The sample sizes stay at 24 LMF and 40 Other.</p>
+<div class="gene-controls">
+<div class="gene-control"><label for="lmf-gene"><span>LMF with gene</span><output id="lmf-gene-out" for="lmf-gene">18 / 24</output></label><input id="lmf-gene" type="range" min="0" max="24" step="1" value="18"></div>
+<div class="gene-control"><label for="other-gene"><span>Other with gene</span><output id="other-gene-out" for="other-gene">20 / 40</output></label><input id="other-gene" type="range" min="0" max="40" step="1" value="20"></div>
+</div>
+<div class="gene-bar-group"><div class="gene-bar-head"><span>LMF probability (YES / ALL)</span><strong id="lmf-rate">75.0%</strong></div><div class="gene-bar-track"><div id="lmf-bar" class="gene-bar-fill" style="width:75%"></div></div></div>
+<div class="gene-bar-group"><div class="gene-bar-head"><span>Other probability (YES / ALL)</span><strong id="other-rate">50.0%</strong></div><div class="gene-bar-track"><div id="other-bar" class="gene-bar-fill secondary" style="width:50%"></div></div></div>
+<div class="gene-results">
+<div class="gene-result"><span class="eyebrow">Prevalence difference</span><output id="prevalence-diff">+25.0 pp</output><p>Subtract the two percentages.</p></div>
+<div class="gene-result"><span class="eyebrow">LMF odds: YES / NO</span><output id="lmf-odds">3.00</output><p id="lmf-odds-desc">18 carrying vs 6 not carrying.</p></div>
+<div class="gene-result"><span class="eyebrow">Odds ratio: LMF / Other</span><output id="odds-ratio">3.00</output><p>Compares odds, not probabilities.</p></div>
+</div>
+<p class="gene-interpret" id="odds-interpret" aria-live="polite">The gene is 25 percentage points more prevalent in LMF. The LMF odds are 3 times the Other odds. That does not mean the gene is 3 times as probable.</p>
+<div class="gene-actions"><button id="odds-reset" type="button">Reset example</button></div>
+<details class="gene-equations"><summary>See the equations in plain English</summary><div class="gene-formula">Probability = carriers / total<br>Odds = carriers / noncarriers<br>Odds ratio = (LMF odds) / (Other odds)</div><p>At 18/24 and 20/40: probability is 75% versus 50%; odds are 18/6 = 3 versus 20/20 = 1; odds ratio is 3. With zero cells, ordinary odds or odds ratios may be zero, infinite, or undefined. The page shows these cases rather than inserting made-up corrections.</p></details>
+</div>
+<p><strong>Term: Covariate.</strong> An additional variable included in a model. In our lineage-aware comparison, genetic lineage is an adjustment variable; isolation source is the group comparison and gene presence is what we count. The roles of source and gene can reverse in a different model specification.</p>
+<p><strong>Term: Noncollapsibility.</strong> Even if lineage is not confounding the association, a pooled odds ratio can differ from an odds ratio conditioned on lineage. A change after adjustment alone does not prove confounding.</p>
+</section>
+
+<section class="chapter" id="weights" aria-labelledby="weights-title">
+<span class="chapter-label">03 / Define the comparison</span>
+<h2 id="weights-title">Which lineages count more?</h2>
+<p class="chapter-intro">To compare sources fairly, we can first compare them <em>within</em> each lineage and then combine those differences. But we have to decide how much weight each lineage gets. Different weights answer different questions.</p>
+<div class="gene-lab">
+<h3>Same gene counts, different target</h3>
+<p>This invented example has two lineages (not the ten real SNP clusters). Source groups still total 24 LMF and 40 Other genomes.</p>
+<div class="table-scroll"><table class="gene-table"><caption>Hypothetical gene-positive / total counts</caption><thead><tr><th>Lineage</th><th>LMF</th><th>Other</th><th>Within-lineage difference</th></tr></thead><tbody><tr><th>A</th><td>5 / 6</td><td>3 / 18</td><td id="weight-a-d">+66.7 pp</td></tr><tr><th>B</th><td>6 / 18</td><td>15 / 22</td><td id="weight-b-d">−34.8 pp</td></tr></tbody></table></div>
+<div class="gene-controls">
+<div class="gene-control"><label for="weight"><span>Weight given to lineage A</span><output for="weight" id="weight-out">25%</output></label><input id="weight" type="range" min="0" max="100" value="25" step="1"></div>
+<div class="gene-control"><label><span>Weight given to lineage B</span><output id="weight-b-out">75%</output></label><div class="gene-bar-track"><div id="weight-b-bar" class="gene-bar-fill secondary" style="width:75%"></div></div></div>
+</div>
+<div class="gene-results">
+<div class="gene-result"><span class="eyebrow">Pooled, ignore lineage</span><strong id="weight-pooled">+0.8 pp</strong><p>Compare 11/24 against 18/40.</p></div>
+<div class="gene-result"><span class="eyebrow">Weighted within-lineage difference</span><output id="weight-adjusted">−9.5 pp</output><p>Calculate A × weight plus B × weight.</p></div>
+<div class="gene-result"><span class="eyebrow">LMF-based weighting</span><strong>25% A · 75% B</strong><p>Because 6/24 LMF genomes are from A.</p></div>
+</div>
+<p class="gene-interpret" id="weight-interpret" aria-live="polite">Under the observed LMF lineage mix (25% A, 75% B), the weighted within-lineage difference is negative, even though the pooled difference is slightly positive.</p>
+<div class="gene-actions"><button type="button" id="weight-lmf">Use LMF mix (25% A)</button> <button type="button" id="weight-cohort">Use all-genome mix (37.5% A)</button> <button type="button" id="weight-equal">Give lineages equal weight (50% A)</button></div>
+<details class="gene-equations"><summary>See the equation in plain English</summary><div class="gene-formula">Standardized difference = weight A × (LMF prevalence in A − Other prevalence in A)<br>+ weight B × (LMF prevalence in B − Other prevalence in B)</div><p>For the real 64-genome cohort, there are ten terms rather than two. In the A1-D1 discussion, LMF-based weighting was favored as the reference, while all-cohort weighting remained an alternative. These choices define different comparisons. They are not universal rules.</p></details>
+</div>
+<p><strong>Term: Estimand.</strong> The exact quantity a study tries to measure. The weights are part of the estimand: choosing a different reference lineage mixture changes what your comparison means.</p>
+<p><strong>Term: Standardization.</strong> Combining within-group comparisons using the same stated lineage weights, rather than letting the two source groups have different lineage mixtures.</p>
+</section>
+
+<section class="chapter" id="limits" aria-labelledby="limits-title">
+<span class="chapter-label">04 / Interpret carefully</span>
+<h2 id="limits-title">What the numbers cannot prove</h2>
+<p class="chapter-intro">Our sample is useful for describing selected genomes. But a difference calculated from 64 genomes is not automatically a fact about every <i>Salmonella Enteritidis</i> population.</p>
+<div class="gene-terms">
+<div class="gene-term"><h3>Descriptive result</h3><p>“In these selected genomes, gene prevalence differs by this many percentage points.” We can calculate that directly if the gene calls and metadata are correct.</p></div>
+<div class="gene-term"><h3>Permutation test</h3><p>Ask how unusual a statistic would be if source labels were rearranged <em>within</em> lineages under a specific null hypothesis. This requires an exchangeability assumption; it is not a confidence interval.</p></div>
+<div class="gene-term"><h3>Confidence interval</h3><p>An interval for an unknown population quantity depends on assumptions about sampling, independence, or a model. It does not appear automatically just because we have 64 genomes.</p></div>
+<div class="gene-term"><h3>Phylogenetic dependence</h3><p>Two similar genomes may share ancestry or sampling history. Ten SNP clusters help us compare within lineages, but they do not guarantee 64 independent sampling events or remove all remaining genetic structure.</p></div>
+</div>
+<h3>A four-question check before making a claim</h3>
+<ol class="gene-steps">
+<li><strong>What exactly did I compare?</strong> Gene prevalence, odds, or another quantity? Among which genomes?</li>
+<li><strong>Did I examine lineage?</strong> Could the pooled association come from unequal lineage representation?</li>
+<li><strong>What uncertainty is justified?</strong> Did I specify the sampling assumptions or null hypothesis?</li>
+<li><strong>Am I overclaiming biology?</strong> Gene–source association alone does not prove adaptation, persistence, desiccation tolerance, or transmission.</li>
+</ol>
+<div class="gene-mini-quiz" aria-label="Test what you learned">
+<h3>Quick self-check</h3>
+<details><summary>1. An OR of 3 means a gene is three times as probable in LMF. True or false?</summary><p><strong>False.</strong> The odds are three times as high. Probability and odds are different measures.</p></details>
+<details><summary>2. A pooled gene association disappears within every lineage. What might explain it?</summary><p>Unequal lineage composition between source groups. This is why the pooled comparison alone cannot distinguish lineage-driven patterns from within-lineage differences.</p></details>
+<details><summary>3. Does having 10 SNP clusters mean we have 10 independent sampling events?</summary><p><strong>No.</strong> Genetic clustering and independent biological sampling events are separate concepts.</p></details>
+<details><summary>4. Does a significant gene–source association establish an adaptation to low-moisture food?</summary><p><strong>No.</strong> It describes a statistical pattern. An adaptive mechanism requires additional biological evidence.</p></details>
+</div>
+<div class="callout"><strong>Why this matters for AI agents</strong><p>An agent should not simply report the smallest p-value. It should recognize the comparison being made, account for population structure where appropriate, explain its assumptions, and avoid stronger biological claims than the evidence supports. More than one statistical method can be defensible.</p></div>
+<div class="gene-bottom-links">
+<h3>Reading and context</h3>
+<ul class="sources"><li><a href="https://doi.org/10.1016/j.foodres.2026.120003">Selected <i>Salmonella Enteritidis</i> cohort: Food Research International (2026)</a></li><li><a href="statistics/effect-sizes.html">Alea: effect sizes and odds ratios</a></li><li><a href="statistics/subgroups-and-bias.html">Alea: subgroups and selection bias</a></li><li><a href="statistics/confidence-intervals.html">Alea: confidence intervals</a></li></ul>
+<p class="gene-caveat">This is an educational demonstration, not a reproduction of the published gene-level analysis or a report of new gene associations. The statistical choices described here are part of an evolving research plan.</p>
+</div>
+</section>
+</main>
+<footer><span>© 2026 Kinley Tenzin</span><a href="index.html">Home</a><a href="statistics.html">Alea</a><a href="gene-source-statistics.html">Gene–source statistics</a></footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const el = id => document.getElementById(id);
+  const set = (id, value) => { const node = el(id); if (node) node.textContent = value; };
+  const pct = p => (p * 100).toFixed(1) + '%';
+  const pp = x => (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x * 100).toFixed(1) + ' pp';
+  const odds = (yes, total) => yes === total ? (yes === 0 ? NaN : Infinity) : yes / (total - yes);
+  const num = x => Number.isNaN(x) ? 'Undefined' : x === Infinity ? '∞' : x.toFixed(2);
+
+  function renderMix() {
+    const a = Number(el('mix').value), b = 10 - a;
+    set('mix-out', a + ' of 10');
+    set('a-lmf', a); set('a-other', b); set('b-lmf', b); set('b-other', a);
+    set('mix-lmf-label', pct(a / 10)); set('mix-other-label', pct(b / 10));
+    el('mix-lmf-bar').style.width = pct(a / 10);
+    el('mix-other-bar').style.width = pct(b / 10);
+    set('mix-pooled', pp((a - b) / 10));
+    const diff = (a - b) / 10;
+    set('mix-interpret', diff === 0 ? 'The pooled difference is zero because the source groups have the same lineage mixture. The within-lineage differences are also zero.' : 'The pooled difference is ' + pp(diff) + ', even though the within-lineage differences are both zero. The pooled signal comes entirely from the different lineage mixtures.');
+  }
+  function renderOdds() {
+    const l = Number(el('lmf-gene').value), o = Number(el('other-gene').value);
+    const pL = l / 24, pO = o / 40, lOdds = odds(l,24), oOdds = odds(o,40);
+    let ratio;
+    if (Number.isNaN(lOdds) || Number.isNaN(oOdds)) ratio = NaN;
+    else if (lOdds === Infinity && oOdds === Infinity) ratio = NaN;
+    else if (lOdds === 0 && oOdds === 0) ratio = NaN;
+    else if (oOdds === 0) ratio = Infinity;
+    else if (oOdds === Infinity) ratio = 0;
+    else ratio = lOdds / oOdds;
+    set('lmf-gene-out', l + ' / 24'); set('other-gene-out', o + ' / 40');
+    set('lmf-rate', pct(pL)); set('other-rate', pct(pO));
+    el('lmf-bar').style.width = pct(pL); el('other-bar').style.width = pct(pO);
+    set('prevalence-diff', pp(pL - pO));
+    set('lmf-odds', num(lOdds)); set('lmf-odds-desc', l + ' carrying vs ' + (24 - l) + ' not carrying.');
+    set('odds-ratio', num(ratio));
+    const caveat = Number.isNaN(ratio) ? ' The ordinary odds ratio is undefined for these counts.' : ratio === Infinity ? ' The ordinary odds ratio is infinite because of a zero cell.' : ' The odds ratio is ' + num(ratio) + ', which is not a probability ratio.';
+    set('odds-interpret', 'The observed prevalence difference is ' + pp(pL - pO) + '.' + caveat);
+  }
+  const dA = 5 / 6 - 3 / 18, dB = 6 / 18 - 15 / 22, pooled = 11 / 24 - 18 / 40;
+  function renderWeight() {
+    const w = Number(el('weight').value) / 100, adj = w * dA + (1 - w) * dB;
+    set('weight-out', (w * 100).toFixed(0) + '%');
+    set('weight-b-out', ((1 - w) * 100).toFixed(0) + '%');
+    el('weight-b-bar').style.width = pct(1 - w);
+    set('weight-a-d', pp(dA)); set('weight-b-d', pp(dB));
+    set('weight-pooled', pp(pooled)); set('weight-adjusted', pp(adj));
+    const base = Math.abs(w - .25) < .00001 ? 'This matches the observed LMF lineage mix. ' : Math.abs(w - .375) < .00001 ? 'This matches the all-genome lineage mix. ' : Math.abs(w - .5) < .00001 ? 'This gives equal weight to both lineages. ' : '';
+    set('weight-interpret', base + 'Lineage A gets ' + (w * 100).toFixed(0) + '% of the weight and B gets ' + ((1 - w) * 100).toFixed(0) + '%. The standardized within-lineage difference is ' + pp(adj) + ', compared with the unadjusted pooled difference of ' + pp(pooled) + '. Different weights define different reference populations.');
+  }
+  el('mix').addEventListener('input', renderMix);
+  el('mix-reset').addEventListener('click', () => { el('mix').value = 8; renderMix(); });
+  el('lmf-gene').addEventListener('input', renderOdds);
+  el('other-gene').addEventListener('input', renderOdds);
+  el('odds-reset').addEventListener('click', () => { el('lmf-gene').value = 18; el('other-gene').value = 20; renderOdds(); });
+  el('weight').addEventListener('input', renderWeight);
+  for (const [id, value] of [['weight-lmf',25],['weight-cohort',37.5],['weight-equal',50]]) {
+    el(id).addEventListener('click', () => { el('weight').value = value; renderWeight(); });
+  }
+  renderMix(); renderOdds(); renderWeight();
+})();
+</script>
+</body>
+</html>
