@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Check sampling, compare methods, and write a result that matches the evidence.">
+  <title>Put the analysis together · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top">
+    <div class="wrap">
+      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+      <nav aria-label="Study navigation">
+        <a href="../statistics-self-study.html#concepts">All chapters</a>
+        <a href="../statistics-self-study.html#bank">Question bank</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 7 of 7</p>
+      <h1>Put the analysis together</h1>
+      <p class="library-lede">Check sampling, compare methods, and write a result that matches the evidence.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="Concepts in this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#sampling-unit">Identify the independent unit<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#estimable">Separate estimability from testability<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#method-match">Match method to the question<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#sensitivity">Read sensitivity analyses<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#scope">Keep the claim within the design<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#write-result">Write the result in one paragraph<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 7 · Read estimates in the order the questions arise</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Question</th><th scope="col">Example</th><th scope="col">What to check</th></tr></thead><tbody><tr><th scope="row">What was observed?</th><td>+12 pp pooled</td><td>Group counts and composition</td></tr>
+<tr><th scope="row">What is the common-mix estimate?</th><td>−4 pp standardized</td><td>Weights and stratum overlap</td></tr>
+<tr><th scope="row">How precise is it?</th><td>−13 to +5 pp interval</td><td>Sampling unit and interval assumptions</td></tr></tbody></table></div><figcaption>Each number answers a specific question. Reporting the pooled number alone hides how the conclusion changes after applying a common mix.</figcaption></figure>
+        <section class="study-lesson" id="sampling-unit" aria-labelledby="sampling-unit-title">
+    <p class="chapter-kicker">Concept 7.1</p>
+    <h2 id="sampling-unit-title">Identify the independent unit</h2>
+    <p class="lesson-lead">Sixty records might come from only 12 collection events, with five observations per event.</p>
+    <ol class="math-steps"><li>Find which units were sampled or assigned independently.</li>
+<li>Group records that share a collection event, site, or batch where their outcomes may be dependent.</li>
+<li>Choose an uncertainty or randomization procedure that reflects the design and the limited number of independent units.</li></ol>
+    <p class="math-conclusion">The row count can overstate independent information. Stratification and accounting for dependence solve different problems.</p>
+    <details class="lesson-check">
+      <summary>Try it · Does adding a batch indicator guarantee independent residuals?</summary>
+      <p>No. Records from the same event can still be correlated.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="estimable" aria-labelledby="estimable-title">
+    <p class="chapter-kicker">Concept 7.2</p>
+    <h2 id="estimable-title">Separate estimability from testability</h2>
+    <p class="lesson-lead">Suppose both groups appear in every target stratum and both rates are observed, even if all outcomes are constant.</p>
+    <ol class="math-steps"><li>Compute the within-stratum differences and their weighted average. Those descriptive quantities are defined.</li>
+<li>Check whether the test statistic can vary under the fixed-margin null.</li>
+<li>Check whether the interval method handles boundaries and uses defensible sampling assumptions.</li></ol>
+    <p class="math-conclusion">A defined estimate can have a degenerate permutation test and a nonzero uncertainty interval.</p>
+    <details class="lesson-check">
+      <summary>Try it · What makes a standardized difference undefined without extrapolation?</summary>
+      <p>Positive target weight on a stratum where a required group rate is unobserved.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="method-match" aria-labelledby="method-match-title">
+    <p class="chapter-kicker">Concept 7.3</p>
+    <h2 id="method-match-title">Match method to the question</h2>
+    <p class="lesson-lead">Suppose three analysts report a standardized prevalence difference, a conditional odds ratio, and an exact p-value.</p>
+    <ol class="math-steps"><li>Ask which quantity each method targets. The difference is measured in percentage points, and the odds ratio is a relative odds measure.</li>
+<li>Check which strata and sampling assumptions each method uses.</li>
+<li>Compare estimates on the same target and effect scale first. Interpret a p-value using the test’s null and statistic.</li></ol>
+    <p class="math-conclusion">Results can differ because the methods answer different questions. State those questions before comparing the numbers.</p>
+    <details class="lesson-check">
+      <summary>Try it · Can a p-value of 1 prove that the difference is exactly zero?</summary>
+      <p>No. For example, a fixed outcome pattern gives no way for the blocked test statistic to change.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="sensitivity" aria-labelledby="sensitivity-title">
+    <p class="chapter-kicker">Concept 7.4</p>
+    <h2 id="sensitivity-title">Read sensitivity analyses</h2>
+    <p class="lesson-lead">A sensitivity analysis changes one choice at a time so you can see what drives the result.</p>
+    <ol class="math-steps"><li>Separate changes in estimand, such as different reference weights, from changes in how the same estimand is estimated.</li>
+<li>Keep a record of overlap, sample sizes, and the assumptions behind each comparison.</li>
+<li>Check whether large changes come from a sparse cell, a different target, or the handling of dependence.</li></ol>
+    <p class="math-conclusion">Explain which change caused a result to move and whether the interpretation moves with it.</p>
+    <details class="lesson-check">
+      <summary>Try it · If A-based and equal weights give opposite signs, what would you show?</summary>
+      <p>Show stratum-specific effects, both weight vectors, and both summaries.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="scope" aria-labelledby="scope-title">
+    <p class="chapter-kicker">Concept 7.5</p>
+    <h2 id="scope-title">Keep the claim within the design</h2>
+    <p class="lesson-lead">A selected collection can describe its own observations. A broader claim requires support from the sampling or causal design.</p>
+    <ol class="math-steps"><li>State what population the comparison represents and how the data were acquired.</li>
+<li>Distinguish an observed association from a causal interpretation or a mechanism.</li>
+<li>Name the assumptions needed to generalize beyond the observed collection.</li></ol>
+    <p class="math-conclusion">A precise estimate can still answer a narrow question.</p>
+    <details class="lesson-check">
+      <summary>Try it · Would collecting more observations using the same biased selection rule fix generalizability?</summary>
+      <p>More observations may improve precision while leaving the selection bias in place.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="write-result" aria-labelledby="write-result-title">
+    <p class="chapter-kicker">Concept 7.6</p>
+    <h2 id="write-result-title">Write the result in one paragraph</h2>
+    <p class="lesson-lead">Use the three results in Figure 7 to give a short, bounded interpretation.</p>
+    <ol class="math-steps"><li>Report the observed pooled difference of +12 pp.</li>
+<li>State how the estimate changes when both groups get the same reference mix: −4 pp.</li>
+<li>Give the interval (−13 to +5 pp), identify the target, and mention the overlap and sampling assumptions relevant to that estimate.</li></ol>
+    <p class="math-conclusion">Lead with the comparison, name the adjustment, then communicate how uncertain the estimate is.</p>
+    <details class="lesson-check">
+      <summary>Try it · Does the adjusted result show equivalence within ±5 pp?</summary>
+      <p>No. The interval extends below −5 pp. Equivalence requires an explicit margin and a method suited to that question.</p>
+    </details>
+  </section>
+        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-dependent-data">How many independent observations?</a></li>
+<li><a href="../statistics-self-study.html#q-selection-and-causality">Push back on an overclaim</a></li>
+<li><a href="../statistics-self-study.html#q-mock-analysis">Design the analysis from scratch</a></li>
+<li><a href="../statistics-self-study.html#q-mock-results">Explain a reversal in a results meeting</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="multiplicity.html">← Testability and multiple comparisons</a>
+          <a href="../statistics-self-study.html#bank">Practice questions →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+  
+</body>
+</html>

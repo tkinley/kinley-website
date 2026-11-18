@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Personal practice for statistics interviews.">
-<title>Statistics Interview Prep · Kinley Tenzin</title>
+<meta name="description" content="A chapter-by-chapter statistics guide with worked math, figures, and optional practice.">
+<title>Statistics Self-Study · Kinley Tenzin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
@@ -210,71 +210,6 @@ kbd { display: inline-grid; place-items: center; min-width: 22px; height: 22px; 
 .view-head h2 { font: 600 clamp(1.9rem, 3.4vw, 2.6rem)/1.1 var(--serif); letter-spacing: -.012em; outline: none; }
 .lede { margin-top: 8px; color: var(--muted); font-size: 1rem; }
 
-/* Concepts */
-.concepts-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
-.chapter-index { position: sticky; top: 24px; }
-.chapter-index ol { list-style: none; display: grid; gap: 2px; counter-reset: chapter; }
-.chapter-index li { counter-increment: chapter; }
-.chapter-index a {
-  display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start;
-  padding: 9px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; line-height: 1.35; font-size: .95rem;
-}
-.chapter-index a::before {
-  content: counter(chapter); display: grid; place-items: center; width: 26px; height: 26px; margin-top: -3px;
-  border: 1.5px solid var(--rule); border-radius: 50%; font: 600 .9rem/1 var(--serif); color: var(--muted);
-}
-.chapter-index a:hover { color: var(--ink); background: var(--sheet); }
-.chapter-index a[aria-current] { color: var(--ink); font-weight: 600; background: var(--sheet); }
-.chapter-index a[aria-current]::before { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
-.reading { min-width: 0; max-width: 780px; }
-.concept-chapter { padding: clamp(24px, 4vw, 48px); }
-.concept-chapter > h3 { font: 600 clamp(1.9rem, 3.4vw, 2.55rem)/1.12 var(--serif); letter-spacing: -.012em; text-wrap: balance; outline: none; }
-.chapter-intro { margin-top: 12px; font: italic 400 1.28rem/1.5 var(--serif); color: var(--soft-ink); max-width: 56ch; text-wrap: pretty; }
-.concept-terms { margin-top: 28px; }
-.concept-terms > div { display: grid; grid-template-columns: minmax(130px, 190px) minmax(0, 1fr); gap: 6px 24px; padding: 16px 0; border-top: 1px solid var(--rule); }
-.concept-terms > div:last-child { border-bottom: 1px solid var(--rule); }
-.concept-terms dt { font-weight: 600; font-size: .95rem; padding-top: 2px; }
-.concept-terms dd { font: 400 1.1rem/1.6 var(--serif); text-wrap: pretty; }
-.worked {
-  margin-top: 32px; padding: clamp(18px, 3vw, 28px);
-  border: 1px solid var(--rule); border-radius: 8px;
-  background-color: var(--sheet);
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 20px 20px; background-position: -1px -1px;
-}
-.worked h4 { font: 600 .95rem/1.3 var(--sans); color: var(--blue); margin-bottom: 10px; }
-.worked p { font: 400 1.1rem/1.62 var(--serif); text-wrap: pretty; }
-.worked p + p, .worked dl + p, .worked .chapter-table + p { margin-top: 14px; }
-.worked a { white-space: nowrap; }
-.concept-values { margin: 16px 0 4px; border-top: 1.5px solid var(--rule-strong); border-bottom: 1.5px solid var(--rule-strong); background: var(--sheet); }
-.concept-values > div { display: grid; grid-template-columns: minmax(110px, 160px) minmax(0, 1fr); gap: 4px 20px; align-items: baseline; padding: 10px 6px; }
-.concept-values > div + div { border-top: 1px solid var(--rule); }
-.concept-values dt { font-size: .9rem; color: var(--muted); }
-.concept-values dd { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 4px 12px; font-family: var(--serif); text-align: right; }
-.cv-expr { font-style: italic; color: var(--muted); font-size: 1.02rem; }
-.cv-expr::after { content: " ="; font-style: normal; }
-.cv-val { font-weight: 600; font-size: 1.3rem; color: var(--blue); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
-.chapter-table { margin: 16px 0 4px; overflow-x: auto; background: var(--sheet); }
-.chapter-table tbody tr:last-child > * { border-top: 1px solid var(--rule-strong); font-weight: 600; }
-.concept-steps { list-style: none; counter-reset: step; display: grid; gap: 12px; margin-top: 6px; }
-.concept-steps li { counter-increment: step; position: relative; padding-left: 40px; font: 400 1.08rem/1.58 var(--serif); }
-.concept-steps li::before { content: counter(step); position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: var(--on-blue); font: 600 .88rem/1 var(--sans); }
-.concept-steps strong { font-weight: 600; }
-.concept-recall { margin-top: 28px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); }
-.concept-recall > summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "label mark" "q mark"; gap: 4px 16px; align-items: center; padding: 16px 20px; }
-.concept-recall > summary::after { grid-area: mark; color: var(--blue); }
-.recall-label { grid-area: label; font-size: .84rem; font-weight: 600; color: var(--blue); }
-.recall-q { grid-area: q; font: 500 1.12rem/1.45 var(--serif); }
-.concept-recall > p { margin: 0 20px; padding: 14px 0 18px; border-top: 1px solid var(--rule); font: 400 1.06rem/1.6 var(--serif); color: var(--soft-ink); }
-.chapter-practice { margin-top: 36px; }
-.chapter-practice h3 { font: 600 1.05rem/1.3 var(--sans); margin-bottom: 8px; }
-.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); }
-.pager a { display: grid; gap: 2px; text-decoration: none; padding: 6px 0; max-width: 48%; }
-.pager a.next { text-align: right; margin-left: auto; }
-.pager-dir { font-size: .82rem; color: var(--muted); }
-.pager-title { font: 600 1.12rem/1.3 var(--serif); color: var(--blue); }
-.pager a:hover .pager-title { text-decoration: underline; text-decoration-thickness: 1px; }
-
 /* Question lists */
 .q-list { list-style: none; border-top: 1px solid var(--rule); }
 .q-list li { border-bottom: 1px solid var(--rule); }
@@ -321,13 +256,9 @@ kbd { display: inline-grid; place-items: center; min-width: 22px; height: 22px; 
 
 footer { margin-top: 48px; padding-bottom: 32px; font-size: .84rem; color: var(--muted); }
 footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; border-top: 1px solid var(--rule); }
-.chapter-index h3 { font: 500 .84rem/1.3 var(--sans); color: var(--muted); padding: 0 10px 10px; }
 
 @media (max-width: 900px) {
   .practice-grid { grid-template-columns: minmax(0, 1fr); }
-  .concepts-layout { grid-template-columns: minmax(0, 1fr); }
-  .chapter-index { position: static; }
-  .chapter-index ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .top-inner { flex-direction: column; align-items: stretch; gap: 0; }
@@ -342,10 +273,6 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
   #strip .strip-label { display: none; }
   .timer { grid-template-columns: auto 1fr; grid-template-areas: "clock buttons" "track track"; }
   .timer-buttons { justify-content: flex-end; }
-  .chapter-index ol { grid-template-columns: minmax(0, 1fr); }
-  .concept-terms > div { grid-template-columns: minmax(0, 1fr); }
-  .concept-values > div { grid-template-columns: minmax(0, 1fr); }
-  .concept-values dd { justify-content: flex-start; text-align: left; }
   .q-row { grid-template-columns: 1.8rem minmax(0, 1fr); padding-inline: 4px; }
   .q-row .tag { grid-column: 2; justify-self: start; }
   .keys { display: none; }
@@ -354,20 +281,21 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
   * { animation: none !important; transition: none !important; }
 }
 </style>
+<link rel="stylesheet" href="assets/statistics-chapters.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap top-inner">
     <h1 class="wordmark">
-      <a href="#practice">
+      <a href="#concepts">
         <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="9" height="9" rx="1.5" fill="var(--blue)"/><rect x="12" y="1" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/><rect x="1" y="12" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/><rect x="12" y="12" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/></svg>
-        <span>Statistics interview prep</span>
+        <span>Statistics Self-Study</span>
       </a>
     </h1>
     <nav class="tabs" aria-label="Sections">
-      <a href="#practice" data-view="practice">Practice</a>
       <a href="#concepts" data-view="concepts">Concepts</a>
+      <a href="#practice" data-view="practice">Practice</a>
       <a href="#bank" data-view="bank">Question bank</a>
       <a href="#review" data-view="review">Review <span class="badge" id="review-badge" hidden></span></a>
     </nav>
@@ -442,149 +370,87 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
     <p class="keys">Use <kbd>←</kbd> and <kbd>→</kbd> to move between questions when you aren’t typing.</p>
   </section>
 
-  <section id="view-concepts" aria-labelledby="concepts-title" hidden>
-    <h2 id="concepts-title" class="sr-only" tabindex="-1">Concepts</h2>
-    <div class="concepts-layout">
-      <nav class="chapter-index" aria-labelledby="chapters-label">
-        <h3 id="chapters-label">Read a chapter, then practice it</h3>
-        <ol>
-          <li><a href="#concept-measures" data-chapter-link="measures">Measuring association</a></li>
-          <li><a href="#concept-lineage" data-chapter-link="lineage">Population structure</a></li>
-          <li><a href="#concept-weighting" data-chapter-link="weighting">Standardization</a></li>
-          <li><a href="#concept-uncertainty" data-chapter-link="uncertainty">Statistical uncertainty</a></li>
-          <li><a href="#concept-testing" data-chapter-link="testing">Permutation and FDR</a></li>
-          <li><a href="#concept-design" data-chapter-link="design">Study design and interpretation</a></li>
-        </ol>
-      </nav>
-      <div class="reading">
-        <article class="sheet concept-chapter" data-chapter="measures" aria-labelledby="chapter-measures" hidden>
-              <h3 id="chapter-measures" tabindex="-1">Measuring association</h3>
-              <p class="chapter-intro">Which number answers the question: how many more, how many times as common, or how many times the odds?</p>
-              <dl class="concept-terms">
-                <div><dt>Prevalence</dt><dd>Carriers ÷ total genomes. The prevalence difference is A’s prevalence minus B’s, reported in percentage points.</dd></div>
-                <div><dt>Prevalence ratio</dt><dd>A’s prevalence ÷ B’s. Use B as the reference and give both rates for context.</dd></div>
-                <div><dt>Odds ratio</dt><dd>Compute carriers ÷ noncarriers in each group, then divide A’s odds by B’s. Odds can exceed 1.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Worked example</h4>
-                <p>Group A has 18/24 carriers (75%). Group B has 20/40 (50%).</p>
-                <dl class="concept-values">
-                  <div><dt>Difference</dt><dd><span class="cv-expr">75% − 50%</span><span class="cv-val">+25 pp</span></dd></div>
-                  <div><dt>Prevalence ratio</dt><dd><span class="cv-expr">0.75 ÷ 0.50</span><span class="cv-val">1.5</span></dd></div>
-                  <div><dt>Odds ratio</dt><dd><span class="cv-expr">(18/6) ÷ (20/20)</span><span class="cv-val">3</span></dd></div>
-                </dl>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What if B has zero carriers?</span></summary><p>If A has any carriers and B has zero, the raw odds ratio is infinite. With zero carriers in both groups it is undefined (0 ÷ 0). Show the counts and choose an uncertainty method that handles sparse data.</p></details>
-            </article>
-
-        <article class="sheet concept-chapter" data-chapter="lineage" aria-labelledby="chapter-lineage" hidden>
-              <h3 id="chapter-lineage" tabindex="-1">Population structure</h3>
-              <p class="chapter-intro">Could the pooled result come from which lineages are in each group?</p>
-              <dl class="concept-terms">
-                <div><dt>Pooled vs. stratified</dt><dd>Pooling combines all observations. Stratification compares A and B separately inside each lineage.</dd></div>
-                <div><dt>Population structure</dt><dd>Lineages can differ in gene prevalence and in how often they appear in each source. This can create or obscure a pooled association.</dd></div>
-                <div><dt>Overlap</dt><dd>A direct within-lineage comparison requires both sources in that lineage. An absent source has unknown prevalence there.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Worked example</h4>
-                <p>Every genome in X carries the gene. No genome in Y does.</p>
-                <div class="chapter-table">
-                  <table>
-                    <caption>Carriers / total in each group</caption>
-                    <thead><tr><th scope="col">Comparison</th><th scope="col">A</th><th scope="col">B</th><th scope="col">A − B</th></tr></thead>
-                    <tbody>
-                      <tr><th scope="row">Within X</th><td>8/8</td><td>2/2</td><td>0 pp</td></tr>
-                      <tr><th scope="row">Within Y</th><td>0/2</td><td>0/8</td><td>0 pp</td></tr>
-                      <tr><th scope="row">Pooled</th><td>8/10</td><td>2/10</td><td>+60 pp</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p>Group A has more genomes from X. That difference in mix explains the entire pooled gap.</p>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Does a change in the adjusted odds ratio establish confounding?</span></summary><p>A marginal odds ratio and a conditional odds ratio can differ even when the groups have the same lineage mix. This is called noncollapsibility. Assess confounding using the study design and the role of each covariate. <a rel="noopener" href="https://www.stat.ubc.ca/~rollin/papers/GreenlandStatSci1999.pdf">Greenland, Robins &amp; Pearl</a></p></details>
-            </article>
-
-        <article class="sheet concept-chapter" data-chapter="weighting" aria-labelledby="chapter-weighting" hidden>
-              <h3 id="chapter-weighting" tabindex="-1">Standardization</h3>
-              <p class="chapter-intro">What would the difference be if both sources had the same lineage mix?</p>
-              <dl class="concept-terms">
-                <div><dt>Estimand</dt><dd>The exact target quantity. Specify the outcome, compared groups, effect measure, and target population.</dd></div>
-                <div><dt>Standardized difference</dt><dd>Multiply each lineage’s A-minus-B difference by its reference weight and add. The same weights apply to both sources and sum to one.</dd></div>
-                <div><dt>Effect heterogeneity</dt><dd>The association can vary in size or direction by lineage. Different reference weights can then produce different summaries.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Worked example</h4>
-                <p>In X, A has 5/6 carriers and B has 3/18 (+66.7 pp). In Y, A has 6/18 and B has 15/22 (−34.8 pp).</p>
-                <dl class="concept-values two">
-                  <div><dt>A’s mix</dt><dd><span class="cv-expr">25% × X gap + 75% × Y gap</span><span class="cv-val">−9.5 pp</span></dd></div>
-                  <div><dt>Equal weights</dt><dd><span class="cv-expr">50% × X gap + 50% × Y gap</span><span class="cv-val">+15.9 pp</span></dd></div>
-                </dl>
-                <p>Use the exact fractions and round at the end. Each result describes a different target mix.</p>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What if one lineage has no source B data?</span></summary><p>For direct standardization, restrict to lineages with both sources and rescale their weights, then name the narrower target. A model that retains the original target needs extra assumptions to extrapolate.</p></details>
-            </article>
-
-        <article class="sheet concept-chapter" data-chapter="uncertainty" aria-labelledby="chapter-uncertainty" hidden>
-              <h3 id="chapter-uncertainty" tabindex="-1">Statistical uncertainty</h3>
-              <p class="chapter-intro">Read the estimate, interval, and p-value together. Each answers a different question.</p>
-              <dl class="concept-terms">
-                <div><dt>Effect estimate</dt><dd>The measured magnitude and direction, such as +8 percentage points for A compared with B.</dd></div>
-                <div><dt>95% confidence interval</dt><dd>Over repeated samples, a valid procedure would cover the fixed target about 95% of the time under its assumptions. A wider interval reflects less precision.</dd></div>
-                <div><dt>P-value</dt><dd>Under the null and test assumptions, the probability of a test statistic at least as extreme as the one observed.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Worked example</h4>
-                <dl class="concept-values">
-                  <div><dt>Estimate</dt><dd><span class="cv-val">+8 pp</span></dd></div>
-                  <div><dt>95% interval</dt><dd><span class="cv-val">−3 to +19 pp</span></dd></div>
-                  <div><dt>P-value</dt><dd><span class="cv-val">0.15</span></dd></div>
-                </dl>
-                <p>The observed difference favors A. Under the model, the interval includes zero and spans a small decrease to a potentially meaningful increase.</p>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Does an interval that includes zero demonstrate equivalence?</span></summary><p>Equivalence needs a prespecified margin and an appropriate test. An interval from −3 to +19 pp extends well past a +5 pp margin. <a rel="noopener" href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm">NIST on confidence intervals</a>, <a rel="noopener" href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">ASA on p-values</a></p></details>
-            </article>
-
-        <article class="sheet concept-chapter" data-chapter="testing" aria-labelledby="chapter-testing" hidden>
-              <h3 id="chapter-testing" tabindex="-1">Permutation and FDR</h3>
-              <p class="chapter-intro">Build a valid null comparison, then account for how many hypotheses you tested.</p>
-              <dl class="concept-terms">
-                <div><dt>Permutation test</dt><dd>Choose a statistic and tail rule, then recompute the statistic after permitted source-label swaps. Swaps within lineages preserve source totals there.</dd></div>
-                <div><dt>Exchangeability</dt><dd>The null must justify those swaps. Shared sampling events or residual dependence can make individual-genome swaps invalid.</dd></div>
-                <div><dt>False discovery rate (FDR)</dt><dd>The expected fraction of false rejections among all rejections. That fraction is zero when there are no rejections.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Two worked examples</h4>
-                <p><strong>Permutation.</strong> If 19 of 999 random shuffles are at least as extreme, the plus-one Monte Carlo p-value is (19 + 1) ÷ (999 + 1) = <strong>0.020</strong>. <a rel="noopener" href="https://arxiv.org/abs/1603.05766">Phipson &amp; Smyth</a></p>
-                <p><strong>Benjamini–Hochberg.</strong> Sort 0.004, 0.018, 0.041, 0.2. At 5% FDR with four tests, compare to 0.0125, 0.025, 0.0375, 0.05. Rank 2 is the largest passing rank, so reject the first two. <a rel="noopener" href="https://onlinelibrary.wiley.com/doi/full/10.1111/j.2517-6161.1995.tb02031.x">Benjamini &amp; Hochberg</a></p>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What should you verify before interpreting adjusted results?</span></summary><p>Define the test family and check that each p-value is valid. Choose an adjustment whose assumptions fit the dependence among tests. Report effect sizes and support counts alongside the adjusted evidence.</p></details>
-            </article>
-
-        <article class="sheet concept-chapter" data-chapter="design" aria-labelledby="chapter-design" hidden>
-              <h3 id="chapter-design" tabindex="-1">Study design and interpretation</h3>
-              <p class="chapter-intro">Your conclusion can only be as broad as the sampling, measurements, and comparison support.</p>
-              <dl class="concept-terms">
-                <div><dt>Sampling unit</dt><dd>Genomes can share a sampling event, a site, or recent ancestry. Identify what was sampled independently before choosing standard errors or resampling units.</dd></div>
-                <div><dt>Selection and generalization</dt><dd>Specify who or what the selected collection represents. Increasing the sample size can improve precision while preserving selection bias.</dd></div>
-                <div><dt>Association and mechanism</dt><dd>Use the data to describe how gene prevalence varies by source. A claim about biological mechanism needs additional evidence.</dd></div>
-              </dl>
-              <div class="worked">
-                <h4>Frame an interview answer</h4>
-                <ol class="concept-steps">
-                  <li><strong>Define the target.</strong> Name the outcome, comparison, scale, and population.</li>
-                  <li><strong>Check the data.</strong> Inspect missing calls, overlap, strata sizes, and sampling units.</li>
-                  <li><strong>Estimate and quantify uncertainty.</strong> Choose methods suited to the data and account for multiple tests where relevant.</li>
-                  <li><strong>State the scope.</strong> Give the effect, uncertainty, and limits on generalization.</li>
-                </ol>
-              </div>
-              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Are ten genetic lineages ten independent sampling events?</span></summary><p>Lineage records ancestry. A sampling event records how observations were collected. Check both, then choose units that reflect how the data were generated.</p></details>
-            </article>
-        <section class="chapter-practice" aria-labelledby="chapter-practice-title">
-          <h3 id="chapter-practice-title">Practice this chapter</h3>
-          <ul id="chapter-questions" class="q-list"></ul>
-        </section>
-        <nav id="chapter-pager" class="pager" aria-label="Previous and next chapters"></nav>
-      </div>
+  <section id="view-concepts" aria-labelledby="concepts-title">
+    <h2 id="concepts-title" class="study-library-title" tabindex="-1">Study chapters</h2>
+    <p class="library-lede">Work through the examples in order or jump straight to a concept. Each chapter uses hypothetical counts.</p>
+    <div class="study-grid">
+      <article class="study-card">
+    <p class="chapter-kicker">Chapter 1</p>
+    <h3><a href="statistics-chapters/measures.html">Measure an association</a></h3>
+    <p>Read a 2×2 table and calculate three effects from the same counts.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/measures.html#two-by-two">Read the 2×2 table<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/measures.html#prevalence">Calculate a proportion<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/measures.html#difference">Subtract percentage points<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/measures.html#prevalence-ratio">Divide prevalences<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/measures.html#odds-ratio">Calculate and interpret odds<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/measures.html#zero-cells">Handle a zero cell<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 2</p>
+    <h3><a href="statistics-chapters/lineage.html">Compare within strata</a></h3>
+    <p>Separate a difference within groups from a difference in group composition.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/lineage.html#strata">Choose the strata<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/lineage.html#pooled-contrast">Calculate the pooled contrast<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/lineage.html#within-stratum">Calculate within-stratum contrasts<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/lineage.html#composition">Decompose a pooled rate<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/lineage.html#overlap">Diagnose lack of overlap<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/lineage.html#noncollapsibility">Distinguish confounding from noncollapsibility<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 3</p>
+    <h3><a href="statistics-chapters/weighting.html">Standardize to a target</a></h3>
+    <p>Define the estimand, calculate common weights, and see how a single observation can move it.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/weighting.html#estimand">State the estimand<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/weighting.html#stratum-differences">Find each batch’s difference<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/weighting.html#common-weights">Choose common weights<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/weighting.html#compute-standardized">Multiply and add<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/weighting.html#weight-sensitivity">Compare target choices<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/weighting.html#leverage">Compute one-observation leverage<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 4</p>
+    <h3><a href="statistics-chapters/uncertainty.html">Measure uncertainty</a></h3>
+    <p>Work through standard errors, Wilson limits, Jeffreys intervals, and the boundary problem.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/uncertainty.html#standard-error">Calculate a standard error<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#wald-boundary">Why the Wald interval collapses<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#wilson">Work out a Wilson interval<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#jeffreys">Update a Jeffreys prior<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#difference-interval">Combine uncertainty for a difference<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#weighted-variance">Propagate variance through weights<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 5</p>
+    <h3><a href="statistics-chapters/testing.html">Build an exact test</a></h3>
+    <p>Count the possible tables, construct a null distribution, and calculate a tail probability.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/testing.html#statistic">Choose the null and statistic<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/testing.html#margins">Hold the margins fixed<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/testing.html#hypergeometric">Count the possible tables<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/testing.html#combine-strata">Combine two strata<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/testing.html#tail-probability">Sum the extreme outcomes<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/testing.html#monte-carlo">Approximate the tail with random shuffles<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 6</p>
+    <h3><a href="statistics-chapters/multiplicity.html">Testability and multiple comparisons</a></h3>
+    <p>Find informative strata, calculate p-value bounds, and work through FDR.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/multiplicity.html#informative-strata">Count informative strata<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/multiplicity.html#blind-inventory">Build a label-blind information inventory<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/multiplicity.html#attainable-p">Find the smallest attainable p-value<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/multiplicity.html#bonferroni">Control familywise error<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/multiplicity.html#bh">Apply the Benjamini–Hochberg rule<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/multiplicity.html#report-screen">Report a screen with effect sizes<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
+<article class="study-card">
+    <p class="chapter-kicker">Chapter 7</p>
+    <h3><a href="statistics-chapters/design.html">Put the analysis together</a></h3>
+    <p>Check sampling, compare methods, and write a result that matches the evidence.</p>
+    <ul class="concept-toc"><li><a href="statistics-chapters/design.html#sampling-unit">Identify the independent unit<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/design.html#estimable">Separate estimability from testability<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/design.html#method-match">Match method to the question<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/design.html#sensitivity">Read sensitivity analyses<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/design.html#scope">Keep the claim within the design<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="statistics-chapters/design.html#write-result">Write the result in one paragraph<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+  </article>
     </div>
   </section>
 
@@ -849,19 +715,59 @@ const questions = [
 
   const $ = id => document.getElementById(id);
   const views = ["practice", "concepts", "bank", "review"];
-  const chapterQuestions = {
-    measures: ["odds-and-probability", "reading-an-or", "zero-cell", "effect-scale"],
-    lineage: ["pooled-versus-stratified", "noncollapsibility", "overlap", "what-to-adjust"],
-    weighting: ["weighted-calc", "define-estimand", "heterogeneity", "choose-weights"],
-    uncertainty: ["p-and-ci", "interval-interpretation"],
-    testing: ["permutation", "many-tests"],
-    design: ["dependent-data", "selection-and-causality", "mock-analysis", "mock-results", "mock-reporting"]
+  const chapterMap = {
+    "measures": {
+      "path": "statistics-chapters/measures.html",
+      "title": "Measure an association"
+    },
+    "lineage": {
+      "path": "statistics-chapters/lineage.html",
+      "title": "Compare within strata"
+    },
+    "weighting": {
+      "path": "statistics-chapters/weighting.html",
+      "title": "Standardize to a target"
+    },
+    "uncertainty": {
+      "path": "statistics-chapters/uncertainty.html",
+      "title": "Measure uncertainty"
+    },
+    "testing": {
+      "path": "statistics-chapters/testing.html",
+      "title": "Build an exact test"
+    },
+    "multiplicity": {
+      "path": "statistics-chapters/multiplicity.html",
+      "title": "Testability and multiple comparisons"
+    },
+    "design": {
+      "path": "statistics-chapters/design.html",
+      "title": "Put the analysis together"
+    }
   };
-  const chapterLinks = [...document.querySelectorAll("[data-chapter-link]")];
-  const chapterOrder = chapterLinks.map(link => link.dataset.chapterLink);
-  const chapterTitles = Object.fromEntries(chapterLinks.map(link => [link.dataset.chapterLink, link.textContent]));
-  const chapterPanels = [...document.querySelectorAll("[data-chapter]")];
-  const chapterByQuestion = new Map(Object.entries(chapterQuestions).flatMap(([chapter, ids]) => ids.map(id => [id, chapter])));
+  const conceptForQuestion = {
+    "odds-and-probability": "measures",
+    "reading-an-or": "measures",
+    "zero-cell": "measures",
+    "effect-scale": "measures",
+    "pooled-versus-stratified": "lineage",
+    "noncollapsibility": "lineage",
+    "overlap": "lineage",
+    "what-to-adjust": "lineage",
+    "weighted-calc": "weighting",
+    "define-estimand": "weighting",
+    "heterogeneity": "weighting",
+    "choose-weights": "weighting",
+    "p-and-ci": "uncertainty",
+    "interval-interpretation": "uncertainty",
+    "permutation": "testing",
+    "many-tests": "multiplicity",
+    "mock-reporting": "multiplicity",
+    "dependent-data": "design",
+    "selection-and-causality": "design",
+    "mock-analysis": "design",
+    "mock-results": "design"
+  };
   const questionIndex = new Map(questions.map((question, index) => [question.id, index]));
   const topics = [...new Set(questions.map(question => question.topic))];
   const viewLinks = [...document.querySelectorAll("[data-view]")];
@@ -870,7 +776,6 @@ const questions = [
   const saved = readProgress();
 
   let activeQuestion = null;
-  let activeChapter = "measures";
   let currentView = null;
   let filter = "all";
   let deadline = 0;
@@ -987,9 +892,9 @@ const questions = [
       $("question-title").textContent = question.title;
       $("question-prompt").textContent = question.prompt;
       $("question-hint").textContent = question.hint;
-      const chapter = chapterByQuestion.get(question.id);
-      $("question-chapter").href = "#concept-" + chapter;
-      $("question-chapter-name").textContent = chapterTitles[chapter];
+      const chapter = chapterMap[conceptForQuestion[question.id]];
+      $("question-chapter").href = chapter.path;
+      $("question-chapter-name").textContent = chapter.title;
       const data = $("question-data");
       data.replaceChildren(...(question.data ? [tableFrom(question.data)] : []));
       data.hidden = !question.data;
@@ -1108,36 +1013,22 @@ const questions = [
     renderStrip($("review-strip"), false);
   }
 
-  function renderConcepts(id, moveFocus) {
-    const requested = chapterOrder.includes(id);
-    if (requested) activeChapter = id;
-    for (const link of chapterLinks) {
-      if (link.dataset.chapterLink === activeChapter) link.setAttribute("aria-current", "page");
-      else link.removeAttribute("aria-current");
-    }
-    for (const panel of chapterPanels) panel.hidden = panel.dataset.chapter !== activeChapter;
-    $("chapter-questions").replaceChildren(...chapterQuestions[activeChapter].map(questionId => questionRow(questions[questionIndex.get(questionId)])));
-    const index = chapterOrder.indexOf(activeChapter);
-    const pages = [];
-    const previous = chapterOrder[index - 1];
-    const next = chapterOrder[index + 1];
-    if (previous) pages.push(h("a", { class: "prev", href: "#concept-" + previous }, h("span", { class: "pager-dir", text: "Previous chapter" }), h("span", { class: "pager-title", text: chapterTitles[previous] })));
-    if (next) pages.push(h("a", { class: "next", href: "#concept-" + next }, h("span", { class: "pager-dir", text: "Next chapter" }), h("span", { class: "pager-title", text: chapterTitles[next] })));
-    $("chapter-pager").replaceChildren(...pages);
-    if (moveFocus) $(requested ? "chapter-" + activeChapter : "concepts-title").focus({ preventScroll: true });
-  }
-
   function parseHash() {
-    const raw = decodeURIComponent(location.hash.slice(1));
+    let raw;
+    try { raw = decodeURIComponent(location.hash.slice(1)); } catch { raw = ""; }
     if (raw.startsWith("q-")) return { view: "practice", id: raw.slice(2) };
     if (raw.startsWith("concept-")) return { view: "concepts", id: raw.slice(8) };
     const [head, id] = raw.split("/");
     if (views.includes(head)) return { view: head, id };
-    return { view: "practice" };
+    return { view: "concepts" };
   }
 
   function renderRoute(moveFocus = false) {
     const { view, id } = parseHash();
+    if (view === "concepts" && Object.hasOwn(chapterMap, id)) {
+      location.replace(chapterMap[id].path);
+      return;
+    }
     const previousView = currentView;
     const previousQuestion = activeQuestion?.id;
     currentView = view;
@@ -1154,10 +1045,9 @@ const questions = [
       if (moveFocus && (previousView !== view || previousQuestion !== activeQuestion.id)) $("question-title").focus({ preventScroll: true });
       return;
     }
-    if (view === "concepts") renderConcepts(id, moveFocus);
-    else if (view === "bank") renderBank();
-    else renderReview();
-    if (moveFocus && view !== "concepts") $(view + "-title").focus({ preventScroll: true });
+    if (view === "bank") renderBank();
+    if (view === "review") renderReview();
+    if (moveFocus) $(view + "-title").focus({ preventScroll: true });
   }
 
   $("answer").addEventListener("input", event => {

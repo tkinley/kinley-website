@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Read a 2×2 table and calculate three effects from the same counts.">
+  <title>Measure an association · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top">
+    <div class="wrap">
+      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+      <nav aria-label="Study navigation">
+        <a href="../statistics-self-study.html#concepts">All chapters</a>
+        <a href="../statistics-self-study.html#bank">Question bank</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 1 of 7</p>
+      <h1>Measure an association</h1>
+      <p class="library-lede">Read a 2×2 table and calculate three effects from the same counts.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="Concepts in this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#two-by-two">Read the 2×2 table<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#prevalence">Calculate a proportion<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#difference">Subtract percentage points<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#prevalence-ratio">Divide prevalences<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#odds-ratio">Calculate and interpret odds<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#zero-cells">Handle a zero cell<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 1 · The denominator changes the measure</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">Group A · 18 / 24</span><span class="figure-value">75%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:75%"></div></div></div>
+<div class="figure-row"><span class="figure-label">Group B · 20 / 40</span><span class="figure-value">50%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:50%"></div></div></div></div><figcaption>The difference is 25 percentage points. Dividing the two proportions gives 1.5. To get the odds ratio, first change the denominator in each group.</figcaption></figure>
+        <section class="study-lesson" id="two-by-two" aria-labelledby="two-by-two-title">
+    <p class="chapter-kicker">Concept 1.1</p>
+    <h2 id="two-by-two-title">Read the 2×2 table</h2>
+    <p class="lesson-lead">Two classes log whether students submitted a worksheet. In A, 18 of 24 submitted. In B, 20 of 40 submitted.</p>
+    <ol class="math-steps"><li>Identify the outcome: submission, yes or no.</li>
+<li>Fill the No cells by subtraction: 24 − 18 = 6 in A and 40 − 20 = 20 in B.</li>
+<li>Check every row: 18 + 6 = 24 and 20 + 20 = 40. Keep B as the reference.</li></ol>
+    <p class="math-conclusion">The four cell counts are A = (18, 6) and B = (20, 20).</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the total number of submissions?</summary>
+      <p>18 + 20 = 38.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="prevalence" aria-labelledby="prevalence-title">
+    <p class="chapter-kicker">Concept 1.2</p>
+    <h2 id="prevalence-title">Calculate a proportion</h2>
+    <p class="lesson-lead">What fraction in each group has the outcome? In cross-sectional data, this is the observed prevalence.</p>
+    <ol class="math-steps"><li>Divide A’s Yes count by A’s total: 18 ÷ 24 = 0.75.</li>
+<li>Divide B’s Yes count by B’s total: 20 ÷ 40 = 0.50.</li>
+<li>Multiply each proportion by 100 to express it as a percentage.</li></ol>
+    <p class="math-conclusion">A is at 75% and B is at 50%.</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the proportion without the outcome in A?</summary>
+      <p>6 ÷ 24 = 0.25, or 25%.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="difference" aria-labelledby="difference-title">
+    <p class="chapter-kicker">Concept 1.3</p>
+    <h2 id="difference-title">Subtract percentage points</h2>
+    <p class="lesson-lead">An absolute difference tells you how far apart the two rates are.</p>
+    <ol class="math-steps"><li>Set the direction A − B.</li>
+<li>Subtract the proportions: 0.75 − 0.50 = 0.25.</li>
+<li>Convert the difference to percentage points: 0.25 × 100 = 25 pp.</li></ol>
+    <p class="math-conclusion">A’s observed prevalence is 25 percentage points higher.</p>
+    <details class="lesson-check">
+      <summary>Try it · What happens if B is placed first?</summary>
+      <p>0.50 − 0.75 = −0.25, or −25 percentage points.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="prevalence-ratio" aria-labelledby="prevalence-ratio-title">
+    <p class="chapter-kicker">Concept 1.4</p>
+    <h2 id="prevalence-ratio-title">Divide prevalences</h2>
+    <p class="lesson-lead">A prevalence ratio describes how many times as common the outcome is in A compared with B.</p>
+    <ol class="math-steps"><li>Use B’s 0.50 as the denominator.</li>
+<li>Calculate 0.75 ÷ 0.50 = 1.50.</li>
+<li>Subtract 1 if asked for relative change: (1.50 − 1) × 100 = 50%.</li></ol>
+    <p class="math-conclusion">A’s observed prevalence is 1.5 times B’s, a 50% relative increase.</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the no-difference value for this ratio?</summary>
+      <p>1, provided the reference prevalence is above zero.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="odds-ratio" aria-labelledby="odds-ratio-title">
+    <p class="chapter-kicker">Concept 1.5</p>
+    <h2 id="odds-ratio-title">Calculate and interpret odds</h2>
+    <p class="lesson-lead">Odds compare Yes to No within a group. Odds ratios compare those two odds.</p>
+    <ol class="math-steps"><li>A’s odds are 18 ÷ 6 = 3. B’s odds are 20 ÷ 20 = 1.</li>
+<li>Divide the odds: 3 ÷ 1 = 3. The cross-product gives the same answer: (18 × 20) ÷ (6 × 20) = 3.</li>
+<li>Convert odds back to a probability with odds ÷ (1 + odds). For A, 3 ÷ 4 = 0.75.</li></ol>
+    <p class="math-conclusion">The same table gives an odds ratio of 3 and a prevalence ratio of 1.5.</p>
+    <details class="lesson-check">
+      <summary>Try it · If reference odds are 1 and the odds ratio is 2, what is A’s prevalence?</summary>
+      <p>A’s odds are 2, so its prevalence is 2 ÷ 3 ≈ 66.7%.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="zero-cells" aria-labelledby="zero-cells-title">
+    <p class="chapter-kicker">Concept 1.6</p>
+    <h2 id="zero-cells-title">Handle a zero cell</h2>
+    <p class="lesson-lead">Suppose A has 4/24 submissions and B has 0/40. Some effect measures still have finite sample estimates.</p>
+    <ol class="math-steps"><li>Subtract: 4/24 − 0/40 = 0.1667, or +16.7 pp.</li>
+<li>Compute odds: 4/20 = 0.20 in A and 0/40 = 0 in B.</li>
+<li>The raw ratio 0.20 ÷ 0 is infinite. Keep the observed counts visible and choose an inference method that handles sparse data.</li></ol>
+    <p class="math-conclusion">State the counts and which effect measure is defined before interpreting a ratio.</p>
+    <details class="lesson-check">
+      <summary>Try it · What if both groups have zero submissions?</summary>
+      <p>The observed difference is 0 pp. The ordinary odds ratio is undefined because both odds are zero.</p>
+    </details>
+  </section>
+        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-odds-and-probability">Same counts, three answers</a></li>
+<li><a href="../statistics-self-study.html#q-reading-an-or">Explain an odds ratio to a colleague</a></li>
+<li><a href="../statistics-self-study.html#q-zero-cell">Handle a zero cell</a></li>
+<li><a href="../statistics-self-study.html#q-effect-scale">Choose a scale for the audience</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="../statistics-self-study.html#concepts">← All chapters</a>
+          <a href="lineage.html">Compare within strata →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+  
+</body>
+</html>

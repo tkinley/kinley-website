@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Define the estimand, calculate common weights, and see how a single observation can move it.">
+  <title>Standardize to a target · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top">
+    <div class="wrap">
+      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+      <nav aria-label="Study navigation">
+        <a href="../statistics-self-study.html#concepts">All chapters</a>
+        <a href="../statistics-self-study.html#bank">Question bank</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 3 of 7</p>
+      <h1>Standardize to a target</h1>
+      <p class="library-lede">Define the estimand, calculate common weights, and see how a single observation can move it.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="Concepts in this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#estimand">State the estimand<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#stratum-differences">Find each batch’s difference<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#common-weights">Choose common weights<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#compute-standardized">Multiply and add<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#weight-sensitivity">Compare target choices<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#leverage">Compute one-observation leverage<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 3 · How the target mix changes the answer</h2><div class="figure-controls">
+  <label for="weight-slider">Reference weight for batch X</label>
+  <input id="weight-slider" type="range" min="0" max="100" step="0.5" value="25">
+  <div class="weight-values">
+    <span>X <strong id="weight-x">25%</strong></span>
+    <span>Y <strong id="weight-y">75%</strong></span>
+    <span>Standardized difference <strong id="weight-difference" aria-live="polite">−9.5 pp</strong></span>
+  </div>
+  <div class="figure-track" aria-hidden="true"><div class="figure-bar" id="weight-bar" style="--value:25%"></div></div>
+  <div class="target-actions">
+    <button type="button" data-weight="25">Group A mix</button>
+    <button type="button" data-weight="37.5">Full cohort mix</button>
+    <button type="button" data-weight="50">Equal weights</button>
+  </div>
+</div><figcaption>The two within-batch gaps stay fixed. Moving the reference weight changes the standardized difference.</figcaption></figure>
+        <section class="study-lesson" id="estimand" aria-labelledby="estimand-title">
+    <p class="chapter-kicker">Concept 3.1</p>
+    <h2 id="estimand-title">State the estimand</h2>
+    <p class="lesson-lead">An estimand specifies the exact question before you pick the estimator.</p>
+    <ol class="math-steps"><li>Name the outcome: whether a unit passed inspection.</li>
+<li>Choose the measure and direction: the A-minus-B prevalence difference.</li>
+<li>Name the target: the observed distribution of batches among units in A.</li></ol>
+    <p class="math-conclusion">The estimand is a weighted average of within-batch differences using A’s batch shares.</p>
+    <details class="lesson-check">
+      <summary>Try it · What changes if you switch to equal batch weights?</summary>
+      <p>The target becomes an average across equally weighted batches.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="stratum-differences" aria-labelledby="stratum-differences-title">
+    <p class="chapter-kicker">Concept 3.2</p>
+    <h2 id="stratum-differences-title">Find each batch’s difference</h2>
+    <p class="lesson-lead">This example has different effects in X and Y.</p>
+    <ol class="math-steps"><li>In X, subtract 5/6 − 3/18 = 2/3 ≈ +66.7 pp.</li>
+<li>In Y, subtract 6/18 − 15/22 = −23/66 ≈ −34.8 pp.</li>
+<li>Keep fractions until the final rounding step.</li></ol>
+    <p class="math-conclusion">The directions differ. A single summary will depend on which batch gets more weight.</p>
+    <details class="lesson-check">
+      <summary>Try it · What would a weight of 100% on Y report?</summary>
+      <p>The within-Y difference, about −34.8 pp.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="common-weights" aria-labelledby="common-weights-title">
+    <p class="chapter-kicker">Concept 3.3</p>
+    <h2 id="common-weights-title">Choose common weights</h2>
+    <p class="lesson-lead">Standardization applies the same target mix to both source groups.</p>
+    <ol class="math-steps"><li>Count A’s observations by batch: 6 in X and 18 in Y.</li>
+<li>Divide by the A total of 24: wX = 6/24 = 0.25 and wY = 18/24 = 0.75.</li>
+<li>Apply those weights to A and to B. Check that all weights are nonnegative and sum to 1.</li></ol>
+    <p class="math-conclusion">Each weighted rate represents the same mix of batches.</p>
+    <details class="lesson-check">
+      <summary>Try it · What weights match the full cohort?</summary>
+      <p>X has 6 + 18 = 24 out of 64, so wX = 0.375 and wY = 0.625.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="compute-standardized" aria-labelledby="compute-standardized-title">
+    <p class="chapter-kicker">Concept 3.4</p>
+    <h2 id="compute-standardized-title">Multiply and add</h2>
+    <p class="lesson-lead">With common weights, you can standardize each rate first or average the differences directly.</p>
+    <ol class="math-steps"><li>Multiply X’s gap by its weight: 0.25 × (2/3) = 0.16667.</li>
+<li>Multiply Y’s gap: 0.75 × (−23/66) ≈ −0.26136.</li>
+<li>Add the contributions: 0.16667 − 0.26136 ≈ −0.09470, or −9.5 pp.</li></ol>
+    <p class="math-conclusion">A’s standardized rate is about 9.5 percentage points below B’s at A’s mix.</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the unadjusted pooled gap?</summary>
+      <p>11/24 − 18/40 ≈ +0.8 percentage points.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="weight-sensitivity" aria-labelledby="weight-sensitivity-title">
+    <p class="chapter-kicker">Concept 3.5</p>
+    <h2 id="weight-sensitivity-title">Compare target choices</h2>
+    <p class="lesson-lead">The same within-batch differences can support several valid summaries for different targets.</p>
+    <ol class="math-steps"><li>Use 25% on X for A’s mix: about −9.5 pp.</li>
+<li>Use 37.5% on X for the full cohort mix: about +3.2 pp.</li>
+<li>Use 50% on X for equal weights: about +15.9 pp. Check each value using Figure 3.</li></ol>
+    <p class="math-conclusion">Specify the target before seeing the result. A sign change across targets can reflect effect heterogeneity.</p>
+    <details class="lesson-check">
+      <summary>Try it · What fixed values are you averaging?</summary>
+      <p>Approximately +66.7 pp in X and −34.8 pp in Y.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="leverage" aria-labelledby="leverage-title">
+    <p class="chapter-kicker">Concept 3.6</p>
+    <h2 id="leverage-title">Compute one-observation leverage</h2>
+    <p class="lesson-lead">Leverage here is how much the standardized difference changes if one binary outcome flips, holding denominators and weights fixed.</p>
+    <ol class="math-steps"><li>Changing one outcome in a cell of size n changes its rate by 1/n.</li>
+<li>Multiply by the batch weight: the change has magnitude w/n.</li>
+<li>In X, an A flip has magnitude 0.25/6 ≈ 4.17 pp. A B flip has magnitude 0.25/18 ≈ 1.39 pp and enters with the opposite sign for the same direction of flip.</li></ol>
+    <p class="math-conclusion">Small denominators can make individual records matter. Check whether a result rests on a few observations.</p>
+    <details class="lesson-check">
+      <summary>Try it · How much does the difference move if a B outcome in X changes from No to Yes?</summary>
+      <p>It decreases by about 1.39 pp because the B rate is subtracted.</p>
+    </details>
+  </section>
+        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-weighted-calc">One set of counts, two summaries</a></li>
+<li><a href="../statistics-self-study.html#q-define-estimand">State the estimand before the method</a></li>
+<li><a href="../statistics-self-study.html#q-heterogeneity">The effect reverses across lineages</a></li>
+<li><a href="../statistics-self-study.html#q-choose-weights">Choose and defend the weights</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="lineage.html">← Compare within strata</a>
+          <a href="uncertainty.html">Measure uncertainty →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+  <script>
+(() => {
+  const input = document.getElementById("weight-slider");
+  const x = document.getElementById("weight-x");
+  const y = document.getElementById("weight-y");
+  const difference = document.getElementById("weight-difference");
+  const bar = document.getElementById("weight-bar");
+  function update() {
+    const weight = Number(input.value) / 100;
+    const delta = 100 * (weight * (5 / 6 - 3 / 18) + (1 - weight) * (6 / 18 - 15 / 22));
+    const magnitude = Math.abs(delta).toFixed(1);
+    const sign = magnitude === "0.0" ? "" : delta < 0 ? "−" : "+";
+    x.textContent = input.value + "%";
+    y.textContent = (100 - Number(input.value)) + "%";
+    difference.textContent = sign + magnitude + " pp";
+    bar.style.setProperty("--value", x.textContent);
+  }
+  input.addEventListener("input", update);
+  for (const button of document.querySelectorAll("[data-weight]")) {
+    button.addEventListener("click", () => { input.value = button.dataset.weight; update(); });
+  }
+  update();
+})();
+</script>
+</body>
+</html>

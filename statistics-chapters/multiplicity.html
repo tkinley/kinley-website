@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Find informative strata, calculate p-value bounds, and work through FDR.">
+  <title>Testability and multiple comparisons · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top">
+    <div class="wrap">
+      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+      <nav aria-label="Study navigation">
+        <a href="../statistics-self-study.html#concepts">All chapters</a>
+        <a href="../statistics-self-study.html#bank">Question bank</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 6 of 7</p>
+      <h1>Testability and multiple comparisons</h1>
+      <p class="library-lede">Find informative strata, calculate p-value bounds, and work through FDR.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="Concepts in this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#informative-strata">Count informative strata<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#blind-inventory">Build a label-blind information inventory<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#attainable-p">Find the smallest attainable p-value<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#bonferroni">Control familywise error<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#bh">Apply the Benjamini–Hochberg rule<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#report-screen">Report a screen with effect sizes<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 6 · Benjamini–Hochberg on four hypotheses</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Rank</th><th scope="col">Ordered p</th><th scope="col">Rank × 0.05 / 4</th><th scope="col">Decision</th></tr></thead><tbody><tr><th scope="row">1</th><td>0.004</td><td>0.0125</td><td>Reject</td></tr>
+<tr><th scope="row">2</th><td>0.018</td><td>0.0250</td><td>Reject</td></tr>
+<tr><th scope="row">3</th><td>0.041</td><td>0.0375</td><td>Retain</td></tr>
+<tr><th scope="row">4</th><td>0.200</td><td>0.0500</td><td>Retain</td></tr></tbody></table></div><figcaption>Rank 2 is the largest passing rank. The step-up rule rejects every hypothesis through rank 2.</figcaption></figure>
+        <section class="study-lesson" id="informative-strata" aria-labelledby="informative-strata-title">
+    <p class="chapter-kicker">Concept 6.1</p>
+    <h2 id="informative-strata-title">Count informative strata</h2>
+    <p class="lesson-lead">For a fixed-margin test, a stratum contributes label-swap information only when both groups are present and the outcome varies there.</p>
+    <ol class="math-steps"><li>Batch X has 4/4 successes and both groups present. Every swap preserves the same rates.</li>
+<li>Batch Y has 2/4 successes and both groups present. Swapping can change who gets those successes.</li>
+<li>There is one informative stratum. Report the count rather than relying on the total sample size.</li></ol>
+    <p class="math-conclusion">A constant within-stratum outcome can produce an observed difference of zero while leaving population uncertainty.</p>
+    <details class="lesson-check">
+      <summary>Try it · What if all strata are constant?</summary>
+      <p>The null statistic is fixed under every permitted swap. An exact tail count with ties included yields p = 1.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="blind-inventory" aria-labelledby="blind-inventory-title">
+    <p class="chapter-kicker">Concept 6.2</p>
+    <h2 id="blind-inventory-title">Build a label-blind information inventory</h2>
+    <p class="lesson-lead">Assess what can be learned from group sizes and stratum outcome totals before looking at group-specific outcomes.</p>
+    <ol class="math-steps"><li>Record nA, nB, and total successes m separately in each stratum.</li>
+<li>The smallest possible A success count is max(0, m − nB). The largest is min(m, nA).</li>
+<li>With nA = 3, nB = 2, and m = 4, A can have either 2 or 3 successes.</li></ol>
+    <p class="math-conclusion">The margins reveal how much the statistic can vary without revealing the observed group allocation.</p>
+    <details class="lesson-check">
+      <summary>Try it · What if m = nA + nB?</summary>
+      <p>Both limits equal nA, so the A count cannot vary.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="attainable-p" aria-labelledby="attainable-p-title">
+    <p class="chapter-kicker">Concept 6.3</p>
+    <h2 id="attainable-p-title">Find the smallest attainable p-value</h2>
+    <p class="lesson-lead">A discrete test has finitely many tables, so even its most extreme table may fail to reach a threshold.</p>
+    <ol class="math-steps"><li>Calculate the test statistic and p-value for each legal outcome under the fixed margins.</li>
+<li>Take the smallest p-value across those outcomes for the chosen tail rule.</li>
+<li>In Chapter 5’s two-stratum example, both extremes give 2/36 = 0.0556 under the two-sided rule.</li></ol>
+    <p class="math-conclusion">At a 0.05 cutoff, this two-sided test cannot reject for those margins.</p>
+    <details class="lesson-check">
+      <summary>Try it · Is 0.0556 the smallest p for every statistic or tail rule?</summary>
+      <p>No. It applies to this statistic, these margins, and the specified two-sided rule.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="bonferroni" aria-labelledby="bonferroni-title">
+    <p class="chapter-kicker">Concept 6.4</p>
+    <h2 id="bonferroni-title">Control familywise error</h2>
+    <p class="lesson-lead">Define the family of tests before selecting which results to report.</p>
+    <ol class="math-steps"><li>For 4 tests and α = 0.05, use the Bonferroni cutoff 0.05/4 = 0.0125.</li>
+<li>Compare each valid p-value to the common cutoff.</li>
+<li>In Figure 6, only 0.004 is below 0.0125.</li></ol>
+    <p class="math-conclusion">Bonferroni controls the chance of at least one false rejection across the family. Discrete-data refinements use the attainable bounds under a specified procedure.</p>
+    <details class="lesson-check">
+      <summary>Try it · Does an arbitrary filter after seeing the group differences preserve the guarantee?</summary>
+      <p>No general guarantee applies. Use a prespecified procedure whose error control covers the filtering rule.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="bh" aria-labelledby="bh-title">
+    <p class="chapter-kicker">Concept 6.5</p>
+    <h2 id="bh-title">Apply the Benjamini–Hochberg rule</h2>
+    <p class="lesson-lead">FDR is the expected proportion of false rejections among rejections, defined as zero on runs with no rejections.</p>
+    <ol class="math-steps"><li>Sort the four p-values from smallest to largest.</li>
+<li>Compare p at rank i to i × 0.05/4.</li>
+<li>The largest passing rank is 2 because 0.018 ≤ 0.025. Reject ranks 1 and 2.</li></ol>
+    <p class="math-conclusion">The 5% target concerns the expected proportion under the procedure’s assumptions. It does not certify a particular discovery.</p>
+    <details class="lesson-check">
+      <summary>Try it · Why look for the largest passing rank?</summary>
+      <p>BH is a step-up rule. Every p-value at or below that rank is rejected.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="report-screen" aria-labelledby="report-screen-title">
+    <p class="chapter-kicker">Concept 6.6</p>
+    <h2 id="report-screen-title">Report a screen with effect sizes</h2>
+    <p class="lesson-lead">A screening result can be precise, unstable, or limited by test resolution. Put those distinctions alongside the adjusted evidence.</p>
+    <ol class="math-steps"><li>Report the test family, valid nulls, and multiplicity procedure.</li>
+<li>Show an effect estimate, interval, and supporting counts for results of interest.</li>
+<li>State which features have little or no within-stratum information and which could not reach the testing threshold.</li></ol>
+    <p class="math-conclusion">A table of adjusted p-values is a starting point for interpretation.</p>
+    <details class="lesson-check">
+      <summary>Try it · What would you show when an estimated difference is large and the interval is wide?</summary>
+      <p>Show the point estimate, interval, and sparse supporting counts. Describe the uncertainty in the size and direction where relevant.</p>
+    </details>
+  </section>
+        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-many-tests">Read a multiple-testing result</a></li>
+<li><a href="../statistics-self-study.html#q-mock-reporting">Choose what to report from a gene screen</a></li></ul></section><section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://pubmed.ncbi.nlm.nih.gov/2364136/">Tarone on testing discrete hypotheses</a></li>
+<li><a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini &amp; Hochberg on false discovery rate</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="testing.html">← Build an exact test</a>
+          <a href="design.html">Put the analysis together →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+  
+</body>
+</html>

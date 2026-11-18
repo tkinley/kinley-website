@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Count the possible tables, construct a null distribution, and calculate a tail probability.">
+  <title>Build an exact test · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top">
+    <div class="wrap">
+      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+      <nav aria-label="Study navigation">
+        <a href="../statistics-self-study.html#concepts">All chapters</a>
+        <a href="../statistics-self-study.html#bank">Question bank</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 5 of 7</p>
+      <h1>Build an exact test</h1>
+      <p class="library-lede">Count the possible tables, construct a null distribution, and calculate a tail probability.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="Concepts in this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#statistic">Choose the null and statistic<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#margins">Hold the margins fixed<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#hypergeometric">Count the possible tables<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#combine-strata">Combine two strata<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#tail-probability">Sum the extreme outcomes<span class="arrow" aria-hidden="true">↗</span></a></li>
+<li><a href="#monte-carlo">Approximate the tail with random shuffles<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 5 · One stratum’s exact null distribution</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">A gets 0 successes</span><span class="figure-value">16.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:16.7%"></div></div></div>
+<div class="figure-row"><span class="figure-label">A gets 1 success</span><span class="figure-value">66.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:66.7%"></div></div></div>
+<div class="figure-row"><span class="figure-label">A gets 2 successes</span><span class="figure-value">16.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:16.7%"></div></div></div></div><figcaption>Two success labels and two failure labels are assigned to groups of size 2. The three possible counts have probabilities 1/6, 4/6, and 1/6.</figcaption></figure>
+        <section class="study-lesson" id="statistic" aria-labelledby="statistic-title">
+    <p class="chapter-kicker">Concept 5.1</p>
+    <h2 id="statistic-title">Choose the null and statistic</h2>
+    <p class="lesson-lead">Consider a permutation test for a difference in pass rates across two production settings.</p>
+    <ol class="math-steps"><li>Specify the statistic before looking at the result, such as the standardized difference.</li>
+<li>Use a null under which the permitted label assignments are exchangeable.</li>
+<li>Decide what counts as extreme. This chapter uses absolute distance from zero for centered two-sided statistics.</li></ol>
+    <p class="math-conclusion">The p-value depends on the null, the statistic, and the tail rule.</p>
+    <details class="lesson-check">
+      <summary>Try it · What changes if you choose a one-sided test?</summary>
+      <p>Only results in the prespecified direction count toward the tail probability.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="margins" aria-labelledby="margins-title">
+    <p class="chapter-kicker">Concept 5.2</p>
+    <h2 id="margins-title">Hold the margins fixed</h2>
+    <p class="lesson-lead">In one stratum there are four observations, two A labels, and two successes.</p>
+    <ol class="math-steps"><li>Fix the four outcome labels and choose which two observations receive A labels.</li>
+<li>Count assignments: choose 2 of 4, giving 4 × 3 ÷ 2 = 6.</li>
+<li>The number of successes in A can be 0, 1, or 2. B gets the remaining successes.</li></ol>
+    <p class="math-conclusion">The stratum’s row totals and total successes stay fixed across the randomization.</p>
+    <details class="lesson-check">
+      <summary>Try it · Does the test shuffle all observations across strata?</summary>
+      <p>No. A blocked shuffle stays inside each stratum and preserves the A and B totals there.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="hypergeometric" aria-labelledby="hypergeometric-title">
+    <p class="chapter-kicker">Concept 5.3</p>
+    <h2 id="hypergeometric-title">Count the possible tables</h2>
+    <p class="lesson-lead">The three possible tables have different numbers of underlying label assignments.</p>
+    <ol class="math-steps"><li>To give A no successes, pick both failures: 1 way.</li>
+<li>To give A one success, pick one of two successes and one of two failures: 2 × 2 = 4 ways.</li>
+<li>To give A two successes, pick both successes: 1 way. Divide each count by 6.</li></ol>
+    <p class="math-conclusion">The success count follows a hypergeometric distribution under this fixed-margin null.</p>
+    <details class="lesson-check">
+      <summary>Try it · Would giving the three tables equal probability be valid here?</summary>
+      <p>No. The middle table represents four of the six equally likely assignments.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="combine-strata" aria-labelledby="combine-strata-title">
+    <p class="chapter-kicker">Concept 5.4</p>
+    <h2 id="combine-strata-title">Combine two strata</h2>
+    <p class="lesson-lead">Take two independent strata with the same margins. Let S be the sum of the two A success counts.</p>
+    <ol class="math-steps"><li>Each count has weights (1, 4, 1) out of 6.</li>
+<li>Multiply and group by the sum. For S = 2 there are 1×1 + 4×4 + 1×1 = 18 assignments.</li>
+<li>Across S = 0, 1, 2, 3, 4, the assignment counts are 1, 8, 18, 8, 1 out of 36.</li></ol>
+    <p class="math-conclusion">Center S at its null expectation of 2 to measure distance from the null.</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the probability that S = 3?</summary>
+      <p>8/36 ≈ 0.222.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="tail-probability" aria-labelledby="tail-probability-title">
+    <p class="chapter-kicker">Concept 5.5</p>
+    <h2 id="tail-probability-title">Sum the extreme outcomes</h2>
+    <p class="lesson-lead">Suppose the observed value is S = 4. Use the two-sided rule |S − 2|.</p>
+    <ol class="math-steps"><li>The observed distance from 2 is |4 − 2| = 2.</li>
+<li>The outcomes at least that far from 2 are S = 0 and S = 4.</li>
+<li>Add the probabilities: (1 + 1) ÷ 36 = 0.0556.</li></ol>
+    <p class="math-conclusion">The exact two-sided p-value is about 0.056 even at the most extreme table.</p>
+    <details class="lesson-check">
+      <summary>Try it · What is the one-sided upper-tail probability at S = 4?</summary>
+      <p>1/36 ≈ 0.0278.</p>
+    </details>
+  </section>
+<section class="study-lesson" id="monte-carlo" aria-labelledby="monte-carlo-title">
+    <p class="chapter-kicker">Concept 5.6</p>
+    <h2 id="monte-carlo-title">Approximate the tail with random shuffles</h2>
+    <p class="lesson-lead">When the number of assignments is too large to enumerate, sample valid shuffles and recompute the same statistic each time.</p>
+    <ol class="math-steps"><li>Draw B = 999 random permutations and count the b = 19 results at least as extreme as observed.</li>
+<li>Use the plus-one construction: (b + 1) ÷ (B + 1).</li>
+<li>Compute 20 ÷ 1,000 = 0.020. Report the shuffle design and the number of draws.</li></ol>
+    <p class="math-conclusion">The Monte Carlo resolution with 999 draws is 1/1,000. Exact test resolution depends on the possible tables and their probabilities.</p>
+    <details class="lesson-check">
+      <summary>Try it · With 999 draws and zero extreme shuffles, what do you report?</summary>
+      <p>The plus-one calculation gives 1/1,000 = 0.001.</p>
+    </details>
+  </section>
+        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-permutation">Design a lineage-aware permutation test</a></li></ul></section><section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://arxiv.org/abs/1603.05766">Phipson &amp; Smyth on randomly drawn permutations</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="uncertainty.html">← Measure uncertainty</a>
+          <a href="multiplicity.html">Testability and multiple comparisons →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+  
+</body>
+</html>
