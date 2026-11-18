@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-11-18",
  "scorecard": [
   {
    "ticker": "INMB",
@@ -45,6 +45,15 @@
    "outcome": "pending",
    "note": "FDA AdCom voted 9-3 that the evidence fell short; FDA has not made a final decision (per the court filing).",
    "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+  },
+  {
+   "ticker": "SLS",
+   "period": "2026",
+   "bet": "Short into the REGAL Phase 3 readout",
+   "date": "2026-11-17",
+   "outcome": "lost",
+   "note": "REGAL met its primary overall-survival endpoint (HR 0.59, p=0.035); stock up about 170%. He had 'guaranteed' the AML study would fail (court filing); on Nov 17 he called the data 'sketch'.",
+   "url": "https://rss.globenewswire.com/news-release/2026/11/17/3404429/0/en/sellas-life-sciences-announces-positive-pivotal-phase-3-regal-trial-data-showing-immunotherapeutic-cancer-vaccine-galinpepimut-s-gps-demonstrated-a-statistically-significant-and-cl.html"
   }
  ],
  "scope": "Biotech and pharma only, January 2025 onward",
@@ -145,7 +154,7 @@
    "statusNote": "Court filing (Oct 2026) says he is shorting it",
    "firstSeen": "2026-06-30",
    "lastSeen": "2026-09-03",
-   "summary": "Jun 30: says the new portfolio is not short yet and he will put it on that day (hard to borrow). Aug 26 calls it a great short; Sep 3 lists it among current shorts; hosted AML KOL calls on SLS in Aug. Aug 26 stream (yE_-hyYdY6k) also calls it a great short. Court memo says he is shorting SELLAS and 'guarantees' its AML study will fail.",
+   "summary": "Jun 30: says the new portfolio is not short yet and he will put it on that day (hard to borrow). Aug 26 calls it a great short; Sep 3 lists it among current shorts; hosted AML KOL calls on SLS in Aug. Aug 26 stream (yE_-hyYdY6k) also calls it a great short. Court memo says he is shorting SELLAS and 'guarantees' its AML study will fail. REGAL met its primary endpoint Nov 17 (HR 0.59, p=0.035; median OS 24.0 vs 14.7 months); stock up about 170%. He called the data 'sketch'.",
    "sources": [
     {
      "label": "Stream clip",
@@ -1475,6 +1484,89 @@
   }
  ],
  "events": [
+  {
+   "date": "2026-11-17",
+   "tickers": [
+    "SLS"
+   ],
+   "action": "result",
+   "note": "REGAL Phase 3 met its primary overall-survival endpoint: GPS cut risk of death 41% (HR 0.59, p=0.035); median OS 24.0 vs 14.7 months. Stock up about 170%. Plans FDA meeting and BLA submission in H1 2027; announced a proposed $150M public offering after the close.",
+   "url": "https://rss.globenewswire.com/news-release/2026/11/17/3404429/0/en/sellas-life-sciences-announces-positive-pivotal-phase-3-regal-trial-data-showing-immunotherapeutic-cancer-vaccine-galinpepimut-s-gps-demonstrated-a-statistically-significant-and-cl.html"
+  },
+  {
+   "date": "2026-11-17",
+   "tickers": [
+    "SLS",
+    "CAPR"
+   ],
+   "action": "info",
+   "note": "In X posts quoted by Stocktwits, calls the REGAL data 'sketch' ('$SLS is CAPR 2'; p=0.035 means '1 patient tipping point to p>0.05') and predicts the FDA will not approve Deramiocel by Nov 22.",
+   "url": "https://alpha-web-qa.stocktwits.com/news-articles/markets/equity/pharma-bro-shkreli-calls-sls-results-sketch-compares-leukemia-vaccine-data-to-capricor-s-deramiocel/cNbO4Q6R9hf"
+  },
+  {
+   "date": "2026-11-11",
+   "tickers": [
+    "MRNA"
+   ],
+   "action": "result",
+   "note": "INTerpath-001 full Phase 3 data published in NEJM: intismeran plus pembrolizumab, 24-month recurrence-free survival 82.2% vs 70.0% (HR 0.58); overall survival data immature. Topline was Aug 19, full data presented at ESMO Oct 24.",
+   "url": "https://www.onclive.com/view/adjuvant-intismeran-autogene-plus-pembrolizumab-improves-rfs-and-dmfs-in-melanoma"
+  },
+  {
+   "date": "2026-11-10",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "info",
+   "note": "Q3 results: Deramiocel BLA still in final review, PDUFA target Nov 22, 2026; no FDA decision yet.",
+   "url": "https://www.quantisnow.com/insight/capricor-therapeutics-reports-third-quarter-2026-financial-results-and-provides-6783810"
+  },
+  {
+   "date": "2026-11-10",
+   "tickers": [
+    "LQDA"
+   ],
+   "action": "result",
+   "note": "Q3 results: YUTREPIA net product sales $222.7M, up 31% from Q2; global settlement with United Therapeutics resolved all six lawsuits (Oct 13); net loss $236.3M includes a $389.7M settlement charge.",
+   "url": "https://www.tradingview.com/news/globenewswire:7d9155b86094b:0-liquidia-corporation-reports-third-quarter-2026-financial-results/"
+  },
+  {
+   "date": "2026-11-06",
+   "tickers": [
+    "MRNA"
+   ],
+   "action": "result",
+   "note": "Q3 results beat: revenue $1.31B, up 29% year over year; EPS $0.38; raised 2026 revenue growth outlook to 15-25%.",
+   "url": "https://www.zacks.com/stock/news/3025875/mrna-q3-earnings-beat-on-covid-sales-raises-26-outlook-stock-rises"
+  },
+  {
+   "date": "2026-11-04",
+   "tickers": [
+    "SLS"
+   ],
+   "action": "result",
+   "note": "Reports positive Phase 2 SLS009 (tambiciclib) data in relapsed/refractory AML: 34% overall response rate; 54% in monocytic AML and 57% in TP53-mutated AML at the selected dose. Data to be presented at ASH Dec 14. Phase 3 REGAL (GPS) reached its 80th event Oct 28; topline still expected in Q4 2026.",
+   "url": "https://lifestyle.cleanweb.co/story/902678/sellas-life-sciences-to-present-positive-phase-2-data-demonstrating-encouraging-response-and-survival-outcomes-with-sls009-combination-in-high-risk-aml-at-ash-2026/"
+  },
+  {
+   "date": "2026-10-30",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "result",
+   "note": "ABTECT subgroup analysis presented at ACG: obefazimod showed clinically meaningful symptom improvement within one week in ulcerative colitis. NDA filing still planned for late Q4 2026.",
+   "url": "https://wisevoter.com/world/2026/11/03/obefazimod-colitis-symptom-relief-one-week"
+  },
+  {
+   "date": "2026-10-29",
+   "tickers": [
+    "MRNA",
+    "MRK"
+   ],
+   "action": "info",
+   "note": "Clip title says 'Moderna Still a Buy Next to Merck' (clip of the Oct 26 stream). Title only, not verified in his own words, and it conflicts with his Oct 24 short statement on Moderna.",
+   "url": "https://www.youtube.com/watch?v=cKqt3TsQaTk"
+  },
   {
    "date": "2026-10-24",
    "tickers": [
