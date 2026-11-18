@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Personal practice for statistics interviews.">
+<title>Statistics Interview Prep · Kinley Tenzin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+<style>
+:root {
+  --paper: #f4f5f8;
+  --sheet: #ffffff;
+  --ink: #141a2c;
+  --soft-ink: #333b52;
+  --muted: #586078;
+  --rule: #dadee7;
+  --rule-strong: #141a2c;
+  --blue: #2a3ccb;
+  --blue-tint: #e9ecfb;
+  --on-blue: #ffffff;
+  --ochre: #8f5800;
+  --ochre-mark: #b87d0c;
+  --ochre-tint: #fbedc4;
+  --outline: #858da3;
+  --grid: rgba(42, 60, 203, .075);
+  --serif: "STIX Two Text", "STIX Two", Cambria, Georgia, serif;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1322;
+    --sheet: #151b2e;
+    --ink: #e7eaf3;
+    --soft-ink: #c9cfdf;
+    --muted: #a0a8bd;
+    --rule: #2b3350;
+    --rule-strong: #c9cfdf;
+    --blue: #9aa8ff;
+    --blue-tint: #222b52;
+    --on-blue: #0e1322;
+    --ochre: #f0b54a;
+    --ochre-mark: #e0a53a;
+    --ochre-tint: #3a2f14;
+    --outline: #6c7590;
+    --grid: rgba(154, 168, 255, .07);
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.55 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; }
+a { color: var(--blue); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+button, textarea, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+::selection { background: var(--ochre-tint); color: var(--ink); }
+
+.skip { position: absolute; left: 12px; top: 8px; z-index: 10; padding: 8px 14px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; transform: translateY(-200%); }
+.skip:focus { transform: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+/* Top bar */
+.top { background: var(--sheet); border-bottom: 1px solid var(--rule); }
+.top-inner { display: flex; align-items: stretch; justify-content: space-between; gap: 8px 28px; flex-wrap: wrap; }
+.wordmark { display: flex; align-items: center; font: 600 1.28rem/1.2 var(--serif); letter-spacing: -.005em; }
+.wordmark a { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; padding: 16px 0; }
+.wordmark svg { flex: none; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.tabs a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 12px; min-height: 60px;
+  color: var(--muted); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current] { color: var(--ink); border-bottom-color: var(--blue); }
+.badge { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--ochre-tint); color: var(--ochre); font-size: .78rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+main { padding-block: 32px 24px; outline: none; }
+
+/* Buttons */
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 16px;
+  border: 1px solid var(--rule); border-radius: 6px;
+  background: var(--sheet); color: var(--ink);
+  font: 500 .92rem/1 var(--sans); text-decoration: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--outline); }
+.btn:disabled { opacity: .4; cursor: default; border-color: var(--rule); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.btn.ghost:hover { color: var(--ink); }
+
+/* Question strip */
+.practice-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; margin-bottom: 22px; }
+.position { font-size: .9rem; color: var(--muted); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+.position b { color: var(--ink); font-weight: 600; }
+.strip { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.strip-group { display: flex; flex-direction: column; gap: 6px; }
+.ticks { display: flex; align-items: flex-end; height: 40px; }
+.tick { display: flex; align-items: flex-end; justify-content: center; width: 14px; height: 100%; border-radius: 3px; }
+.tick::before { content: ""; width: 5px; height: 12px; border-radius: 3px; background: var(--outline); }
+.tick[data-status="again"]::before { height: 22px; background: var(--ochre-mark); }
+.tick[data-status="ready"]::before { height: 32px; background: var(--blue); }
+.tick:hover::before { width: 7px; }
+.tick[aria-current]::before { outline: 2px solid var(--ink); outline-offset: 2px; }
+.strip-label { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+/* Practice */
+.practice-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(20px, 3.2vw, 44px); align-items: start; }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; }
+.question { padding: clamp(22px, 3.6vw, 42px); }
+.q-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: .86rem; color: var(--muted); margin-bottom: 16px; }
+.pill { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: 13px; background: var(--blue-tint); color: var(--blue); font-weight: 500; }
+.question h2 { font: 600 clamp(1.75rem, 3.1vw, 2.4rem)/1.13 var(--serif); letter-spacing: -.012em; text-wrap: balance; outline: none; }
+.prompt { margin-top: 16px; font: 400 1.2rem/1.62 var(--serif); color: var(--soft-ink); max-width: 62ch; text-wrap: pretty; }
+
+/* Booktabs-style tables */
+.booktabs { margin: 26px 0 6px; overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-family: var(--serif); font-size: 1.04rem; font-variant-numeric: tabular-nums lining-nums; }
+caption { caption-side: top; text-align: left; padding-bottom: 8px; font: 400 .82rem var(--sans); color: var(--muted); }
+thead th { padding: 9px 12px; text-align: right; font: 500 .86rem/1.3 var(--sans); color: var(--muted); border-top: 1.5px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); vertical-align: bottom; }
+thead th:first-child, tbody th { text-align: left; }
+tbody th { font-weight: 600; }
+tbody td, tbody th { padding: 8px 12px; }
+td { text-align: right; }
+tbody tr:last-child > * { border-bottom: 1.5px solid var(--rule-strong); }
+
+/* Disclosure */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+.toggle { margin-top: 20px; }
+.toggle > summary { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; color: var(--blue); font-weight: 500; }
+.toggle > summary::before, .concept-recall > summary::after {
+  content: "+"; flex: none; display: inline-grid; place-items: center; width: 22px; height: 22px;
+  border: 1.5px solid currentColor; border-radius: 50%; font: 600 15px/1 var(--sans);
+}
+.toggle[open] > summary::before, .concept-recall[open] > summary::after { content: "\2212"; }
+.toggle > p { margin: 8px 0 0 32px; font: 400 1.06rem/1.6 var(--serif); color: var(--soft-ink); max-width: 60ch; }
+.toggle.nested { margin: 10px 0 0 32px; }
+.toggle.nested > p { margin-left: 32px; }
+
+/* Timer */
+.timer {
+  display: grid; grid-template-columns: auto minmax(80px, 1fr) auto; grid-template-areas: "clock track buttons";
+  align-items: center; gap: 12px 20px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--rule);
+}
+.clock { grid-area: clock; font: 500 2rem/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.02em; min-width: 3.4ch; }
+.track { grid-area: track; height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; }
+.fill { height: 100%; background: var(--blue); transform-origin: left; }
+.timer-buttons { grid-area: buttons; }
+#timer-start { min-width: 7.6em; }
+.timer.done .clock { color: var(--ochre); }
+.timer.done .track { background: var(--ochre-tint); }
+.timer-note { grid-column: 1 / -1; font-size: .86rem; color: var(--muted); margin-top: -4px; }
+.timer.done .timer-note { color: var(--ochre); }
+.concept-link { display: inline-block; margin-top: 22px; font-size: .92rem; font-weight: 500; text-decoration: none; }
+.concept-link span { text-decoration: underline; text-decoration-thickness: 1px; }
+
+/* Answer column */
+.response { padding-top: 6px; }
+.response > h3 { font: 600 1.05rem/1.3 var(--sans); }
+.help { font-size: .9rem; color: var(--muted); margin-top: 4px; }
+textarea {
+  display: block; width: 100%; min-height: 200px; margin-top: 14px; resize: vertical;
+  padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet);
+  font: 400 1rem/1.6 var(--sans);
+}
+textarea::placeholder { color: var(--muted); }
+textarea:focus-visible { outline-offset: 0; border-color: var(--blue); }
+.save-note { font-size: .8rem; color: var(--muted); margin: 8px 0 18px; }
+.key { margin-top: 22px; padding: clamp(20px, 3vw, 30px); animation: rise .22s ease-out; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+.key h3 { font: 600 .95rem/1.3 var(--sans); color: var(--blue); }
+.key h4 { font: 600 .95rem/1.3 var(--sans); margin-top: 22px; }
+.model { margin-top: 8px; font: 400 1.12rem/1.65 var(--serif); text-wrap: pretty; }
+.rubric { list-style: none; margin-top: 8px; display: grid; gap: 2px; }
+.rubric label { display: flex; gap: 12px; align-items: flex-start; padding: 6px 0; cursor: pointer; font-size: .96rem; }
+.rubric input { flex: none; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--blue); }
+.rubric input:checked + span { color: var(--muted); }
+.follow { font-style: italic; }
+.rating { padding-top: 22px; margin-top: 22px; border-top: 1px solid var(--rule); }
+.rating-label { font-weight: 600; font-size: .95rem; margin-bottom: 10px; }
+.rate-again[aria-pressed="true"] { background: var(--ochre-tint); border-color: var(--ochre-mark); color: var(--ochre); }
+.rate-ready[aria-pressed="true"] { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); }
+#rating-status:empty { display: none; }
+#rating-status { margin-top: 10px; }
+.keys { margin-top: 26px; font-size: .84rem; color: var(--muted); }
+kbd { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; background: var(--sheet); font: 500 .78rem var(--sans); color: var(--ink); }
+
+/* View headings */
+.view-head { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; margin-bottom: 26px; }
+.view-head h2 { font: 600 clamp(1.9rem, 3.4vw, 2.6rem)/1.1 var(--serif); letter-spacing: -.012em; outline: none; }
+.lede { margin-top: 8px; color: var(--muted); font-size: 1rem; }
+
+/* Concepts */
+.concepts-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.chapter-index { position: sticky; top: 24px; }
+.chapter-index ol { list-style: none; display: grid; gap: 2px; counter-reset: chapter; }
+.chapter-index li { counter-increment: chapter; }
+.chapter-index a {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start;
+  padding: 9px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; line-height: 1.35; font-size: .95rem;
+}
+.chapter-index a::before {
+  content: counter(chapter); display: grid; place-items: center; width: 26px; height: 26px; margin-top: -3px;
+  border: 1.5px solid var(--rule); border-radius: 50%; font: 600 .9rem/1 var(--serif); color: var(--muted);
+}
+.chapter-index a:hover { color: var(--ink); background: var(--sheet); }
+.chapter-index a[aria-current] { color: var(--ink); font-weight: 600; background: var(--sheet); }
+.chapter-index a[aria-current]::before { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.reading { min-width: 0; max-width: 780px; }
+.concept-chapter { padding: clamp(24px, 4vw, 48px); }
+.concept-chapter > h3 { font: 600 clamp(1.9rem, 3.4vw, 2.55rem)/1.12 var(--serif); letter-spacing: -.012em; text-wrap: balance; outline: none; }
+.chapter-intro { margin-top: 12px; font: italic 400 1.28rem/1.5 var(--serif); color: var(--soft-ink); max-width: 56ch; text-wrap: pretty; }
+.concept-terms { margin-top: 28px; }
+.concept-terms > div { display: grid; grid-template-columns: minmax(130px, 190px) minmax(0, 1fr); gap: 6px 24px; padding: 16px 0; border-top: 1px solid var(--rule); }
+.concept-terms > div:last-child { border-bottom: 1px solid var(--rule); }
+.concept-terms dt { font-weight: 600; font-size: .95rem; padding-top: 2px; }
+.concept-terms dd { font: 400 1.1rem/1.6 var(--serif); text-wrap: pretty; }
+.worked {
+  margin-top: 32px; padding: clamp(18px, 3vw, 28px);
+  border: 1px solid var(--rule); border-radius: 8px;
+  background-color: var(--sheet);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 20px 20px; background-position: -1px -1px;
+}
+.worked h4 { font: 600 .95rem/1.3 var(--sans); color: var(--blue); margin-bottom: 10px; }
+.worked p { font: 400 1.1rem/1.62 var(--serif); text-wrap: pretty; }
+.worked p + p, .worked dl + p, .worked .chapter-table + p { margin-top: 14px; }
+.worked a { white-space: nowrap; }
+.concept-values { margin: 16px 0 4px; border-top: 1.5px solid var(--rule-strong); border-bottom: 1.5px solid var(--rule-strong); background: var(--sheet); }
+.concept-values > div { display: grid; grid-template-columns: minmax(110px, 160px) minmax(0, 1fr); gap: 4px 20px; align-items: baseline; padding: 10px 6px; }
+.concept-values > div + div { border-top: 1px solid var(--rule); }
+.concept-values dt { font-size: .9rem; color: var(--muted); }
+.concept-values dd { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 4px 12px; font-family: var(--serif); text-align: right; }
+.cv-expr { font-style: italic; color: var(--muted); font-size: 1.02rem; }
+.cv-expr::after { content: " ="; font-style: normal; }
+.cv-val { font-weight: 600; font-size: 1.3rem; color: var(--blue); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+.chapter-table { margin: 16px 0 4px; overflow-x: auto; background: var(--sheet); }
+.chapter-table tbody tr:last-child > * { border-top: 1px solid var(--rule-strong); font-weight: 600; }
+.concept-steps { list-style: none; counter-reset: step; display: grid; gap: 12px; margin-top: 6px; }
+.concept-steps li { counter-increment: step; position: relative; padding-left: 40px; font: 400 1.08rem/1.58 var(--serif); }
+.concept-steps li::before { content: counter(step); position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: var(--on-blue); font: 600 .88rem/1 var(--sans); }
+.concept-steps strong { font-weight: 600; }
+.concept-recall { margin-top: 28px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); }
+.concept-recall > summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "label mark" "q mark"; gap: 4px 16px; align-items: center; padding: 16px 20px; }
+.concept-recall > summary::after { grid-area: mark; color: var(--blue); }
+.recall-label { grid-area: label; font-size: .84rem; font-weight: 600; color: var(--blue); }
+.recall-q { grid-area: q; font: 500 1.12rem/1.45 var(--serif); }
+.concept-recall > p { margin: 0 20px; padding: 14px 0 18px; border-top: 1px solid var(--rule); font: 400 1.06rem/1.6 var(--serif); color: var(--soft-ink); }
+.chapter-practice { margin-top: 36px; }
+.chapter-practice h3 { font: 600 1.05rem/1.3 var(--sans); margin-bottom: 8px; }
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.pager a { display: grid; gap: 2px; text-decoration: none; padding: 6px 0; max-width: 48%; }
+.pager a.next { text-align: right; margin-left: auto; }
+.pager-dir { font-size: .82rem; color: var(--muted); }
+.pager-title { font: 600 1.12rem/1.3 var(--serif); color: var(--blue); }
+.pager a:hover .pager-title { text-decoration: underline; text-decoration-thickness: 1px; }
+
+/* Question lists */
+.q-list { list-style: none; border-top: 1px solid var(--rule); }
+.q-list li { border-bottom: 1px solid var(--rule); }
+.q-row { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: 4px 14px; align-items: center; padding: 14px 10px; color: var(--ink); text-decoration: none; }
+.q-row:hover { background: var(--sheet); }
+.q-row:hover .q-title { color: var(--blue); }
+.q-num { font: 500 1.05rem/1 var(--serif); color: var(--muted); font-variant-numeric: tabular-nums lining-nums; text-align: right; }
+.q-main { display: grid; gap: 3px; min-width: 0; }
+.q-title { font: 600 1.12rem/1.35 var(--serif); }
+.q-sub { display: flex; flex-wrap: wrap; align-items: center; font-size: .84rem; color: var(--muted); }
+.q-sub span + span::before { content: ""; display: inline-block; width: 1px; height: .85em; margin: 0 9px; background: var(--outline); vertical-align: -1px; opacity: .6; }
+.tag { justify-self: end; display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: 13px; font-size: .8rem; font-weight: 500; white-space: nowrap; }
+.tag.again { background: var(--ochre-tint); color: var(--ochre); }
+.tag.ready { background: var(--blue-tint); color: var(--blue); }
+
+/* Bank */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 20px; background: var(--sheet); cursor: pointer; font-size: .9rem; font-weight: 500; }
+.chip:hover { border-color: var(--outline); }
+.chip-n { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 400; }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chip[aria-pressed="true"] .chip-n { color: inherit; opacity: .7; }
+.count { margin: 22px 0 10px; font-size: .88rem; color: var(--muted); }
+.topic-block + .topic-block { margin-top: 34px; }
+.topic-block h3 { font: 600 1.3rem/1.3 var(--serif); margin-bottom: 8px; }
+
+/* Review */
+.progress-panel { padding: clamp(20px, 3vw, 30px); margin-bottom: 30px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-bottom: 22px; }
+.legend > div { display: flex; align-items: baseline; gap: 10px; }
+.legend dd { order: -1; font: 600 2rem/1 var(--serif); font-variant-numeric: tabular-nums lining-nums; }
+.legend dt { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .92rem; }
+.swatch { display: inline-block; width: 5px; height: 8px; border-radius: 3px; background: var(--outline); }
+.swatch.again { height: 13px; background: var(--ochre-mark); }
+.swatch.ready { height: 18px; background: var(--blue); }
+.strip.large .ticks { height: 50px; }
+.strip.large .tick { width: 18px; }
+.strip.large .tick::before { width: 7px; height: 15px; }
+.strip.large .tick[data-status="again"]::before { height: 28px; }
+.strip.large .tick[data-status="ready"]::before { height: 42px; }
+.strip.large .tick:hover::before { width: 9px; }
+.empty { padding: 28px 0; border-top: 1px solid var(--rule); }
+.empty p { font: 400 1.12rem/1.6 var(--serif); color: var(--soft-ink); max-width: 56ch; margin-bottom: 16px; }
+
+footer { margin-top: 48px; padding-bottom: 32px; font-size: .84rem; color: var(--muted); }
+footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.chapter-index h3 { font: 500 .84rem/1.3 var(--sans); color: var(--muted); padding: 0 10px 10px; }
+
+@media (max-width: 900px) {
+  .practice-grid { grid-template-columns: minmax(0, 1fr); }
+  .concepts-layout { grid-template-columns: minmax(0, 1fr); }
+  .chapter-index { position: static; }
+  .chapter-index ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .top-inner { flex-direction: column; align-items: stretch; gap: 0; }
+  .wordmark a { padding: 14px 0 6px; }
+  .tabs { margin-inline: -8px; gap: 0; }
+  .tabs a { min-height: 48px; padding-inline: 8px; font-size: .92rem; }
+  main { padding-top: 22px; }
+  .practice-head > .row { width: 100%; }
+  .practice-head > .row .btn { flex: 1; }
+  .tick { width: 12px; }
+  .strip { gap: 6px 12px; }
+  #strip .strip-label { display: none; }
+  .timer { grid-template-columns: auto 1fr; grid-template-areas: "clock buttons" "track track"; }
+  .timer-buttons { justify-content: flex-end; }
+  .chapter-index ol { grid-template-columns: minmax(0, 1fr); }
+  .concept-terms > div { grid-template-columns: minmax(0, 1fr); }
+  .concept-values > div { grid-template-columns: minmax(0, 1fr); }
+  .concept-values dd { justify-content: flex-start; text-align: left; }
+  .q-row { grid-template-columns: 1.8rem minmax(0, 1fr); padding-inline: 4px; }
+  .q-row .tag { grid-column: 2; justify-self: start; }
+  .keys { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap top-inner">
+    <h1 class="wordmark">
+      <a href="#practice">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="9" height="9" rx="1.5" fill="var(--blue)"/><rect x="12" y="1" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/><rect x="1" y="12" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/><rect x="12" y="12" width="9" height="9" rx="1.5" fill="none" stroke="var(--outline)" stroke-width="1.5"/></svg>
+        <span>Statistics interview prep</span>
+      </a>
+    </h1>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#practice" data-view="practice">Practice</a>
+      <a href="#concepts" data-view="concepts">Concepts</a>
+      <a href="#bank" data-view="bank">Question bank</a>
+      <a href="#review" data-view="review">Review <span class="badge" id="review-badge" hidden></span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+  <noscript><p>Turn on JavaScript to open the question bank and save answers in this browser.</p></noscript>
+
+  <section id="view-practice" aria-labelledby="question-title" hidden>
+    <div class="practice-head">
+      <div>
+        <p class="position" id="position"></p>
+        <nav class="strip" id="strip" aria-label="All questions"></nav>
+      </div>
+      <div class="row">
+        <button type="button" class="btn" id="previous">Previous</button>
+        <button type="button" class="btn" id="shuffle">Random</button>
+        <button type="button" class="btn" id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="practice-grid">
+      <article class="sheet question">
+        <div class="q-meta"><span class="pill" id="question-type"></span><span id="question-seconds"></span></div>
+        <h2 id="question-title" tabindex="-1"></h2>
+        <p id="question-prompt" class="prompt"></p>
+        <div class="booktabs" id="question-data" hidden></div>
+        <details id="hint-box" class="toggle"><summary>Show a hint</summary><p id="question-hint"></p></details>
+        <div class="timer" id="timer">
+          <output id="timer-display" class="clock" aria-live="off">1:00</output>
+          <div class="track" aria-hidden="true"><div class="fill" id="timer-fill"></div></div>
+          <div class="row timer-buttons">
+            <button type="button" class="btn primary" id="timer-start">Start timer</button>
+            <button type="button" class="btn ghost" id="timer-reset">Reset</button>
+          </div>
+        </div>
+        <p class="sr-only" id="timer-status" role="status"></p>
+        <a id="question-chapter" class="concept-link" href="#concepts">Review the concept: <span id="question-chapter-name"></span></a>
+      </article>
+
+      <section class="response" aria-labelledby="answer-title">
+        <h3 id="answer-title">Your answer</h3>
+        <p class="help" id="answer-help">Say it aloud first, then jot down calculations or notes.</p>
+        <textarea id="answer" rows="7" aria-labelledby="answer-title" aria-describedby="answer-help" placeholder="I’d start by…"></textarea>
+        <p class="save-note" id="save-note">Saved in this browser as you type.</p>
+        <button type="button" class="btn primary" id="reveal" aria-expanded="false" aria-controls="answer-key">Reveal answer key</button>
+        <div id="answer-key" class="sheet key" hidden>
+          <h3>What to say</h3>
+          <p id="model-answer" class="model"></p>
+          <h4>Check your reasoning</h4>
+          <ul id="rubric" class="rubric"></ul>
+          <details id="follow-up-box" class="toggle">
+            <summary>Interviewer follow-up</summary>
+            <p id="follow-up" class="follow"></p>
+            <details id="follow-up-answer-box" class="toggle nested">
+              <summary>Show the answer</summary>
+              <p id="follow-up-answer"></p>
+            </details>
+          </details>
+          <div class="rating" role="group" aria-labelledby="rating-label">
+            <p class="rating-label" id="rating-label">How did that go?</p>
+            <div class="row">
+              <button type="button" class="btn rate-again" data-rating="again" aria-pressed="false">Practice again</button>
+              <button type="button" class="btn rate-ready" data-rating="ready" aria-pressed="false">Interview ready</button>
+            </div>
+          </div>
+          <p id="rating-status" class="help" role="status"></p>
+        </div>
+      </section>
+    </div>
+    <p class="keys">Use <kbd>←</kbd> and <kbd>→</kbd> to move between questions when you aren’t typing.</p>
+  </section>
+
+  <section id="view-concepts" aria-labelledby="concepts-title" hidden>
+    <h2 id="concepts-title" class="sr-only" tabindex="-1">Concepts</h2>
+    <div class="concepts-layout">
+      <nav class="chapter-index" aria-labelledby="chapters-label">
+        <h3 id="chapters-label">Read a chapter, then practice it</h3>
+        <ol>
+          <li><a href="#concept-measures" data-chapter-link="measures">Measuring association</a></li>
+          <li><a href="#concept-lineage" data-chapter-link="lineage">Population structure</a></li>
+          <li><a href="#concept-weighting" data-chapter-link="weighting">Standardization</a></li>
+          <li><a href="#concept-uncertainty" data-chapter-link="uncertainty">Statistical uncertainty</a></li>
+          <li><a href="#concept-testing" data-chapter-link="testing">Permutation and FDR</a></li>
+          <li><a href="#concept-design" data-chapter-link="design">Study design and interpretation</a></li>
+        </ol>
+      </nav>
+      <div class="reading">
+        <article class="sheet concept-chapter" data-chapter="measures" aria-labelledby="chapter-measures" hidden>
+              <h3 id="chapter-measures" tabindex="-1">Measuring association</h3>
+              <p class="chapter-intro">Which number answers the question: how many more, how many times as common, or how many times the odds?</p>
+              <dl class="concept-terms">
+                <div><dt>Prevalence</dt><dd>Carriers ÷ total genomes. The prevalence difference is A’s prevalence minus B’s, reported in percentage points.</dd></div>
+                <div><dt>Prevalence ratio</dt><dd>A’s prevalence ÷ B’s. Use B as the reference and give both rates for context.</dd></div>
+                <div><dt>Odds ratio</dt><dd>Compute carriers ÷ noncarriers in each group, then divide A’s odds by B’s. Odds can exceed 1.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Worked example</h4>
+                <p>Group A has 18/24 carriers (75%). Group B has 20/40 (50%).</p>
+                <dl class="concept-values">
+                  <div><dt>Difference</dt><dd><span class="cv-expr">75% − 50%</span><span class="cv-val">+25 pp</span></dd></div>
+                  <div><dt>Prevalence ratio</dt><dd><span class="cv-expr">0.75 ÷ 0.50</span><span class="cv-val">1.5</span></dd></div>
+                  <div><dt>Odds ratio</dt><dd><span class="cv-expr">(18/6) ÷ (20/20)</span><span class="cv-val">3</span></dd></div>
+                </dl>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What if B has zero carriers?</span></summary><p>If A has any carriers and B has zero, the raw odds ratio is infinite. With zero carriers in both groups it is undefined (0 ÷ 0). Show the counts and choose an uncertainty method that handles sparse data.</p></details>
+            </article>
+
+        <article class="sheet concept-chapter" data-chapter="lineage" aria-labelledby="chapter-lineage" hidden>
+              <h3 id="chapter-lineage" tabindex="-1">Population structure</h3>
+              <p class="chapter-intro">Could the pooled result come from which lineages are in each group?</p>
+              <dl class="concept-terms">
+                <div><dt>Pooled vs. stratified</dt><dd>Pooling combines all observations. Stratification compares A and B separately inside each lineage.</dd></div>
+                <div><dt>Population structure</dt><dd>Lineages can differ in gene prevalence and in how often they appear in each source. This can create or obscure a pooled association.</dd></div>
+                <div><dt>Overlap</dt><dd>A direct within-lineage comparison requires both sources in that lineage. An absent source has unknown prevalence there.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Worked example</h4>
+                <p>Every genome in X carries the gene. No genome in Y does.</p>
+                <div class="chapter-table">
+                  <table>
+                    <caption>Carriers / total in each group</caption>
+                    <thead><tr><th scope="col">Comparison</th><th scope="col">A</th><th scope="col">B</th><th scope="col">A − B</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Within X</th><td>8/8</td><td>2/2</td><td>0 pp</td></tr>
+                      <tr><th scope="row">Within Y</th><td>0/2</td><td>0/8</td><td>0 pp</td></tr>
+                      <tr><th scope="row">Pooled</th><td>8/10</td><td>2/10</td><td>+60 pp</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Group A has more genomes from X. That difference in mix explains the entire pooled gap.</p>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Does a change in the adjusted odds ratio establish confounding?</span></summary><p>A marginal odds ratio and a conditional odds ratio can differ even when the groups have the same lineage mix. This is called noncollapsibility. Assess confounding using the study design and the role of each covariate. <a rel="noopener" href="https://www.stat.ubc.ca/~rollin/papers/GreenlandStatSci1999.pdf">Greenland, Robins &amp; Pearl</a></p></details>
+            </article>
+
+        <article class="sheet concept-chapter" data-chapter="weighting" aria-labelledby="chapter-weighting" hidden>
+              <h3 id="chapter-weighting" tabindex="-1">Standardization</h3>
+              <p class="chapter-intro">What would the difference be if both sources had the same lineage mix?</p>
+              <dl class="concept-terms">
+                <div><dt>Estimand</dt><dd>The exact target quantity. Specify the outcome, compared groups, effect measure, and target population.</dd></div>
+                <div><dt>Standardized difference</dt><dd>Multiply each lineage’s A-minus-B difference by its reference weight and add. The same weights apply to both sources and sum to one.</dd></div>
+                <div><dt>Effect heterogeneity</dt><dd>The association can vary in size or direction by lineage. Different reference weights can then produce different summaries.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Worked example</h4>
+                <p>In X, A has 5/6 carriers and B has 3/18 (+66.7 pp). In Y, A has 6/18 and B has 15/22 (−34.8 pp).</p>
+                <dl class="concept-values two">
+                  <div><dt>A’s mix</dt><dd><span class="cv-expr">25% × X gap + 75% × Y gap</span><span class="cv-val">−9.5 pp</span></dd></div>
+                  <div><dt>Equal weights</dt><dd><span class="cv-expr">50% × X gap + 50% × Y gap</span><span class="cv-val">+15.9 pp</span></dd></div>
+                </dl>
+                <p>Use the exact fractions and round at the end. Each result describes a different target mix.</p>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What if one lineage has no source B data?</span></summary><p>For direct standardization, restrict to lineages with both sources and rescale their weights, then name the narrower target. A model that retains the original target needs extra assumptions to extrapolate.</p></details>
+            </article>
+
+        <article class="sheet concept-chapter" data-chapter="uncertainty" aria-labelledby="chapter-uncertainty" hidden>
+              <h3 id="chapter-uncertainty" tabindex="-1">Statistical uncertainty</h3>
+              <p class="chapter-intro">Read the estimate, interval, and p-value together. Each answers a different question.</p>
+              <dl class="concept-terms">
+                <div><dt>Effect estimate</dt><dd>The measured magnitude and direction, such as +8 percentage points for A compared with B.</dd></div>
+                <div><dt>95% confidence interval</dt><dd>Over repeated samples, a valid procedure would cover the fixed target about 95% of the time under its assumptions. A wider interval reflects less precision.</dd></div>
+                <div><dt>P-value</dt><dd>Under the null and test assumptions, the probability of a test statistic at least as extreme as the one observed.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Worked example</h4>
+                <dl class="concept-values">
+                  <div><dt>Estimate</dt><dd><span class="cv-val">+8 pp</span></dd></div>
+                  <div><dt>95% interval</dt><dd><span class="cv-val">−3 to +19 pp</span></dd></div>
+                  <div><dt>P-value</dt><dd><span class="cv-val">0.15</span></dd></div>
+                </dl>
+                <p>The observed difference favors A. Under the model, the interval includes zero and spans a small decrease to a potentially meaningful increase.</p>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Does an interval that includes zero demonstrate equivalence?</span></summary><p>Equivalence needs a prespecified margin and an appropriate test. An interval from −3 to +19 pp extends well past a +5 pp margin. <a rel="noopener" href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm">NIST on confidence intervals</a>, <a rel="noopener" href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">ASA on p-values</a></p></details>
+            </article>
+
+        <article class="sheet concept-chapter" data-chapter="testing" aria-labelledby="chapter-testing" hidden>
+              <h3 id="chapter-testing" tabindex="-1">Permutation and FDR</h3>
+              <p class="chapter-intro">Build a valid null comparison, then account for how many hypotheses you tested.</p>
+              <dl class="concept-terms">
+                <div><dt>Permutation test</dt><dd>Choose a statistic and tail rule, then recompute the statistic after permitted source-label swaps. Swaps within lineages preserve source totals there.</dd></div>
+                <div><dt>Exchangeability</dt><dd>The null must justify those swaps. Shared sampling events or residual dependence can make individual-genome swaps invalid.</dd></div>
+                <div><dt>False discovery rate (FDR)</dt><dd>The expected fraction of false rejections among all rejections. That fraction is zero when there are no rejections.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Two worked examples</h4>
+                <p><strong>Permutation.</strong> If 19 of 999 random shuffles are at least as extreme, the plus-one Monte Carlo p-value is (19 + 1) ÷ (999 + 1) = <strong>0.020</strong>. <a rel="noopener" href="https://arxiv.org/abs/1603.05766">Phipson &amp; Smyth</a></p>
+                <p><strong>Benjamini–Hochberg.</strong> Sort 0.004, 0.018, 0.041, 0.2. At 5% FDR with four tests, compare to 0.0125, 0.025, 0.0375, 0.05. Rank 2 is the largest passing rank, so reject the first two. <a rel="noopener" href="https://onlinelibrary.wiley.com/doi/full/10.1111/j.2517-6161.1995.tb02031.x">Benjamini &amp; Hochberg</a></p>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">What should you verify before interpreting adjusted results?</span></summary><p>Define the test family and check that each p-value is valid. Choose an adjustment whose assumptions fit the dependence among tests. Report effect sizes and support counts alongside the adjusted evidence.</p></details>
+            </article>
+
+        <article class="sheet concept-chapter" data-chapter="design" aria-labelledby="chapter-design" hidden>
+              <h3 id="chapter-design" tabindex="-1">Study design and interpretation</h3>
+              <p class="chapter-intro">Your conclusion can only be as broad as the sampling, measurements, and comparison support.</p>
+              <dl class="concept-terms">
+                <div><dt>Sampling unit</dt><dd>Genomes can share a sampling event, a site, or recent ancestry. Identify what was sampled independently before choosing standard errors or resampling units.</dd></div>
+                <div><dt>Selection and generalization</dt><dd>Specify who or what the selected collection represents. Increasing the sample size can improve precision while preserving selection bias.</dd></div>
+                <div><dt>Association and mechanism</dt><dd>Use the data to describe how gene prevalence varies by source. A claim about biological mechanism needs additional evidence.</dd></div>
+              </dl>
+              <div class="worked">
+                <h4>Frame an interview answer</h4>
+                <ol class="concept-steps">
+                  <li><strong>Define the target.</strong> Name the outcome, comparison, scale, and population.</li>
+                  <li><strong>Check the data.</strong> Inspect missing calls, overlap, strata sizes, and sampling units.</li>
+                  <li><strong>Estimate and quantify uncertainty.</strong> Choose methods suited to the data and account for multiple tests where relevant.</li>
+                  <li><strong>State the scope.</strong> Give the effect, uncertainty, and limits on generalization.</li>
+                </ol>
+              </div>
+              <details class="concept-recall"><summary><span class="recall-label">Recall check</span><span class="recall-q">Are ten genetic lineages ten independent sampling events?</span></summary><p>Lineage records ancestry. A sampling event records how observations were collected. Check both, then choose units that reflect how the data were generated.</p></details>
+            </article>
+        <section class="chapter-practice" aria-labelledby="chapter-practice-title">
+          <h3 id="chapter-practice-title">Practice this chapter</h3>
+          <ul id="chapter-questions" class="q-list"></ul>
+        </section>
+        <nav id="chapter-pager" class="pager" aria-label="Previous and next chapters"></nav>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-bank" aria-labelledby="bank-title" hidden>
+    <div class="view-head">
+      <div>
+        <h2 id="bank-title" tabindex="-1">Question bank</h2>
+        <p class="lede">Pick a topic, then open a question.</p>
+      </div>
+    </div>
+    <div class="chips" id="bank-filters" role="group" aria-label="Filter by topic"></div>
+    <p class="count" id="bank-count" role="status"></p>
+    <div id="bank-list"></div>
+  </section>
+
+  <section id="view-review" aria-labelledby="review-title" hidden>
+    <div class="view-head">
+      <div>
+        <h2 id="review-title" tabindex="-1">Review queue</h2>
+        <p class="lede">Questions you marked “Practice again.”</p>
+      </div>
+      <a class="btn primary" id="start-review" href="#review">Start review</a>
+    </div>
+    <div class="sheet progress-panel">
+      <dl class="legend">
+        <div><dt><span class="swatch again"></span>Practice again</dt><dd id="again-count">0</dd></div>
+        <div><dt><span class="swatch ready"></span>Interview ready</dt><dd id="ready-count">0</dd></div>
+        <div><dt><span class="swatch"></span>Not rated yet</dt><dd id="unrated-count">0</dd></div>
+      </dl>
+      <nav class="strip large" id="review-strip" aria-label="All questions by rating"></nav>
+    </div>
+    <div id="review-empty" class="empty" hidden>
+      <p>Nothing to revisit yet. After you reveal an answer key, choose “Practice again” to add the question here.</p>
+      <a class="btn" href="#practice">Go to practice</a>
+    </div>
+    <ul id="review-list" class="q-list"></ul>
+  </section>
+</main>
+
+<footer class="wrap"><p><span>Examples use hypothetical counts. Drafts and ratings are saved in this browser only.</span><a href="index.html">Kinley Tenzin’s homepage</a></p></footer>
+
+<script>
+const questions = [
+  {
+    id: "odds-and-probability", topic: "Measures", type: "Calculate", seconds: 60,
+    title: "Same counts, three answers",
+    prompt: "A gene appears in 18 of 24 Group A genomes and 20 of 40 Group B genomes. Calculate the prevalence difference, prevalence ratio, and odds ratio for A versus B. Give one plain-English interpretation of each.",
+    data: [["Group", "Present", "Absent", "Total"], ["A", "18", "6", "24"], ["B", "20", "20", "40"]],
+    hint: "Probability uses the total as its denominator. Odds use the number without the gene.",
+    answer: "Prevalence is 75% versus 50%. The difference is +25 percentage points, the prevalence ratio is 1.5, and the odds ratio is (18/6) ÷ (20/20) = 3. The gene is 25 points more prevalent in A, 1.5 times as prevalent, and has three times the odds.",
+    checks: ["Name B as the reference.", "Use the correct denominator for each measure.", "Distinguish percentage points from relative change."],
+    follow: "What’s the relative increase in prevalence using B as the reference?",
+    reply: "(0.75 − 0.50) / 0.50 = 0.50, or a 50% increase."
+  },
+  {
+    id: "reading-an-or", topic: "Measures", type: "Explain aloud", seconds: 45,
+    title: "Explain an odds ratio to a colleague",
+    prompt: "An interviewer says, “An odds ratio of 2 means the outcome is twice as likely.” How would you explain the result to a colleague?",
+    hint: "Convert baseline prevalence to odds, multiply the odds, then convert back.",
+    answer: "The odds are twice as high. If the reference prevalence is 50%, its odds are 1. Doubling gives odds of 2 and a prevalence of 2/3, about 67%. The prevalence ratio is about 1.33. With a rare outcome in both groups, odds and probability are close.",
+    checks: ["Define odds as p/(1−p).", "Give a concrete example.", "Mention the rare-outcome approximation."],
+    follow: "At 10% reference prevalence, what does OR = 2 imply?",
+    reply: "The reference odds are 1/9. Doubling gives 2/9, which corresponds to a prevalence of 2/11, about 18.2%."
+  },
+  {
+    id: "zero-cell", topic: "Measures", type: "Diagnose", seconds: 60,
+    title: "Handle a zero cell",
+    prompt: "Group A has 4 carriers out of 24. Group B has 0 out of 40. What are the raw prevalence difference and odds ratio? What would you report?",
+    hint: "Inspect the counts before choosing an inferential method.",
+    answer: "The observed difference is +16.7 percentage points. The ordinary odds ratio is infinite because the Group B odds are zero. Report the counts and difference. For inference, choose a method suited to sparse data and the design, such as exact inference for an independent table or penalized logistic regression if modeling is appropriate.",
+    checks: ["Separate the raw statistic from the uncertainty method.", "State what the zero cell does to the estimate.", "Match any method to independence and design assumptions."],
+    follow: "What if both groups have zero carriers?",
+    reply: "The observed prevalence difference is zero and the ordinary odds ratio is undefined (0/0). Both observed rates are zero, with uncertainty about the underlying prevalences."
+  },
+  {
+    id: "effect-scale", topic: "Measures", type: "Explain aloud", seconds: 45,
+    title: "Choose a scale for the audience",
+    prompt: "The same result can be expressed as +2 percentage points or a doubling from 2% to 4%. What would you lead with in an interview?",
+    hint: "State the baseline, the absolute gap, and why the scale matters.",
+    answer: "I’d give 2% and 4%, an absolute gap of +2 points and a relative ratio of 2. I’d lead with the absolute gap when the audience needs to judge size in practical terms, then give the relative change for context.",
+    checks: ["Include the baseline and both rates.", "Choose a scale that answers the question.", "Keep direction and reference group clear."],
+    follow: "What are the null values for the difference and ratio?",
+    reply: "Zero for the difference and one for the ratio, when the ratio is defined."
+  },
+  {
+    id: "pooled-versus-stratified", topic: "Lineage", type: "Calculate + diagnose", seconds: 75,
+    title: "A strong pooled gap disappears",
+    prompt: "All genomes in lineage X carry the gene. None in Y do. Calculate the pooled and within-lineage differences. Explain why they disagree.",
+    data: [["Lineage", "A genomes", "B genomes", "Gene"], ["X", "8", "2", "All"], ["Y", "2", "8", "None"]],
+    hint: "The same gene pattern can yield different marginal rates when the group mix changes.",
+    answer: "A is 8/10 = 80% and B is 2/10 = 20%, a pooled gap of +60 points. Within X both sources are at 100%, and within Y both are at 0%, so both gaps are zero. The pooled gap comes from unequal lineage composition.",
+    checks: ["Calculate the denominators correctly.", "Compare source groups inside each lineage.", "Explain population structure in plain language."],
+    follow: "Would a 50–50 lineage mix in both groups change either within-lineage gap?",
+    reply: "Each within-lineage gap remains zero. Both pooled rates become 50%, so the pooled gap also becomes zero."
+  },
+  {
+    id: "noncollapsibility", topic: "Lineage", type: "Explain aloud", seconds: 75,
+    title: "An adjusted odds ratio moves",
+    prompt: "The pooled odds ratio is 1.7 and the lineage-adjusted odds ratio is 2.0. The two source groups have identical lineage shares. Explain how both estimates could be right.",
+    hint: "Marginal and conditional odds ratios answer different questions.",
+    answer: "Odds ratios are noncollapsible. If baseline prevalence varies by lineage, the pooled OR can differ from a common within-lineage OR even when the lineage mix is identical. I’d describe which OR each estimate targets and examine design and covariates separately when assessing confounding.",
+    checks: ["Name the marginal and conditional comparisons.", "Explain how baseline differences matter.", "Explain why the change alone cannot diagnose confounding."],
+    follow: "Can the same phenomenon happen with a prevalence difference and identical lineage shares?",
+    reply: "With identical shares, the pooled difference equals the weighted average of within-lineage differences using those shares. In particular, a common within-lineage difference is preserved."
+  },
+  {
+    id: "overlap", topic: "Lineage", type: "Decide", seconds: 75,
+    title: "One source is missing in a lineage",
+    prompt: "A lineage contributes 30% of the target weight, but you have no Group B genomes from that lineage. How do you handle the adjusted comparison?",
+    hint: "Ask whether the missing comparison can be calculated directly and what happens if you change the target.",
+    answer: "The within-lineage difference is unobserved. I’d report the lack of overlap, then either restrict the target to lineages with both sources and renormalize the weights, or use a model with explicit extrapolation assumptions. I’d name the target and show how the choice affects the conclusion.",
+    checks: ["Distinguish a missing group from a group with zero carriers.", "Identify the overlap problem.", "State how the estimand or assumptions change."],
+    follow: "What does the restricted estimate describe?",
+    reply: "It describes the standardized contrast among target lineages that contain both sources, with their weights rescaled to sum to one."
+  },
+  {
+    id: "what-to-adjust", topic: "Lineage", type: "Explain aloud", seconds: 60,
+    title: "Defend a covariate",
+    prompt: "Why might you adjust for lineage in a gene–source analysis? What would you check before adding it to a regression?",
+    hint: "Identify the outcome, the exposure or grouping variable, and the role of lineage.",
+    answer: "Lineage may be associated with both source and gene carriage. For a descriptive comparison, I’d check overlap and sample sizes within lineages, then compare pooled and stratified results. For a causal question, I’d also justify the adjustment set using knowledge of the data-generating process. I’d check whether ancestry-related dependence remains after adjustment.",
+    checks: ["Define the comparison and what lineage represents.", "Check sparse strata and residual dependence.", "Separate descriptive adjustment from a causal claim."],
+    follow: "What does a source-by-lineage interaction allow?",
+    reply: "It allows the source association to differ across lineages on the model’s scale. With small strata, the interaction estimates can be imprecise."
+  },
+  {
+    id: "weighted-calc", topic: "Weighting", type: "Calculate", seconds: 90,
+    title: "One set of counts, two summaries",
+    prompt: "Calculate the pooled prevalence difference for A versus B. Then standardize to A’s lineage mix. Explain why the signs differ.",
+    data: [["Lineage", "A present/total", "B present/total", "A − B"], ["X", "5/6", "3/18", "+66.7 pp"], ["Y", "6/18", "15/22", "−34.8 pp"]],
+    hint: "A has 6/24 in X. Use that weight and its complement for both sources.",
+    answer: "The pooled gap is 11/24 − 18/40 ≈ +0.8 points. With A’s lineage weights, 0.25 × (5/6 − 3/18) + 0.75 × (6/18 − 15/22) ≈ −9.5 points. The pooled result uses different lineage mixes for A and B. Standardization uses one mix and emphasizes lineage Y here.",
+    checks: ["Keep denominators visible.", "Use a common set of weights.", "Explain what the adjusted comparison targets."],
+    follow: "What happens if you weight the two lineages equally?",
+    reply: "The standardized difference is about +15.9 points. The two within-lineage differences stay fixed while their weights change."
+  },
+  {
+    id: "define-estimand", topic: "Weighting", type: "Explain aloud", seconds: 60,
+    title: "State the estimand before the method",
+    prompt: "The interviewer asks for “the adjusted effect.” State one precise estimand for the gene–source example.",
+    hint: "Specify outcome, compared groups, effect scale, and target mix.",
+    answer: "I’d estimate the A-minus-B difference in gene prevalence within each lineage, averaged using the lineage distribution of Group A. That defines the outcome, comparison, scale, and reference population. I’d report it in percentage points.",
+    checks: ["Name the outcome and reference group.", "Choose the effect scale.", "Name the target population and weights."],
+    follow: "What would full-cohort weights change?",
+    reply: "The target becomes the full cohort’s lineage mix. The summary can change when the lineage-specific differences vary."
+  },
+  {
+    id: "heterogeneity", topic: "Weighting", type: "Decide", seconds: 60,
+    title: "The effect reverses across lineages",
+    prompt: "One lineage has a +40-point difference and another has a −40-point difference. The equal-weight summary is zero. How do you present this?",
+    hint: "Separate the target-average effect from variation across strata.",
+    answer: "I’d show both lineage-specific estimates and their uncertainty, then state that the equal-weight average is zero. The average is valid for that weighting scheme, and it masks the opposite directions across lineages. I’d consider whether an interaction is estimable and whether the pattern could be sampling noise.",
+    checks: ["Report the stratum-specific directions.", "Name the target behind the average.", "Discuss uncertainty before asserting effect heterogeneity."],
+    follow: "What is the weighted difference with 75% weight on the positive lineage?",
+    reply: "0.75 × 40 + 0.25 × (−40) = +20 percentage points."
+  },
+  {
+    id: "choose-weights", topic: "Weighting", type: "Defend a choice", seconds: 75,
+    title: "Choose and defend the weights",
+    prompt: "A colleague chooses equal lineage weights, then switches to full-cohort weights because the result is more favorable. How do you respond?",
+    hint: "Start by asking what population the comparison should represent.",
+    answer: "I’d define the target first and choose a primary weighting rule based on that target. Equal weights describe an average over lineages. Cohort weights represent the cohort mix. If both are relevant, report both, explain the different targets, and identify any choice made after seeing the results.",
+    checks: ["Tie weights to a specific target.", "Distinguish primary and sensitivity analyses.", "Describe the effect of outcome-driven choices."],
+    follow: "What constraints should the reference weights meet?",
+    reply: "They should be nonnegative, sum to one, and apply identically to both groups. Identify strata without direct overlap before assigning them weight."
+  },
+  {
+    id: "p-and-ci", topic: "Inference", type: "Explain aloud", seconds: 60,
+    title: "Read the estimate, interval, and p-value",
+    prompt: "The estimated prevalence gap is +8 points, with a 95% confidence interval of −3 to +19 points and p = 0.15. How would you explain it?",
+    hint: "Give magnitude, direction, precision, and compatibility with the null separately.",
+    answer: "The estimate favors A by 8 points. The interval includes zero and spans a small decrease through a potentially meaningful increase under the stated model. The p-value is the probability, under the null and test assumptions, of a result at least as extreme as the observed statistic.",
+    checks: ["Give the estimate and units.", "Acknowledge both compatible directions.", "Explain what the p-value conditions on."],
+    follow: "Would this show equivalence within ±5 percentage points?",
+    reply: "The interval extends outside ±5 points. Equivalence requires a prespecified margin and a method designed to evaluate that margin."
+  },
+  {
+    id: "interval-interpretation", topic: "Inference", type: "Explain aloud", seconds: 45,
+    title: "Define 95% confidence",
+    prompt: "What does a 95% confidence interval mean? Explain it without relying on a formula.",
+    hint: "Think about repeating the sampling and interval construction.",
+    answer: "If we repeatedly sampled under the same design and built intervals with the same valid procedure, about 95% of those intervals would contain the fixed target quantity. That coverage depends on the design and assumptions.",
+    checks: ["Describe repeated sampling.", "Say what is fixed and what varies.", "Mention the assumptions behind coverage."],
+    follow: "What would often happen if you treated closely related genomes as independent?",
+    reply: "With positive dependence, the usual independent-observation standard errors may be too small and confidence intervals too narrow."
+  },
+  {
+    id: "permutation", topic: "Inference", type: "Design a test", seconds: 90,
+    title: "Design a lineage-aware permutation test",
+    prompt: "You want to test a standardized prevalence difference. Explain what gets shuffled, what stays fixed, and when the shuffle is valid.",
+    hint: "Hold lineage membership and gene calls fixed. Ask whether the source labels can be exchanged within a lineage under the null.",
+    answer: "I’d predefine a statistic and tail rule, then permute source labels within each lineage under a null that makes the permitted swaps exchangeable. I’d preserve the source counts within each lineage and recompute the statistic using the same weighting rule after each shuffle. I’d compare the observed statistic with that null distribution.",
+    checks: ["Preserve the strata and per-stratum source totals.", "Name exchangeability under the null.", "Use the same statistic and weighting rule on every shuffle."],
+    follow: "19 of 999 random shuffles are at least as extreme. What Monte Carlo p-value do you report with the plus-one rule?",
+    reply: "(19 + 1) / (999 + 1) = 0.020."
+  },
+  {
+    id: "many-tests", topic: "Inference", type: "Calculate + interpret", seconds: 75,
+    title: "Read a multiple-testing result",
+    prompt: "Four valid p-values are 0.004, 0.018, 0.041, and 0.2. Apply Benjamini–Hochberg at 5%. What does the error rate target?",
+    hint: "Compare the sorted p-values to i × 0.05 / 4. Find the largest qualifying rank.",
+    answer: "The thresholds are 0.0125, 0.025, 0.0375, and 0.05. The largest qualifying rank is 2, so reject the first two hypotheses. Under the procedure’s assumptions, the target is the expected proportion of false discoveries among rejections, counting zero when there are no rejections.",
+    checks: ["Use the step-up rule and identify the test family.", "Distinguish FDR from a per-test error rate.", "Flag assumptions about dependence among p-values."],
+    follow: "How would Bonferroni at 5% differ here?",
+    reply: "The cutoff is 0.05/4 = 0.0125. Only the first hypothesis is rejected. Bonferroni targets the probability of at least one false rejection."
+  },
+  {
+    id: "dependent-data", topic: "Inference", type: "Diagnose", seconds: 75,
+    title: "How many independent observations?",
+    prompt: "A dataset has 64 genomes and 10 genetic lineages. Some genomes come from the same sampling event. What do you need to know before choosing standard errors or permutations?",
+    hint: "Genetic strata and independent sampling units can be different.",
+    answer: "I’d identify shared sampling events, collection sites, repeated isolates, and remaining relatedness. I’d decide what the defensible independent units or exchangeable blocks are. A cluster-aware model, analysis at the event level, or restricted permutations may be appropriate depending on the design and number of units.",
+    checks: ["Distinguish phylogeny from sampling design.", "Tie inference to independent units or valid swaps.", "Acknowledge limited information with few independent units."],
+    follow: "Does including lineage as a fixed effect solve every dependence problem?",
+    reply: "Lineage fixed effects address mean differences between lineages. Dependence within a sampling event can remain and requires its own treatment."
+  },
+  {
+    id: "selection-and-causality", topic: "Inference", type: "Explain aloud", seconds: 60,
+    title: "Push back on an overclaim",
+    prompt: "A selected genome collection shows a strong association between gene presence and isolation source. The interviewer asks whether this establishes a biological mechanism or generalizes to all isolates.",
+    hint: "Start with what the sample directly supports, then name what additional evidence is needed.",
+    answer: "I can report the association in the selected genomes and describe how it changes after accounting for lineage. Generalization needs a defensible target and sampling model. A mechanistic claim needs additional biological evidence. Selection, ancestry, and measurement can affect the observed association.",
+    checks: ["Name the sample the result describes.", "Separate generalizability from causation.", "Give a bounded interpretation of the evidence."],
+    follow: "Would a larger collection with the same selection process solve the problem?",
+    reply: "It could improve precision for the selected population while preserving the same selection bias."
+  },
+  {
+    id: "mock-analysis", topic: "Mock interview", type: "Case walkthrough", seconds: 120,
+    title: "Design the analysis from scratch",
+    prompt: "You get gene-presence calls and source labels for 64 selected genomes across 10 lineages. Explain how you would compare two sources, from first checks to the final result.",
+    hint: "Walk through the question, data checks, estimate, uncertainty, and interpretation.",
+    answer: "I’d define the outcome, source contrast, effect scale, and target mix. I’d check metadata, missing calls, overlap, and sample dependence. Then I’d report pooled and within-lineage counts, standardize prevalence differences if supported, and use inference matched to the sampling design. For many genes I’d define the test family and address multiplicity. I’d report the estimate, uncertainty, and limits on scope.",
+    checks: ["Start with the estimand before choosing the model.", "Check data quality, overlap, and dependence.", "Link uncertainty and multiplicity decisions to the design."],
+    follow: "What would you do first if two lineages contain only one source each?",
+    reply: "Describe the lack of overlap and reconsider the target. A directly standardized comparison needs within-lineage data from both sources wherever the target puts weight."
+  },
+  {
+    id: "mock-results", topic: "Mock interview", type: "Case walkthrough", seconds: 90,
+    title: "Explain a reversal in a results meeting",
+    prompt: "The pooled difference is +12 points, the standardized difference is −4 points, and the adjusted 95% confidence interval is −13 to +5. Give a concise verbal readout and one diagnostic you’d run.",
+    hint: "Name the comparison behind each estimate. The interval crosses zero.",
+    answer: "In the pooled data Group A is 12 points higher. Using the same lineage mix for both groups, the estimate is 4 points lower, with an interval spanning a decrease and a small increase. I’d show each lineage’s difference and weight to see whether sparse strata, unequal composition, or heterogeneous effects drive the shift.",
+    checks: ["Interpret both estimates and their targets.", "Explain the uncertainty around the adjusted estimate.", "Propose a diagnostic that could distinguish explanations."],
+    follow: "How would you explain a sensitivity analysis that changes sign again?",
+    reply: "Identify what changed. Different target weights can legitimately answer a different question, while a sign change under small perturbations to the same target may indicate an unstable result."
+  },
+  {
+    id: "mock-reporting", topic: "Mock interview", type: "Case walkthrough", seconds: 90,
+    title: "Choose what to report from a gene screen",
+    prompt: "A ranking of 2,000 genes puts one with a tiny p-value and a modest effect first. Another has a larger effect, a wide interval, and sparse counts. What goes in your summary?",
+    hint: "Decide how to present statistical evidence, magnitude, and support together.",
+    answer: "I’d report the test family and multiplicity procedure, with effect sizes, intervals, and support counts for each highlighted gene. A precise small association and a large but unstable estimate convey different evidence. I’d state the target, note sparse data, and distinguish exploratory leads from stronger results.",
+    checks: ["Put adjusted evidence beside effect size.", "Include counts, uncertainty, and the target.", "Avoid ranking biological relevance by p-value alone."],
+    follow: "How would you follow up the larger, sparse estimate?",
+    reply: "Check the underlying counts and assumptions, then seek a prespecified evaluation in a suitable independent dataset with better support."
+  }
+];
+</script>
+<script>
+(() => {
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+  const views = ["practice", "concepts", "bank", "review"];
+  const chapterQuestions = {
+    measures: ["odds-and-probability", "reading-an-or", "zero-cell", "effect-scale"],
+    lineage: ["pooled-versus-stratified", "noncollapsibility", "overlap", "what-to-adjust"],
+    weighting: ["weighted-calc", "define-estimand", "heterogeneity", "choose-weights"],
+    uncertainty: ["p-and-ci", "interval-interpretation"],
+    testing: ["permutation", "many-tests"],
+    design: ["dependent-data", "selection-and-causality", "mock-analysis", "mock-results", "mock-reporting"]
+  };
+  const chapterLinks = [...document.querySelectorAll("[data-chapter-link]")];
+  const chapterOrder = chapterLinks.map(link => link.dataset.chapterLink);
+  const chapterTitles = Object.fromEntries(chapterLinks.map(link => [link.dataset.chapterLink, link.textContent]));
+  const chapterPanels = [...document.querySelectorAll("[data-chapter]")];
+  const chapterByQuestion = new Map(Object.entries(chapterQuestions).flatMap(([chapter, ids]) => ids.map(id => [id, chapter])));
+  const questionIndex = new Map(questions.map((question, index) => [question.id, index]));
+  const topics = [...new Set(questions.map(question => question.topic))];
+  const viewLinks = [...document.querySelectorAll("[data-view]")];
+  const ratingButtons = [...document.querySelectorAll("[data-rating]")];
+  const storageKey = "kinley-statistics-prep-v1";
+  const saved = readProgress();
+
+  let activeQuestion = null;
+  let activeChapter = "measures";
+  let currentView = null;
+  let filter = "all";
+  let deadline = 0;
+  let remainingMs = 0;
+  let timerId = 0;
+
+  function readProgress() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(storageKey));
+      if (!raw || typeof raw !== "object") return { records: {} };
+      return { last: raw.last, records: raw.records && typeof raw.records === "object" ? raw.records : {} };
+    } catch {
+      return { records: {} };
+    }
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    } catch {
+      $("save-note").textContent = "This browser isn’t saving right now. Your notes stay while this tab is open.";
+    }
+  }
+
+  const recordFor = id => (saved.records[id] ??= {});
+  const ratingOf = question => saved.records[question.id]?.rating ?? null;
+  const questionHash = question => "#q-" + question.id;
+  const ratingLabel = rating => rating === "again" ? "Practice again" : rating === "ready" ? "Interview ready" : "Not rated yet";
+  const duration = seconds => seconds >= 120 && seconds % 60 === 0 ? seconds / 60 + " minutes" : seconds + " seconds";
+
+  function h(tag, props = {}, ...children) {
+    const element = document.createElement(tag);
+    for (const [key, value] of Object.entries(props)) {
+      if (value == null || value === false) continue;
+      if (key === "class") element.className = value;
+      else if (key === "text") element.textContent = value;
+      else if (key.startsWith("on")) element.addEventListener(key.slice(2), value);
+      else element.setAttribute(key, value);
+    }
+    element.append(...children.filter(child => child != null));
+    return element;
+  }
+
+  function renderStrip(container, markCurrent) {
+    const groups = [];
+    questions.forEach((question, index) => {
+      let group = groups.at(-1);
+      if (!group || group.topic !== question.topic) groups.push(group = { topic: question.topic, items: [] });
+      group.items.push([question, index]);
+    });
+    container.replaceChildren(...groups.map(group => h("div", { class: "strip-group" },
+      h("div", { class: "ticks" }, ...group.items.map(([question, index]) => {
+        const rating = ratingOf(question);
+        return h("a", {
+          class: "tick",
+          href: questionHash(question),
+          "data-status": rating ?? "none",
+          "aria-current": markCurrent && activeQuestion?.id === question.id ? "step" : null,
+          "aria-label": `Question ${index + 1}: ${question.title}. ${ratingLabel(rating)}.`,
+          title: `${index + 1}. ${question.title}`
+        });
+      })),
+      h("span", { class: "strip-label", text: group.topic })
+    )));
+  }
+
+  function updateBadge() {
+    const again = questions.filter(question => ratingOf(question) === "again").length;
+    $("review-badge").textContent = again;
+    $("review-badge").hidden = again === 0;
+    $("review-badge").setAttribute("aria-label", again + " to revisit");
+  }
+
+  function tableFrom(rows) {
+    const table = h("table");
+    table.createCaption().textContent = "Hypothetical counts";
+    const head = table.createTHead().insertRow();
+    for (const value of rows[0]) head.append(h("th", { scope: "col", text: value }));
+    const body = table.createTBody();
+    for (const [label, ...values] of rows.slice(1)) {
+      const row = body.insertRow();
+      row.append(h("th", { scope: "row", text: label }), ...values.map(value => h("td", { text: value })));
+    }
+    return table;
+  }
+
+  function renderRubric() {
+    const question = activeQuestion;
+    const checked = new Set(saved.records[question.id]?.checked ?? []);
+    $("rubric").replaceChildren(...question.checks.map((check, index) => {
+      const box = h("input", { type: "checkbox" });
+      box.checked = checked.has(index);
+      box.addEventListener("change", () => {
+        const record = recordFor(question.id);
+        const set = new Set(record.checked ?? []);
+        if (box.checked) set.add(index); else set.delete(index);
+        record.checked = [...set].sort((a, b) => a - b);
+        saveProgress();
+      });
+      return h("li", {}, h("label", {}, box, h("span", { text: check })));
+    }));
+  }
+
+  function renderQuestion(index) {
+    const question = questions[index];
+    if (activeQuestion?.id !== question.id) {
+      activeQuestion = question;
+      saved.last = question.id;
+      saveProgress();
+      $("position").innerHTML = "";
+      $("position").append("Question ", h("b", { text: String(index + 1) }), " of " + questions.length + " in ", h("b", { text: question.topic }));
+      $("question-type").textContent = question.type;
+      $("question-seconds").textContent = duration(question.seconds) + " to answer";
+      $("question-title").textContent = question.title;
+      $("question-prompt").textContent = question.prompt;
+      $("question-hint").textContent = question.hint;
+      const chapter = chapterByQuestion.get(question.id);
+      $("question-chapter").href = "#concept-" + chapter;
+      $("question-chapter-name").textContent = chapterTitles[chapter];
+      const data = $("question-data");
+      data.replaceChildren(...(question.data ? [tableFrom(question.data)] : []));
+      data.hidden = !question.data;
+      $("answer").value = saved.records[question.id]?.draft ?? "";
+      $("model-answer").textContent = question.answer;
+      renderRubric();
+      $("follow-up").textContent = question.follow;
+      $("follow-up-answer").textContent = question.reply;
+      for (const id of ["hint-box", "follow-up-box", "follow-up-answer-box"]) $(id).open = false;
+      toggleAnswer(false);
+      renderRating(false);
+      resetTimer();
+      $("previous").disabled = index === 0;
+      $("next").disabled = index === questions.length - 1;
+    }
+    renderStrip($("strip"), true);
+  }
+
+  function toggleAnswer(show) {
+    $("answer-key").hidden = !show;
+    $("reveal").textContent = show ? "Hide answer key" : "Reveal answer key";
+    $("reveal").setAttribute("aria-expanded", String(show));
+  }
+
+  function renderRating(changed) {
+    const rating = saved.records[activeQuestion.id]?.rating;
+    for (const button of ratingButtons) button.setAttribute("aria-pressed", String(button.dataset.rating === rating));
+    $("rating-status").textContent = rating === "again" ? "In your review queue. Choose it again to remove it."
+      : rating === "ready" ? "Marked interview ready."
+      : changed ? "Rating removed." : "";
+  }
+
+  function drawTimer() {
+    const total = activeQuestion.seconds * 1000;
+    const seconds = Math.ceil(remainingMs / 1000);
+    $("timer-display").textContent = Math.floor(seconds / 60) + ":" + String(seconds % 60).padStart(2, "0");
+    $("timer-fill").style.transform = "scaleX(" + (remainingMs / total) + ")";
+    $("timer").classList.toggle("done", remainingMs === 0);
+    $("timer-start").textContent = deadline ? "Pause" : remainingMs === 0 ? "Restart" : remainingMs < total ? "Resume" : "Start timer";
+  }
+
+  function stopTimer() {
+    clearInterval(timerId);
+    deadline = 0;
+  }
+
+  function tick() {
+    remainingMs = Math.max(0, deadline - Date.now());
+    if (remainingMs === 0) {
+      stopTimer();
+      $("timer-status").textContent = "Time’s up.";
+    }
+    drawTimer();
+  }
+
+  function resetTimer() {
+    stopTimer();
+    remainingMs = activeQuestion.seconds * 1000;
+    $("timer-status").textContent = "";
+    drawTimer();
+  }
+
+  function pauseTimer() {
+    if (!deadline) return;
+    remainingMs = Math.max(0, deadline - Date.now());
+    stopTimer();
+    drawTimer();
+  }
+
+  function questionRow(question, showTopic = true) {
+    const rating = ratingOf(question);
+    return h("li", {}, h("a", { class: "q-row", href: questionHash(question) },
+      h("span", { class: "q-num", text: String(questionIndex.get(question.id) + 1) }),
+      h("span", { class: "q-main" },
+        h("span", { class: "q-title", text: question.title }),
+        h("span", { class: "q-sub" }, showTopic ? h("span", { text: question.topic }) : null, h("span", { text: question.type }), h("span", { text: duration(question.seconds) }))
+      ),
+      rating ? h("span", { class: "tag " + rating, text: rating === "again" ? "Practice again" : "Ready" }) : null
+    ));
+  }
+
+  function renderFilters() {
+    const options = [["all", "All topics", questions.length], ...topics.map(topic => [topic, topic, questions.filter(q => q.topic === topic).length])];
+    $("bank-filters").replaceChildren(...options.map(([key, label, count]) => {
+      const chip = h("button", { type: "button", class: "chip", "aria-pressed": String(key === filter) }, h("span", { text: label }), h("span", { class: "chip-n", text: String(count) }));
+      chip.addEventListener("click", () => {
+        filter = key;
+        for (const other of $("bank-filters").children) other.setAttribute("aria-pressed", String(other === chip));
+        renderBank();
+      });
+      return chip;
+    }));
+  }
+
+  function renderBank() {
+    const shown = filter === "all" ? topics : [filter];
+    const total = questions.filter(question => shown.includes(question.topic)).length;
+    $("bank-count").textContent = total + (total === 1 ? " question" : " questions");
+    $("bank-list").replaceChildren(...shown.map(topic => h("section", { class: "topic-block" },
+      filter === "all" ? h("h3", { text: topic }) : null,
+      h("ul", { class: "q-list" }, ...questions.filter(question => question.topic === topic).map(question => questionRow(question, filter !== "all")))
+    )));
+  }
+
+  function renderReview() {
+    const again = questions.filter(question => ratingOf(question) === "again");
+    const ready = questions.filter(question => ratingOf(question) === "ready");
+    $("again-count").textContent = again.length;
+    $("ready-count").textContent = ready.length;
+    $("unrated-count").textContent = questions.length - again.length - ready.length;
+    $("review-empty").hidden = again.length > 0;
+    $("start-review").hidden = again.length === 0;
+    if (again.length) $("start-review").href = questionHash(again[0]);
+    $("review-list").hidden = again.length === 0;
+    $("review-list").replaceChildren(...again.map(questionRow));
+    renderStrip($("review-strip"), false);
+  }
+
+  function renderConcepts(id, moveFocus) {
+    const requested = chapterOrder.includes(id);
+    if (requested) activeChapter = id;
+    for (const link of chapterLinks) {
+      if (link.dataset.chapterLink === activeChapter) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+    for (const panel of chapterPanels) panel.hidden = panel.dataset.chapter !== activeChapter;
+    $("chapter-questions").replaceChildren(...chapterQuestions[activeChapter].map(questionId => questionRow(questions[questionIndex.get(questionId)])));
+    const index = chapterOrder.indexOf(activeChapter);
+    const pages = [];
+    const previous = chapterOrder[index - 1];
+    const next = chapterOrder[index + 1];
+    if (previous) pages.push(h("a", { class: "prev", href: "#concept-" + previous }, h("span", { class: "pager-dir", text: "Previous chapter" }), h("span", { class: "pager-title", text: chapterTitles[previous] })));
+    if (next) pages.push(h("a", { class: "next", href: "#concept-" + next }, h("span", { class: "pager-dir", text: "Next chapter" }), h("span", { class: "pager-title", text: chapterTitles[next] })));
+    $("chapter-pager").replaceChildren(...pages);
+    if (moveFocus) $(requested ? "chapter-" + activeChapter : "concepts-title").focus({ preventScroll: true });
+  }
+
+  function parseHash() {
+    const raw = decodeURIComponent(location.hash.slice(1));
+    if (raw.startsWith("q-")) return { view: "practice", id: raw.slice(2) };
+    if (raw.startsWith("concept-")) return { view: "concepts", id: raw.slice(8) };
+    const [head, id] = raw.split("/");
+    if (views.includes(head)) return { view: head, id };
+    return { view: "practice" };
+  }
+
+  function renderRoute(moveFocus = false) {
+    const { view, id } = parseHash();
+    const previousView = currentView;
+    const previousQuestion = activeQuestion?.id;
+    currentView = view;
+    for (const name of views) $("view-" + name).hidden = name !== view;
+    for (const link of viewLinks) {
+      if (link.dataset.view === view) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+    if (view !== "practice") pauseTimer();
+    if (moveFocus) window.scrollTo(0, 0);
+
+    if (view === "practice") {
+      renderQuestion(questionIndex.get(id) ?? questionIndex.get(saved.last) ?? 0);
+      if (moveFocus && (previousView !== view || previousQuestion !== activeQuestion.id)) $("question-title").focus({ preventScroll: true });
+      return;
+    }
+    if (view === "concepts") renderConcepts(id, moveFocus);
+    else if (view === "bank") renderBank();
+    else renderReview();
+    if (moveFocus && view !== "concepts") $(view + "-title").focus({ preventScroll: true });
+  }
+
+  $("answer").addEventListener("input", event => {
+    recordFor(activeQuestion.id).draft = event.target.value;
+    saveProgress();
+  });
+
+  for (const button of ratingButtons) {
+    button.addEventListener("click", () => {
+      const record = recordFor(activeQuestion.id);
+      if (record.rating === button.dataset.rating) delete record.rating;
+      else record.rating = button.dataset.rating;
+      saveProgress();
+      renderRating(true);
+      renderStrip($("strip"), true);
+      updateBadge();
+    });
+  }
+
+  $("reveal").addEventListener("click", () => toggleAnswer($("answer-key").hidden));
+  const goTo = index => { location.hash = questionHash(questions[index]); };
+  $("previous").addEventListener("click", () => goTo(questionIndex.get(activeQuestion.id) - 1));
+  $("next").addEventListener("click", () => goTo(questionIndex.get(activeQuestion.id) + 1));
+  $("shuffle").addEventListener("click", () => {
+    const current = questionIndex.get(activeQuestion.id);
+    goTo((current + 1 + Math.floor(Math.random() * (questions.length - 1))) % questions.length);
+  });
+
+  $("timer-start").addEventListener("click", () => {
+    if (deadline) { pauseTimer(); return; }
+    if (!remainingMs) resetTimer();
+    deadline = Date.now() + remainingMs;
+    timerId = setInterval(tick, 100);
+    drawTimer();
+  });
+  $("timer-reset").addEventListener("click", resetTimer);
+
+  document.addEventListener("keydown", event => {
+    if (currentView !== "practice" || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.target.closest?.("textarea, input, select, [contenteditable]")) return;
+    if (event.key === "ArrowLeft" && !$("previous").disabled) { event.preventDefault(); $("previous").click(); }
+    if (event.key === "ArrowRight" && !$("next").disabled) { event.preventDefault(); $("next").click(); }
+  });
+
+  document.querySelector(".skip").addEventListener("click", event => {
+    event.preventDefault();
+    $("main").focus();
+  });
+
+  renderFilters();
+  updateBadge();
+  renderRoute();
+  window.addEventListener("hashchange", () => renderRoute(true));
+})();
+</script>
+</body>
+</html>
