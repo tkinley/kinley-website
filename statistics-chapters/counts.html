@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Model unequal sampling depth, extra variation, and relative abundance.">
+  <title>Counts, exposure, and normalization · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 6 of 8</p>
+      <h1>Counts, exposure, and normalization</h1>
+      <p class="library-lede">Model unequal sampling depth, extra variation, and relative abundance.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="In this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#offset">Exposure and offsets<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#overdispersion">The negative binomial and overdispersion<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#size-factors">Relative abundance and size factors<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#moderation">Borrowing information across features<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#transformations">Transformation for plots and models<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 6 · Counts scale with sampling depth</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Sample</th><th scope="col">Count</th><th scope="col">Library size</th><th scope="col">Count per million</th></tr></thead><tbody><tr><th scope="row">A</th><td>100</td><td>10 million</td><td>10</td></tr>
+<tr><th scope="row">B</th><td>200</td><td>20 million</td><td>10</td></tr></tbody></table></div><figcaption>The observed count doubles with exposure. Under a simple rate model the estimated rates are identical.</figcaption></figure>
+        <section class="study-lesson" id="offset" aria-labelledby="offset-title">
+  <h2 id="offset-title">Exposure and offsets</h2>
+  <p class="concept-explanation">Exposure measures the opportunity to accumulate counts. An offset is a known term added to a model’s linear predictor with coefficient fixed at 1. With a log link, the log exposure offset scales the expected count while the fitted coefficients describe rates.</p>
+  <div class="intuition"><h3>Intuition</h3><p>The more deeply you sample, the more events you can count. You want the model to expect higher counts from extra opportunity before attributing any difference to biology.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Write E[Yⱼ] = sⱼ × rⱼ. Taking logs gives log E[Yⱼ] = log(sⱼ) + log(rⱼ).</li>
+<li>In Figure 6, 100/10 = 10 and 200/20 = 10 counts per million reads.</li>
+<li>Doubling s adds log(2) to the log mean while the rate stays fixed.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Use offsets or model-specific size factors when fitting count data. Total library size alone can be inadequate if sample composition shifts.</p></div>
+</section>
+<section class="study-lesson" id="overdispersion" aria-labelledby="overdispersion-title">
+  <h2 id="overdispersion-title">The negative binomial and overdispersion</h2>
+  <p class="concept-explanation">A Poisson count has equal mean and variance. Biological count data can remain more variable than that after accounting for exposure and available covariates. A common negative binomial parameterization models variance as μ + αμ², where α is dispersion.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Specimens can have different underlying rates even within a condition. Mixing those rates adds variability beyond the randomness of counting events at a fixed rate.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>At mean μ = 20, the Poisson variance is 20.</li>
+<li>With α = 0.1, the negative binomial variance is 20 + 0.1 × 20² = 60.</li>
+<li>The SD increases from √20 ≈ 4.47 to √60 ≈ 7.75. Underestimating variance can make interval estimates too narrow.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Inspect the mean–variance relationship across features and use biological replicates to learn about dispersion.</p></div>
+</section>
+<section class="study-lesson" id="size-factors" aria-labelledby="size-factors-title">
+  <h2 id="size-factors-title">Relative abundance and size factors</h2>
+  <p class="concept-explanation">Sequencing measures composition under finite sampling depth. A very abundant feature can consume a large share of reads and change the observed shares of other features. A size-factor method uses assumptions about the bulk of features to estimate sample-to-sample scaling.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Imagine filling the same number of slots from two mixtures. Adding more of one component can reduce the representation of the rest even if their absolute amounts stayed constant.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For A = (10,20,400) and B = (20,40,400), geometric reference counts are about (14.14,28.28,400).</li>
+<li>Ratios for A are (0.707,0.707,1), and for B they are (1.414,1.414,1). Their median factors are 0.707 and 1.414.</li>
+<li>The first two features then align on the scaled count measure. This calculation depends on the choice of reference and is not a measurement of absolute concentration.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Check normalization assumptions when many features shift together. External controls or another justified reference may be needed for absolute claims.</p></div>
+</section>
+<section class="study-lesson" id="moderation" aria-labelledby="moderation-title">
+  <h2 id="moderation-title">Borrowing information across features</h2>
+  <p class="concept-explanation">Estimating a separate dispersion for every feature from a few replicates is noisy. Empirical Bayes and related methods estimate a shared pattern across features, then moderate individual estimates toward that pattern according to their information.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A feature measured only a few times cannot reliably tell you its own variability. Features with similar abundance provide a useful baseline when that sharing assumption fits.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>As a simplified illustration, combine a noisy estimate 0.40 with a trend value 0.10 using weights 0.25 and 0.75.</li>
+<li>The moderated value is 0.25 × 0.40 + 0.75 × 0.10 = 0.175.</li>
+<li>Actual methods may moderate on a transformed scale and choose strength from the data. This arithmetic illustrates the direction, not a software formula.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Distinguish moderation of variance or dispersion from shrinkage of effect sizes. They address different quantities.</p></div>
+</section>
+<section class="study-lesson" id="transformations" aria-labelledby="transformations-title">
+  <h2 id="transformations-title">Transformation for plots and models</h2>
+  <p class="concept-explanation">Transformations make visualization and modeling easier when variability changes with the mean. A log can compress large values and turn ratios into differences. The scale and assumptions that make a plot readable are not necessarily the ones a count likelihood needs.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A twofold change means the same relative change at 10 and 1,000 counts. A log scale shows equal fold changes as equal distances.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>log₂(20) − log₂(10) = log₂(20/10) = 1. The same applies to 200/100.</li>
+<li>At zero, log is undefined. Adding a constant changes low-count ratios substantially: log₂(2) − log₂(1) = 1 for a 0-to-1 change after adding 1.</li>
+<li>A count GLM uses the count and an exposure offset directly. A variance-stabilized matrix can be appropriate for exploratory PCA.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Record which matrix was used for visualization, differential analysis, or prediction. The appropriate preprocessing can differ by task.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Compare rates at unequal depths</h3>
+    <p>A feature has 100 reads in a 10-million-read library and 200 reads in a 20-million-read library. Compare the rates and explain how a count model accounts for exposure.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Both rates are 10 per million. In a log-link count model, log exposure is an offset with coefficient fixed at 1.</p></details>
+    <p><a href="../statistics-self-study.html#q-count-exposure">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Calculate extra-Poisson variability</h3>
+    <p>For μ = 20 and dispersion α = 0.1, calculate negative binomial variance using μ + αμ². Compare it to Poisson variance.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>The variance is 20 + 0.1 × 400 = 60. The Poisson variance is 20 for the same mean.</p></details>
+    <p><a href="../statistics-self-study.html#q-count-dispersion">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://doi.org/10.1186/s13059-014-0550-8">Love, Huber &amp; Anders on count models and moderation</a></li>
+<li><a href="https://bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html">Bioconductor sequencing-count workflow</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="regression.html">← Regression and model design</a>
+          <a href="multivariate.html">Multivariate structure and PCA →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

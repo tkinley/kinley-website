@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="A chapter-by-chapter statistics guide with worked math, figures, and optional practice.">
+<meta name="description" content="Learn statistics for bioinformatics through explained concepts, intuition, worked math, and chapter exercises.">
 <title>Statistics Self-Study · Kinley Tenzin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -281,7 +281,7 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
   * { animation: none !important; transition: none !important; }
 }
 </style>
-<link rel="stylesheet" href="assets/statistics-chapters.css">
+<link rel="stylesheet" href="assets/statistics-chapters.css?v=2">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -371,86 +371,89 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
   </section>
 
   <section id="view-concepts" aria-labelledby="concepts-title">
-    <h2 id="concepts-title" class="study-library-title" tabindex="-1">Study chapters</h2>
-    <p class="library-lede">Work through the examples in order or jump straight to a concept. Each chapter uses hypothetical counts.</p>
+    <h2 id="concepts-title" class="study-library-title" tabindex="-1">Statistics for bioinformatics</h2>
+    <p class="library-lede">Read the concepts, follow the worked math, then try the questions at the end of each chapter.</p>
     <div class="study-grid">
       <article class="study-card">
-    <p class="chapter-kicker">Chapter 1</p>
-    <h3><a href="statistics-chapters/measures.html">Measure an association</a></h3>
-    <p>Read a 2×2 table and calculate three effects from the same counts.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/measures.html#two-by-two">Read the 2×2 table<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/measures.html#prevalence">Calculate a proportion<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/measures.html#difference">Subtract percentage points<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/measures.html#prevalence-ratio">Divide prevalences<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/measures.html#odds-ratio">Calculate and interpret odds<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/measures.html#zero-cells">Handle a zero cell<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 1</p>
+        <h3><a href="statistics-chapters/design.html">Study design and measurement</a></h3>
+        <p>Identify the independent unit, the target comparison, and the structure that can bias it.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/design.html#units">Rows, samples, and independent units<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/design.html#replicates">Biological and technical replication<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/design.html#estimand">The target comparison<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/design.html#confounding">Confounding and batch effects<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/design.html#pairing">Pairing, blocking, and missingness<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 2</p>
-    <h3><a href="statistics-chapters/lineage.html">Compare within strata</a></h3>
-    <p>Separate a difference within groups from a difference in group composition.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/lineage.html#strata">Choose the strata<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/lineage.html#pooled-contrast">Calculate the pooled contrast<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/lineage.html#within-stratum">Calculate within-stratum contrasts<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/lineage.html#composition">Decompose a pooled rate<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/lineage.html#overlap">Diagnose lack of overlap<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/lineage.html#noncollapsibility">Distinguish confounding from noncollapsibility<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 2</p>
+        <h3><a href="statistics-chapters/probability.html">Probability and data models</a></h3>
+        <p>Use conditional probability, expectations, and distributions to describe how data could arise.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/probability.html#conditional">Conditional probability and Bayes’ rule<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/probability.html#expectation">Expectation, variance, and covariance<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/probability.html#binomial">Bernoulli and binomial models<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/probability.html#poisson">Poisson counts and exposure<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/probability.html#sampling">Population distributions and sampling distributions<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 3</p>
-    <h3><a href="statistics-chapters/weighting.html">Standardize to a target</a></h3>
-    <p>Define the estimand, calculate common weights, and see how a single observation can move it.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/weighting.html#estimand">State the estimand<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/weighting.html#stratum-differences">Find each batch’s difference<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/weighting.html#common-weights">Choose common weights<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/weighting.html#compute-standardized">Multiply and add<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/weighting.html#weight-sensitivity">Compare target choices<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/weighting.html#leverage">Compute one-observation leverage<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 3</p>
+        <h3><a href="statistics-chapters/uncertainty.html">Estimation and uncertainty</a></h3>
+        <p>Learn how estimates are constructed, why they vary, and how to interpret an interval.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/uncertainty.html#likelihood">Likelihood and maximum likelihood<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#bias-variance">Bias, variance, and shrinkage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#confidence">Confidence intervals and coverage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#boundaries">Intervals with sparse counts<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/uncertainty.html#bootstrap">Bootstrap uncertainty and resampling units<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 4</p>
-    <h3><a href="statistics-chapters/uncertainty.html">Measure uncertainty</a></h3>
-    <p>Work through standard errors, Wilson limits, Jeffreys intervals, and the boundary problem.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/uncertainty.html#standard-error">Calculate a standard error<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/uncertainty.html#wald-boundary">Why the Wald interval collapses<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/uncertainty.html#wilson">Work out a Wilson interval<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/uncertainty.html#jeffreys">Update a Jeffreys prior<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/uncertainty.html#difference-interval">Combine uncertainty for a difference<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/uncertainty.html#weighted-variance">Propagate variance through weights<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 4</p>
+        <h3><a href="statistics-chapters/testing.html">Testing and multiple comparisons</a></h3>
+        <p>Read p-values correctly, design valid tests, and control errors across many features.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/testing.html#null-p">Null hypotheses and p-values<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/testing.html#permutation">Permutation and exchangeability<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/testing.html#power">Type I error, Type II error, and power<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/testing.html#fdr">Familywise error and false discovery rate<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/testing.html#equivalence">Practical significance and equivalence<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 5</p>
-    <h3><a href="statistics-chapters/testing.html">Build an exact test</a></h3>
-    <p>Count the possible tables, construct a null distribution, and calculate a tail probability.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/testing.html#statistic">Choose the null and statistic<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/testing.html#margins">Hold the margins fixed<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/testing.html#hypergeometric">Count the possible tables<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/testing.html#combine-strata">Combine two strata<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/testing.html#tail-probability">Sum the extreme outcomes<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/testing.html#monte-carlo">Approximate the tail with random shuffles<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 5</p>
+        <h3><a href="statistics-chapters/regression.html">Regression and model design</a></h3>
+        <p>Translate a scientific comparison into a design matrix, fit a model, and check its assumptions.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/regression.html#least-squares">The linear model and least squares<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/regression.html#design-matrix">Design matrices and contrasts<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/regression.html#interaction">Interactions and conditional effects<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/regression.html#glm">Generalized linear models and link functions<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/regression.html#diagnostics">Residuals, leverage, and model checks<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 6</p>
-    <h3><a href="statistics-chapters/multiplicity.html">Testability and multiple comparisons</a></h3>
-    <p>Find informative strata, calculate p-value bounds, and work through FDR.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/multiplicity.html#informative-strata">Count informative strata<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/multiplicity.html#blind-inventory">Build a label-blind information inventory<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/multiplicity.html#attainable-p">Find the smallest attainable p-value<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/multiplicity.html#bonferroni">Control familywise error<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/multiplicity.html#bh">Apply the Benjamini–Hochberg rule<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/multiplicity.html#report-screen">Report a screen with effect sizes<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 6</p>
+        <h3><a href="statistics-chapters/counts.html">Counts, exposure, and normalization</a></h3>
+        <p>Model unequal sampling depth, extra variation, and relative abundance.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/counts.html#offset">Exposure and offsets<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/counts.html#overdispersion">The negative binomial and overdispersion<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/counts.html#size-factors">Relative abundance and size factors<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/counts.html#moderation">Borrowing information across features<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/counts.html#transformations">Transformation for plots and models<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
 <article class="study-card">
-    <p class="chapter-kicker">Chapter 7</p>
-    <h3><a href="statistics-chapters/design.html">Put the analysis together</a></h3>
-    <p>Check sampling, compare methods, and write a result that matches the evidence.</p>
-    <ul class="concept-toc"><li><a href="statistics-chapters/design.html#sampling-unit">Identify the independent unit<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/design.html#estimable">Separate estimability from testability<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/design.html#method-match">Match method to the question<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/design.html#sensitivity">Read sensitivity analyses<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/design.html#scope">Keep the claim within the design<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="statistics-chapters/design.html#write-result">Write the result in one paragraph<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
-  </article>
+        <p class="chapter-kicker">Chapter 7</p>
+        <h3><a href="statistics-chapters/multivariate.html">Multivariate structure and PCA</a></h3>
+        <p>Understand how scaling, distance, and covariance shape projections and clusters.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/multivariate.html#scaling">Centering, scaling, and distance<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/multivariate.html#covariance">Covariance and correlation<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/multivariate.html#pca">Principal components, scores, and loadings<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/multivariate.html#clustering">Clustering and linkage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/multivariate.html#high-dimensional">Rank and high-dimensional noise<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
+<article class="study-card">
+        <p class="chapter-kicker">Chapter 8</p>
+        <h3><a href="statistics-chapters/validation.html">Prediction and validation</a></h3>
+        <p>Build splits that reflect deployment and evaluate discrimination, calibration, and uncertainty.</p>
+        <ul class="concept-toc"><li><a href="statistics-chapters/validation.html#split">Training, validation, and test sets<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/validation.html#leakage">Leakage and nested cross-validation<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/validation.html#metrics">Accuracy, precision, recall, and ranking<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/validation.html#calibration">Probability calibration<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="statistics-chapters/validation.html#drift">Generalization, drift, and uncertainty<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+      </article>
     </div>
   </section>
 
@@ -495,217 +498,260 @@ footer p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 
 <script>
 const questions = [
   {
-    id: "odds-and-probability", topic: "Measures", type: "Calculate", seconds: 60,
-    title: "Same counts, three answers",
-    prompt: "A gene appears in 18 of 24 Group A genomes and 20 of 40 Group B genomes. Calculate the prevalence difference, prevalence ratio, and odds ratio for A versus B. Give one plain-English interpretation of each.",
-    data: [["Group", "Present", "Absent", "Total"], ["A", "18", "6", "24"], ["B", "20", "20", "40"]],
-    hint: "Probability uses the total as its denominator. Odds use the number without the gene.",
-    answer: "Prevalence is 75% versus 50%. The difference is +25 percentage points, the prevalence ratio is 1.5, and the odds ratio is (18/6) ÷ (20/20) = 3. The gene is 25 points more prevalent in A, 1.5 times as prevalent, and has three times the odds.",
-    checks: ["Name B as the reference.", "Use the correct denominator for each measure.", "Distinguish percentage points from relative change."],
-    follow: "What’s the relative increase in prevalence using B as the reference?",
-    reply: "(0.75 − 0.50) / 0.50 = 0.50, or a 50% increase."
+    "id": "design-unit",
+    "title": "Find the independent unit",
+    "prompt": "A study records 1,000 cells from each of 8 donors. The condition was assigned to donors. How many independent treatment assignments are there, and why?",
+    "hint": "Find the unit that received the condition.",
+    "answer": "There are 8 independent donor-level assignments. Measurements within each donor share donor-level biology and the condition.",
+    "checks": [
+      "Name the assignment unit.",
+      "Explain dependence within donors."
+    ],
+    "follow": "How could you keep individual cell measurements in the analysis?",
+    "reply": "Use a model that explicitly accounts for donor-level clustering.",
+    "topic": "Study design",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "reading-an-or", topic: "Measures", type: "Explain aloud", seconds: 45,
-    title: "Explain an odds ratio to a colleague",
-    prompt: "An interviewer says, “An odds ratio of 2 means the outcome is twice as likely.” How would you explain the result to a colleague?",
-    hint: "Convert baseline prevalence to odds, multiply the odds, then convert back.",
-    answer: "The odds are twice as high. If the reference prevalence is 50%, its odds are 1. Doubling gives odds of 2 and a prevalence of 2/3, about 67%. The prevalence ratio is about 1.33. With a rare outcome in both groups, odds and probability are close.",
-    checks: ["Define odds as p/(1−p).", "Give a concrete example.", "Mention the rare-outcome approximation."],
-    follow: "At 10% reference prevalence, what does OR = 2 imply?",
-    reply: "The reference odds are 1/9. Doubling gives 2/9, which corresponds to a prevalence of 2/11, about 18.2%."
+    "id": "design-batch",
+    "title": "Diagnose a confounded design",
+    "prompt": "All control samples run on instrument 1 and all treated samples on instrument 2. Explain the problem and propose a better design.",
+    "hint": "Inspect whether each instrument contains both groups.",
+    "answer": "The condition and instrument indicators are identical. Put observations from both conditions on both instruments so there are within-instrument comparisons.",
+    "checks": [
+      "Explain the missing comparisons.",
+      "Describe a crossed or randomized design."
+    ],
+    "follow": "Does collecting twice as many samples with the same assignment solve it?",
+    "reply": "The two variables remain aliased. Replicating the same design cannot separate them.",
+    "topic": "Study design",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "zero-cell", topic: "Measures", type: "Diagnose", seconds: 60,
-    title: "Handle a zero cell",
-    prompt: "Group A has 4 carriers out of 24. Group B has 0 out of 40. What are the raw prevalence difference and odds ratio? What would you report?",
-    hint: "Inspect the counts before choosing an inferential method.",
-    answer: "The observed difference is +16.7 percentage points. The ordinary odds ratio is infinite because the Group B odds are zero. Report the counts and difference. For inference, choose a method suited to sparse data and the design, such as exact inference for an independent table or penalized logistic regression if modeling is appropriate.",
-    checks: ["Separate the raw statistic from the uncertainty method.", "State what the zero cell does to the estimate.", "Match any method to independence and design assumptions."],
-    follow: "What if both groups have zero carriers?",
-    reply: "The observed prevalence difference is zero and the ordinary odds ratio is undefined (0/0). Both observed rates are zero, with uncertainty about the underlying prevalences."
+    "id": "probability-bayes",
+    "title": "Work from a confusion table",
+    "prompt": "Out of 1,000 samples, 50 have a condition. A screen flags 45 condition-positive and 95 condition-negative samples. What fraction of flagged samples has the condition?",
+    "hint": "Use all flagged samples as the denominator.",
+    "answer": "45/(45 + 95) ≈ 32.1%. Sensitivity answers a separate conditional probability, 45/50 = 90%.",
+    "checks": [
+      "Use the right denominator.",
+      "Distinguish positive predictive value and sensitivity."
+    ],
+    "follow": "What happens to positive predictive value if the condition becomes rarer and error rates stay fixed?",
+    "reply": "It decreases because false positives account for more of the flagged samples.",
+    "topic": "Probability",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "effect-scale", topic: "Measures", type: "Explain aloud", seconds: 45,
-    title: "Choose a scale for the audience",
-    prompt: "The same result can be expressed as +2 percentage points or a doubling from 2% to 4%. What would you lead with in an interview?",
-    hint: "State the baseline, the absolute gap, and why the scale matters.",
-    answer: "I’d give 2% and 4%, an absolute gap of +2 points and a relative ratio of 2. I’d lead with the absolute gap when the audience needs to judge size in practical terms, then give the relative change for context.",
-    checks: ["Include the baseline and both rates.", "Choose a scale that answers the question.", "Keep direction and reference group clear."],
-    follow: "What are the null values for the difference and ratio?",
-    reply: "Zero for the difference and one for the ratio, when the ratio is defined."
+    "id": "probability-covariance",
+    "title": "Use covariance in a contrast",
+    "prompt": "Two paired measurements each have variance 4, with covariance 3. Calculate the variance of their difference.",
+    "hint": "The cross term has a negative sign for a subtraction.",
+    "answer": "Var(X − Y) = 4 + 4 − 2 × 3 = 2.",
+    "checks": [
+      "Include both variances.",
+      "Subtract twice the covariance."
+    ],
+    "follow": "What would the variance be if they were independent?",
+    "reply": "4 + 4 = 8.",
+    "topic": "Probability",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "pooled-versus-stratified", topic: "Lineage", type: "Calculate + diagnose", seconds: 75,
-    title: "A strong pooled gap disappears",
-    prompt: "All genomes in lineage X carry the gene. None in Y do. Calculate the pooled and within-lineage differences. Explain why they disagree.",
-    data: [["Lineage", "A genomes", "B genomes", "Gene"], ["X", "8", "2", "All"], ["Y", "2", "8", "None"]],
-    hint: "The same gene pattern can yield different marginal rates when the group mix changes.",
-    answer: "A is 8/10 = 80% and B is 2/10 = 20%, a pooled gap of +60 points. Within X both sources are at 100%, and within Y both are at 0%, so both gaps are zero. The pooled gap comes from unequal lineage composition.",
-    checks: ["Calculate the denominators correctly.", "Compare source groups inside each lineage.", "Explain population structure in plain language."],
-    follow: "Would a 50–50 lineage mix in both groups change either within-lineage gap?",
-    reply: "Each within-lineage gap remains zero. Both pooled rates become 50%, so the pooled gap also becomes zero."
+    "id": "estimate-wilson",
+    "title": "Explain uncertainty at zero",
+    "prompt": "A small evaluation records 0 failures in 10 independent runs. Why does a Wald interval collapse, and what is the Wilson upper limit?",
+    "hint": "Use z²/(n+z²) at zero successes.",
+    "answer": "The plug-in Wald variance is zero at p̂ = 0. The Wilson upper limit is 3.8416/13.8416 ≈ 27.8%.",
+    "checks": [
+      "Explain the plug-in variance.",
+      "Keep the uncertainty interpretation."
+    ],
+    "follow": "What happens to the upper limit at 0 failures in 20 runs?",
+    "reply": "It falls to 3.8416/23.8416 ≈ 16.1%.",
+    "topic": "Estimation",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "noncollapsibility", topic: "Lineage", type: "Explain aloud", seconds: 75,
-    title: "An adjusted odds ratio moves",
-    prompt: "The pooled odds ratio is 1.7 and the lineage-adjusted odds ratio is 2.0. The two source groups have identical lineage shares. Explain how both estimates could be right.",
-    hint: "Marginal and conditional odds ratios answer different questions.",
-    answer: "Odds ratios are noncollapsible. If baseline prevalence varies by lineage, the pooled OR can differ from a common within-lineage OR even when the lineage mix is identical. I’d describe which OR each estimate targets and examine design and covariates separately when assessing confounding.",
-    checks: ["Name the marginal and conditional comparisons.", "Explain how baseline differences matter.", "Explain why the change alone cannot diagnose confounding."],
-    follow: "Can the same phenomenon happen with a prevalence difference and identical lineage shares?",
-    reply: "With identical shares, the pooled difference equals the weighted average of within-lineage differences using those shares. In particular, a common within-lineage difference is preserved."
+    "id": "estimate-bootstrap",
+    "title": "Choose a bootstrap unit",
+    "prompt": "Twelve specimens have two technical repeats each. You want uncertainty across specimens. What should you resample?",
+    "hint": "Duplicate the way independent units enter a new study.",
+    "answer": "Resample specimen IDs with replacement, retaining both repeats each time a specimen is selected. Recompute the full statistic.",
+    "checks": [
+      "Name specimens as the units.",
+      "Retain the repeated measurements."
+    ],
+    "follow": "What if the specimens were paired by donor?",
+    "reply": "Resample the donors and keep each donor’s matched specimens together.",
+    "topic": "Estimation",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "overlap", topic: "Lineage", type: "Decide", seconds: 75,
-    title: "One source is missing in a lineage",
-    prompt: "A lineage contributes 30% of the target weight, but you have no Group B genomes from that lineage. How do you handle the adjusted comparison?",
-    hint: "Ask whether the missing comparison can be calculated directly and what happens if you change the target.",
-    answer: "The within-lineage difference is unobserved. I’d report the lack of overlap, then either restrict the target to lineages with both sources and renormalize the weights, or use a model with explicit extrapolation assumptions. I’d name the target and show how the choice affects the conclusion.",
-    checks: ["Distinguish a missing group from a group with zero carriers.", "Identify the overlap problem.", "State how the estimand or assumptions change."],
-    follow: "What does the restricted estimate describe?",
-    reply: "It describes the standardized contrast among target lineages that contain both sources, with their weights rescaled to sum to one."
+    "id": "test-bh",
+    "title": "Separate the error criteria",
+    "prompt": "Apply Bonferroni and Benjamini–Hochberg at 5% to p-values 0.004, 0.018, 0.041, 0.200. Which tests are rejected?",
+    "hint": "Compare to the rank thresholds for BH and a common threshold for Bonferroni.",
+    "answer": "Bonferroni rejects rank 1. BH rejects ranks 1 and 2 because 2 is the largest passing rank.",
+    "checks": [
+      "Use 0.0125 for Bonferroni.",
+      "Explain the BH step-up rule."
+    ],
+    "follow": "What does FDR control target?",
+    "reply": "The expected proportion of false rejections among all rejections, defined as zero for no rejections.",
+    "topic": "Testing",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "what-to-adjust", topic: "Lineage", type: "Explain aloud", seconds: 60,
-    title: "Defend a covariate",
-    prompt: "Why might you adjust for lineage in a gene–source analysis? What would you check before adding it to a regression?",
-    hint: "Identify the outcome, the exposure or grouping variable, and the role of lineage.",
-    answer: "Lineage may be associated with both source and gene carriage. For a descriptive comparison, I’d check overlap and sample sizes within lineages, then compare pooled and stratified results. For a causal question, I’d also justify the adjustment set using knowledge of the data-generating process. I’d check whether ancestry-related dependence remains after adjustment.",
-    checks: ["Define the comparison and what lineage represents.", "Check sparse strata and residual dependence.", "Separate descriptive adjustment from a causal claim."],
-    follow: "What does a source-by-lineage interaction allow?",
-    reply: "It allows the source association to differ across lineages on the model’s scale. With small strata, the interaction estimates can be imprecise."
+    "id": "test-null",
+    "title": "Explain an inconclusive result",
+    "prompt": "A difference is +8 pp with an interval from −3 to +19 pp. Interpret it and explain whether it supports equivalence within ±5 pp.",
+    "hint": "Compare both endpoints with the practical margin.",
+    "answer": "The observed estimate favors A by 8 pp. The interval covers zero and positive changes that could matter. It extends outside ±5 pp, so it does not support equivalence within that margin.",
+    "checks": [
+      "Give the estimate and uncertainty.",
+      "Compare with the prespecified margin."
+    ],
+    "follow": "Can the interval be interpreted as a probability statement about this fixed parameter?",
+    "reply": "A frequentist interval describes the long-run coverage of the procedure under its assumptions.",
+    "topic": "Testing",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "weighted-calc", topic: "Weighting", type: "Calculate", seconds: 90,
-    title: "One set of counts, two summaries",
-    prompt: "Calculate the pooled prevalence difference for A versus B. Then standardize to A’s lineage mix. Explain why the signs differ.",
-    data: [["Lineage", "A present/total", "B present/total", "A − B"], ["X", "5/6", "3/18", "+66.7 pp"], ["Y", "6/18", "15/22", "−34.8 pp"]],
-    hint: "A has 6/24 in X. Use that weight and its complement for both sources.",
-    answer: "The pooled gap is 11/24 − 18/40 ≈ +0.8 points. With A’s lineage weights, 0.25 × (5/6 − 3/18) + 0.75 × (6/18 − 15/22) ≈ −9.5 points. The pooled result uses different lineage mixes for A and B. Standardization uses one mix and emphasizes lineage Y here.",
-    checks: ["Keep denominators visible.", "Use a common set of weights.", "Explain what the adjusted comparison targets."],
-    follow: "What happens if you weight the two lineages equally?",
-    reply: "The standardized difference is about +15.9 points. The two within-lineage differences stay fixed while their weights change."
+    "id": "model-interaction",
+    "title": "Calculate an interaction",
+    "prompt": "A treatment difference is +2 at site 1 and +5 at site 2. With site 1 as reference, what is the treatment-by-site interaction?",
+    "hint": "Subtract the two within-site differences.",
+    "answer": "It is +5 − +2 = +3 on the modeled outcome scale. The treatment coefficient at the reference site is +2.",
+    "checks": [
+      "State the reference site.",
+      "Interpret the difference of differences."
+    ],
+    "follow": "What would no interaction imply here?",
+    "reply": "The treatment difference would be the same at both sites on the outcome scale.",
+    "topic": "Regression",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "define-estimand", topic: "Weighting", type: "Explain aloud", seconds: 60,
-    title: "State the estimand before the method",
-    prompt: "The interviewer asks for “the adjusted effect.” State one precise estimand for the gene–source example.",
-    hint: "Specify outcome, compared groups, effect scale, and target mix.",
-    answer: "I’d estimate the A-minus-B difference in gene prevalence within each lineage, averaged using the lineage distribution of Group A. That defines the outcome, comparison, scale, and reference population. I’d report it in percentage points.",
-    checks: ["Name the outcome and reference group.", "Choose the effect scale.", "Name the target population and weights."],
-    follow: "What would full-cohort weights change?",
-    reply: "The target becomes the full cohort’s lineage mix. The summary can change when the lineage-specific differences vary."
+    "id": "model-logit",
+    "title": "Interpret a log odds coefficient",
+    "prompt": "The coefficient for a binary predictor is log(2) in a logistic regression. If baseline probability is 50%, what is the modeled probability when the predictor switches on?",
+    "hint": "Convert to odds, multiply, convert back.",
+    "answer": "Baseline odds are 1. Multiplying by 2 gives odds of 2, or probability 2/3. The modeled odds double.",
+    "checks": [
+      "Exponentiate the log coefficient.",
+      "Convert odds to probability."
+    ],
+    "follow": "Does the probability change by the same amount at a baseline probability of 10%?",
+    "reply": "No. It moves to about 18.2%, a change of about 8.2 points.",
+    "topic": "Regression",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "heterogeneity", topic: "Weighting", type: "Decide", seconds: 60,
-    title: "The effect reverses across lineages",
-    prompt: "One lineage has a +40-point difference and another has a −40-point difference. The equal-weight summary is zero. How do you present this?",
-    hint: "Separate the target-average effect from variation across strata.",
-    answer: "I’d show both lineage-specific estimates and their uncertainty, then state that the equal-weight average is zero. The average is valid for that weighting scheme, and it masks the opposite directions across lineages. I’d consider whether an interaction is estimable and whether the pattern could be sampling noise.",
-    checks: ["Report the stratum-specific directions.", "Name the target behind the average.", "Discuss uncertainty before asserting effect heterogeneity."],
-    follow: "What is the weighted difference with 75% weight on the positive lineage?",
-    reply: "0.75 × 40 + 0.25 × (−40) = +20 percentage points."
+    "id": "count-exposure",
+    "title": "Compare rates at unequal depths",
+    "prompt": "A feature has 100 reads in a 10-million-read library and 200 reads in a 20-million-read library. Compare the rates and explain how a count model accounts for exposure.",
+    "hint": "Divide by library size on the rate scale.",
+    "answer": "Both rates are 10 per million. In a log-link count model, log exposure is an offset with coefficient fixed at 1.",
+    "checks": [
+      "Compare rates rather than raw counts.",
+      "Explain the offset multiplier."
+    ],
+    "follow": "Why might total count scaling fail?",
+    "reply": "A strong shift in composition can change total library share and distort the reference scale.",
+    "topic": "Count data",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "choose-weights", topic: "Weighting", type: "Defend a choice", seconds: 75,
-    title: "Choose and defend the weights",
-    prompt: "A colleague chooses equal lineage weights, then switches to full-cohort weights because the result is more favorable. How do you respond?",
-    hint: "Start by asking what population the comparison should represent.",
-    answer: "I’d define the target first and choose a primary weighting rule based on that target. Equal weights describe an average over lineages. Cohort weights represent the cohort mix. If both are relevant, report both, explain the different targets, and identify any choice made after seeing the results.",
-    checks: ["Tie weights to a specific target.", "Distinguish primary and sensitivity analyses.", "Describe the effect of outcome-driven choices."],
-    follow: "What constraints should the reference weights meet?",
-    reply: "They should be nonnegative, sum to one, and apply identically to both groups. Identify strata without direct overlap before assigning them weight."
+    "id": "count-dispersion",
+    "title": "Calculate extra-Poisson variability",
+    "prompt": "For μ = 20 and dispersion α = 0.1, calculate negative binomial variance using μ + αμ². Compare it to Poisson variance.",
+    "hint": "Square the mean before multiplying by dispersion.",
+    "answer": "The variance is 20 + 0.1 × 400 = 60. The Poisson variance is 20 for the same mean.",
+    "checks": [
+      "Apply the model’s parameterization.",
+      "Explain what extra variance affects."
+    ],
+    "follow": "What happens when α approaches zero?",
+    "reply": "The variance approaches μ and the distribution approaches Poisson in this parameterization.",
+    "topic": "Count data",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "p-and-ci", topic: "Inference", type: "Explain aloud", seconds: 60,
-    title: "Read the estimate, interval, and p-value",
-    prompt: "The estimated prevalence gap is +8 points, with a 95% confidence interval of −3 to +19 points and p = 0.15. How would you explain it?",
-    hint: "Give magnitude, direction, precision, and compatibility with the null separately.",
-    answer: "The estimate favors A by 8 points. The interval includes zero and spans a small decrease through a potentially meaningful increase under the stated model. The p-value is the probability, under the null and test assumptions, of a result at least as extreme as the observed statistic.",
-    checks: ["Give the estimate and units.", "Acknowledge both compatible directions.", "Explain what the p-value conditions on."],
-    follow: "Would this show equivalence within ±5 percentage points?",
-    reply: "The interval extends outside ±5 points. Equivalence requires a prespecified margin and a method designed to evaluate that margin."
+    "id": "multi-pca",
+    "title": "Interpret a principal component",
+    "prompt": "A covariance matrix has eigenvalues 7 and 1. How much variance does the first component explain, and what does that tell you?",
+    "hint": "Divide the first eigenvalue by their sum.",
+    "answer": "7/8 = 87.5%. The first direction captures that share of the variance in the sampled, preprocessed data. It does not establish causation.",
+    "checks": [
+      "Calculate the proportion.",
+      "Describe the role of preprocessing."
+    ],
+    "follow": "What does a sample score represent?",
+    "reply": "Its coordinate along the component direction.",
+    "topic": "Multivariate",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "interval-interpretation", topic: "Inference", type: "Explain aloud", seconds: 45,
-    title: "Define 95% confidence",
-    prompt: "What does a 95% confidence interval mean? Explain it without relying on a formula.",
-    hint: "Think about repeating the sampling and interval construction.",
-    answer: "If we repeatedly sampled under the same design and built intervals with the same valid procedure, about 95% of those intervals would contain the fixed target quantity. That coverage depends on the design and assumptions.",
-    checks: ["Describe repeated sampling.", "Say what is fixed and what varies.", "Mention the assumptions behind coverage."],
-    follow: "What would often happen if you treated closely related genomes as independent?",
-    reply: "With positive dependence, the usual independent-observation standard errors may be too small and confidence intervals too narrow."
+    "id": "multi-rank",
+    "title": "Count possible nonzero components",
+    "prompt": "You center a matrix with 20 samples and 1,000 features. What is the maximum number of nonzero-variance principal components?",
+    "hint": "Centering removes one sample direction.",
+    "answer": "At most 19. The centered matrix has rank no larger than min(20−1, 1000).",
+    "checks": [
+      "State the rank bound.",
+      "Distinguish features from sample support."
+    ],
+    "follow": "Why is the sample covariance singular?",
+    "reply": "Its rank is at most 19 but its dimension is 1,000.",
+    "topic": "Multivariate",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "permutation", topic: "Inference", type: "Design a test", seconds: 90,
-    title: "Design a lineage-aware permutation test",
-    prompt: "You want to test a standardized prevalence difference. Explain what gets shuffled, what stays fixed, and when the shuffle is valid.",
-    hint: "Hold lineage membership and gene calls fixed. Ask whether the source labels can be exchanged within a lineage under the null.",
-    answer: "I’d predefine a statistic and tail rule, then permute source labels within each lineage under a null that makes the permitted swaps exchangeable. I’d preserve the source counts within each lineage and recompute the statistic using the same weighting rule after each shuffle. I’d compare the observed statistic with that null distribution.",
-    checks: ["Preserve the strata and per-stratum source totals.", "Name exchangeability under the null.", "Use the same statistic and weighting rule on every shuffle."],
-    follow: "19 of 999 random shuffles are at least as extreme. What Monte Carlo p-value do you report with the plus-one rule?",
-    reply: "(19 + 1) / (999 + 1) = 0.020."
+    "id": "validation-leakage",
+    "title": "Find leakage in a pipeline",
+    "prompt": "A classifier selects features using all labeled specimens, then cross-validates only the final fit. Identify the leakage and fix it.",
+    "hint": "Ask when each step sees the held-out outcomes.",
+    "answer": "Feature selection used held-out labels. Fit selection and preprocessing inside every training fold, and evaluate the complete pipeline on held-out data.",
+    "checks": [
+      "Identify the contaminated step.",
+      "Move it inside the fold."
+    ],
+    "follow": "Where does tuning happen in nested CV?",
+    "reply": "Inside inner folds built from the outer training data.",
+    "topic": "Validation",
+    "type": "Chapter practice",
+    "seconds": 60
   },
   {
-    id: "many-tests", topic: "Inference", type: "Calculate + interpret", seconds: 75,
-    title: "Read a multiple-testing result",
-    prompt: "Four valid p-values are 0.004, 0.018, 0.041, and 0.2. Apply Benjamini–Hochberg at 5%. What does the error rate target?",
-    hint: "Compare the sorted p-values to i × 0.05 / 4. Find the largest qualifying rank.",
-    answer: "The thresholds are 0.0125, 0.025, 0.0375, and 0.05. The largest qualifying rank is 2, so reject the first two hypotheses. Under the procedure’s assumptions, the target is the expected proportion of false discoveries among rejections, counting zero when there are no rejections.",
-    checks: ["Use the step-up rule and identify the test family.", "Distinguish FDR from a per-test error rate.", "Flag assumptions about dependence among p-values."],
-    follow: "How would Bonferroni at 5% differ here?",
-    reply: "The cutoff is 0.05/4 = 0.0125. Only the first hypothesis is rejected. Bonferroni targets the probability of at least one false rejection."
-  },
-  {
-    id: "dependent-data", topic: "Inference", type: "Diagnose", seconds: 75,
-    title: "How many independent observations?",
-    prompt: "A dataset has 64 genomes and 10 genetic lineages. Some genomes come from the same sampling event. What do you need to know before choosing standard errors or permutations?",
-    hint: "Genetic strata and independent sampling units can be different.",
-    answer: "I’d identify shared sampling events, collection sites, repeated isolates, and remaining relatedness. I’d decide what the defensible independent units or exchangeable blocks are. A cluster-aware model, analysis at the event level, or restricted permutations may be appropriate depending on the design and number of units.",
-    checks: ["Distinguish phylogeny from sampling design.", "Tie inference to independent units or valid swaps.", "Acknowledge limited information with few independent units."],
-    follow: "Does including lineage as a fixed effect solve every dependence problem?",
-    reply: "Lineage fixed effects address mean differences between lineages. Dependence within a sampling event can remain and requires its own treatment."
-  },
-  {
-    id: "selection-and-causality", topic: "Inference", type: "Explain aloud", seconds: 60,
-    title: "Push back on an overclaim",
-    prompt: "A selected genome collection shows a strong association between gene presence and isolation source. The interviewer asks whether this establishes a biological mechanism or generalizes to all isolates.",
-    hint: "Start with what the sample directly supports, then name what additional evidence is needed.",
-    answer: "I can report the association in the selected genomes and describe how it changes after accounting for lineage. Generalization needs a defensible target and sampling model. A mechanistic claim needs additional biological evidence. Selection, ancestry, and measurement can affect the observed association.",
-    checks: ["Name the sample the result describes.", "Separate generalizability from causation.", "Give a bounded interpretation of the evidence."],
-    follow: "Would a larger collection with the same selection process solve the problem?",
-    reply: "It could improve precision for the selected population while preserving the same selection bias."
-  },
-  {
-    id: "mock-analysis", topic: "Mock interview", type: "Case walkthrough", seconds: 120,
-    title: "Design the analysis from scratch",
-    prompt: "You get gene-presence calls and source labels for 64 selected genomes across 10 lineages. Explain how you would compare two sources, from first checks to the final result.",
-    hint: "Walk through the question, data checks, estimate, uncertainty, and interpretation.",
-    answer: "I’d define the outcome, source contrast, effect scale, and target mix. I’d check metadata, missing calls, overlap, and sample dependence. Then I’d report pooled and within-lineage counts, standardize prevalence differences if supported, and use inference matched to the sampling design. For many genes I’d define the test family and address multiplicity. I’d report the estimate, uncertainty, and limits on scope.",
-    checks: ["Start with the estimand before choosing the model.", "Check data quality, overlap, and dependence.", "Link uncertainty and multiplicity decisions to the design."],
-    follow: "What would you do first if two lineages contain only one source each?",
-    reply: "Describe the lack of overlap and reconsider the target. A directly standardized comparison needs within-lineage data from both sources wherever the target puts weight."
-  },
-  {
-    id: "mock-results", topic: "Mock interview", type: "Case walkthrough", seconds: 90,
-    title: "Explain a reversal in a results meeting",
-    prompt: "The pooled difference is +12 points, the standardized difference is −4 points, and the adjusted 95% confidence interval is −13 to +5. Give a concise verbal readout and one diagnostic you’d run.",
-    hint: "Name the comparison behind each estimate. The interval crosses zero.",
-    answer: "In the pooled data Group A is 12 points higher. Using the same lineage mix for both groups, the estimate is 4 points lower, with an interval spanning a decrease and a small increase. I’d show each lineage’s difference and weight to see whether sparse strata, unequal composition, or heterogeneous effects drive the shift.",
-    checks: ["Interpret both estimates and their targets.", "Explain the uncertainty around the adjusted estimate.", "Propose a diagnostic that could distinguish explanations."],
-    follow: "How would you explain a sensitivity analysis that changes sign again?",
-    reply: "Identify what changed. Different target weights can legitimately answer a different question, while a sign change under small perturbations to the same target may indicate an unstable result."
-  },
-  {
-    id: "mock-reporting", topic: "Mock interview", type: "Case walkthrough", seconds: 90,
-    title: "Choose what to report from a gene screen",
-    prompt: "A ranking of 2,000 genes puts one with a tiny p-value and a modest effect first. Another has a larger effect, a wide interval, and sparse counts. What goes in your summary?",
-    hint: "Decide how to present statistical evidence, magnitude, and support together.",
-    answer: "I’d report the test family and multiplicity procedure, with effect sizes, intervals, and support counts for each highlighted gene. A precise small association and a large but unstable estimate convey different evidence. I’d state the target, note sparse data, and distinguish exploratory leads from stronger results.",
-    checks: ["Put adjusted evidence beside effect size.", "Include counts, uncertainty, and the target.", "Avoid ranking biological relevance by p-value alone."],
-    follow: "How would you follow up the larger, sparse estimate?",
-    reply: "Check the underlying counts and assumptions, then seek a prespecified evaluation in a suitable independent dataset with better support."
+    "id": "validation-metrics",
+    "title": "Choose metrics for a rare event",
+    "prompt": "A classifier yields 10 true positives, 20 false positives, 5 false negatives, and 65 true negatives. Calculate precision and recall.",
+    "hint": "Use predicted positives for precision and actual positives for recall.",
+    "answer": "Precision is 10/30 ≈ 33.3%, and recall is 10/15 ≈ 66.7%.",
+    "checks": [
+      "Use the appropriate denominators.",
+      "Explain each measure in context."
+    ],
+    "follow": "Why can accuracy be misleading here?",
+    "reply": "Always predicting negative gives 85% accuracy while detecting no positives.",
+    "topic": "Validation",
+    "type": "Chapter practice",
+    "seconds": 60
   }
 ];
 </script>
@@ -717,56 +763,67 @@ const questions = [
   const views = ["practice", "concepts", "bank", "review"];
   const chapterMap = {
     "measures": {
-      "path": "statistics-chapters/measures.html",
-      "title": "Measure an association"
+      "path": "statistics-chapters/design.html#estimand"
     },
     "lineage": {
-      "path": "statistics-chapters/lineage.html",
-      "title": "Compare within strata"
+      "path": "statistics-chapters/design.html#confounding"
     },
     "weighting": {
-      "path": "statistics-chapters/weighting.html",
-      "title": "Standardize to a target"
-    },
-    "uncertainty": {
-      "path": "statistics-chapters/uncertainty.html",
-      "title": "Measure uncertainty"
-    },
-    "testing": {
-      "path": "statistics-chapters/testing.html",
-      "title": "Build an exact test"
+      "path": "statistics-chapters/regression.html#design-matrix"
     },
     "multiplicity": {
-      "path": "statistics-chapters/multiplicity.html",
-      "title": "Testability and multiple comparisons"
+      "path": "statistics-chapters/testing.html#fdr"
     },
     "design": {
       "path": "statistics-chapters/design.html",
-      "title": "Put the analysis together"
+      "title": "Study design and measurement"
+    },
+    "probability": {
+      "path": "statistics-chapters/probability.html",
+      "title": "Probability and data models"
+    },
+    "uncertainty": {
+      "path": "statistics-chapters/uncertainty.html",
+      "title": "Estimation and uncertainty"
+    },
+    "testing": {
+      "path": "statistics-chapters/testing.html",
+      "title": "Testing and multiple comparisons"
+    },
+    "regression": {
+      "path": "statistics-chapters/regression.html",
+      "title": "Regression and model design"
+    },
+    "counts": {
+      "path": "statistics-chapters/counts.html",
+      "title": "Counts, exposure, and normalization"
+    },
+    "multivariate": {
+      "path": "statistics-chapters/multivariate.html",
+      "title": "Multivariate structure and PCA"
+    },
+    "validation": {
+      "path": "statistics-chapters/validation.html",
+      "title": "Prediction and validation"
     }
   };
   const conceptForQuestion = {
-    "odds-and-probability": "measures",
-    "reading-an-or": "measures",
-    "zero-cell": "measures",
-    "effect-scale": "measures",
-    "pooled-versus-stratified": "lineage",
-    "noncollapsibility": "lineage",
-    "overlap": "lineage",
-    "what-to-adjust": "lineage",
-    "weighted-calc": "weighting",
-    "define-estimand": "weighting",
-    "heterogeneity": "weighting",
-    "choose-weights": "weighting",
-    "p-and-ci": "uncertainty",
-    "interval-interpretation": "uncertainty",
-    "permutation": "testing",
-    "many-tests": "multiplicity",
-    "mock-reporting": "multiplicity",
-    "dependent-data": "design",
-    "selection-and-causality": "design",
-    "mock-analysis": "design",
-    "mock-results": "design"
+    "design-unit": "design",
+    "design-batch": "design",
+    "probability-bayes": "probability",
+    "probability-covariance": "probability",
+    "estimate-wilson": "uncertainty",
+    "estimate-bootstrap": "uncertainty",
+    "test-bh": "testing",
+    "test-null": "testing",
+    "model-interaction": "regression",
+    "model-logit": "regression",
+    "count-exposure": "counts",
+    "count-dispersion": "counts",
+    "multi-pca": "multivariate",
+    "multi-rank": "multivariate",
+    "validation-leakage": "validation",
+    "validation-metrics": "validation"
   };
   const questionIndex = new Map(questions.map((question, index) => [question.id, index]));
   const topics = [...new Set(questions.map(question => question.topic))];

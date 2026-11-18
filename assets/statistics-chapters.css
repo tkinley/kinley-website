@@ -201,3 +201,39 @@ button, textarea, input { font: inherit; color: inherit; }
   .book main { padding-top: 20px; }
   .figure-table th, .figure-table td { padding: 7px 8px; }
 }
+
+.book-content { max-width: 850px; }
+.concept-explanation { font: 400 1.14rem/1.58 var(--serif); color: var(--ink); max-width: 72ch; }
+.intuition {
+  margin: 17px 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--ochre-mark);
+  border-radius: 0 6px 6px 0;
+  background: var(--ochre-tint);
+}
+.intuition h3, .math-label, .application h3 { font: 600 .92rem/1.35 var(--sans); margin: 0 0 4px; }
+.intuition h3 { color: var(--ochre); }
+.math-label { color: var(--blue); }
+.math-label + .math-steps { margin-top: 7px; }
+.math-steps { font-size: .94rem; }
+.application { border-top: 1px solid var(--rule); padding-top: 11px; color: var(--soft-ink); font-size: .93rem; }
+.application h3 { color: var(--ink); }
+.figure-reference { position: absolute; z-index: 1; inset-block: 0; left: 50%; border-left: 1px dashed var(--outline); }
+.figure-range, .figure-point { z-index: 2; }
+.figure-point { transform: translateX(-50%); }
+.separate-practice { display: inline-block; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--rule); font-size: .9rem; }
+.chapter-exercises {
+  padding: clamp(16px, 3vw, 26px);
+  margin: 25px 0 0;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--blue);
+  border-radius: 9px;
+  background: var(--sheet);
+  scroll-margin-top: 14px;
+}
+.chapter-exercises > h2 { font: 600 1.6rem/1.2 var(--serif); }
+.chapter-question { margin-top: 15px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.chapter-question h3 { font: 600 1rem/1.35 var(--sans); margin: 0 0 5px; }
+.chapter-question .lesson-check { border: 0; padding: 0; margin: 6px 0; }
+.chapter-question .lesson-check > p { background: var(--paper); border-radius: 6px; padding: 9px 12px; }
+.chapter-question > p:last-child { font-size: .9rem; }

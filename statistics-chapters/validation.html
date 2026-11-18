@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Build splits that reflect deployment and evaluate discrimination, calibration, and uncertainty.">
+  <title>Prediction and validation · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 8 of 8</p>
+      <h1>Prediction and validation</h1>
+      <p class="library-lede">Build splits that reflect deployment and evaluate discrimination, calibration, and uncertainty.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="In this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#split">Training, validation, and test sets<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#leakage">Leakage and nested cross-validation<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#metrics">Accuracy, precision, recall, and ranking<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#calibration">Probability calibration<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#drift">Generalization, drift, and uncertainty<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 8 · Grouped splits keep repeated samples together</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Fold role</th><th scope="col">Donors</th><th scope="col">During a fold</th></tr></thead><tbody><tr><th scope="row">Training</th><td>A, B, C</td><td>Fit scaling, feature selection, and model</td></tr>
+<tr><th scope="row">Validation</th><td>D</td><td>Apply the fitted pipeline and score predictions</td></tr></tbody></table></div><figcaption>All measurements from donor D stay in validation. Training transformations are learned without those measurements.</figcaption></figure>
+        <section class="study-lesson" id="split" aria-labelledby="split-title">
+  <h2 id="split-title">Training, validation, and test sets</h2>
+  <p class="concept-explanation">Training data fit model parameters. Validation data guide model choices such as hyperparameters and thresholds. A held-out test estimates performance for a fixed pipeline. Group or time-based splitting should reflect how new data will arrive.</p>
+  <div class="intuition"><h3>Intuition</h3><p>If a model has seen one measurement from a donor, predicting a second measurement from that donor is easier than predicting a new donor. Choose the evaluation problem that matches actual use.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Suppose 40 donors contribute one or more assay records. Assign donors, rather than individual rows, to folds.</li>
+<li>In five-fold grouped CV, hold roughly eight donors out per fold and train on the rest.</li>
+<li>Pool out-of-fold predictions or summarize fold metrics while keeping the intended performance target in view.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>When the goal is transfer to a new site, a site-held-out evaluation can be more informative than distributing each site across every fold.</p></div>
+</section>
+<section class="study-lesson" id="leakage" aria-labelledby="leakage-title">
+  <h2 id="leakage-title">Leakage and nested cross-validation</h2>
+  <p class="concept-explanation">Leakage occurs when information unavailable at prediction time influences training or evaluation. Feature selection using all outcome labels is a common example. Nested cross-validation uses inner folds for tuning and outer held-out folds for evaluating the whole tuning procedure.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Every time you choose a model using a score, you give the choice a chance to fit that score’s noise. A fresh outer evaluation accounts for that selection.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For each outer split, reserve its validation samples before fitting preprocessing or selecting features.</li>
+<li>Use inner folds on the outer training samples to select the procedure and settings.</li>
+<li>Refit the chosen procedure on outer training data. Evaluate once on outer validation. Repeat for the other outer folds.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Put scaling, imputation, feature selection, and model fitting inside the fold-specific pipeline.</p></div>
+</section>
+<section class="study-lesson" id="metrics" aria-labelledby="metrics-title">
+  <h2 id="metrics-title">Accuracy, precision, recall, and ranking</h2>
+  <p class="concept-explanation">Accuracy is the fraction correctly classified. Recall measures the share of positives detected, and precision measures the share of flags that are true positives. These metrics depend on the decision threshold. ROC and precision–recall curves summarize performance across thresholds.</p>
+  <div class="intuition"><h3>Intuition</h3><p>With a rare class, predicting every sample as negative can score well on accuracy while missing every positive. Choose the metric around the costs of misses and false alarms.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Among 100 samples, take 10 true positives, 20 false positives, 5 false negatives, and 65 true negatives.</li>
+<li>Accuracy is (10+65)/100 = 75%. Recall is 10/(10+5) ≈ 66.7%.</li>
+<li>Precision is 10/(10+20) ≈ 33.3%. A system that always says negative has 85% accuracy and zero recall.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>For rare events, report prevalence, the operating threshold, and both false positive and false negative behavior.</p></div>
+</section>
+<section class="study-lesson" id="calibration" aria-labelledby="calibration-title">
+  <h2 id="calibration-title">Probability calibration</h2>
+  <p class="concept-explanation">A calibrated model’s probabilities agree with observed frequencies in comparable groups of predictions. Discrimination describes how well scores rank positives above negatives. A monotone rescaling can preserve the ranking while changing calibration.</p>
+  <div class="intuition"><h3>Intuition</h3><p>When the model gives many samples a 70% chance, about seven in ten should be positive if those probabilities are calibrated for the target setting.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Suppose a model gives 0.8 to 100 samples. If 60 are positive, the observed fraction is 0.60, below the average prediction by 0.20.</li>
+<li>The Brier score is the average squared error of predicted probability. For that group it is [60(1−0.8)² + 40(0−0.8)²]/100 = 0.28.</li>
+<li>Estimate calibration on data separate from the model fit and use enough samples to show uncertainty around observed frequencies.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>A scoring model may need recalibration across instruments, sites, or populations even if its ranking is still useful.</p></div>
+</section>
+<section class="study-lesson" id="drift" aria-labelledby="drift-title">
+  <h2 id="drift-title">Generalization, drift, and uncertainty</h2>
+  <p class="concept-explanation">A performance estimate applies to the population and conditions represented by the test. Distribution shift can alter feature values, outcome prevalence, or the relationship between features and outcomes. Uncertainty around performance estimates depends on the number of independent test units.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A model can work on the instruments and samples it was trained around and perform differently when specimen mix or acquisition changes.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Compare performance by site, batch, and time using the same metric and a predefined evaluation plan.</li>
+<li>For uncertainty in a held-out sample, resample independent units such as donors and recompute the metric.</li>
+<li>For uncertainty from model training or tuning, include refitting in an evaluation design that targets that additional variability.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Record the model version, evaluation population, and preprocessing. Use external validation when the goal is transfer to a materially different setting.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Find leakage in a pipeline</h3>
+    <p>A classifier selects features using all labeled specimens, then cross-validates only the final fit. Identify the leakage and fix it.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Feature selection used held-out labels. Fit selection and preprocessing inside every training fold, and evaluate the complete pipeline on held-out data.</p></details>
+    <p><a href="../statistics-self-study.html#q-validation-leakage">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Choose metrics for a rare event</h3>
+    <p>A classifier yields 10 true positives, 20 false positives, 5 false negatives, and 65 true negatives. Calculate precision and recall.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Precision is 10/30 ≈ 33.3%, and recall is 10/15 ≈ 66.7%.</p></details>
+    <p><a href="../statistics-self-study.html#q-validation-metrics">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://doi.org/10.1073/pnas.102102699">Ambroise &amp; McLachlan on feature selection and validation</a></li>
+<li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="multivariate.html">← Multivariate structure and PCA</a>
+          <a href="../statistics-self-study.html#bank">Question bank →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Translate a scientific comparison into a design matrix, fit a model, and check its assumptions.">
+  <title>Regression and model design · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 5 of 8</p>
+      <h1>Regression and model design</h1>
+      <p class="library-lede">Translate a scientific comparison into a design matrix, fit a model, and check its assumptions.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="In this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#least-squares">The linear model and least squares<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#design-matrix">Design matrices and contrasts<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#interaction">Interactions and conditional effects<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#glm">Generalized linear models and link functions<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#diagnostics">Residuals, leverage, and model checks<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 5 · A fitted line leaves residuals</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">x</th><th scope="col">Observed y</th><th scope="col">Fitted y</th><th scope="col">Residual</th></tr></thead><tbody><tr><th scope="row">0</th><td>1</td><td>0.83</td><td>+0.17</td></tr>
+<tr><th scope="row">1</th><td>2</td><td>2.33</td><td>−0.33</td></tr>
+<tr><th scope="row">2</th><td>4</td><td>3.83</td><td>+0.17</td></tr></tbody></table></div><figcaption>The least-squares line is 0.833 + 1.5x. Residuals sum to zero before rounding because the fit includes an intercept.</figcaption></figure>
+        <section class="study-lesson" id="least-squares" aria-labelledby="least-squares-title">
+  <h2 id="least-squares-title">The linear model and least squares</h2>
+  <p class="concept-explanation">Linear regression writes the conditional mean as an intercept plus coefficients times predictors. The residual is the difference between the observation and its fitted mean. Ordinary least squares chooses coefficients to minimize the sum of squared residuals.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A line balances departures across observations. Large misses contribute disproportionately because errors are squared.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For x = (0,1,2) and y = (1,2,4), the sample means are x̄ = 1 and ȳ = 7/3.</li>
+<li>The slope is Σ(xᵢ − x̄)(yᵢ − ȳ) ÷ Σ(xᵢ − x̄)² = 3/2. The intercept is ȳ − 1.5 × x̄ = 5/6.</li>
+<li>At x = 1 the fitted mean is 7/3. The residual is 2 − 7/3 = −1/3.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>In a calibration analysis, the slope describes the average change in measured signal per unit of the predictor over the modeled range.</p></div>
+</section>
+<section class="study-lesson" id="design-matrix" aria-labelledby="design-matrix-title">
+  <h2 id="design-matrix-title">Design matrices and contrasts</h2>
+  <p class="concept-explanation">A design matrix translates sample metadata into predictor columns. A contrast is a defined combination of coefficients or fitted means. Careful coding lets one fitted model answer several explicit comparisons.</p>
+  <div class="intuition"><h3>Intuition</h3><p>The intercept gives a starting mean. Indicator columns add a correction when a sample belongs to a group. You can read a row by turning those switches on and off.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For a model with intercept, condition A, and batch 2, a control in batch 1 has row [1,0,0]. An A sample in batch 2 has row [1,1,1].</li>
+<li>Within batch 2, fitted means are β₀ + β₁ + β₂ for A and β₀ + β₂ for control.</li>
+<li>Their difference is β₁. The batch coefficient cancels because both means use the same batch.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Inspect encoded columns and reference levels before interpreting a coefficient from a sample metadata formula.</p></div>
+</section>
+<section class="study-lesson" id="interaction" aria-labelledby="interaction-title">
+  <h2 id="interaction-title">Interactions and conditional effects</h2>
+  <p class="concept-explanation">An interaction allows the effect of one variable to depend on another. In a two-factor linear model, the interaction coefficient measures a difference of differences on the outcome scale.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Two parallel lines imply the same condition effect in both batches. Different slopes mean the condition effect itself changes by batch.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>In site 1, means are 10 for control and 12 for treatment, giving a difference of +2.</li>
+<li>In site 2, means are 11 for control and 16 for treatment, giving a difference of +5.</li>
+<li>With site 1 as reference, the treatment coefficient is +2 and the treatment-by-site interaction is 5 − 2 = +3.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Interactions can represent condition-specific assay effects. Estimate them from a design with observations in each relevant combination.</p></div>
+</section>
+<section class="study-lesson" id="glm" aria-labelledby="glm-title">
+  <h2 id="glm-title">Generalized linear models and link functions</h2>
+  <p class="concept-explanation">A generalized linear model specifies an outcome distribution and a link that maps the conditional mean to a linear predictor. A logistic model uses log odds for binary outcomes. A count model often uses the log of the mean so fitted means stay positive.</p>
+  <div class="intuition"><h3>Intuition</h3><p>The link provides a scale on which effects add. Back-transformation tells you what the fitted change means on the outcome scale.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>In logistic regression, log[p/(1−p)] = β₀ + β₁x. For β₁ = log(2), switching x from 0 to 1 doubles the odds.</li>
+<li>At a reference p = 0.50, the odds are 1. Doubling gives odds 2, so p becomes 2/(1+2) = 0.667.</li>
+<li>At a reference p = 0.10, doubling the odds gives 2/9, so p becomes 2/11 ≈ 0.182. The same odds multiplier yields different probability changes.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Report predicted probabilities or differences alongside model-scale coefficients when the practical question is about absolute rates.</p></div>
+</section>
+<section class="study-lesson" id="diagnostics" aria-labelledby="diagnostics-title">
+  <h2 id="diagnostics-title">Residuals, leverage, and model checks</h2>
+  <p class="concept-explanation">Residuals reveal what the mean model misses. Changes in their spread can indicate unequal variance. Leverage describes how unusual an observation’s predictor values are, and influence measures how much the fit depends on it.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A point far out on the x-axis can pull a line strongly even when its residual after fitting looks modest. Inspect both the predictor position and fit sensitivity.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>If a sample has fitted value 3.2 and observed value 5.1, its residual is +1.9.</li>
+<li>Plot residuals against fitted values and batch. A fan shape suggests changing variance, while a curve suggests a missing nonlinear pattern.</li>
+<li>Refit with a documented sensitivity check if one high-leverage point drives the slope. Decide how to handle it from its measurement provenance.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>When checking model fits across many features, examine sample-level diagnostics as well as the fit for individual features.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Calculate an interaction</h3>
+    <p>A treatment difference is +2 at site 1 and +5 at site 2. With site 1 as reference, what is the treatment-by-site interaction?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>It is +5 − +2 = +3 on the modeled outcome scale. The treatment coefficient at the reference site is +2.</p></details>
+    <p><a href="../statistics-self-study.html#q-model-interaction">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Interpret a log odds coefficient</h3>
+    <p>The coefficient for a binary predictor is log(2) in a logistic regression. If baseline probability is 50%, what is the modeled probability when the predictor switches on?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Baseline odds are 1. Multiplying by 2 gives odds of 2, or probability 2/3. The modeled odds double.</p></details>
+    <p><a href="../statistics-self-study.html#q-model-logit">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="testing.html">← Testing and multiple comparisons</a>
+          <a href="counts.html">Counts, exposure, and normalization →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

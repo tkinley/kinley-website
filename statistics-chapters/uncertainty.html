@@ -5,131 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Work through standard errors, Wilson limits, Jeffreys intervals, and the boundary problem.">
-  <title>Measure uncertainty · Statistics Self-Study</title>
+  <meta name="description" content="Learn how estimates are constructed, why they vary, and how to interpret an interval.">
+  <title>Estimation and uncertainty · Statistics Self-Study</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
-  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
 </head>
 <body class="book">
   <a class="skip" href="#main">Skip to chapter</a>
-  <header class="book-top">
-    <div class="wrap">
-      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
-      <nav aria-label="Study navigation">
-        <a href="../statistics-self-study.html#concepts">All chapters</a>
-        <a href="../statistics-self-study.html#bank">Question bank</a>
-      </nav>
-    </div>
-  </header>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
   <main id="main" class="wrap">
     <header class="book-heading">
-      <p class="chapter-kicker">Chapter 4 of 7</p>
-      <h1>Measure uncertainty</h1>
-      <p class="library-lede">Work through standard errors, Wilson limits, Jeffreys intervals, and the boundary problem.</p>
+      <p class="chapter-kicker">Chapter 3 of 8</p>
+      <h1>Estimation and uncertainty</h1>
+      <p class="library-lede">Learn how estimates are constructed, why they vary, and how to interpret an interval.</p>
     </header>
     <div class="book-layout">
-      <nav class="book-index" aria-label="Concepts in this chapter">
+      <nav class="book-index" aria-label="In this chapter">
         <h2>In this chapter</h2>
-        <ul class="concept-toc"><li><a href="#standard-error">Calculate a standard error<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#wald-boundary">Why the Wald interval collapses<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#wilson">Work out a Wilson interval<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#jeffreys">Update a Jeffreys prior<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#difference-interval">Combine uncertainty for a difference<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#weighted-variance">Propagate variance through weights<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+        <ul class="concept-toc"><li><a href="#likelihood">Likelihood and maximum likelihood<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#bias-variance">Bias, variance, and shrinkage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#confidence">Confidence intervals and coverage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#boundaries">Intervals with sparse counts<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#bootstrap">Bootstrap uncertainty and resampling units<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
       </nav>
       <div class="book-content">
-        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 4 · Zero successes does not imply zero uncertainty</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">Wald</span><span class="figure-value">0%</span><div class="figure-track" aria-hidden="true"><div class="figure-range" style="--start:0%;--width:0%"></div><div class="figure-point" style="--point:0%"></div></div></div>
-<div class="figure-row"><span class="figure-label">Wilson</span><span class="figure-value">0% to 27.75%</span><div class="figure-track" aria-hidden="true"><div class="figure-range" style="--start:0%;--width:27.75%"></div><div class="figure-point" style="--point:0%"></div></div></div></div><figcaption>For 0 successes in 10 trials, both methods start from an observed rate of 0%. The Wald calculation collapses, while Wilson allows a range of population rates.</figcaption></figure>
-        <section class="study-lesson" id="standard-error" aria-labelledby="standard-error-title">
-    <p class="chapter-kicker">Concept 4.1</p>
-    <h2 id="standard-error-title">Calculate a standard error</h2>
-    <p class="lesson-lead">Assume 100 independent, comparable binary observations and 40 successes.</p>
-    <ol class="math-steps"><li>Estimate p with 40/100 = 0.40.</li>
-<li>The plug-in variance of the proportion is 0.40 × 0.60 ÷ 100 = 0.0024.</li>
-<li>Take its square root: SE ≈ 0.049, or 4.9 percentage points.</li></ol>
-    <p class="math-conclusion">The SE measures sampling variability under the model. A valid 95% confidence interval procedure covers the fixed target about 95% of the time across repetitions under its assumptions.</p>
-    <details class="lesson-check">
-      <summary>Try it · What happens if the sample size quadruples and the rate stays fixed?</summary>
-      <p>The SE is halved because it scales with 1/√n under independence.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="wald-boundary" aria-labelledby="wald-boundary-title">
-    <p class="chapter-kicker">Concept 4.2</p>
-    <h2 id="wald-boundary-title">Why the Wald interval collapses</h2>
-    <p class="lesson-lead">A normal-approximation interval takes the estimate plus or minus 1.96 standard errors.</p>
-    <ol class="math-steps"><li>At 0/10, the observed proportion is zero.</li>
-<li>The plug-in SE is √(0 × 1 ÷ 10) = 0.</li>
-<li>The Wald formula yields [0, 0]. Yet if the true p were 0.10, the chance of seeing zero successes would be 0.9¹⁰ ≈ 0.35.</li></ol>
-    <p class="math-conclusion">The zero-width interval is a failure of the plug-in approximation at the boundary.</p>
-    <details class="lesson-check">
-      <summary>Try it · What happens in the same formula at 10/10?</summary>
-      <p>The plug-in SE is again zero, and the formula collapses to [1, 1].</p>
-    </details>
-  </section>
-<section class="study-lesson" id="wilson" aria-labelledby="wilson-title">
-    <p class="chapter-kicker">Concept 4.3</p>
-    <h2 id="wilson-title">Work out a Wilson interval</h2>
-    <p class="lesson-lead">Wilson inverts a score test whose standard error depends on the hypothesized p. At an observed zero, the simplified upper limit is easy to calculate.</p>
-    <ol class="math-steps"><li>Use z = 1.96, so z² ≈ 3.8416.</li>
-<li>For x = 0 and n = 10, the upper limit is z² ÷ (n + z²).</li>
-<li>Compute 3.8416 ÷ 13.8416 ≈ 0.2775. The lower limit is zero.</li></ol>
-    <p class="math-conclusion">The Wilson 95% interval is approximately [0%, 27.8%].</p>
-    <details class="lesson-check">
-      <summary>Try it · What is the Wilson upper limit for 0/20?</summary>
-      <p>3.8416 ÷ 23.8416 ≈ 16.1%.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="jeffreys" aria-labelledby="jeffreys-title">
-    <p class="chapter-kicker">Concept 4.4</p>
-    <h2 id="jeffreys-title">Update a Jeffreys prior</h2>
-    <p class="lesson-lead">A Bayesian interval starts with a prior for p and updates it with the binomial likelihood.</p>
-    <ol class="math-steps"><li>Use the Jeffreys prior Beta(½, ½) for one binomial rate.</li>
-<li>After x successes in n trials, update to Beta(x + ½, n − x + ½).</li>
-<li>At 0/10 the posterior is Beta(0.5, 10.5). Take its 2.5th and 97.5th percentiles for an equal-tailed 95% credible interval.</li></ol>
-    <p class="math-conclusion">The interval describes posterior uncertainty conditional on the model, prior, and data.</p>
-    <details class="lesson-check">
-      <summary>Try it · What is the posterior at 6/10?</summary>
-      <p>Beta(6.5, 4.5).</p>
-    </details>
-  </section>
-<section class="study-lesson" id="difference-interval" aria-labelledby="difference-interval-title">
-    <p class="chapter-kicker">Concept 4.5</p>
-    <h2 id="difference-interval-title">Combine uncertainty for a difference</h2>
-    <p class="lesson-lead">A confidence interval for A − B needs uncertainty from both group rates. Newcombe’s Wilson method combines asymmetric offsets for independent proportions.</p>
-    <ol class="math-steps"><li>Suppose A = 6/10 and B = 3/10, giving an estimate of 0.30. Their Wilson intervals are about [0.3127, 0.8318] and [0.1078, 0.6032].</li>
-<li>For the lower offset use A’s distance down and B’s distance up: √[(0.60 − 0.3127)² + (0.6032 − 0.30)²] ≈ 0.4177.</li>
-<li>For the upper offset use A’s distance up and B’s distance down: √[(0.8318 − 0.60)² + (0.30 − 0.1078)²] ≈ 0.3011. Apply the offsets to 0.30.</li></ol>
-    <p class="math-conclusion">The resulting interval is about [−11.8, +60.1] pp. The sample estimates a +30 pp gap with substantial uncertainty.</p>
-    <details class="lesson-check">
-      <summary>Try it · Why does the lower bound use B’s upper offset?</summary>
-      <p>Increasing the subtracted B rate decreases A − B.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="weighted-variance" aria-labelledby="weighted-variance-title">
-    <p class="chapter-kicker">Concept 4.6</p>
-    <h2 id="weighted-variance-title">Propagate variance through weights</h2>
-    <p class="lesson-lead">For fixed weights and independent stratum-level estimates, use squared weights when combining variances.</p>
-    <ol class="math-steps"><li>Let the stratum SEs be 0.10 and 0.20 and the weights be 0.25 and 0.75.</li>
-<li>Add weighted variances: 0.25² × 0.10² + 0.75² × 0.20² = 0.023125.</li>
-<li>Take the square root: SE ≈ 0.152. If the estimates are dependent, the variance also includes covariance terms.</li></ol>
-    <p class="math-conclusion">The 75%-weighted stratum contributes most of the variability in this example.</p>
-    <details class="lesson-check">
-      <summary>Try it · Why square the weights?</summary>
-      <p>Multiplying a random variable by w multiplies its variance by w².</p>
-    </details>
-  </section>
-        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-p-and-ci">Read the estimate, interval, and p-value</a></li>
-<li><a href="../statistics-self-study.html#q-interval-interpretation">Define 95% confidence</a></li></ul></section><section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://doi.org/10.1214/ss/1009213286">Brown, Cai &amp; DasGupta on binomial intervals</a></li>
-<li><a href="https://pubmed.ncbi.nlm.nih.gov/9595617/">Newcombe on differences between independent proportions</a></li></ul></section>
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 3 · Repeated sampling moves the interval</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">Sample A</span><span class="figure-value">32% to 61%</span><div class="figure-track" aria-hidden="true"><span class="figure-reference"></span><span class="figure-range" style="--start:32%;--width:29%"></span><span class="figure-point" style="--point:46%"></span></div></div>
+<div class="figure-row"><span class="figure-label">Sample B</span><span class="figure-value">40% to 69%</span><div class="figure-track" aria-hidden="true"><span class="figure-reference"></span><span class="figure-range" style="--start:40%;--width:29%"></span><span class="figure-point" style="--point:54%"></span></div></div>
+<div class="figure-row"><span class="figure-label">Sample C</span><span class="figure-value">18% to 46%</span><div class="figure-track" aria-hidden="true"><span class="figure-reference"></span><span class="figure-range" style="--start:18%;--width:28%"></span><span class="figure-point" style="--point:31%"></span></div></div></div><figcaption>The bars are illustrative intervals for one fixed target of 50%. The first two cover it and the third misses. Three draws are too few to estimate coverage.</figcaption></figure>
+        <section class="study-lesson" id="likelihood" aria-labelledby="likelihood-title">
+  <h2 id="likelihood-title">Likelihood and maximum likelihood</h2>
+  <p class="concept-explanation">A likelihood measures how the observed data support different parameter values under a model. Once the data are fixed, you vary the parameter and compare likelihoods. The maximum likelihood estimate is the parameter value that makes the observed data most likely.</p>
+  <div class="intuition"><h3>Intuition</h3><p>The same eight successes look more plausible under a high success rate than under a low one. For independent observations, logs turn products of probabilities into a sum.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For 8 successes in 10 Bernoulli trials, the likelihood is proportional to p⁸(1 − p)².</li>
+<li>The log-likelihood is 8 log(p) + 2 log(1 − p) plus a constant. Its derivative is 8/p − 2/(1 − p).</li>
+<li>Setting this to zero gives 8(1 − p) = 2p, so p̂ = 0.8. The second derivative is negative at the solution.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Likelihood-based models fit assay pass rates, abundance counts, and outcome probabilities by choosing an appropriate distribution and mean structure.</p></div>
+</section>
+<section class="study-lesson" id="bias-variance" aria-labelledby="bias-variance-title">
+  <h2 id="bias-variance-title">Bias, variance, and shrinkage</h2>
+  <p class="concept-explanation">Bias is the difference between an estimator’s expected value and the target. Variance describes how much the estimate fluctuates across samples. Mean squared error decomposes into variance plus squared bias. Shrinkage can improve accuracy by accepting some bias in exchange for reduced variance.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A noisy estimate rests on sparse evidence. Pulling it toward a shared baseline limits how far random noise can send it. Strong evidence should generally move the estimate less toward the baseline.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>An unbiased estimate with variance 0.09 has MSE 0.09.</li>
+<li>A shrunken estimate with bias −0.10 and variance 0.04 has MSE 0.04 + 0.10² = 0.05.</li>
+<li>The advantage depends on how far the target is from the shrinkage center and how much noise is removed.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Across thousands of features, shrinkage can stabilize effect sizes and variance estimates. Report the method and the scale used.</p></div>
+</section>
+<section class="study-lesson" id="confidence" aria-labelledby="confidence-title">
+  <h2 id="confidence-title">Confidence intervals and coverage</h2>
+  <p class="concept-explanation">A confidence interval procedure is designed to cover a fixed parameter at a stated long-run rate under its assumptions. The estimate and interval endpoints vary across samples. Its width reflects sampling uncertainty on the effect scale.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Imagine drawing many studies and marking their intervals on the same ruler. The target sits in one place, and the intervals move around it.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Under an applicable normal approximation, estimate ± 1.96 × SE gives an approximate 95% interval.</li>
+<li>For a difference estimate of 0.08 with SE 0.056, the interval is 0.08 ± 0.1098, or about [−0.03, 0.19].</li>
+<li>On the percentage-point scale, this runs from about −3 to +19. Interpretation depends on the target and the assumptions used to compute the SE.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Report intervals with effect measures. An inconclusive directional comparison can still rule out effects outside the interval under the model.</p></div>
+</section>
+<section class="study-lesson" id="boundaries" aria-labelledby="boundaries-title">
+  <h2 id="boundaries-title">Intervals with sparse counts</h2>
+  <p class="concept-explanation">The Wald interval plugs an observed rate into its own standard error. At rates of zero or one, this formula collapses to zero width. Wilson’s score interval uses the hypothesized probability inside the variance and retains uncertainty near a boundary.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Observing zero failures in ten runs is plausible even if the true failure rate is 10%. The sample allows a range of plausible rates.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For 0/10, the Wald standard error is √(0 × 1/10) = 0. It produces [0, 0].</li>
+<li>At zero successes, the Wilson 95% upper limit is z²/(n + z²), with z = 1.96.</li>
+<li>Compute 3.8416/13.8416 ≈ 0.278. The lower limit is zero.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Small assay studies and low counts need interval methods suited to sparse data, the sampling design, and the quantity being estimated.</p></div>
+</section>
+<section class="study-lesson" id="bootstrap" aria-labelledby="bootstrap-title">
+  <h2 id="bootstrap-title">Bootstrap uncertainty and resampling units</h2>
+  <p class="concept-explanation">The nonparametric bootstrap approximates the sampling distribution by repeatedly sampling observed units with replacement and recalculating the statistic. Its validity depends on how representative those units are and whether the resampling scheme respects the design.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Treat the observed sample as a stand-in for the population. Resample at the same level at which a new study would collect independently sampled units.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For 12 independent specimens, a bootstrap draw samples 12 specimen IDs with replacement.</li>
+<li>Recompute the mean difference or model statistic on each draw.</li>
+<li>Use the SD of the resampled estimates as a bootstrap SE. If specimens contain technical repeats, carry their repeats along when a specimen is drawn.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>For multi-sample assays, a specimen bootstrap and a record bootstrap answer different questions about variability.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Explain uncertainty at zero</h3>
+    <p>A small evaluation records 0 failures in 10 independent runs. Why does a Wald interval collapse, and what is the Wilson upper limit?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>The plug-in Wald variance is zero at p̂ = 0. The Wilson upper limit is 3.8416/13.8416 ≈ 27.8%.</p></details>
+    <p><a href="../statistics-self-study.html#q-estimate-wilson">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Choose a bootstrap unit</h3>
+    <p>Twelve specimens have two technical repeats each. You want uncertainty across specimens. What should you resample?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Resample specimen IDs with replacement, retaining both repeats each time a specimen is selected. Recompute the full statistic.</p></details>
+    <p><a href="../statistics-self-study.html#q-estimate-bootstrap">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://doi.org/10.1214/ss/1009213286">Brown, Cai &amp; DasGupta on binomial intervals</a></li>
+<li><a href="https://doi.org/10.1214/aos/1176344552">Efron’s bootstrap paper</a></li></ul></section>
         <nav class="book-pager" aria-label="Previous and next chapters">
-          <a href="weighting.html">← Standardize to a target</a>
-          <a href="testing.html">Build an exact test →</a>
+          <a href="probability.html">← Probability and data models</a>
+          <a href="testing.html">Testing and multiple comparisons →</a>
         </nav>
       </div>
     </div>
   </main>
-  
 </body>
 </html>

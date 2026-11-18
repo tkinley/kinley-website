@@ -5,130 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Count the possible tables, construct a null distribution, and calculate a tail probability.">
-  <title>Build an exact test · Statistics Self-Study</title>
+  <meta name="description" content="Read p-values correctly, design valid tests, and control errors across many features.">
+  <title>Testing and multiple comparisons · Statistics Self-Study</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
-  <link rel="stylesheet" href="../assets/statistics-chapters.css">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
 </head>
 <body class="book">
   <a class="skip" href="#main">Skip to chapter</a>
-  <header class="book-top">
-    <div class="wrap">
-      <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
-      <nav aria-label="Study navigation">
-        <a href="../statistics-self-study.html#concepts">All chapters</a>
-        <a href="../statistics-self-study.html#bank">Question bank</a>
-      </nav>
-    </div>
-  </header>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
   <main id="main" class="wrap">
     <header class="book-heading">
-      <p class="chapter-kicker">Chapter 5 of 7</p>
-      <h1>Build an exact test</h1>
-      <p class="library-lede">Count the possible tables, construct a null distribution, and calculate a tail probability.</p>
+      <p class="chapter-kicker">Chapter 4 of 8</p>
+      <h1>Testing and multiple comparisons</h1>
+      <p class="library-lede">Read p-values correctly, design valid tests, and control errors across many features.</p>
     </header>
     <div class="book-layout">
-      <nav class="book-index" aria-label="Concepts in this chapter">
+      <nav class="book-index" aria-label="In this chapter">
         <h2>In this chapter</h2>
-        <ul class="concept-toc"><li><a href="#statistic">Choose the null and statistic<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#margins">Hold the margins fixed<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#hypergeometric">Count the possible tables<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#combine-strata">Combine two strata<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#tail-probability">Sum the extreme outcomes<span class="arrow" aria-hidden="true">↗</span></a></li>
-<li><a href="#monte-carlo">Approximate the tail with random shuffles<span class="arrow" aria-hidden="true">↗</span></a></li></ul>
+        <ul class="concept-toc"><li><a href="#null-p">Null hypotheses and p-values<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#permutation">Permutation and exchangeability<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#power">Type I error, Type II error, and power<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#fdr">Familywise error and false discovery rate<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#equivalence">Practical significance and equivalence<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
       </nav>
       <div class="book-content">
-        <figure class="study-figure" id="worked-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 5 · One stratum’s exact null distribution</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">A gets 0 successes</span><span class="figure-value">16.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:16.7%"></div></div></div>
-<div class="figure-row"><span class="figure-label">A gets 1 success</span><span class="figure-value">66.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:66.7%"></div></div></div>
-<div class="figure-row"><span class="figure-label">A gets 2 successes</span><span class="figure-value">16.7%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:16.7%"></div></div></div></div><figcaption>Two success labels and two failure labels are assigned to groups of size 2. The three possible counts have probabilities 1/6, 4/6, and 1/6.</figcaption></figure>
-        <section class="study-lesson" id="statistic" aria-labelledby="statistic-title">
-    <p class="chapter-kicker">Concept 5.1</p>
-    <h2 id="statistic-title">Choose the null and statistic</h2>
-    <p class="lesson-lead">Consider a permutation test for a difference in pass rates across two production settings.</p>
-    <ol class="math-steps"><li>Specify the statistic before looking at the result, such as the standardized difference.</li>
-<li>Use a null under which the permitted label assignments are exchangeable.</li>
-<li>Decide what counts as extreme. This chapter uses absolute distance from zero for centered two-sided statistics.</li></ol>
-    <p class="math-conclusion">The p-value depends on the null, the statistic, and the tail rule.</p>
-    <details class="lesson-check">
-      <summary>Try it · What changes if you choose a one-sided test?</summary>
-      <p>Only results in the prespecified direction count toward the tail probability.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="margins" aria-labelledby="margins-title">
-    <p class="chapter-kicker">Concept 5.2</p>
-    <h2 id="margins-title">Hold the margins fixed</h2>
-    <p class="lesson-lead">In one stratum there are four observations, two A labels, and two successes.</p>
-    <ol class="math-steps"><li>Fix the four outcome labels and choose which two observations receive A labels.</li>
-<li>Count assignments: choose 2 of 4, giving 4 × 3 ÷ 2 = 6.</li>
-<li>The number of successes in A can be 0, 1, or 2. B gets the remaining successes.</li></ol>
-    <p class="math-conclusion">The stratum’s row totals and total successes stay fixed across the randomization.</p>
-    <details class="lesson-check">
-      <summary>Try it · Does the test shuffle all observations across strata?</summary>
-      <p>No. A blocked shuffle stays inside each stratum and preserves the A and B totals there.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="hypergeometric" aria-labelledby="hypergeometric-title">
-    <p class="chapter-kicker">Concept 5.3</p>
-    <h2 id="hypergeometric-title">Count the possible tables</h2>
-    <p class="lesson-lead">The three possible tables have different numbers of underlying label assignments.</p>
-    <ol class="math-steps"><li>To give A no successes, pick both failures: 1 way.</li>
-<li>To give A one success, pick one of two successes and one of two failures: 2 × 2 = 4 ways.</li>
-<li>To give A two successes, pick both successes: 1 way. Divide each count by 6.</li></ol>
-    <p class="math-conclusion">The success count follows a hypergeometric distribution under this fixed-margin null.</p>
-    <details class="lesson-check">
-      <summary>Try it · Would giving the three tables equal probability be valid here?</summary>
-      <p>No. The middle table represents four of the six equally likely assignments.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="combine-strata" aria-labelledby="combine-strata-title">
-    <p class="chapter-kicker">Concept 5.4</p>
-    <h2 id="combine-strata-title">Combine two strata</h2>
-    <p class="lesson-lead">Take two independent strata with the same margins. Let S be the sum of the two A success counts.</p>
-    <ol class="math-steps"><li>Each count has weights (1, 4, 1) out of 6.</li>
-<li>Multiply and group by the sum. For S = 2 there are 1×1 + 4×4 + 1×1 = 18 assignments.</li>
-<li>Across S = 0, 1, 2, 3, 4, the assignment counts are 1, 8, 18, 8, 1 out of 36.</li></ol>
-    <p class="math-conclusion">Center S at its null expectation of 2 to measure distance from the null.</p>
-    <details class="lesson-check">
-      <summary>Try it · What is the probability that S = 3?</summary>
-      <p>8/36 ≈ 0.222.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="tail-probability" aria-labelledby="tail-probability-title">
-    <p class="chapter-kicker">Concept 5.5</p>
-    <h2 id="tail-probability-title">Sum the extreme outcomes</h2>
-    <p class="lesson-lead">Suppose the observed value is S = 4. Use the two-sided rule |S − 2|.</p>
-    <ol class="math-steps"><li>The observed distance from 2 is |4 − 2| = 2.</li>
-<li>The outcomes at least that far from 2 are S = 0 and S = 4.</li>
-<li>Add the probabilities: (1 + 1) ÷ 36 = 0.0556.</li></ol>
-    <p class="math-conclusion">The exact two-sided p-value is about 0.056 even at the most extreme table.</p>
-    <details class="lesson-check">
-      <summary>Try it · What is the one-sided upper-tail probability at S = 4?</summary>
-      <p>1/36 ≈ 0.0278.</p>
-    </details>
-  </section>
-<section class="study-lesson" id="monte-carlo" aria-labelledby="monte-carlo-title">
-    <p class="chapter-kicker">Concept 5.6</p>
-    <h2 id="monte-carlo-title">Approximate the tail with random shuffles</h2>
-    <p class="lesson-lead">When the number of assignments is too large to enumerate, sample valid shuffles and recompute the same statistic each time.</p>
-    <ol class="math-steps"><li>Draw B = 999 random permutations and count the b = 19 results at least as extreme as observed.</li>
-<li>Use the plus-one construction: (b + 1) ÷ (B + 1).</li>
-<li>Compute 20 ÷ 1,000 = 0.020. Report the shuffle design and the number of draws.</li></ol>
-    <p class="math-conclusion">The Monte Carlo resolution with 999 draws is 1/1,000. Exact test resolution depends on the possible tables and their probabilities.</p>
-    <details class="lesson-check">
-      <summary>Try it · With 999 draws and zero extreme shuffles, what do you report?</summary>
-      <p>The plus-one calculation gives 1/1,000 = 0.001.</p>
-    </details>
-  </section>
-        <section class="book-extras"><h2>Practice this chapter</h2><ul><li><a href="../statistics-self-study.html#q-permutation">Design a lineage-aware permutation test</a></li></ul></section><section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://arxiv.org/abs/1603.05766">Phipson &amp; Smyth on randomly drawn permutations</a></li></ul></section>
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 4 · A Benjamini–Hochberg calculation</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Rank i</th><th scope="col">Ordered p-value</th><th scope="col">i × 0.05 / 4</th><th scope="col">Decision</th></tr></thead><tbody><tr><th scope="row">1</th><td>0.004</td><td>0.0125</td><td>Reject</td></tr>
+<tr><th scope="row">2</th><td>0.018</td><td>0.0250</td><td>Reject</td></tr>
+<tr><th scope="row">3</th><td>0.041</td><td>0.0375</td><td>Retain</td></tr>
+<tr><th scope="row">4</th><td>0.200</td><td>0.0500</td><td>Retain</td></tr></tbody></table></div><figcaption>Rank 2 is the largest rank with pᵢ ≤ i × 0.05/4. The step-up procedure rejects ranks 1 and 2.</figcaption></figure>
+        <section class="study-lesson" id="null-p" aria-labelledby="null-p-title">
+  <h2 id="null-p-title">Null hypotheses and p-values</h2>
+  <p class="concept-explanation">A null hypothesis specifies a reference explanation, such as a zero mean difference. A test statistic measures departure from that reference. The p-value is the probability, under the null and test assumptions, of a statistic at least as extreme as observed using the specified tail rule.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A reference distribution tells you how far noise can push the statistic when the null model holds. An unusual statistic is evidence about compatibility with that reference.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For an estimate of 0.10 with a null-compatible SE of 0.05, z = (0.10 − 0)/0.05 = 2.</li>
+<li>Under a standard-normal null, the two-sided tail probability is P(|Z| ≥ 2) ≈ 0.0455.</li>
+<li>A p-value depends on precision as well as effect size. The same 0.10 effect with SE 0.10 gives z = 1 and p ≈ 0.317.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>When reading a feature table, look at estimated effect, precision, and design together. A p-value alone does not identify a large effect.</p></div>
+</section>
+<section class="study-lesson" id="permutation" aria-labelledby="permutation-title">
+  <h2 id="permutation-title">Permutation and exchangeability</h2>
+  <p class="concept-explanation">A permutation test replaces a theoretical null with a reference distribution built from permissible label assignments. It requires exchangeability for the chosen swaps under the test’s null. Blocks, pairs, and repeated measurements limit which swaps the design supports.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A shuffled assignment should look like something the original study could plausibly have produced under the null. Swapping between unrelated batches can change the design itself.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>In one block with two success and two failure labels, place two records in group A. There are 6 equally likely assignments.</li>
+<li>The A success counts 0, 1, and 2 occur in 1, 4, and 1 assignments respectively.</li>
+<li>A two-sided absolute-deviation test centered at 1 gives p = (1 + 1)/6 = 0.333 if A gets both successes. Discrete tests can have coarse resolution.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>For paired comparisons, preserve pairs. For blocked comparisons, justify swaps within blocks before interpreting a tail probability.</p></div>
+</section>
+<section class="study-lesson" id="power" aria-labelledby="power-title">
+  <h2 id="power-title">Type I error, Type II error, and power</h2>
+  <p class="concept-explanation">Type I error is rejecting a true null. Type II error is failing to reject under a specified alternative. Power is one minus the Type II error probability, for that alternative and design. Sample size, noise, effect size, and thresholds affect power.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Two overlapping sampling distributions describe results under the null and under a particular alternative. The rejection threshold controls how much of each distribution falls into the rejection region.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Suppose a prespecified directional test rejects when Z &gt; 1.645, giving α ≈ 0.05 under Z ~ Normal(0, 1).</li>
+<li>If a meaningful effect shifts the mean of Z to 2 while keeping its SD at 1, power is P(Z &gt; 1.645 | mean 2).</li>
+<li>Standardize: P(Normal(0,1) &gt; −0.355) ≈ 0.64.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>A larger sample can improve power by decreasing the SE. Increasing the number of technical records per specimen has a different effect from recruiting independent specimens.</p></div>
+</section>
+<section class="study-lesson" id="fdr" aria-labelledby="fdr-title">
+  <h2 id="fdr-title">Familywise error and false discovery rate</h2>
+  <p class="concept-explanation">Familywise error rate is the probability of at least one false rejection in a defined test family. False discovery rate (FDR) is the expected fraction of false rejections among rejections, with that fraction defined as zero if nothing is rejected. The two criteria support different decisions.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A short list for expensive confirmatory work may need tight familywise control. An exploratory screen often accepts some false discoveries to find more signals, then evaluates follow-up evidence.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>With four tests at 5% familywise error, Bonferroni uses 0.05/4 = 0.0125. In Figure 4 only the first test passes.</li>
+<li>For BH at 5% FDR, sort the p-values and find the largest passing rank using i × 0.05/4.</li>
+<li>Here the largest is 2, so BH also rejects the second test. This guarantee uses valid p-values and assumptions about their dependence.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Define the family before selecting results. Include effect sizes and supporting counts when presenting discoveries.</p></div>
+</section>
+<section class="study-lesson" id="equivalence" aria-labelledby="equivalence-title">
+  <h2 id="equivalence-title">Practical significance and equivalence</h2>
+  <p class="concept-explanation">A comparison can be statistically detectable and too small to matter. Conversely, a wide interval can include both no effect and a meaningful effect. Equivalence testing requires a margin defined by the application and evidence precise enough to support it.</p>
+  <div class="intuition"><h3>Intuition</h3><p>An assay team can decide that a shift of less than 5 percentage points is operationally negligible. That defines a target region for the interval.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>With margin ±5 pp, an interval [−2, 3] lies within the negligible region.</li>
+<li>An interval [−9, 5] crosses beyond the lower margin. Its inclusion of zero still leaves meaningful decreases compatible with the data.</li>
+<li>For two one-sided tests at α = 0.05, the matching two-sided confidence level is generally 90% when the tests and interval use the same construction.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>When comparing platforms, state the smallest difference that changes the scientific decision before judging the estimate.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Separate the error criteria</h3>
+    <p>Apply Bonferroni and Benjamini–Hochberg at 5% to p-values 0.004, 0.018, 0.041, 0.200. Which tests are rejected?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Bonferroni rejects rank 1. BH rejects ranks 1 and 2 because 2 is the largest passing rank.</p></details>
+    <p><a href="../statistics-self-study.html#q-test-bh">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Explain an inconclusive result</h3>
+    <p>A difference is +8 pp with an interval from −3 to +19 pp. Interpret it and explain whether it supports equivalence within ±5 pp.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>The observed estimate favors A by 8 pp. The interval covers zero and positive changes that could matter. It extends outside ±5 pp, so it does not support equivalence within that margin.</p></details>
+    <p><a href="../statistics-self-study.html#q-test-null">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">ASA statement on p-values</a></li>
+<li><a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">Benjamini &amp; Hochberg on false discovery rate</a></li></ul></section>
         <nav class="book-pager" aria-label="Previous and next chapters">
-          <a href="uncertainty.html">← Measure uncertainty</a>
-          <a href="multiplicity.html">Testability and multiple comparisons →</a>
+          <a href="uncertainty.html">← Estimation and uncertainty</a>
+          <a href="regression.html">Regression and model design →</a>
         </nav>
       </div>
     </div>
   </main>
-  
 </body>
 </html>

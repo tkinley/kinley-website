@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Understand how scaling, distance, and covariance shape projections and clusters.">
+  <title>Multivariate structure and PCA · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 7 of 8</p>
+      <h1>Multivariate structure and PCA</h1>
+      <p class="library-lede">Understand how scaling, distance, and covariance shape projections and clusters.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="In this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#scaling">Centering, scaling, and distance<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#covariance">Covariance and correlation<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#pca">Principal components, scores, and loadings<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#clustering">Clustering and linkage<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#high-dimensional">Rank and high-dimensional noise<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 7 · PCA allocates variance across directions</h2><div class="figure-data"><div class="figure-row"><span class="figure-label">PC1 · shared direction</span><span class="figure-value">87.5%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:87.5%"></div></div></div>
+<div class="figure-row"><span class="figure-label">PC2 · contrast direction</span><span class="figure-value">12.5%</span><div class="figure-track" aria-hidden="true"><div class="figure-bar" style="--value:12.5%"></div></div></div></div><figcaption>For a covariance matrix with diagonal 4 and off-diagonal 3, the eigenvalues are 7 and 1. The explained shares are 7/8 and 1/8.</figcaption></figure>
+        <section class="study-lesson" id="scaling" aria-labelledby="scaling-title">
+  <h2 id="scaling-title">Centering, scaling, and distance</h2>
+  <p class="concept-explanation">Centering subtracts a feature mean. Standardization also divides by its standard deviation. A distance-based analysis depends on these choices because coordinates with a larger numerical range can dominate distances.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Combining measurements in thousands and tenths puts them on different numerical rulers. Standardization uses each feature’s typical variation as the ruler.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Two samples differ by 100 on feature 1 and by 1 on feature 2. Their raw Euclidean distance is √(100² + 1²) ≈ 100.005.</li>
+<li>If feature SDs are 100 and 0.5, differences in SD units are 1 and 2.</li>
+<li>Their standardized Euclidean distance is √(1² + 2²) = √5. The second feature now contributes more.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Choose a scale that reflects meaningful variation across samples. Standardizing every noisy low-variance feature can also amplify measurement noise.</p></div>
+</section>
+<section class="study-lesson" id="covariance" aria-labelledby="covariance-title">
+  <h2 id="covariance-title">Covariance and correlation</h2>
+  <p class="concept-explanation">A covariance matrix stores variances on its diagonal and pairwise covariances off the diagonal. Correlation divides covariance by both feature SDs, yielding a unitless measure of linear association. These matrices summarize second-order structure.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A positive off-diagonal value means samples high on one centered feature tend to be high on the other. It can reflect shared biology, a technical factor, or both.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>If Var(X) = Var(Y) = 4 and Cov(X,Y) = 3, then each SD is 2.</li>
+<li>The correlation is 3/(2 × 2) = 0.75.</li>
+<li>Changing X’s units multiplies its SD and covariance with Y by the same positive factor, leaving correlation unchanged.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Examine whether strong feature correlations persist after accounting for known batch and sample structure.</p></div>
+</section>
+<section class="study-lesson" id="pca" aria-labelledby="pca-title">
+  <h2 id="pca-title">Principal components, scores, and loadings</h2>
+  <p class="concept-explanation">PCA finds orthogonal directions of decreasing variance in centered data. Loadings give the direction’s coefficients for each feature. A score is a sample’s coordinate along that direction. Eigenvalues measure variance along the corresponding directions.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Rotate the axes until the first axis follows the widest direction of the point cloud. The second axis captures the remaining variation perpendicular to it.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>For covariance [[4,3],[3,4]], the sum direction (1,1)/√2 has eigenvalue 7 and the difference direction (1,−1)/√2 has eigenvalue 1.</li>
+<li>The first component explains 7/(7+1) = 87.5% of variance.</li>
+<li>A centered sample at (2,2) scores 2√2 on PC1 and zero on PC2. Changing the sign of the loadings changes the sign of scores without changing the geometry.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Color a PCA plot by condition, batch, or quality metrics to explore structure. High variance along a component does not establish what caused it.</p></div>
+</section>
+<section class="study-lesson" id="clustering" aria-labelledby="clustering-title">
+  <h2 id="clustering-title">Clustering and linkage</h2>
+  <p class="concept-explanation">Clustering groups samples using a chosen representation and similarity rule. In hierarchical clustering, the distance between clusters depends on the linkage rule. Single linkage uses the nearest pair, while complete linkage uses the farthest pair.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Single linkage can connect a chain of nearby points into a long cluster. Complete linkage favors groups whose members stay close even at the extremes.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>Let d(A,B)=2, d(A,C)=4, and d(B,C)=5. A and B merge first.</li>
+<li>The single-linkage distance from {A,B} to C is min(4,5)=4.</li>
+<li>The complete-linkage distance is max(4,5)=5. The same input can produce different dendrogram heights.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Check whether patterns persist under reasonable choices of distance, transformation, and linkage before naming clusters.</p></div>
+</section>
+<section class="study-lesson" id="high-dimensional" aria-labelledby="high-dimensional-title">
+  <h2 id="high-dimensional-title">Rank and high-dimensional noise</h2>
+  <p class="concept-explanation">When the number of features p exceeds the sample count n, centered data have rank at most n−1. A sample covariance matrix then has many directions with zero estimated variance and may be singular. Feature selection and regularization become important.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Measuring more coordinates gives more ways to describe the same small set of points. It does not add independent samples.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>With n = 20 samples and p = 1,000 features, the centered matrix has rank at most 19.</li>
+<li>At most 19 PCA components can have nonzero sample variance.</li>
+<li>A model that inverts the full 1,000-by-1,000 sample covariance needs additional structure or regularization.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Use independent samples to judge whether a high-dimensional pattern generalizes. Apparent separation in a visualization can arise from selected features.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Interpret a principal component</h3>
+    <p>A covariance matrix has eigenvalues 7 and 1. How much variance does the first component explain, and what does that tell you?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>7/8 = 87.5%. The first direction captures that share of the variance in the sampled, preprocessed data. It does not establish causation.</p></details>
+    <p><a href="../statistics-self-study.html#q-multi-pca">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Count possible nonzero components</h3>
+    <p>You center a matrix with 20 samples and 1,000 features. What is the maximum number of nonzero-variance principal components?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>At most 19. The centered matrix has rank no larger than min(20−1, 1000).</p></details>
+    <p><a href="../statistics-self-study.html#q-multi-rank">Open in practice mode →</a></p>
+  </article>
+</section>
+        <section class="book-extras"><h2>Further reading</h2><ul><li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a></li></ul></section>
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="counts.html">← Counts, exposure, and normalization</a>
+          <a href="validation.html">Prediction and validation →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

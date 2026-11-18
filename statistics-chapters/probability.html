@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Use conditional probability, expectations, and distributions to describe how data could arise.">
+  <title>Probability and data models · Statistics Self-Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="../assets/statistics-chapters.css?v=2">
+</head>
+<body class="book">
+  <a class="skip" href="#main">Skip to chapter</a>
+  <header class="book-top"><div class="wrap">
+    <a class="book-name" href="../statistics-self-study.html#concepts">Statistics Self-Study</a>
+    <nav aria-label="Study navigation">
+      <a href="../statistics-self-study.html#concepts">All chapters</a>
+      <a href="../statistics-self-study.html#bank">Question bank</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap">
+    <header class="book-heading">
+      <p class="chapter-kicker">Chapter 2 of 8</p>
+      <h1>Probability and data models</h1>
+      <p class="library-lede">Use conditional probability, expectations, and distributions to describe how data could arise.</p>
+    </header>
+    <div class="book-layout">
+      <nav class="book-index" aria-label="In this chapter">
+        <h2>In this chapter</h2>
+        <ul class="concept-toc"><li><a href="#conditional">Conditional probability and Bayes’ rule<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#expectation">Expectation, variance, and covariance<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#binomial">Bernoulli and binomial models<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#poisson">Poisson counts and exposure<span class="arrow" aria-hidden="true">→</span></a></li>
+<li><a href="#sampling">Population distributions and sampling distributions<span class="arrow" aria-hidden="true">→</span></a></li></ul>
+        <a class="separate-practice" href="#questions">Practice questions ↓</a>
+      </nav>
+      <div class="book-content">
+        <figure class="study-figure" aria-labelledby="figure-title"><h2 id="figure-title">Figure 2 · A rare class can dominate the errors</h2><div class="figure-table"><table aria-labelledby="figure-title"><thead><tr><th scope="col">Actual status in 1,000 samples</th><th scope="col">Flagged</th><th scope="col">Clear</th></tr></thead><tbody><tr><th scope="row">50 have the condition</th><td>45</td><td>5</td></tr>
+<tr><th scope="row">950 do not</th><td>95</td><td>855</td></tr></tbody></table></div><figcaption>Sensitivity is 45/50 = 90%. Among flagged samples, 45/140 ≈ 32% actually have the condition. These percentages condition on different totals.</figcaption></figure>
+        <section class="study-lesson" id="conditional" aria-labelledby="conditional-title">
+  <h2 id="conditional-title">Conditional probability and Bayes’ rule</h2>
+  <p class="concept-explanation">Conditional probability restricts the sample space to records satisfying a condition. Bayes’ rule connects the probability of an observed result given a class with the probability of the class given that result. The latter also depends on the base rate.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Imagine crossing out every sample that was not flagged. The fraction of remaining rows with the condition is the probability you want after a flag.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>In Figure 2, P(flag | condition) = 45/50 = 0.90 and P(flag | no condition) = 95/950 = 0.10.</li>
+<li>P(flag) = 0.90 × 0.05 + 0.10 × 0.95 = 0.14.</li>
+<li>P(condition | flag) = 0.90 × 0.05 ÷ 0.14 ≈ 0.321.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>In quality-control classification, the proportion of true issues among flagged samples can change when the underlying failure rate changes.</p></div>
+</section>
+<section class="study-lesson" id="expectation" aria-labelledby="expectation-title">
+  <h2 id="expectation-title">Expectation, variance, and covariance</h2>
+  <p class="concept-explanation">Expectation is a probability-weighted average. Variance measures average squared deviation from that mean. Covariance measures how departures from two means move together. Covariance determines how much random variation cancels or accumulates when variables are combined.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Two instruments sharing a fluctuating calibration can drift in the same direction. Subtracting their paired readings may cancel some of that shared error.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>E[aX + bY] = aE[X] + bE[Y] regardless of dependence.</li>
+<li>Var(X − Y) = Var(X) + Var(Y) − 2Cov(X,Y).</li>
+<li>If both variances are 4 and covariance is 3, the paired difference has variance 4 + 4 − 6 = 2.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>The covariance term matters when combining measurements from repeated samples or paired experimental conditions.</p></div>
+</section>
+<section class="study-lesson" id="binomial" aria-labelledby="binomial-title">
+  <h2 id="binomial-title">Bernoulli and binomial models</h2>
+  <p class="concept-explanation">A Bernoulli variable is 1 on success and 0 otherwise, with success probability p. The binomial model counts successes across n independent Bernoulli trials with the same p. Each legal count has a probability that includes the number of orders in which it can occur.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Exactly one success in three trials can occur in three positions. Count those possibilities before multiplying probabilities.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>At p = 0.2, a specified order with one success has probability 0.2 × 0.8² = 0.128.</li>
+<li>There are 3 such orders, giving P(X = 1) = 0.384.</li>
+<li>The mean is np = 0.6. The variance is np(1 − p) = 0.48.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Binomial models can describe the number of passing reads under simplified assumptions. Shared samples or varying pass probabilities can violate those assumptions.</p></div>
+</section>
+<section class="study-lesson" id="poisson" aria-labelledby="poisson-title">
+  <h2 id="poisson-title">Poisson counts and exposure</h2>
+  <p class="concept-explanation">A Poisson model describes a nonnegative event count with mean λ and variance λ. If events occur at a constant rate r per unit of exposure under the model, then λ is r multiplied by exposure.</p>
+  <div class="intuition"><h3>Intuition</h3><p>Two libraries of different sizes create different opportunities to observe the same feature. A larger count can reflect more opportunities even when the rate is unchanged.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>At a rate of 3 events per exposure unit and exposure 2, λ = 6.</li>
+<li>The probability of zero is exp(−6) ≈ 0.0025.</li>
+<li>The model’s standard deviation is √6 ≈ 2.45. A much wider empirical spread after accounting for exposure suggests checking overdispersion.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>Counts from sequencing or imaging often have unequal exposure. State the exposure scale before comparing raw counts.</p></div>
+</section>
+<section class="study-lesson" id="sampling" aria-labelledby="sampling-title">
+  <h2 id="sampling-title">Population distributions and sampling distributions</h2>
+  <p class="concept-explanation">A population distribution describes individual observations. A sampling distribution describes how a statistic would vary if you repeated the sampling procedure. Under suitable conditions, the mean of independent observations becomes roughly normally distributed as sample size grows.</p>
+  <div class="intuition"><h3>Intuition</h3><p>A single reading can be noisy. An average of many independent readings moves less because high and low deviations tend to offset one another.</p></div>
+  <h3 class="math-label">Worked math</h3>
+  <ol class="math-steps"><li>If individual readings have SD σ = 12, the sample mean of n = 36 independent readings has SD σ/√n = 2.</li>
+<li>At n = 144, that SD falls to 1.</li>
+<li>The individual-reading SD stays at 12 in both cases.</li></ol>
+  <div class="application"><h3>In bioinformatics</h3><p>A histogram of sample values tells a different story from a histogram of estimates produced by resampling specimens.</p></div>
+</section>
+        <section class="chapter-exercises" id="questions" aria-labelledby="questions-title">
+  <h2 id="questions-title">Practice questions</h2>
+  <article class="chapter-question">
+    <h3>1. Work from a confusion table</h3>
+    <p>Out of 1,000 samples, 50 have a condition. A screen flags 45 condition-positive and 95 condition-negative samples. What fraction of flagged samples has the condition?</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>45/(45 + 95) ≈ 32.1%. Sensitivity answers a separate conditional probability, 45/50 = 90%.</p></details>
+    <p><a href="../statistics-self-study.html#q-probability-bayes">Open in practice mode →</a></p>
+  </article>
+<article class="chapter-question">
+    <h3>2. Use covariance in a contrast</h3>
+    <p>Two paired measurements each have variance 4, with covariance 3. Calculate the variance of their difference.</p>
+    <details class="lesson-check"><summary>Show the answer</summary><p>Var(X − Y) = 4 + 4 − 2 × 3 = 2.</p></details>
+    <p><a href="../statistics-self-study.html#q-probability-covariance">Open in practice mode →</a></p>
+  </article>
+</section>
+        
+        <nav class="book-pager" aria-label="Previous and next chapters">
+          <a href="design.html">← Study design and measurement</a>
+          <a href="uncertainty.html">Estimation and uncertainty →</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
