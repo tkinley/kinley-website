@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18",
+ "updated": "2026-11-20",
  "scorecard": [
   {
    "ticker": "INMB",
@@ -41,10 +41,10 @@
    "ticker": "CAPR",
    "period": "2026",
    "bet": "Short again, round two",
-   "date": "2026-07-29",
-   "outcome": "pending",
-   "note": "FDA AdCom voted 9-3 that the evidence fell short; FDA has not made a final decision (per the court filing).",
-   "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+   "date": "2026-11-20",
+   "outcome": "won",
+   "note": "FDA issued a second CRL for Deramiocel on Nov 20, 2026, two days before the PDUFA, and took the rare step of a public statement citing serious data integrity problems in HOPE-3. Asked on Nov 17 if CAPR would be approved that week, he replied 'ofc not'. Stock fell 77% in extended trading.",
+   "url": "https://x.com/MartinShkreli/status/2123933125596397894"
   },
   {
    "ticker": "SLS",
@@ -67,10 +67,10 @@
    "evidence": "stated",
    "confidence": "high",
    "status": "open",
-   "statusNote": "Re-shorted in Aug 2026 after losing on it in 2025",
+   "statusNote": "Round-two short vindicated: FDA rejected Deramiocel on Nov 20, 2026 (second CRL)",
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-09-03",
-   "summary": "Jul 8: says he is short some Capricor and unsure how much more to add; Jul 27 tweets it is a complete fraud; Aug 26 says he shorted it again (round two); Sep 3 says he is always short CAPR. FDA AdCom voted 9-3 against on Jul 29, 2026.",
+   "lastSeen": "2026-11-20",
+   "summary": "Jul 8: says he is short some Capricor and unsure how much more to add; Jul 27 tweets it is a complete fraud; Aug 26 says he shorted it again (round two); Sep 3 says he is always short CAPR. FDA AdCom voted 9-3 against on Jul 29, 2026. Nov 17: asked whether CAPR would be approved that week, he replied 'ofc not'. Nov 20: FDA issued a second CRL and a public statement citing data integrity problems in HOPE-3; stock fell 77% in extended trading.",
    "sources": [
     {
      "label": "Stream clip",
@@ -83,6 +83,10 @@
     {
      "label": "X post",
      "url": "https://x.com/MartinShkreli/status/2081710209219580134"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2123933125596397894"
     }
    ]
   },
@@ -153,8 +157,8 @@
    "status": "open",
    "statusNote": "Court filing (Oct 2026) says he is shorting it",
    "firstSeen": "2026-06-30",
-   "lastSeen": "2026-09-03",
-   "summary": "Jun 30: says the new portfolio is not short yet and he will put it on that day (hard to borrow). Aug 26 calls it a great short; Sep 3 lists it among current shorts; hosted AML KOL calls on SLS in Aug. Aug 26 stream (yE_-hyYdY6k) also calls it a great short. Court memo says he is shorting SELLAS and 'guarantees' its AML study will fail. REGAL met its primary endpoint Nov 17 (HR 0.59, p=0.035; median OS 24.0 vs 14.7 months); stock up about 170%. He called the data 'sketch'.",
+   "lastSeen": "2026-11-20",
+   "summary": "Jun 30: says the new portfolio is not short yet and he will put it on that day (hard to borrow). Aug 26 calls it a great short; Sep 3 lists it among current shorts; hosted AML KOL calls on SLS in Aug. Aug 26 stream (yE_-hyYdY6k) also calls it a great short. Court memo says he is shorting SELLAS and 'guarantees' its AML study will fail. REGAL met its primary endpoint Nov 17 (HR 0.59, p=0.035; median OS 24.0 vs 14.7 months); stock up about 170%. He called the data 'sketch'. Nov 20: after the CAPR CRL he quote-posted '$SLS = $CAPR by the way' and replied 'its going to 0'.",
    "sources": [
     {
      "label": "Stream clip",
@@ -167,6 +171,10 @@
     {
      "label": "Court filing",
      "url": "https://ag.ny.gov/sites/default/files/court-filings/federal-trade-commission-et-al-v-martin-shkreli-memorandum-2026.pdf"
+    },
+    {
+     "label": "X post",
+     "url": "https://x.com/MartinShkreli/status/2123934765971579361"
     }
    ]
   },
@@ -1484,6 +1492,24 @@
   }
  ],
  "events": [
+  {
+   "date": "2026-11-20",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "result",
+   "note": "FDA issued a second Complete Response Letter for Deramiocel and a public statement that the evidence does not meet the standard for approval, citing serious data integrity problems in HOPE-3, including unauthorized changes to the analysis plan and blinding violations; the agency called the data not reliable or interpretable. Stock fell 77% in extended trading. This proves his Nov 17 call right: asked if CAPR would be approved that week, he replied 'ofc not'. He called the FDA statement 'nearly unprecedented' and urged a DOJ referral over alleged data manipulation.",
+   "url": "https://www.reuters.com/legal/litigation/us-fda-declines-approve-capricors-cell-therapy-duchenne-muscular-dystrophy-2026-11-20/"
+  },
+  {
+   "date": "2026-11-20",
+   "tickers": [
+    "SLS"
+   ],
+   "action": "info",
+   "note": "Doubles down on the SLS short after the CAPR rejection: quote-posts '$SLS = $CAPR by the way' over his FDA post and replies 'its going to 0' in the SLS thread. X's cashtag card showed SLS at $13.66, down 8.08% on the day.",
+   "url": "https://x.com/MartinShkreli/status/2123934765971579361"
+  },
   {
    "date": "2026-11-17",
    "tickers": [
