@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-25",
  "scorecard": [
   {
    "ticker": "INMB",
@@ -1492,6 +1492,42 @@
   }
  ],
  "events": [
+  {
+   "date": "2026-11-23",
+   "tickers": [
+    "CAPR"
+   ],
+   "action": "info",
+   "note": "After the Nov 20 CRL, stock fell about 75% in regular trading Nov 23 to about $1.95, a 52-week low. Piper Sandler cut to Underweight with a $1 target (from $25); B. Riley cut to Neutral, $4 (from $21). Capricor postponed its CRL conference call.",
+   "url": "https://stocktwits.com/news-articles/markets/equity/capr-stock-gets-price-target-cut-after-fda-issues-2nd-crl-for-dmd-therapy/cNbpGTiR9SD"
+  },
+  {
+   "date": "2026-11-20",
+   "tickers": [
+    "ABVX"
+   ],
+   "action": "info",
+   "note": "Scorpion Capital published a short report calling Abivax 'a biotech fraud for the ages', alleging obefazimod poses a photocarcinogen/cancer risk and questioning trial data integrity; Scorpion disclosed a short position. Shares fell about 17% in Paris (about 9% for US ADRs), then rebounded about 10% on Nov 23. Abivax called the report factually inaccurate and misleading and said it still plans to file its US NDA by year-end.",
+   "url": "https://european-biotechnology.com/latest-news/abivax-fights-short-sellers-cancer-claims-ahead-of-fda-filing/"
+  },
+  {
+   "date": "2026-11-20",
+   "tickers": [
+    "RARE"
+   ],
+   "action": "info",
+   "note": "Closed the sale of its second Rare Pediatric Disease Priority Review Voucher for $203M gross ($16M to a third-party licensor); the voucher was awarded Sep 17, 2026 with the FAYUVI approval. 8-K filed Nov 23. The first PRV was sold Oct 30 for $210M.",
+   "url": "https://mlq.ai/news/ultragenyx-closes-203-million-sale-of-its-priority-review-voucher/"
+  },
+  {
+   "date": "2026-11-20",
+   "tickers": [
+    "SLS"
+   ],
+   "action": "info",
+   "note": "Closed the public offering upsized to $172.5M: 13.27M shares at $13, underwriters exercised their full option. Net proceeds about $161.8M.",
+   "url": "https://pharmemed.com/intelligence/sellas-completes-172-5-million-equity-offering-after-underwriters-exercise-full-option"
+  },
   {
    "date": "2026-11-20",
    "tickers": [
