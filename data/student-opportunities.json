@@ -67,6 +67,59 @@
       }
     },
     {
+      "id": "oreilly-learning",
+      "title": "O'Reilly",
+      "description": "Tech books, video courses, live events. Free through K-State Libraries.",
+      "category": "campus-benefits",
+      "categories": [
+        "campus-benefits"
+      ],
+      "benefit_type": "Free",
+      "official_url": "https://learning.oreilly.com/",
+      "eligibility_rules": {
+        "known": [
+          {
+            "field": "enrolled",
+            "operator": "equals",
+            "value": "yes",
+            "label": "Current K-State enrollment",
+            "source_text": "O'Reilly for Higher Education: use your K-State eID and password to gain access. University-wide access paid for by K-State Libraries."
+          }
+        ],
+        "unknown": [],
+        "complete": true
+      },
+      "academic_levels": null,
+      "student_status_restrictions": null,
+      "deadline": {
+        "date": null,
+        "verified": false,
+        "reported_date": null,
+        "source_text": null
+      },
+      "last_verified": "2026-11-25",
+      "tags": [
+        "Learning"
+      ],
+      "notes": "Sign in with your K-State eID (institutional access). Mobile app included, with offline downloads.",
+      "availability": {
+        "state": "verified_current",
+        "reported_end": null
+      },
+      "source": {
+        "file": "student-benefits.html",
+        "card_number": 2,
+        "categories": [
+          "kstate",
+          "learn"
+        ],
+        "labels": [
+          "K-State",
+          "Free"
+        ]
+      }
+    },
+    {
       "id": "microsoft-365",
       "title": "Microsoft 365",
       "description": "Word, Excel, Teams, OneDrive. Up to 5 devices while enrolled.",
@@ -100,7 +153,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 2,
+        "card_number": 3,
         "categories": [
           "kstate"
         ],
@@ -147,7 +200,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 3,
+        "card_number": 4,
         "categories": [
           "ai",
           "deadline"
@@ -195,7 +248,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 4,
+        "card_number": 5,
         "categories": [
           "ai"
         ],
@@ -244,7 +297,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 5,
+        "card_number": 6,
         "categories": [
           "research"
         ],
@@ -295,7 +348,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 6,
+        "card_number": 7,
         "categories": [
           "research"
         ],
@@ -342,7 +395,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 7,
+        "card_number": 8,
         "categories": [
           "kstate",
           "research"
@@ -400,7 +453,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 8,
+        "card_number": 9,
         "categories": [
           "kstate",
           "money"
@@ -449,7 +502,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 9,
+        "card_number": 10,
         "categories": [
           "research"
         ],
@@ -496,7 +549,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 10,
+        "card_number": 11,
         "categories": [
           "research"
         ],
@@ -545,7 +598,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 11,
+        "card_number": 12,
         "categories": [
           "research"
         ],
@@ -594,7 +647,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 12,
+        "card_number": 13,
         "categories": [
           "research"
         ],
@@ -645,7 +698,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 13,
+        "card_number": 14,
         "categories": [
           "research"
         ],
@@ -694,7 +747,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 14,
+        "card_number": 15,
         "categories": [
           "research"
         ],
@@ -745,7 +798,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 15,
+        "card_number": 16,
         "categories": [
           "research"
         ],
@@ -798,7 +851,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 16,
+        "card_number": 17,
         "categories": [
           "research",
           "money",
@@ -812,7 +865,7 @@
     {
       "id": "doe-scgsr",
       "title": "DOE SCGSR",
-      "description": "3 to 12 months thesis research at a DOE lab.",
+      "description": "3 to 12 months thesis research at a DOE lab. US citizens/PR only.",
       "category": "scholarships",
       "categories": [
         "scholarships",
@@ -831,7 +884,18 @@
               "PhD"
             ],
             "label": "Academic stage described in the directory",
-            "source_text": "DOE SCGSR — 3 to 12 months thesis research at a DOE lab. Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET."
+            "source_text": "DOE SCGSR — 3 to 12 months thesis research at a DOE lab. US citizens/PR only. Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET."
+          },
+          {
+            "field": "citizenship",
+            "operator": "in",
+            "values": [
+              "US citizen",
+              "US national",
+              "US permanent resident"
+            ],
+            "label": "US citizens/PR only",
+            "source_text": "DOE SCGSR requires US citizen, national, or permanent resident, verified across DOE's own pages Oct 20, 2026."
           }
         ],
         "unknown": [
@@ -848,7 +912,7 @@
         "date": null,
         "verified": false,
         "reported_date": null,
-        "source_text": "Deadline Nov 4 · Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET."
+        "source_text": "Deadline Nov 4 · Needs PhD candidacy + DOE lab collaborator. US citizens/PR only. Stipend + travel. Due Nov 4, 2026, 5pm ET."
       },
       "last_verified": null,
       "tags": [
@@ -857,14 +921,14 @@
         "Travel",
         "Financial Support"
       ],
-      "notes": "Needs PhD candidacy + DOE lab collaborator. Stipend + travel. Due Nov 4, 2026, 5pm ET.",
+      "notes": "Needs PhD candidacy + DOE lab collaborator. US citizens/PR only. Stipend + travel. Due Nov 4, 2026, 5pm ET.",
       "availability": {
         "state": "verification_needed",
         "reported_end": null
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 17,
+        "card_number": 18,
         "categories": [
           "research",
           "money",
@@ -928,7 +992,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 18,
+        "card_number": 19,
         "categories": [
           "research",
           "money"
@@ -976,7 +1040,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 19,
+        "card_number": 20,
         "categories": [
           "research"
         ],
@@ -1024,7 +1088,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 20,
+        "card_number": 21,
         "categories": [
           "ai",
           "research"
@@ -1073,7 +1137,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 21,
+        "card_number": 22,
         "categories": [
           "ai"
         ],
@@ -1120,7 +1184,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 22,
+        "card_number": 23,
         "categories": [
           "research"
         ],
@@ -1165,7 +1229,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 23,
+        "card_number": 24,
         "categories": [
           "kstate"
         ],
@@ -1209,7 +1273,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 24,
+        "card_number": 25,
         "categories": [
           "kstate"
         ],
@@ -1255,7 +1319,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 25,
+        "card_number": 26,
         "categories": [
           "kstate"
         ],
@@ -1430,7 +1494,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 27,
+        "card_number": 28,
         "categories": [
           "money"
         ],
@@ -1475,7 +1539,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 28,
+        "card_number": 29,
         "categories": [
           "money"
         ],
@@ -1521,7 +1585,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 29,
+        "card_number": 30,
         "categories": [
           "money"
         ],
@@ -1566,7 +1630,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 30,
+        "card_number": 31,
         "categories": [
           "learn"
         ],
@@ -1615,7 +1679,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 31,
+        "card_number": 32,
         "categories": [
           "learn"
         ],
@@ -1658,7 +1722,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 32,
+        "card_number": 33,
         "categories": [
           "fun"
         ],
@@ -1701,7 +1765,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 33,
+        "card_number": 34,
         "categories": [
           "fun"
         ],
@@ -1744,7 +1808,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 34,
+        "card_number": 35,
         "categories": [
           "fun"
         ],
@@ -1793,7 +1857,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 35,
+        "card_number": 36,
         "categories": [
           "research"
         ],
@@ -1840,7 +1904,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 36,
+        "card_number": 37,
         "categories": [
           "research"
         ],
@@ -1888,7 +1952,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 37,
+        "card_number": 38,
         "categories": [
           "kstate",
           "research"
@@ -1937,7 +2001,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 38,
+        "card_number": 39,
         "categories": [
           "kstate",
           "money"
@@ -1985,7 +2049,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 39,
+        "card_number": 40,
         "categories": [
           "kstate",
           "money"
@@ -2033,7 +2097,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 40,
+        "card_number": 41,
         "categories": [
           "kstate",
           "research"
@@ -2082,7 +2146,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 41,
+        "card_number": 42,
         "categories": [
           "kstate",
           "research"
@@ -2131,7 +2195,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 42,
+        "card_number": 43,
         "categories": [
           "research"
         ],
@@ -2180,7 +2244,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 43,
+        "card_number": 44,
         "categories": [
           "research"
         ],
@@ -2231,7 +2295,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 44,
+        "card_number": 45,
         "categories": [
           "research"
         ],
@@ -2281,7 +2345,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 45,
+        "card_number": 46,
         "categories": [
           "research",
           "ai"
@@ -2332,7 +2396,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 46,
+        "card_number": 47,
         "categories": [
           "research",
           "ai"
@@ -2380,7 +2444,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 47,
+        "card_number": 48,
         "categories": [
           "research"
         ],
@@ -2428,7 +2492,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 48,
+        "card_number": 49,
         "categories": [
           "research",
           "ai"
@@ -2478,7 +2542,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 49,
+        "card_number": 50,
         "categories": [
           "research"
         ],
@@ -2530,7 +2594,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 50,
+        "card_number": 51,
         "categories": [
           "research",
           "money",
@@ -2599,7 +2663,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 51,
+        "card_number": 52,
         "categories": [
           "research",
           "money"
@@ -2645,7 +2709,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 52,
+        "card_number": 53,
         "categories": [
           "fun",
           "learn"
@@ -2689,7 +2753,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 53,
+        "card_number": 54,
         "categories": [
           "kstate"
         ],
@@ -2735,7 +2799,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 54,
+        "card_number": 55,
         "categories": [
           "kstate"
         ],
@@ -2783,7 +2847,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 55,
+        "card_number": 56,
         "categories": [
           "kstate"
         ],
@@ -2829,7 +2893,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 56,
+        "card_number": 57,
         "categories": [
           "kstate"
         ],
@@ -2873,7 +2937,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 57,
+        "card_number": 58,
         "categories": [
           "kstate"
         ],
@@ -3018,7 +3082,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 59,
+        "card_number": 60,
         "categories": [
           "kstate"
         ],
@@ -3065,7 +3129,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 60,
+        "card_number": 61,
         "categories": [
           "kstate",
           "research"
@@ -3111,7 +3175,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 61,
+        "card_number": 62,
         "categories": [
           "kstate"
         ],
@@ -3156,7 +3220,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 62,
+        "card_number": 63,
         "categories": [
           "kstate"
         ],
@@ -3204,7 +3268,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 63,
+        "card_number": 64,
         "categories": [
           "research"
         ],
@@ -3256,7 +3320,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 64,
+        "card_number": 65,
         "categories": [
           "deadline"
         ],
@@ -3309,7 +3373,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 65,
+        "card_number": 66,
         "categories": [
           "deadline"
         ],
@@ -3362,7 +3426,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 66,
+        "card_number": 67,
         "categories": [
           "deadline"
         ],
@@ -3414,7 +3478,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 67,
+        "card_number": 68,
         "categories": [
           "deadline"
         ],
@@ -3467,7 +3531,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 68,
+        "card_number": 69,
         "categories": [
           "deadline"
         ],
@@ -3533,7 +3597,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 69,
+        "card_number": 70,
         "categories": [
           "deadline"
         ],
@@ -3586,7 +3650,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 70,
+        "card_number": 71,
         "categories": [
           "deadline"
         ],
@@ -3639,7 +3703,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 71,
+        "card_number": 72,
         "categories": [
           "deadline"
         ],
@@ -3706,7 +3770,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 72,
+        "card_number": 73,
         "categories": [
           "deadline"
         ],
@@ -3759,7 +3823,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 73,
+        "card_number": 74,
         "categories": [
           "deadline"
         ],
@@ -3814,7 +3878,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 74,
+        "card_number": 75,
         "categories": [
           "deadline"
         ],
@@ -3868,7 +3932,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 75,
+        "card_number": 76,
         "categories": [
           "deadline"
         ],
@@ -3916,7 +3980,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 76,
+        "card_number": 77,
         "categories": [
           "research"
         ],
@@ -3964,7 +4028,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 77,
+        "card_number": 78,
         "categories": [
           "research"
         ],
@@ -4011,7 +4075,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 78,
+        "card_number": 79,
         "categories": [
           "research"
         ],
@@ -4058,7 +4122,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 79,
+        "card_number": 80,
         "categories": [
           "research"
         ],
@@ -4105,7 +4169,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 80,
+        "card_number": 81,
         "categories": [
           "research"
         ],
@@ -4154,7 +4218,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 81,
+        "card_number": 82,
         "categories": [
           "research"
         ],
@@ -4205,7 +4269,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 82,
+        "card_number": 83,
         "categories": [
           "research"
         ],
@@ -4254,7 +4318,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 83,
+        "card_number": 84,
         "categories": [
           "research"
         ],
@@ -4301,7 +4365,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 84,
+        "card_number": 85,
         "categories": [
           "research"
         ],
@@ -4348,7 +4412,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 85,
+        "card_number": 86,
         "categories": [
           "research"
         ],
@@ -4396,7 +4460,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 86,
+        "card_number": 87,
         "categories": [
           "ai"
         ],
@@ -4442,7 +4506,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 87,
+        "card_number": 88,
         "categories": [
           "ai"
         ],
@@ -4488,7 +4552,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 88,
+        "card_number": 89,
         "categories": [
           "ai"
         ],
@@ -4534,7 +4598,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 89,
+        "card_number": 90,
         "categories": [
           "ai"
         ],
@@ -4580,7 +4644,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 90,
+        "card_number": 91,
         "categories": [
           "ai"
         ],
@@ -4627,7 +4691,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 91,
+        "card_number": 92,
         "categories": [
           "research"
         ],
@@ -4673,7 +4737,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 92,
+        "card_number": 93,
         "categories": [
           "ai"
         ],
@@ -4719,7 +4783,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 93,
+        "card_number": 94,
         "categories": [
           "ai"
         ],
@@ -4767,7 +4831,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 94,
+        "card_number": 95,
         "categories": [
           "ai"
         ],
@@ -4815,7 +4879,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 95,
+        "card_number": 96,
         "categories": [
           "learn"
         ],
@@ -4861,7 +4925,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 96,
+        "card_number": 97,
         "categories": [
           "learn"
         ],
@@ -4907,7 +4971,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 97,
+        "card_number": 98,
         "categories": [
           "learn"
         ],
@@ -4955,7 +5019,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 98,
+        "card_number": 99,
         "categories": [
           "learn"
         ],
@@ -5003,7 +5067,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 99,
+        "card_number": 100,
         "categories": [
           "learn"
         ],
@@ -5050,7 +5114,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 100,
+        "card_number": 101,
         "categories": [
           "money"
         ],
@@ -5096,7 +5160,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 101,
+        "card_number": 102,
         "categories": [
           "money"
         ],
@@ -5142,7 +5206,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 102,
+        "card_number": 103,
         "categories": [
           "money"
         ],
@@ -5185,7 +5249,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 103,
+        "card_number": 104,
         "categories": [
           "money"
         ],
@@ -5231,7 +5295,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 104,
+        "card_number": 105,
         "categories": [
           "money"
         ],
@@ -5274,7 +5338,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 105,
+        "card_number": 106,
         "categories": [
           "fun"
         ],
@@ -5319,7 +5383,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 106,
+        "card_number": 107,
         "categories": [
           "fun"
         ],
@@ -5362,7 +5426,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 107,
+        "card_number": 108,
         "categories": [
           "fun"
         ],
@@ -5405,7 +5469,7 @@
       },
       "source": {
         "file": "student-benefits.html",
-        "card_number": 108,
+        "card_number": 109,
         "categories": [
           "fun"
         ],
